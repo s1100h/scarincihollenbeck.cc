@@ -13,6 +13,7 @@ const PracticeAttorneys = dynamic(() => import('components/organisms/practices/P
 const WhatWeDoSection = dynamic(() => import('../organisms/home/WhatWeDoSection'));
 const WhyChooseUs = dynamic(() => import('../organisms/practices/WhyChooseUs'));
 const GoogleReviews = dynamic(() => import('../organisms/common/GoogleReviews'));
+const VerticalTabs = dynamic(() => import('components/organisms/locations/VerticalTabs'));
 
 const anchorLocationsData = {
   map: {
@@ -23,12 +24,16 @@ const anchorLocationsData = {
     id: 'faq-section',
     title: 'FAQs',
   },
+  info: {
+    id: 'info-section',
+    title: 'Information',
+  },
   attorneys: {
     id: 'attorneys-section',
     title: 'Attorneys',
   },
   whatWeDo: {
-    id: 'What-we-do',
+    id: 'what-we-do',
     title: 'What we do',
   },
   whyChooseUs: {
@@ -51,11 +56,17 @@ const LocationPage = ({
   googleReviews,
 }) => {
   const anchorData = useMemo(() => {
+    const copyAnchorLocationsData = { ...anchorLocationsData };
     if (empty(googleReviews)) {
-      delete anchorLocationsData.reviews;
+      delete copyAnchorLocationsData.reviews;
     }
-    return anchorLocationsData;
-  }, [googleReviews]);
+
+    if (empty(currentOffice.contentTabs)) {
+      delete copyAnchorLocationsData.info;
+    }
+
+    return copyAnchorLocationsData;
+  }, [googleReviews, currentOffice, anchorLocationsData]);
 
   const addressInfo = {
     phone: currentOffice.phone,
@@ -99,6 +110,10 @@ const LocationPage = ({
         anchorIdMap={anchorData.map.id}
         anchorIdFaq={anchorData.faq.id}
         faqData={currentOffice.faq}
+      />
+      <VerticalTabs
+        contentTabs={currentOffice.contentTabs}
+        anchorId={anchorData?.info?.id}
       />
       {!empty(currentOffice?.attorneys) && (
         <PracticeAttorneys

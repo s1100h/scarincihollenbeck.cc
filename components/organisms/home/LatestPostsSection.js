@@ -15,11 +15,15 @@ import empty from 'is-empty';
 const LatestPostsTabsRender = dynamic(() => import('./LatestPostsTabsRender'));
 const LatestPostsCards = dynamic(() => import('components/common/LatestPostsCards'));
 
-const LatestPostsSection = ({ tabsData, posts }) => {
+const LatestPostsSection = ({ tabsData, posts, anchorId }) => {
   if (empty(tabsData) && empty(posts)) return null;
 
   return (
-    <LatestPostsWrapper data-testid="latest-posts">
+    <LatestPostsWrapper
+      id={anchorId}
+      data-testid="latest-posts"
+      className="margin-scroll"
+    >
       <ContainerDefault>
         <LatestPostsHolder>
           <LatestPostsHeader>

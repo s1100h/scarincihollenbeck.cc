@@ -12,7 +12,6 @@ import {
 } from 'styles/Header.style';
 import { SidebarOpener } from 'styles/Sidebar.style';
 import Navigation from 'components/organisms/Navbar/Navigation';
-import { useScrollDirection } from 'hooks/useScrollDirection';
 import InitGlobalVariables from 'styles/global_styles/InitGlobalVariables';
 import { useSelector } from 'react-redux';
 import dynamic from 'next/dynamic';
@@ -31,9 +30,8 @@ const DefaultHeader = ({
     (state) => state.sizes.viewportSize,
   );
   const { headerSize } = useSelector((state) => state.sizes);
-  const scrollDirection = useScrollDirection();
   useResize();
-  useResponsiveHeader(headerRef, scrollDirection);
+  const scrollDirection = useResponsiveHeader(headerRef);
 
   const handleToggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -48,7 +46,7 @@ const DefaultHeader = ({
         ref={headerRef}
         key="header-wrapper-default"
         className={`light-scrollbar ${
-          scrollDirection === 'down' ? 'hide' : 'show'
+          scrollDirection === 'down' ? 'hide' : ''
         }`}
       >
         <HeaderTopLine

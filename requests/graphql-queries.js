@@ -1162,6 +1162,17 @@ export const getOfficeAndMoreData = `query FirmPageQuery($id: ID!) {
         description
         title
       }
+      contentTabs {
+        tabContent {
+          description
+          title
+          columns {
+            description
+            title
+          }
+        }
+        openerTitle
+      }
     }
     featuredImage {
       node {

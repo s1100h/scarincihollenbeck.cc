@@ -27,6 +27,7 @@ const initialState = {
         ? window.innerWidth >= sizeWindow.xxl
         : false,
   },
+  scrollDirection: null,
 };
 
 const sizesSlice = createSlice({
@@ -47,8 +48,11 @@ const sizesSlice = createSlice({
         isScreenXxl: action.payload.isScreenXxl,
       };
     },
+    setScrollDirection: (state, action) => {
+      state.scrollDirection = action.payload;
+    },
   },
 });
 
-export const { setHeaderSize, setWindowSize } = sizesSlice.actions;
+export const { setHeaderSize, setWindowSize, setScrollDirection } = sizesSlice.actions;
 export default sizesSlice.reducer;

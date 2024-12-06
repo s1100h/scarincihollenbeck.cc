@@ -72,6 +72,7 @@ export const HeaderWrapper = styled.header`
   top: 0;
   z-index: 1020;
   box-shadow: 0px 2px 16px 0px rgba(10, 62, 108, 0.22);
+  transform: translateY(0);
   transition: transform 0.3s ease-in-out;
 
   &.hide {
@@ -88,10 +89,6 @@ export const HeaderWrapper = styled.header`
         transform: translateY(38px);
       }
     }
-  }
-
-  &.show {
-    transform: translateY(0);
   }
 
   @media print {

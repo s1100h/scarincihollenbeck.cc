@@ -19,13 +19,21 @@ const anchorDataDefault = {
     id: 'faq-section',
     title: 'FAQs',
   },
-  whyChooseUs: {
-    id: 'why-choose-us-section',
-    title: 'Why choose us',
+  awards: {
+    id: 'awards-section',
+    title: 'Awards',
+  },
+  latestArticles: {
+    id: 'latest-articles-section',
+    title: 'Latest articles',
   },
   attorneys: {
     id: 'attorneys-section',
     title: 'Attorneys',
+  },
+  whyChooseUs: {
+    id: 'why-choose-us-section',
+    title: 'Why choose us',
   },
   whatWeDo: {
     id: 'What-we-do',
@@ -54,6 +62,7 @@ const PracticePageNew = ({
 }) => {
   const anchorData = useMemo(() => {
     let updatedAnchorData = {};
+    const copyAnchorData = { ...anchorDataDefault };
 
     if (!empty(tabs)) {
       tabs?.forEach(
@@ -67,15 +76,23 @@ const PracticePageNew = ({
       );
     }
 
+    if (empty(awards)) {
+      delete copyAnchorData.awards;
+    }
+
+    if (empty(linkedPosts)) {
+      delete copyAnchorData.latestArticles;
+    }
+
     if (empty(googleReviews)) {
-      delete anchorDataDefault.googleReviews;
+      delete copyAnchorData.googleReviews;
     }
 
     return {
-      ...anchorDataDefault,
+      ...copyAnchorData,
       ...updatedAnchorData,
     };
-  }, [googleReviews, tabs, anchorDataDefault]);
+  }, [googleReviews, awards, linkedPosts, tabs, anchorDataDefault]);
 
   return (
     <>
@@ -99,9 +116,12 @@ const PracticePageNew = ({
         anchorIdFaq={anchorData.faq.id}
         faqData={faq}
       />
-      <Awards awards={awards} />
+      <Awards anchorId={anchorData?.awards?.id} awards={awards} />
 
-      <LatestPostsSection posts={linkedPosts} />
+      <LatestPostsSection
+        anchorId={anchorData?.latestArticles?.id}
+        posts={linkedPosts}
+      />
       <PracticeAttorneys
         attorneys={attorneyListPractice}
         chairs={chairPractice}

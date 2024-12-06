@@ -9,7 +9,7 @@ import { TitleH2 } from 'styles/common/Typography.style';
 
 const AwardsSlider = dynamic(() => import('components/molecules/home/AwardsSlider'));
 
-const Awards = ({ awards }) => {
+const Awards = ({ awards, anchorId }) => {
   const formattedAwards = awards
     ?.map(
       ({
@@ -37,7 +37,7 @@ const Awards = ({ awards }) => {
   if (!formattedAwards) return null;
 
   return (
-    <AwardsWrapper data-testid="awards">
+    <AwardsWrapper id={anchorId} data-testid="awards" className="margin-scroll">
       <ContainerDefault>
         <AwardsHolder>
           <AwardsHeader>

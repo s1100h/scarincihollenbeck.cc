@@ -3,7 +3,6 @@ import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
 } from './mediaBreakpoints.style';
-import { FiltersSection } from './Filters.style';
 import { globalColor } from './global_styles/Global.styles';
 import { SearchInput } from './GlobalSearch.style';
 import { ContainerDefault } from './Containers.style';
@@ -13,18 +12,6 @@ import { FaqWrapper } from './Faq.style';
 
 export const MainAttorneysContainer = styled.section`
   background-color: ${globalColor.gray.gray1002};
-
-  ${FiltersSection} {
-    position: sticky;
-    top: ${({ $headerHeight }) => $headerHeight};
-    left: 0;
-    z-index: 10;
-    transition: all 0.3s ease-in-out;
-
-    ${media_breakpoint_down('xl')} {
-      position: static;
-    }
-  }
 
   ${SearchInput} {
     background-color: ${globalColor.gray.gray10};
