@@ -15,7 +15,7 @@ export const FooterWrapper = styled.footer`
   color: ${globalColor.white};
 
   @media print {
-    display: ${({ $isPrint }) => (!$isPrint ? 'none' : 'flex')};
+    display: ${({ $isPrint }) => (!$isPrint ? 'flex' : 'none')};
   }
 `;
 

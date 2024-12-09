@@ -5,6 +5,8 @@ import dynamic from 'next/dynamic';
 import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
 import PracticeContent from 'components/organisms/practices/PracticeContent';
 import AnchorTop from 'components/atoms/AnchorTop';
+import PracticePrintPage from 'components/organisms/practices/PracticePrintPage';
+import usePrintLogic from 'hooks/usePrintLogic';
 
 const PracticeAnchors = dynamic(() => import('components/organisms/practices/PracticeAnchors'));
 const PracticeAttorneys = dynamic(() => import('components/organisms/practices/PracticeAttorneys'));
@@ -84,6 +86,17 @@ const PracticePageNew = ({
     };
   }, [googleReviews, awards, tabs, anchorDataDefault]);
 
+  const printPageProps = {
+    title: practice?.title,
+    subtitle: practice?.practicesIncluded.description,
+    keyContacts: keyContactsList,
+    contentSection: practice?.practicesIncluded?.contentSection,
+    whyChooseUsData,
+    faqData: faq,
+  };
+
+  const { isRenderPdf, setIsPrintReady, handlePrint } = usePrintLogic();
+
   return (
     <>
       <BasicSiteHead
@@ -92,42 +105,54 @@ const PracticePageNew = ({
         canonicalUrl={canonicalUrl}
         personDataForSchema={attorneysSchemaData}
       />
-      <SubHeaderDefault
-        title={practice?.title}
-        subtitle={practice?.practicesIncluded.description}
-        keyContacts={keyContactsList}
-        backgroundImage={practice?.practicesIncluded?.practiceImage?.sourceUrl}
-      />
-      <PracticeAnchors anchorData={anchorData} title={practice?.title} />
-      <PracticeContent
-        data={tabs}
-        title={practice?.title}
-        anchorId={anchorData.overview?.id}
-        anchorIdFaq={anchorData.faq.id}
-        faqData={faq}
-      />
-      <Awards anchorId={anchorData?.awards?.id} awards={awards} />
-
-      <PracticeAttorneys
-        attorneys={attorneyListPractice}
-        chairs={chairPractice}
-        anchorId={anchorData.attorneys.id}
-      />
-      <WhyChooseUs
-        anchorId={anchorData.whyChooseUs.id}
-        data={whyChooseUsData}
-      />
-      <WhatWeDoSection
-        practices={practices}
-        anchorId={anchorData.whatWeDo.id}
-      />
-      {/* {!empty(googleReviews) && (
-        <GoogleReviews
-          reviews={googleReviews}
-          anchorId={anchorData?.googleReviews?.id}
+      <div className="d-print-none">
+        <SubHeaderDefault
+          title={practice?.title}
+          subtitle={practice?.practicesIncluded.description}
+          keyContacts={keyContactsList}
+          backgroundImage={
+            practice?.practicesIncluded?.practiceImage?.sourceUrl
+          }
         />
-      )} */}
-      <AnchorTop />
+        <PracticeAnchors anchorData={anchorData} title={practice?.title} />
+        <PracticeContent
+          data={tabs}
+          title={practice?.title}
+          anchorId={anchorData.overview?.id}
+          anchorIdFaq={anchorData.faq.id}
+          faqData={faq}
+          handlePrint={handlePrint}
+        />
+        <Awards anchorId={anchorData?.awards?.id} awards={awards} />
+
+        <PracticeAttorneys
+          attorneys={attorneyListPractice}
+          chairs={chairPractice}
+          anchorId={anchorData.attorneys.id}
+        />
+        <WhyChooseUs
+          anchorId={anchorData.whyChooseUs.id}
+          data={whyChooseUsData}
+        />
+        <WhatWeDoSection
+          practices={practices}
+          anchorId={anchorData.whatWeDo.id}
+        />
+        {/* {!empty(googleReviews) && (
+          <GoogleReviews
+            reviews={googleReviews}
+            anchorId={anchorData?.googleReviews?.id}
+          />
+        )} */}
+        <AnchorTop />
+      </div>
+
+      {isRenderPdf && (
+        <PracticePrintPage
+          {...printPageProps}
+          onReady={() => setIsPrintReady(true)}
+        />
+      )}
     </>
   );
 };

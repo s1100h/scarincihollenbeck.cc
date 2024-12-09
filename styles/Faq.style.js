@@ -119,6 +119,85 @@ export const FaqWrapper = styled.section`
     }
   }
 
+  @media print {
+    margin-bottom: 0;
+    page-break-inside: avoid;
+
+    ${TitleH2} {
+      margin-bottom: 20px;
+    }
+
+    .accordion {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+
+      &-item {
+        padding-bottom: 0;
+        background-color: ${globalColor.gray.gray1002};
+        border-radius: ${globalBorderRadius.middle};
+        border: 1px solid ${globalColor.gray.gray300};
+        box-shadow: none;
+        break-inside: avoid;
+        page-break-inside: avoid;
+
+        &:hover {
+          box-shadow: none;
+        }
+      }
+
+      &-header {
+        margin: 0;
+        color: ${globalColor.blue.blue500};
+        font-family: var(--font-lato);
+        font-size: ${rem(20)};
+        font-weight: 400;
+        line-height: 32px;
+        text-transform: uppercase;
+      }
+
+      &-button {
+        pointer-events: none;
+        border: none;
+        background-color: transparent;
+        box-shadow: none;
+        padding: 12px 12px 4px 12px;
+        border-radius: 0;
+        color: ${globalColor.blue.blue500};
+        font-family: var(--font-lato);
+        font-size: ${rem(16)};
+        line-height: 1.6;
+        margin-bottom: 4px;
+        font-weight: 400;
+        text-transform: uppercase;
+
+        &::after {
+          display: none;
+        }
+      }
+
+      &-body {
+        font-size: ${rem(10)};
+        line-height: 1.6;
+        padding: 0 12px 12px 12px;
+        color: ${globalColor.black};
+
+        p {
+          &:last-child {
+            margin: 0;
+          }
+          line-height: 24px;
+        }
+
+        ul {
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+
   &.two-columns {
     .accordion {
       display: grid;

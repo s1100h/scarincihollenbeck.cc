@@ -27,6 +27,15 @@ export const TitleH2 = styled.h2`
   color: ${({ $isWhite }) => (!$isWhite ? undefined : globalColor.white)};
 `;
 
+export const TitleH3 = styled.h3`
+  margin: 0;
+  color: ${globalColor.blue.darkBlue};
+  font-size: ${rem(20)};
+  line-height: 1.6;
+  font-weight: 600;
+  font-family: var(--font-poppins);
+`;
+
 //Links
 export const underlinedLinkStyles = `
   padding: 4px 0 2px;

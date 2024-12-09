@@ -52,6 +52,46 @@ export const renderLinkToLocationPractice = (locationsOrPractice) => {
   );
 };
 
+const renderImage = (
+  isPrint,
+  image,
+  name,
+  width,
+  height,
+  locations,
+  placeholderProp,
+) => (isPrint ? (
+// eslint-disable-next-line @next/next/no-img-element
+  <img
+    src={image.src || image}
+    alt={name}
+    width={
+        width
+        || (!Array.isArray(locations) && typeof locations !== 'undefined'
+          ? 130
+          : 125)
+      }
+    height={height || 150}
+  />
+) : (
+  <Image
+    placeholder={placeholderProp}
+    blurDataURL={image || SHDiamond}
+    loading="lazy"
+    src={image || SHDiamond}
+    alt={name}
+    quality={100}
+    width={
+        width
+        || (!Array.isArray(locations) && typeof locations !== 'undefined'
+          ? 130
+          : 125)
+      }
+    height={height || 150}
+    sizes="130px"
+  />
+));
+
 export default function AttorneyCard({
   link,
   image,
@@ -66,32 +106,27 @@ export default function AttorneyCard({
   svgPhone,
   svgEmail,
   officeLocations,
+  isPrint = false,
 }) {
   const placeholderProp = image?.src?.includes('next') || SHDiamond?.src?.includes('next')
     ? 'empty'
     : 'blur';
+
   return (
     <AttorneyCardBox className="attorney-card-box">
       <Link href={link} className="attorney-card-link" title={name} passHref>
         <span className="sr-only">{`Link to profile of ${name}`}</span>
       </Link>
       <LinkBox>
-        <Image
-          placeholder={placeholderProp}
-          blurDataURL={image || SHDiamond}
-          loading="lazy"
-          src={image || SHDiamond}
-          alt={name}
-          quality={100}
-          width={
-            width
-            || (!Array.isArray(locations) && typeof locations !== 'undefined'
-              ? 130
-              : 125)
-          }
-          height={height || 150}
-          sizes="130px"
-        />
+        {renderImage(
+          isPrint,
+          image,
+          name,
+          width,
+          height,
+          locations,
+          placeholderProp,
+        )}
         <InfoBox>
           <UserName>{name}</UserName>
 

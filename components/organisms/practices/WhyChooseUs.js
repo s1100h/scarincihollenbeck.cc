@@ -15,7 +15,7 @@ const createCardImage = (index) => ({
   height: 700,
 });
 
-const WhyChooseUs = ({ anchorId, data }) => {
+const WhyChooseUs = ({ anchorId, data, isPrint }) => {
   let isJSX = true;
   if (empty(data)) {
     data = defaultWhyChooseUsData;
@@ -39,6 +39,7 @@ const WhyChooseUs = ({ anchorId, data }) => {
               text={card?.description}
               image={createCardImage(index)}
               isJSXDescription={isJSX}
+              isPrint={isPrint}
             />
           ))}
         </WhyChooseUsCards>

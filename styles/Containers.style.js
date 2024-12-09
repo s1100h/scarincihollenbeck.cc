@@ -95,4 +95,8 @@ export const ContainerDefault = styled.div`
   ${media_breakpoint_down('md')} {
     padding: 0 12px;
   }
+
+  @media print {
+    padding: 0;
+  }
 `;

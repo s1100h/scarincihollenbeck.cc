@@ -1,18 +1,19 @@
 import React from 'react';
 import empty from 'is-empty';
-import { CURRENT_DOMAIN, SITE_PHONE } from '../../../utils/constants';
+import Link from 'next/link';
 import {
   ContactsPrintVersion,
   ContactsWrapperPrintVersion,
   FooterPrintVersionContainer,
-} from '../../../styles/attorney-page/AttorneyPrintPage.style';
+} from 'styles/common/PrintStyles.style';
+import { CURRENT_DOMAIN, SITE_PHONE } from '../../../utils/constants';
 import Logo from '../../organisms/Navbar/Logo';
 
 const FooterPrintVersion = ({ locations }) => {
   const qrCodeProduction = '/images/qrCodeHome.png';
   return (
     <FooterPrintVersionContainer>
-      <div>
+      <div className="advertising-block">
         <div className="d-flex flex-column">
           <p className="advertising-title-print">ATTORNEY ADVERTISING</p>
           <p className="advertising-text-print">
@@ -21,7 +22,7 @@ const FooterPrintVersion = ({ locations }) => {
             Court of NJ or NY.
           </p>
         </div>
-        <Logo whiteVariant />
+        <Logo whiteVariant isPrint />
       </div>
 
       <ContactsWrapperPrintVersion>
@@ -29,17 +30,23 @@ const FooterPrintVersion = ({ locations }) => {
           <div className="d-flex flex-column align-items-end">
             <div className="location-print-list mb-1">
               {!empty(locations)
-                && locations.map(({ name }) => (
-                  <div key={name} className="location-print-item">
-                    {name}
-                  </div>
+                && locations.data?.map((location) => (
+                  <Link
+                    href={location.uri}
+                    key={location.databaseId}
+                    className="location-print-item"
+                  >
+                    {location.title}
+                  </Link>
                 ))}
             </div>
             <div className="location-print-list">
-              <div className="location-print-item">
+              <Link className="location-print-item" href={CURRENT_DOMAIN}>
                 {CURRENT_DOMAIN.replace(/^https?:\/\//, '')}
-              </div>
-              <div className="location-print-item">{SITE_PHONE}</div>
+              </Link>
+              <a className="location-print-item" href={`tel:${SITE_PHONE}`}>
+                {SITE_PHONE}
+              </a>
             </div>
           </div>
         </ContactsPrintVersion>
