@@ -15,7 +15,7 @@ const Logo = ({ whiteVariant, isPrint = false }) => (
           alt={`${SITE_TITLE}, LLC`}
           width={32}
           height={32}
-          src="/images/logo-diamond.png"
+          src="/images/logo-diamond-print.png"
         />
       ) : (
         <Image

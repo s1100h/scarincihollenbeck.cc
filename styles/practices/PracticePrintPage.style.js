@@ -161,5 +161,10 @@ export const DescriptionArticlePrint = styled.article`
     &:last-child {
       margin-bottom: 0;
     }
+
+    .col-sm-12 {
+      flex: 0 0 auto;
+      width: 50%;
+    }
   }
 `;

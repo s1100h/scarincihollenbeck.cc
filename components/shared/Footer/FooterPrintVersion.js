@@ -22,7 +22,7 @@ const FooterPrintVersion = ({ locations }) => {
             Court of NJ or NY.
           </p>
         </div>
-        <Logo whiteVariant />
+        <Logo whiteVariant isPrint />
       </div>
 
       <ContactsWrapperPrintVersion>

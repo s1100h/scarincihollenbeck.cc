@@ -9,6 +9,7 @@ export const PrintContainer = styled.div`
 
   @media print {
     display: block;
+    height: auto;
 
     @page {
       size: A4 !important;
