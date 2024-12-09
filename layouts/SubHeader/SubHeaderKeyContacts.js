@@ -30,28 +30,29 @@ const SubHeaderKeyContacts = ({ keyContacts, isPrint }) => {
               height={300}
               isPrint={isPrint}
             />
-            {(!empty(keyContact.qrCodeLinkedin)
-              || !empty(keyContact.qrCodeBioPage)) && (
-              <QRCodesBoxForPDF>
-                {!empty(keyContact.qrCodeLinkedin) && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={keyContact.qrCodeLinkedin?.sourceUrl}
-                    alt="LinkedIn"
-                    width={92}
-                    height={80}
-                  />
-                )}
-                {!empty(keyContact.qrCodeBioPage) && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={keyContact.qrCodeBioPage?.sourceUrl}
-                    alt="The bio page"
-                    width={92}
-                    height={80}
-                  />
-                )}
-              </QRCodesBoxForPDF>
+            {isPrint
+              && (!empty(keyContact.qrCodeLinkedin)
+                || !empty(keyContact.qrCodeBioPage)) && (
+                <QRCodesBoxForPDF>
+                  {!empty(keyContact.qrCodeLinkedin) && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={keyContact.qrCodeLinkedin?.sourceUrl}
+                      alt="LinkedIn"
+                      width={92}
+                      height={80}
+                    />
+                  )}
+                  {!empty(keyContact.qrCodeBioPage) && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={keyContact.qrCodeBioPage?.sourceUrl}
+                      alt="The bio page"
+                      width={92}
+                      height={80}
+                    />
+                  )}
+                </QRCodesBoxForPDF>
             )}
           </Fragment>
         ))}

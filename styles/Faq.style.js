@@ -53,7 +53,7 @@ export const FaqWrapper = styled.section`
       font-size: 1rem;
       line-height: 1.5;
       font-weight: 600;
-      
+
       ${media_breakpoint_down('sm')} {
         font-size: ${rem(14)};
         line-height: 20px;
@@ -121,10 +121,10 @@ export const FaqWrapper = styled.section`
 
   @media print {
     margin-bottom: 0;
-    page-break-inside: avoid;
 
     ${TitleH2} {
       margin-bottom: 20px;
+      page-break-before: auto;
     }
 
     .accordion {
