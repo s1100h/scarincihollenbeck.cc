@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TitleH2 } from 'styles/common/Typography.style';
+import { TitleH2, TitleH3 } from 'styles/common/Typography.style';
 import {
   globalBorderRadius,
   globalColor,
@@ -22,6 +22,10 @@ export const WhyChooseUsSection = styled.div`
   ${media_breakpoint_down('md')} {
     padding: 24px 0;
   }
+
+  @media print {
+    padding: 0;
+  }
 `;
 
 export const WhyChooseUsCards = styled.div`
@@ -36,7 +40,7 @@ export const WhyChooseUsCards = styled.div`
   @media print {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
+    gap: 16px;
   }
 `;
 
@@ -63,10 +67,13 @@ export const WhyChooseUsCardWrapper = styled.div`
   }
 
   @media print {
+    flex: 1 1 calc((100% - 16px) / 2);
     width: 100%;
     flex: 1;
     break-inside: avoid;
     page-break-inside: avoid;
+    column-gap: 8px;
+    flex-direction: row;
   }
 `;
 
@@ -78,7 +85,7 @@ export const WhyChooseUsCardContent = styled.div`
   display: flex;
   flex-direction: column;
 
-  h3 {
+  ${TitleH3} {
     margin: 0 0 4px 0;
     font-size: ${rem(24)};
     font-weight: 400;
@@ -91,6 +98,12 @@ export const WhyChooseUsCardContent = styled.div`
       font-size: 1rem;
       line-height: 1.5;
     }
+
+    @media print {
+      font-size: ${rem(16)};
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
   }
 
   ${media_breakpoint_down('xl')} {
@@ -98,6 +111,10 @@ export const WhyChooseUsCardContent = styled.div`
   }
 
   ${media_breakpoint_down('md')} {
+    padding: 8px 12px 12px;
+  }
+
+  @media print {
     padding: 8px 12px 12px;
   }
 `;
@@ -144,6 +161,11 @@ export const WhyChooseUsCardDescription = styled.div`
   ${media_breakpoint_down('md')} {
     font-size: ${rem(14)};
   }
+
+  @media print {
+    font-size: ${rem(10)};
+    line-height: 1.6;
+  }
 `;
 
 export const WhyChooseUsCardImage = styled.picture`
@@ -173,5 +195,11 @@ export const WhyChooseUsCardImage = styled.picture`
 
   ${media_breakpoint_down('sm')} {
     height: 80px;
+  }
+
+  @media print {
+    width: 34%;
+    height: 100%;
+    order: 0;
   }
 `;

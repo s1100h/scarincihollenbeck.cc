@@ -42,7 +42,8 @@ export const AttorneyCardsHolder = styled.section`
   + ${LogoSeparatorWrapper} {
     margin: 40px 0;
 
-    &::before, &::after {
+    &::before,
+    &::after {
       background-color: ${globalColor.gray.gray300};
     }
 

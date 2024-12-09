@@ -26,8 +26,8 @@ export const LogoSeparatorWrapper = styled.div`
   &::before,
   &::after {
     content: '';
-    width: ${({ $direction }) => $direction === 'row' ? '100%' : '1px'};
-    height: ${({ $direction }) => $direction === 'row' ? '1px' : '100%'};
+    width: ${({ $direction }) => ($direction === 'row' ? '100%' : '1px')};
+    height: ${({ $direction }) => ($direction === 'row' ? '1px' : '100%')};
     background-color: ${globalColor.blue.blue400};
 
     ${media_breakpoint_down('xl')} {

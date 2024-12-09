@@ -129,7 +129,7 @@ export const FaqWrapper = styled.section`
     .accordion {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px 40px;
+      gap: 16px;
 
       &-item {
         padding-bottom: 0;
@@ -160,13 +160,14 @@ export const FaqWrapper = styled.section`
         border: none;
         background-color: transparent;
         box-shadow: none;
-        padding: 16px 16px 8px 16px;
+        padding: 12px 12px 4px 12px;
         border-radius: 0;
         color: ${globalColor.blue.blue500};
         font-family: var(--font-lato);
-        font-size: ${rem(20)};
+        font-size: ${rem(16)};
+        line-height: 1.6;
+        margin-bottom: 4px;
         font-weight: 400;
-        line-height: 32px;
         text-transform: uppercase;
 
         &::after {
@@ -175,7 +176,9 @@ export const FaqWrapper = styled.section`
       }
 
       &-body {
-        padding: 0 16px 16px 16px;
+        font-size: ${rem(10)};
+        line-height: 1.6;
+        padding: 0 12px 12px 12px;
         color: ${globalColor.black};
 
         p {

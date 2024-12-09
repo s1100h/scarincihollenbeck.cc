@@ -33,4 +33,13 @@ export const CombinedLogo = styled(Link)`
       max-width: 120px;
     }
   }
+
+  @media print {
+    max-width: 158px;
+    --logo-diamond-size: 32px;
+
+    .logo-letters {
+      max-width: 120px;
+    }
+  }
 `;

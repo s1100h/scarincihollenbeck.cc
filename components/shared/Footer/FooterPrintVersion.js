@@ -1,12 +1,12 @@
 import React from 'react';
 import empty from 'is-empty';
 import Link from 'next/link';
-import { CURRENT_DOMAIN, SITE_PHONE } from '../../../utils/constants';
 import {
   ContactsPrintVersion,
   ContactsWrapperPrintVersion,
   FooterPrintVersionContainer,
-} from '../../../styles/attorney-page/AttorneyPrintPage.style';
+} from 'styles/common/PrintStyles.style';
+import { CURRENT_DOMAIN, SITE_PHONE } from '../../../utils/constants';
 import Logo from '../../organisms/Navbar/Logo';
 
 const FooterPrintVersion = ({ locations }) => {

@@ -12,7 +12,7 @@ const PracticeDescriptionPrint = ({ contentSection }) => (
     {contentSection?.map((article) => (
       <DescriptionArticlePrint key={article.title}>
         <TitleH3>{article.title}</TitleH3>
-        <div>
+        <div className="article-main">
           <JSXWithDynamicLinks HTML={article.content} print />
         </div>
       </DescriptionArticlePrint>

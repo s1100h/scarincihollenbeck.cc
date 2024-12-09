@@ -1,7 +1,15 @@
-import Link from "next/link";
-import styled from "styled-components";
-import { globalBorderRadius, globalColor, globalTransition, rem } from "./global_styles/Global.styles";
-import { media_breakpoint_down, media_breakpoint_exactly_down } from "./mediaBreakpoints.style";
+import Link from 'next/link';
+import styled from 'styled-components';
+import {
+  globalBorderRadius,
+  globalColor,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from './mediaBreakpoints.style';
 
 export const LawyerCardImage = styled.picture`
   height: 325px;
@@ -125,7 +133,8 @@ export const LawyerCardWrapper = styled.div`
   position: relative;
 
   &:hover {
-    box-shadow: 0px -7px 16px 0px rgba(0, 0, 0, 0.06), -10px 10px 19px 0px rgba(0, 0, 0, 0.06);
+    box-shadow: 0px -7px 16px 0px rgba(0, 0, 0, 0.06),
+      -10px 10px 19px 0px rgba(0, 0, 0, 0.06);
   }
 
   .attorney-card-link {
@@ -145,7 +154,7 @@ export const LawyerCardWrapper = styled.div`
       width: 45%;
       height: auto;
       position: relative;
-      
+
       img {
         position: absolute;
         left: 0;

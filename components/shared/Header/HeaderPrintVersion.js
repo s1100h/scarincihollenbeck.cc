@@ -3,7 +3,7 @@ import empty from 'is-empty';
 import Link from 'next/link';
 import { BsFillEnvelopeFill } from 'react-icons/bs';
 import { MdLocalPhone } from 'react-icons/md';
-import { HeaderPrintVersionContainer } from 'styles/practices/PracticePrintPage.style';
+import { HeaderPrintVersionContainer } from 'styles/common/PrintStyles.style';
 import { CURRENT_DOMAIN, SITE_EMAIL, SITE_PHONE } from 'utils/constants';
 
 const HeaderPrintVersion = ({ locations }) => (
@@ -23,7 +23,7 @@ const HeaderPrintVersion = ({ locations }) => (
       </a>
     </div>
 
-    <Logo />
+    <Logo isPrint />
 
     <div className="locations-list-wrapper">
       <div className="locations-list">

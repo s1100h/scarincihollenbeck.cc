@@ -7,7 +7,7 @@ import empty from 'is-empty';
 import AttorneyCard from 'components/shared/AttorneyCard';
 import AboutAuthorFormCard from 'components/organisms/post/AboutAuthorFormCard';
 import { globalColor } from 'styles/global_styles/Global.styles';
-import { QRCodesBoxForPDF } from 'styles/attorney-page/AttorneyPrintPage.style';
+import { QRCodesBoxForPDF } from 'styles/common/PrintStyles.style';
 
 const SubHeaderKeyContacts = ({ keyContacts, isPrint }) => {
   if (empty(keyContacts)) return null;

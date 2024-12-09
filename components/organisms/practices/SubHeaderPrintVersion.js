@@ -20,9 +20,7 @@ const SubHeaderPrintVersion = ({ title, subtitle, keyContacts }) => {
       <SubHeaderMain>
         <TitleH2 as="h1">{title}</TitleH2>
 
-        <Link
-          href={`${CURRENT_DOMAIN}${asPath}`}
-        >
+        <Link href={`${CURRENT_DOMAIN}${asPath}`}>
           {`${CURRENT_DOMAIN}${asPath}`}
         </Link>
 

@@ -5,19 +5,30 @@ import SHDiamond from '../../../public/images/sh-mini-diamond-PNG.svg';
 import LogoLetters from '../../../public/images/lattersLogo.png';
 import LogoLettersBlack from '../../../public/images/lettarsLogoblack.png';
 
-const Logo = ({ whiteVariant }) => (
+const Logo = ({ whiteVariant, isPrint = false }) => (
   <>
     <CombinedLogo href="/" passHref>
-      <Image
-        className="logo-diamond"
-        alt={`${SITE_TITLE}, LLC`}
-        width={170}
-        height={147}
-        priority
-        quality={100}
-        src={SHDiamond}
-        loading="eager"
-      />
+      {isPrint ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          className="logo-diamond"
+          alt={`${SITE_TITLE}, LLC`}
+          width={32}
+          height={32}
+          src="/images/logo-diamond.png"
+        />
+      ) : (
+        <Image
+          className="logo-diamond"
+          alt={`${SITE_TITLE}, LLC`}
+          width={170}
+          height={147}
+          priority
+          quality={100}
+          src={SHDiamond}
+          loading="eager"
+        />
+      )}
       {whiteVariant ? (
         <Image
           className="logo-letters"

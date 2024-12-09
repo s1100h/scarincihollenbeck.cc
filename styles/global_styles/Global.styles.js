@@ -66,7 +66,7 @@ export const globalColor = {
     ultraLiteRed: '#F6A2A2',
     newRed: '#8F1B11',
     сoffee: '#450A05',
-    light: "#FDEFEE",
+    light: '#FDEFEE',
   },
 
   blue: {

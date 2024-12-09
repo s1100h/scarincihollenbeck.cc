@@ -6,7 +6,7 @@ import { MdLocalPhone, MdLocationPin } from 'react-icons/md';
 import { AddressBox } from 'styles/attorney-page/AttorneyProfile.style';
 import React from 'react';
 import empty from 'is-empty';
-import { QRCodesBoxForPDF } from '../../../styles/attorney-page/AttorneyPrintPage.style';
+import { QRCodesBoxForPDF } from 'styles/common/PrintStyles.style';
 
 const ProfileContacts = ({
   contact,

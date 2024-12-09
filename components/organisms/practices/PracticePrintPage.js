@@ -7,6 +7,7 @@ import {
 import FAQ from 'components/atoms/FAQ';
 import { useImagesLoad } from 'hooks/useImagesLoad';
 import { useRef } from 'react';
+import { PrintContainer } from 'styles/common/PrintStyles.style';
 import { useGetLocationsQuery } from '../../../redux/services/project-api';
 import SubHeaderPrintVersion from './SubHeaderPrintVersion';
 import PracticeDescriptionPrint from './PracticeDescriptionPrint';
@@ -27,25 +28,27 @@ const PracticePrintPage = ({
   useImagesLoad(onReady, containerRef);
 
   return (
-    <PracticePrintPageContainer ref={containerRef}>
-      <HeaderWrapperPrintVersion>
-        <HeaderPrintVersion locations={locations} />
+    <PrintContainer ref={containerRef}>
+      <PracticePrintPageContainer>
+        <HeaderWrapperPrintVersion>
+          <HeaderPrintVersion locations={locations} />
 
-        <SubHeaderPrintVersion
-          title={title}
-          subtitle={subtitle}
-          keyContacts={keyContacts}
-        />
-      </HeaderWrapperPrintVersion>
+          <SubHeaderPrintVersion
+            title={title}
+            subtitle={subtitle}
+            keyContacts={keyContacts}
+          />
+        </HeaderWrapperPrintVersion>
 
-      <PracticeDescriptionPrint contentSection={contentSection} />
+        <PracticeDescriptionPrint contentSection={contentSection} />
 
-      <WhyChooseUs data={whyChooseUsData} isPrint />
+        <WhyChooseUs data={whyChooseUsData} isPrint />
 
-      <FAQ title={title} faqArrContent={faqData} allOpen />
+        <FAQ title={title} faqArrContent={faqData} allOpen />
 
-      <FooterPrintVersion locations={locations} />
-    </PracticePrintPageContainer>
+        <FooterPrintVersion locations={locations} />
+      </PracticePrintPageContainer>
+    </PrintContainer>
   );
 };
 
