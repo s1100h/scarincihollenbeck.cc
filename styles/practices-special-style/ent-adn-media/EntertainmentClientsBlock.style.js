@@ -41,7 +41,7 @@ export const EntertainmentClientsSubtitle = styled.div`
   margin: 0 0 28px 0;
   color: ${entAndMediaColors.entAndMediaColorMediumGray};
   font-family: var(--font-poppins), sans-serif;
-  font-size: ${rem(16)};
+  font-size: 1rem;
   font-weight: 400;
   line-height: 24px;
   letter-spacing: 1.6px;
@@ -89,7 +89,7 @@ export const EntertainmentClientsDescription = styled.p`
   max-width: 50%;
   color: ${globalColor.white};
   font-family: var(--font-poppins), sans-serif;
-  font-size: ${rem(16)};
+  font-size: 1rem;
   font-weight: 400;
   line-height: 24px;
   text-transform: uppercase;
@@ -250,7 +250,7 @@ export const EntertainmentClientsItemOpenerWrapper = styled.div`
 export const EntertainmentClientsItemOpener = styled.div`
   padding: 25px;
   font-family: var(--font-poppins), sans-serif;
-  font-size: ${rem(16)};
+  font-size: 1rem;
   font-weight: 400;
   line-height: 24px;
   color: ${globalColor.black};
@@ -278,7 +278,7 @@ export const EntertainmentClientsItemCategory = styled.div`
   align-items: center;
   justify-content: space-between;
   font-family: var(--font-poppins), sans-serif;
-  font-size: ${rem(16)};
+  font-size: 1rem;
   font-weight: 400;
   line-height: 24px;
   color: ${globalColor.black};
@@ -327,7 +327,7 @@ export const EntertainmentClientsItemName = styled.div`
   }
 
   ${media_breakpoint_exactly_down(1850)} {
-    font-size: ${rem(16)};
+    font-size: 1rem;
     line-height: 24px;
   }
 
@@ -341,7 +341,7 @@ export const EntertainmentClientsItemProfession = styled.div`
   padding-left: 2.5%;
   column-gap: 7.5%;
   font-family: var(--font-poppins), sans-serif;
-  font-size: ${rem(16)};
+  font-size: 1rem;
   font-weight: 400;
   line-height: 24px;
   color: ${globalColor.black};
@@ -403,7 +403,7 @@ export const EntertainmentClientsItemContentCategory = styled.div`
 
   ${media_breakpoint_down('md')} {
     width: 50%;
-    font-size: ${rem(16)};
+    font-size: 1rem;
     line-height: 24px;
     order: 1;
   }

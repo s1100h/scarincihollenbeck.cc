@@ -312,3 +312,9 @@ export const LatestPostsCardsWrapper = styled.div`
     grid-template-columns: 1fr;
   }
 `;
+
+export const LatestSimpleCardsWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
+  gap: 24px;
+`;

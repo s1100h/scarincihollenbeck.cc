@@ -268,7 +268,7 @@ export const SubHeaderInteractive = styled.div`
     font-weight: 500;
 
     ${media_breakpoint_down('md')} {
-      font-size: ${rem(16)};
+      font-size: 1rem;
       line-height: 20px;
     }
   }
@@ -524,7 +524,7 @@ export const SubHeaderSlideLabel = styled.span`
 `;
 
 export const SubHeaderSlideDescription = styled.div`
-  min-height: 105px;
+  min-height: 120px;
   margin: 8px 0 26px;
   font-size: ${rem(14)};
   display: -webkit-box;
@@ -534,6 +534,10 @@ export const SubHeaderSlideDescription = styled.div`
 
   * {
     margin: 0;
+  }
+
+  ${media_breakpoint_exactly_down('xxl')} {
+    min-height: 105px;
   }
 
   ${media_breakpoint_exactly_down(1279)} {

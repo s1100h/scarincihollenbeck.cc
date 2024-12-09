@@ -26,9 +26,6 @@ export const SelectInput = styled.input`
   border: 0;
   outline: 0;
   color: ${globalColor.blue.darkBlue};
-  font-size: 1rem;
-  line-height: 1.5;
-  font-weight: 400;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 1;
@@ -108,9 +105,6 @@ export const SelectOptions = styled.ul`
 
 export const SelectOption = styled.li`
   padding: 6px 0;
-  font-size: 1rem;
-  line-height: 1.5;
-  font-weight: 400;
   color: ${globalColor.blue.darkBlue};
   cursor: pointer;
   transition: ${globalTransition.default};

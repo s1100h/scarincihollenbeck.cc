@@ -13,9 +13,14 @@ import { TitleH2 } from 'styles/common/Typography.style';
 import empty from 'is-empty';
 
 const LatestPostsTabsRender = dynamic(() => import('./LatestPostsTabsRender'));
-const LatestPostsCards = dynamic(() => import('components/common/LatestPostsCards'));
+const LatestSimpleCards = dynamic(() => import('components/common/LatestSimpleCards'));
 
-const LatestPostsSection = ({ tabsData, posts, anchorId }) => {
+const LatestPostsSection = ({
+  tabsData,
+  posts,
+  anchorId,
+  title = 'Latest from the firm',
+}) => {
   if (empty(tabsData) && empty(posts)) return null;
 
   return (
@@ -27,7 +32,7 @@ const LatestPostsSection = ({ tabsData, posts, anchorId }) => {
       <ContainerDefault>
         <LatestPostsHolder>
           <LatestPostsHeader>
-            <TitleH2>Latest from the firm</TitleH2>
+            <TitleH2>{title}</TitleH2>
 
             <StandardBlueButton href="/library/category/client-alert" as={Link}>
               Open library
@@ -37,7 +42,7 @@ const LatestPostsSection = ({ tabsData, posts, anchorId }) => {
           {!empty(tabsData) ? (
             <LatestPostsTabsRender tabsData={tabsData} />
           ) : (
-            <LatestPostsCards posts={posts} />
+            <LatestSimpleCards posts={posts} />
           )}
 
           <DisclaimerText text="No aspect of the advertisement has been approved by the Supreme Court. Results may vary depending on your particular facts and legal circumstances." />

@@ -11,7 +11,6 @@ const PracticeAttorneys = dynamic(() => import('components/organisms/practices/P
 const WhyChooseUs = dynamic(() => import('components/organisms/practices/WhyChooseUs'));
 const WhatWeDoSection = dynamic(() => import('components/organisms/home/WhatWeDoSection'));
 const Awards = dynamic(() => import('components/organisms/home/Awards'));
-const LatestPostsSection = dynamic(() => import('components/organisms/home/LatestPostsSection'));
 // const GoogleReviews = dynamic(() => import('components/organisms/common/GoogleReviews'));
 
 const anchorDataDefault = {
@@ -22,10 +21,6 @@ const anchorDataDefault = {
   awards: {
     id: 'awards-section',
     title: 'Awards',
-  },
-  latestArticles: {
-    id: 'latest-articles-section',
-    title: 'Latest articles',
   },
   attorneys: {
     id: 'attorneys-section',
@@ -58,7 +53,6 @@ const PracticePageNew = ({
   practices,
   googleReviews,
   awards,
-  linkedPosts,
 }) => {
   const anchorData = useMemo(() => {
     let updatedAnchorData = {};
@@ -80,10 +74,6 @@ const PracticePageNew = ({
       delete copyAnchorData.awards;
     }
 
-    if (empty(linkedPosts)) {
-      delete copyAnchorData.latestArticles;
-    }
-
     if (empty(googleReviews)) {
       delete copyAnchorData.googleReviews;
     }
@@ -92,7 +82,7 @@ const PracticePageNew = ({
       ...copyAnchorData,
       ...updatedAnchorData,
     };
-  }, [googleReviews, awards, linkedPosts, tabs, anchorDataDefault]);
+  }, [googleReviews, awards, tabs, anchorDataDefault]);
 
   return (
     <>
@@ -118,10 +108,6 @@ const PracticePageNew = ({
       />
       <Awards anchorId={anchorData?.awards?.id} awards={awards} />
 
-      <LatestPostsSection
-        anchorId={anchorData?.latestArticles?.id}
-        posts={linkedPosts}
-      />
       <PracticeAttorneys
         attorneys={attorneyListPractice}
         chairs={chairPractice}

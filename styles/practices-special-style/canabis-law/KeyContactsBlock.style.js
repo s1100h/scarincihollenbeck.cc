@@ -158,7 +158,7 @@ export const KeyContactsWrapper = styled.div`
         padding: 10px 24px;
 
         span {
-          font-size: ${rem(16)};
+          font-size: 1rem;
           line-height: 24px;
         }
       }

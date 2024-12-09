@@ -25,7 +25,7 @@ export const PracticeAttorneysSection = styled.section`
       display: flex;
       color: #377ec4;
       font-family: var(--font-poppins);
-      font-size: ${rem(16)};
+      font-size: 1rem;
       line-height: 24px;
       font-weight: 700;
       text-decoration: underline;

@@ -1,13 +1,8 @@
 import { useRouter } from 'next/router';
 import AdministrationPage from 'components/pages/AdminDirectory';
-import {
-  administrationTitles,
-  PRODUCTION_URL,
-  SITE_PHONE,
-} from 'utils/constants';
+import { PRODUCTION_URL, SITE_PHONE } from 'utils/constants';
 import { fetchAPI } from 'requests/api';
 import { administrationPageQuery, adminsQuery } from 'requests/graphql-queries';
-import { sortAttorneysByCategory, sortByKey } from 'utils/helpers';
 
 /** Fetch page data from WP GRAPHQL API */
 const archivesPageContent = async () => {
@@ -36,12 +31,6 @@ export async function getStaticProps() {
   const admins = await getAdministration();
   const page = await archivesPageContent();
   const { title, seo, administrationArchive } = page;
-  const sortedAdminsByOrder = sortByKey(admins, 'order');
-  const sortedTitlesByOrder = sortByKey(administrationTitles, 'order');
-  const sorteredAdmins = sortAttorneysByCategory(
-    sortedAdminsByOrder,
-    sortedTitlesByOrder,
-  );
 
   return {
     props: {
@@ -50,17 +39,14 @@ export async function getStaticProps() {
         title,
         description: administrationArchive.description,
       },
-      admins: sorteredAdmins,
-      orderedTitles: sortedTitlesByOrder,
+      admins,
     },
     revalidate: 86400,
   };
 }
 
 /** Administration directory page component */
-const Administration = ({
-  admins, seo, site, orderedTitles,
-}) => {
+const Administration = ({ admins, seo, site }) => {
   const router = useRouter();
   const canonicalUrl = `${PRODUCTION_URL}${router.asPath}`;
 

@@ -33,8 +33,6 @@ export const ClearButton = styled(Button)`
   border: 1px solid ${globalColor.gray.gray500};
   border-radius: 4px;
   color: ${globalColor.gray.gray1002};
-  font-size: 1rem;
-  line-height: 1.5;
   font-weight: 600;
   overflow: hidden;
 
@@ -89,9 +87,6 @@ export const StandardBlueButton = styled.button`
   border-radius: ${globalBorderRadius.small};
   background-color: ${globalColor.blue.blue500};
   color: ${globalColor.white};
-  font-size: 1rem;
-  line-height: 1.5;
-  font-family: var(--font-poppins);
   font-weight: 600;
   position: relative;
   z-index: 0;
@@ -156,8 +151,6 @@ export const ButtonRed = styled(Link)`
   border-radius: 4px;
   background-color: ${globalColor.red.newRed};
   color: ${globalColor.white};
-  font-size: 1rem;
-  line-height: 1.5;
   font-weight: 600;
   overflow: hidden;
   position: relative;
@@ -212,8 +205,6 @@ export const WhiteButtonWrapper = styled.button`
   box-shadow: 0px 4px 12px 0px rgba(10, 62, 108, 0.06);
   color: ${globalColor.gray.gray110};
   font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.5;
   transition: ${globalTransition.default};
 
   &:hover {

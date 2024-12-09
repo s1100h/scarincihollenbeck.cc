@@ -115,7 +115,7 @@ export const PracticesLinks = styled.ul`
     }
 
     a {
-      font-size: ${rem(16)};
+      font-size: 1rem;
       font-family: var(--font-poppins), sans-serif;
       font-weight: 400;
       line-height: 24px;

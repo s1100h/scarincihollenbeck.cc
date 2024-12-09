@@ -21,7 +21,12 @@ const AdministrationPage = ({
     />
     <AdministrationsHolder>
       <ContainerDefault>
-        <NonFiltered attorneys={admins} isVertical />
+        <NonFiltered
+          attorneys={{
+            admins: { attorneys: admins },
+          }}
+          isVertical
+        />
       </ContainerDefault>
     </AdministrationsHolder>
   </>

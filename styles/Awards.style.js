@@ -120,7 +120,7 @@ export const AwardCardContent = styled.div`
     margin: 0;
     color: ${({ $isLightVariant }) =>
       $isLightVariant ? globalColor.blue.darkBlue : globalColor.white};
-    font-size: ${({ $isLightVariant }) => ($isLightVariant ? '1rem' : rem(18))};
+    font-size: ${({ $isLightVariant }) => ($isLightVariant ? rem(16) : rem(18))};
     line-height: ${({ $isLightVariant }) => ($isLightVariant ? 1.5 : 1.56)};
     font-weight: ${({ $isLightVariant }) => ($isLightVariant ? 700 : 500)};
     display: -webkit-box;
@@ -130,7 +130,7 @@ export const AwardCardContent = styled.div`
     text-overflow: ellipsis;
 
     ${media_breakpoint_down('md')} {
-      font-size: 1rem;
+      font-size: ${rem(16)};
       line-height: 1.5;
     }
   }

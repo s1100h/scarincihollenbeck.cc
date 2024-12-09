@@ -153,8 +153,6 @@ export const TabTitle = styled.h2`
 export const TabContent = styled.div`
   display: none;
   color: ${globalColor.gray.gray110};
-  font-size: ${rem(18)};
-  line-height: 1.56;
 
   &.active {
     display: block;
@@ -180,11 +178,6 @@ export const TabContent = styled.div`
 
   h2 {
     ${headingStyles};
-  }
-
-  ${media_breakpoint_down('xxl')} {
-    font-size: 1rem;
-    line-height: 1.5;
   }
 
   ${media_breakpoint_down('md')} {

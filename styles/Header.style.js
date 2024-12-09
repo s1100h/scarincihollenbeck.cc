@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import {
   media_breakpoint_down,
   media_breakpoint_exactly,
-  media_breakpoint_up,
 } from './mediaBreakpoints.style';
 import {
   globalColor,
@@ -19,7 +18,7 @@ const HeaderTopLineItemStyles = `
   align-items: center;
   gap: 8px;
   color: ${globalColor.white};
-  font-size: ${rem(16)};
+  font-size: 1rem;
   font-weight: 600;
   line-height: 1.5;
   border-bottom: 2px solid transparent;

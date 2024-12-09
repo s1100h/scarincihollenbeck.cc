@@ -114,11 +114,7 @@ export const ArticleBox = styled.article`
   }
 
   .error-message {
-    font-family: var(--font-poppins);
     color: ${globalColor.gray.gray110};
-    font-size: 1rem;
-    line-height: 1.5;
-    font-weight: 400;
     margin-bottom: 0;
 
     ${media_breakpoint_down('md')} {
@@ -221,9 +217,6 @@ export const LinkListBox404 = styled.div`
 
       a {
         color: inherit;
-        font-family: var(--font-poppins);
-        font-size: 1rem;
-        line-height: 1.5;
         font-weight: 600;
       }
     }

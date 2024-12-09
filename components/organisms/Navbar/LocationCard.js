@@ -34,15 +34,15 @@ const LocationCard = ({
         </LocationCardItemIcon>
         {streetAddress}
         {streetAddress?.length > 0 && (
-        <>
-          ,
-          {empty(floor) && <br />}
-        </>
+          <>
+            {', '}
+            {empty(floor) && <br />}
+          </>
         )}
         {floor}
         {floor?.length > 0 && (
           <>
-            ,
+            {', '}
             <br />
           </>
         )}
@@ -63,16 +63,11 @@ const LocationCard = ({
         </LocationCardItemLink>
       </LocationCardItem>
 
-      <LocationCardItem>
-        <LocationCardItemLink
-          className="location-card-link"
-          href={`fax:${phone}`}
-        >
-          <LocationCardItemIcon className="location-card-icon">
-            <IoPrintSharp size={24} />
-          </LocationCardItemIcon>
-          {fax}
-        </LocationCardItemLink>
+      <LocationCardItem className="location-card-item">
+        <LocationCardItemIcon className="location-card-icon">
+          <IoPrintSharp size={24} />
+        </LocationCardItemIcon>
+        {fax}
       </LocationCardItem>
     </LocationCardList>
 

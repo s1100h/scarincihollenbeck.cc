@@ -133,11 +133,6 @@ export const AboutCardImage = styled.div`
   position: relative;
 
   img {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
     object-fit: cover;
     object-position: top;
   }
@@ -202,8 +197,6 @@ export const AboutCardDescription = styled.div`
 
 export const AboutCardTitle = styled(Link)`
   color: ${globalColor.white};
-  font-size: 1rem;
-  line-height: 1.5;
   font-weight: 600;
   transition: ${globalTransition.default};
 

@@ -99,7 +99,7 @@ export const ContactModalWrapper = styled.div`
         line-height: 1.5;
 
         ${media_breakpoint_down('sm')} {
-          font-size: 0.875rem;
+          font-size: ${rem(14)};
         }
       }
 
@@ -298,7 +298,7 @@ export const ContactModalWrapper = styled.div`
         ${media_breakpoint_down('xxl')} {
           padding: 10px 24px;
           font-size: ${rem(16)};
-          line-height: 24px;
+          line-height: 1.5;
         }
       }
     }
@@ -359,7 +359,7 @@ export const SubscriptionModalWrapper = styled.div`
         ${media_breakpoint_down('xxl')} {
           padding: 10px 24px;
           font-size: ${rem(16)};
-          line-height: 24px;
+          line-height: 1.5;
         }
       }
     }

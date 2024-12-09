@@ -15,24 +15,22 @@ const LatestPostsCards = ({
 
   return (
     <LatestPostsCardsWrapper>
-      <>
-        {posts?.map((article, indexChunkArticle) => (
-          <LatestPostsCard
-            key={article?.databaseId}
-            article={article}
-            isBig={!!(isBig && indexChunkArticle === 0)}
-          />
-        ))}
-        {isRenderDiscoveryButton && (
-          <StandardBlueButton
-            as={Link}
-            href={linkDiscovery}
-            className="discovery-button"
-          >
-            Discovery more...
-          </StandardBlueButton>
-        )}
-      </>
+      {posts?.map((article, indexChunkArticle) => (
+        <LatestPostsCard
+          key={article?.databaseId}
+          article={article}
+          isBig={!!(isBig && indexChunkArticle === 0)}
+        />
+      ))}
+      {isRenderDiscoveryButton && (
+        <StandardBlueButton
+          as={Link}
+          href={linkDiscovery}
+          className="discovery-button"
+        >
+          Discovery more...
+        </StandardBlueButton>
+      )}
     </LatestPostsCardsWrapper>
   );
 };

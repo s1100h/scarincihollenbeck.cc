@@ -31,7 +31,11 @@ export const IndustriesHeader = styled.div`
     width: calc(33.33% - 12px);
 
     .title-text {
-      max-width: 211px;
+      max-width: 250px;
+
+      ${media_breakpoint_down('xxl')} {
+        max-width: 211px;
+      }
 
       ${media_breakpoint_down('lg')} {
         max-width: 100%;

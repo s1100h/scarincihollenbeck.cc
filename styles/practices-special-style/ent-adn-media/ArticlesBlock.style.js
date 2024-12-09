@@ -56,7 +56,7 @@ export const ArticlesSection = styled.section`
 
       ${media_breakpoint_exactly_down(1850)} {
         padding: 12px 24px;
-        font-size: ${rem(16)};
+        font-size: 1rem;
         line-height: 24px;
       }
 
@@ -124,7 +124,7 @@ export const ArticlesSection = styled.section`
         }
 
         ${media_breakpoint_down('md')} {
-          font-size: ${rem(16)};
+          font-size: 1rem;
           line-height: 24px;
         }
       }

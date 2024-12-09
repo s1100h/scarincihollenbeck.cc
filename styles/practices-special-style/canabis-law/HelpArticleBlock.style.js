@@ -44,7 +44,7 @@ export const HelpArticleBlockContainer = styled(WeAdviseThisBlockContainer)`
 
       ${media_breakpoint_down('xxl')} {
         margin: 0 0 24px 0;
-        font-size: ${rem(16)};
+        font-size: 1rem;
         line-height: 24px;
       }
     }

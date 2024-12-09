@@ -1,5 +1,5 @@
-import styled, { keyframes } from 'styled-components';
-import { globalColor, rem } from './global_styles/Global.styles';
+import styled from 'styled-components';
+import { globalColor } from './global_styles/Global.styles';
 
 export const CollapseContentWrapper = styled.div`
   &.collapse:not(.show) {
@@ -29,11 +29,8 @@ export const CollapseButton = styled.button`
   transform: translateY(calc(-100% - 8px));
   text-transform: uppercase;
   text-decoration: underline;
-  color: #377ec4;
-  font-size: ${rem(16)};
-  line-height: 24px;
+  color: ${globalColor.blue.blue600};
   font-weight: 600;
-  font-family: var(--font-poppins);
   transition: all 0.2s ease-in-out;
 
   &:hover {

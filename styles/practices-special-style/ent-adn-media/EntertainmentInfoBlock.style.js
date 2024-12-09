@@ -29,7 +29,7 @@ export const EntertainmentInfoSection = styled.section`
 export const EnterntainmentTabNumber = styled.span`
   margin: 0 0 32px 0;
   font-family: var(--font-poppins), sans-serif;
-  font-size: ${rem(16)};
+  font-size: 1rem;
   line-height: 24px;
   font-weight: 400;
   color: ${entAndMediaColors.entAndMediaColorGray};
@@ -186,7 +186,7 @@ export const EnterntainmentTabBtn = styled.a`
 
   ${media_breakpoint_exactly_down(1850)} {
     padding: 12px 24px;
-    font-size: ${rem(16)};
+    font-size: 1rem;
     line-height: 24px;
   }
 
@@ -217,7 +217,7 @@ export const EnterntainmentTabNavbarItem = styled.div`
   display: flex;
   align-items: center;
   column-gap: 10px;
-  font-size: ${rem(16)};
+  font-size: 1rem;
   font-family: var(--font-poppins), sans-serif;
   font-weight: 400;
   line-height: 24px;
@@ -345,7 +345,7 @@ export const EnterntainmentTabImage = styled.div`
 export const EnterntainmentTabDescription = styled.div`
   color: ${entAndMediaColors.entAndMediaColorMediumGray};
   font-family: var(--font-poppins), sans-serif;
-  font-size: ${rem(16)};
+  font-size: 1rem;
   line-height: 24px;
   font-weight: 400;
   text-transform: uppercase;
@@ -361,7 +361,7 @@ export const EnterntainmentTabList = styled.ul`
 export const EnterntainmentTabListItem = styled.li`
   color: ${globalColor.black};
   font-family: var(--font-poppins), sans-serif;
-  font-size: ${rem(16)};
+  font-size: 1rem;
   line-height: 24px;
   font-weight: 600;
   display: flex;

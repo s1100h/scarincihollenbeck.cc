@@ -65,7 +65,7 @@ export const PostsBox = styled.div`
       span {
         color: ${cannabisLawColors.cannabisColorDarkGrayLight};
         font-family: var(--font-rajdhani), sans-serif;
-        font-size: ${rem(16)};
+        font-size: 1rem;
         font-weight: 500;
         line-height: 24px;
         text-transform: uppercase;
@@ -75,7 +75,7 @@ export const PostsBox = styled.div`
     .news-card-footer {
       color: ${cannabisLawColors.cannabisColorDarkGrayLight};
       font-family: var(--font-rajdhani), sans-serif;
-      font-size: ${rem(16)};
+      font-size: 1rem;
       font-weight: 500;
       line-height: 24px;
       text-transform: uppercase;
@@ -159,6 +159,6 @@ export const LinkToCategory = styled(Link)`
 
   ${media_breakpoint_down('sm')} {
     padding: 10px 24px;
-    font-size: ${rem(16)};
+    font-size: 1rem;
   }
 `;

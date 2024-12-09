@@ -7,7 +7,7 @@ import MainSiteHead from 'components/shared/head/MainSiteHead';
 import SSRProvider from 'react-bootstrap/SSRProvider';
 import { Provider } from 'react-redux';
 
-/**
+/* *
  *
  * 3rd Party Resources
  *
@@ -15,10 +15,8 @@ import { Provider } from 'react-redux';
 import { GoogleTagManager } from '@next/third-parties/google';
 import 'nprogress/nprogress.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-multi-carousel/lib/styles.css';
 import 'animate.css/animate.min.css';
-
-/**
+/* *
  * Custom Style Sheets and redux
  * */
 import { GlobalStyle } from 'styles/global_styles/Global.styles';

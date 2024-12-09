@@ -44,8 +44,7 @@ const AboutFirm = ({
               <AboutCardImage>
                 <Image
                   src={heroPhoto?.sourceUrl}
-                  width={280}
-                  height={420}
+                  fill
                   alt={heroPhoto?.altText || 'image'}
                   sizes="(max-width: 576px) 100vw, 280px"
                 />

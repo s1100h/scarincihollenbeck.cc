@@ -92,7 +92,6 @@ export const getStaticProps = async ({ params }) => {
       whyChooseUsData: practice?.practicesIncluded?.whyChooseUs,
       practices,
       awards: practice?.practicesIncluded?.awards,
-      linkedPosts: practice?.practicesIncluded?.linkedPosts,
       // googleReviews: deleteReviewsWithoutComment(googleReviews.flat()),
     },
     revalidate: 8600,
@@ -111,7 +110,6 @@ const SinglePractice = ({
   practices,
   googleReviews,
   awards,
-  linkedPosts,
 }) => {
   const router = useRouter();
   const canonicalUrl = `${PRODUCTION_URL}/practices/${practice.slug}`;
@@ -150,7 +148,6 @@ const SinglePractice = ({
     practices,
     googleReviews,
     awards,
-    linkedPosts,
   };
 
   return (

@@ -67,10 +67,6 @@ export const CardEntAndMediaAttorney = styled.div`
 
   .attorney-designation,
   .attorney-address {
-    font-family: var(--font-poppins), sans-serif;
-    font-size: ${rem(16)};
-    font-weight: 400;
-    line-height: 24px;
     color: ${entAndMediaColors.entAndMediaColorMediumGray};
   }
 

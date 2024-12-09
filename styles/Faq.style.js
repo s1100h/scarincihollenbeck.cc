@@ -50,10 +50,10 @@ export const FaqWrapper = styled.section`
       margin: 0;
       color: #231e1e;
       font-family: var(--font-poppins);
-      font-size: ${rem(16)};
+      font-size: 1rem;
+      line-height: 1.5;
       font-weight: 600;
-      line-height: 24px;
-
+      
       ${media_breakpoint_down('sm')} {
         font-size: ${rem(14)};
         line-height: 20px;
@@ -87,16 +87,17 @@ export const FaqWrapper = styled.section`
     &-body {
       padding: 0 24px 12px;
       color: ${globalColor.gray.gray80};
-      font-size: ${rem(16)};
+      font-size: 1rem;
       line-height: 24px;
       font-weight: 400;
       font-family: var(--font-poppins);
 
       p {
+        line-height: 24px;
+
         &:last-child {
           margin: 0;
         }
-        line-height: 24px;
       }
 
       ul {

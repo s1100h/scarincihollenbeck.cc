@@ -137,8 +137,6 @@ export const SplitContentDescription = styled.div`
   p {
     margin: 0 0 16px 0;
     color: ${globalColor.gray.gray80};
-    font-family: var(--font-poppins);
-    font-size: ${rem(16)};
     line-height: 29px;
     font-weight: 400;
 
@@ -155,8 +153,6 @@ export const SplitContentDescription = styled.div`
   ul {
     li {
       color: ${globalColor.gray.gray80};
-      font-family: var(--font-poppins);
-      font-size: ${rem(16)};
       line-height: 29px;
       font-weight: 400;
 
@@ -198,7 +194,11 @@ export const SplitContentDescription = styled.div`
 `;
 
 export const SplitContentSidebar = styled.div`
-  width: 420px;
+  width: 500px;
+
+  ${media_breakpoint_down('xxl')} {
+    width: 420px;
+  }
 
   ${media_breakpoint_down('xl')} {
     width: max-content;

@@ -108,22 +108,6 @@ export const practicesQuery = `query PracticeQuery($id: ID!) {
         label
         year
       }
-      linkedPosts {
-        ... on Post {
-          databaseId
-          date
-          slug
-          uri
-          title(format: RENDERED)
-          excerpt(format: RENDERED)
-          author {
-            node {
-              slug
-              name
-            }
-          }
-        }
-      }
     }
     seo {
       title

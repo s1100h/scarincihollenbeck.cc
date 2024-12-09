@@ -397,8 +397,8 @@ export const GlobalStyle = createGlobalStyle`
       // FireFox
       @supports not selector(::-webkit-scrollbar-thumb) {
         scrollbar-color: ${globalColor.blue.blue400} ${
-  globalColor.blue.blue6002
-};
+          globalColor.blue.blue6002
+        };
         scrollbar-width: thin;
       }
     }
@@ -789,7 +789,7 @@ export const attorneyCardForCannabis = `
         margin: 0 0 20px 0;
         color: ${globalColor.white};
         font-family: var(--font-rajdhani);
-        font-size: ${rem(16)};
+        font-size: 1rem;
         line-height: 24px;
         font-weight: 500;
 
@@ -817,7 +817,7 @@ export const attorneyCardForCannabis = `
             text-transform: uppercase;
 
             ${media_breakpoint_down('sm')} {
-              font-size: ${rem(16)};
+              font-size: 1rem;
               line-height: 24px;
             }
           }

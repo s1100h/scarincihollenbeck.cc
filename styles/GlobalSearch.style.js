@@ -130,7 +130,7 @@ export const ResultsContainer = styled.div`
           align-items: center;
           justify-content: center;
           color: ${globalColor.gray.gray500};
-          font-size: ${rem(16)};
+          font-size: 1rem;
           line-height: 1.5;
           font-weight: 500;
           transition: ${globalTransition.default};

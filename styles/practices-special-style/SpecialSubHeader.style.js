@@ -307,7 +307,7 @@ export const SlideSubTitle = styled.p`
   margin: 24px 0 48px 0;
   font-family: var(--font-poppins);
   color: ${globalColor.grayExtraLite.grayExtraLite50};
-  font-size: ${rem(16)};
+  font-size: 1rem;
   font-weight: 400;
   line-height: 24px;
 
@@ -378,7 +378,7 @@ export const SlideNumberCount = styled.span`
   line-height: 48px;
 
   ${media_breakpoint_exactly_down(1439)} {
-    font-size: ${rem(16)};
+    font-size: 1rem;
     line-height: 24px;
   }
 `;
@@ -455,7 +455,7 @@ export const SliderPaginationArrowDown = styled.div`
 
 export const SlideDarkText = styled.div`
   color: ${entAndMediaColors.entAndMediaColorGray};
-  font-size: ${rem(16)};
+  font-size: 1rem;
   font-family: var(--font-poppins);
   font-weight: 400;
   line-height: 24px;

@@ -9,6 +9,7 @@ import { ContainerDefault } from './Containers.style';
 import { LogoSeparatorWrapper } from './Separators.style';
 import { LawyerCardWrapper } from './LawyerCard.style';
 import { FaqWrapper } from './Faq.style';
+import { TitleH2 } from './common/Typography.style';
 
 export const MainAttorneysContainer = styled.section`
   background-color: ${globalColor.gray.gray1002};
@@ -55,6 +56,10 @@ export const AttorneyCardsHolder = styled.section`
     ${media_breakpoint_down('lg')} {
       margin: 32px 0;
     }
+  }
+
+  ${TitleH2} {
+    text-transform: capitalize;
   }
 `;
 

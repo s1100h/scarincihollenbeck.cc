@@ -158,7 +158,7 @@ export const ButtonItem = styled.li`
     }
 
     ${media_breakpoint_down('lg')} {
-      font-size: 1rem;
+      font-size: ${rem(16)};
       height: 50px;
     }
   }

@@ -11,8 +11,8 @@ const Logo = ({ whiteVariant }) => (
       <Image
         className="logo-diamond"
         alt={`${SITE_TITLE}, LLC`}
-        width={170}
-        height={147}
+        width={64}
+        height={64}
         priority
         quality={100}
         src={SHDiamond}

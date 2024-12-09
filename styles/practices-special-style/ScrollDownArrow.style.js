@@ -22,7 +22,7 @@ export const ScrollDownContainer = styled(Link)`
     margin-bottom: 0;
 
     ${media_breakpoint_down('md')} {
-      font-size: ${rem(16)};
+      font-size: 1rem;
       line-height: 24px;
     }
   }

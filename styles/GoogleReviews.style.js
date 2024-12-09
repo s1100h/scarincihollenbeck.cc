@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { globalColor, rem } from './global_styles/Global.styles';
+import { globalColor } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const GoogleReviewsSection = styled.section`
@@ -101,7 +101,7 @@ export const GoogleReviewsCard = styled.div`
       > h4 {
         margin: 0;
         color: ${globalColor.gray.gray110};
-        font-size: ${rem(16)};
+        font-size: 1rem;
         line-height: 22px;
         font-weight: 400;
         font-family: var(--font-poppins);
@@ -131,7 +131,7 @@ export const GoogleReviewsCard = styled.div`
         margin: 0;
         color: ${globalColor.gray.gray110};
         font-family: var(--font-poppins);
-        font-size: ${rem(16)};
+        font-size: 1rem;
         line-height: 24px;
         font-weight: 400;
         text-align: start;

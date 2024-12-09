@@ -227,7 +227,7 @@ export const ArticlePhotoContainer = styled.div`
     font-weight: 500;
 
     ${media_breakpoint_down('xxl')} {
-      font-size: ${rem(16)};
+      font-size: 1rem;
       line-height: 24px;
     }
   }
