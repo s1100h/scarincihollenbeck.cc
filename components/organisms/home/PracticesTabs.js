@@ -37,7 +37,7 @@ const PracticesTabs = ({ practices, isLoadingPractices = false }) => {
       ),
     );
 
-    if (matchedTabIndex === -1) return null;
+    if (matchedTabIndex === -1) return;
 
     setActiveTab(matchedTabIndex);
 
