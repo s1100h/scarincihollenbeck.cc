@@ -22,6 +22,7 @@ import { ShareSocialBox } from '../../../styles/Post/SocialShare.style';
 const SocialShare = ({
   title,
   isPractice = false,
+  isPrintBtn = false,
   customClass,
   handlePrint,
 }) => {
@@ -63,13 +64,15 @@ const SocialShare = ({
           <LinkedinShareButton url={postUrl} quote={title}>
             <BsLinkedin className="linkedIn" />
           </LinkedinShareButton>
-          <button
-            aria-label="print"
-            onClick={handlePrint}
-            className="print-button"
-          >
-            <FaFilePdf />
-          </button>
+          {isPrintBtn && (
+            <button
+              aria-label="print"
+              onClick={handlePrint}
+              className="print-button"
+            >
+              <FaFilePdf />
+            </button>
+          )}
           <button
             aria-label="copy link"
             onClick={handleCopyLink}
@@ -94,14 +97,16 @@ const SocialShare = ({
           <EmailShareButton subject={title} body={postUrl} separator="">
             <FaEnvelope />
           </EmailShareButton>
-          <Button
-            variant="link"
-            className="m-0 p-0 text-dark"
-            aria-label="Print Page"
-            onClick={() => printScreen()}
-          >
-            <BsFillPrinterFill />
-          </Button>
+          {isPrintBtn && (
+            <Button
+              variant="link"
+              className="m-0 p-0 text-dark"
+              aria-label="Print Page"
+              onClick={() => printScreen()}
+            >
+              <BsFillPrinterFill />
+            </Button>
+          )}
         </ShareSocialBox>
       )}
     </>

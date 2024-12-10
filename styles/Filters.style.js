@@ -300,10 +300,9 @@ export const ResultCard = styled(Link)`
 
   &.active {
     pointer-events: none;
-    background-color: ${globalColor.blue.blue400};
 
-    > span {
-      color: ${globalColor.white};
+    * {
+      color: ${globalColor.blue.skyBlue};
     }
   }
 `;
