@@ -4,7 +4,6 @@ import { PRODUCTION_URL } from 'utils/constants';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 import empty from 'is-empty';
 import PracticePageNew from 'components/pages/PracticePageNew';
-import { getPractices } from 'requests/getPractices';
 import { fetchAPI } from '../../requests/api';
 import { getPracticeAttorneys } from '../../requests/practices/practice-default';
 
@@ -36,9 +35,13 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const {
-    practice, includeAttorney, practiceChief, keyContactsList, faq,
+    practice,
+    includeAttorney,
+    practiceChief,
+    keyContactsList,
+    faq,
+    practices,
   } = await getPracticeAttorneys(`/practices/${params.slug}`);
-  const practices = await getPractices();
 
   // 04.04.2024 Google reviews temporarily disabled
   // const googleReviews = await getGoogleReviewsForPalaces(

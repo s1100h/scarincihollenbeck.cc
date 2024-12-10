@@ -9,10 +9,9 @@ import {
   media_breakpoint_exactly_down,
 } from './mediaBreakpoints.style';
 import { TitleH2 } from './common/Typography.style';
+import { ContainerDefault } from './Containers.style';
 
 export const FaqWrapper = styled.section`
-  margin-bottom: 40px;
-
   ${TitleH2} {
     margin-bottom: 12px;
   }
@@ -212,5 +211,13 @@ export const FaqWrapper = styled.section`
     .accordion-item {
       height: fit-content;
     }
+  }
+`;
+
+export const FaqContainer = styled(ContainerDefault)`
+  padding-block: 40px;
+
+  ${media_breakpoint_down('md')} {
+    padding-block: 24px;
   }
 `;

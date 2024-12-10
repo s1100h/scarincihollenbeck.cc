@@ -127,3 +127,74 @@ export const practicesQuery = `query PracticeQuery($id: ID!) {
     }
   }
 }`;
+
+export const keyContactsByParentPracticeQuery = `
+query KeyContactsByParentPracticeQuery($id: ID!) {
+  practice(id: $id, idType: DATABASE_ID) {
+    practicesIncluded {
+      keyContactByPractice {
+        ... on AttorneyProfile {
+          databaseId
+          uri
+          title
+          status
+          attorneyMainInformation {
+            designation
+            email
+            phoneNumber
+            profileImage {
+              sourceUrl
+            }
+            qrCodeBioPage {
+              sourceUrl
+            }
+            qrCodeLinkedin {
+              sourceUrl
+            }
+          }
+          attorneyPrimaryRelatedPracticesLocationsGroups {
+            officeLocation {
+              ... on OfficeLocation {
+                databaseId
+                uri
+                title
+              }
+            }
+          }
+        }
+      }
+      sectionChief {
+        ... on AttorneyProfile {
+          databaseId
+          uri
+          title
+          status
+          attorneyMainInformation {
+            designation
+            email
+            phoneNumber
+            lastName
+            profileImage {
+              sourceUrl
+            }
+            qrCodeBioPage {
+              sourceUrl
+            }
+            qrCodeLinkedin {
+              sourceUrl
+            }
+          }
+          attorneyPrimaryRelatedPracticesLocationsGroups {
+            officeLocation {
+              ... on OfficeLocation {
+                databaseId
+                uri
+                title
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}`;

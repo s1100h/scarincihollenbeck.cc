@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { titleH2Styles } from 'styles/common/Typography.style';
+import { TitleH2, titleH2Styles } from 'styles/common/Typography.style';
 import { FaqWrapper } from 'styles/Faq.style';
 import {
   globalColor,
@@ -137,7 +137,7 @@ export const SplitContentDescription = styled.div`
 
   p {
     margin: 0 0 16px 0;
-    color: ${globalColor.gray.gray80};
+    color: ${globalColor.gray.gray700};
     line-height: 29px;
     font-weight: 400;
 
@@ -153,7 +153,7 @@ export const SplitContentDescription = styled.div`
 
   ul {
     li {
-      color: ${globalColor.gray.gray80};
+      color: ${globalColor.gray.gray700};
       line-height: 29px;
       font-weight: 400;
 
@@ -192,6 +192,10 @@ export const SplitContentDescription = styled.div`
   ${media_breakpoint_down('sm')} {
     max-width: calc(100% - 40px);
   }
+`;
+
+export const SplitContentText = styled.div`
+
 `;
 
 export const SplitContentSidebar = styled.div`

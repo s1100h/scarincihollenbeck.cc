@@ -157,13 +157,3 @@ export const OfficeCardContainer = styled.div`
     }
   }
 `;
-
-export const OfficeLocationBoxTitle = styled(TitleH2)`
-  margin: 0 0 24px 0;
-  text-transform: uppercase;
-  font-weight: 500;
-
-  ${media_breakpoint_down('md')} {
-    margin: 0 0 12px 0;
-  }
-`;

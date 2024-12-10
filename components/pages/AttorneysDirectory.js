@@ -5,8 +5,8 @@ import AttorneyFilters from 'components/organisms/attorneys/AttorneyFilters';
 import { useDispatch, useSelector } from 'react-redux';
 import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
 import { ScarinciHollenbeckKeyContact } from 'utils/constants';
-import { ContainerDefault } from 'styles/Containers.style';
 import dynamic from 'next/dynamic';
+import { FaqContainer } from 'styles/Faq.style';
 import { setReferenceId } from '../../redux/slices/attorneys.slice';
 import { useGetLocationsQuery } from '../../redux/services/project-api';
 
@@ -57,9 +57,9 @@ const AttorneysPage = ({
           seoAttorneys={seoAttorneys}
         />
 
-        <ContainerDefault>
-          <FAQ isTwoColumns />
-        </ContainerDefault>
+        <FaqContainer>
+          <FAQ isTwoColumns isSingleOpened />
+        </FaqContainer>
 
         <WhatWeDoSection practices={practices} />
         <WhyChooseUs />

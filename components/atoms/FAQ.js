@@ -11,6 +11,7 @@ export default function FAQ({
   anchorId,
   allOpen = false,
   isTwoColumns,
+  isSingleOpened = false,
 }) {
   const faqItems = faqArrContent || ATTORNEYS_FAQ;
 
@@ -27,7 +28,7 @@ export default function FAQ({
           !empty(title) && !empty(faqArrContent) ? `FAQ about ${title}` : 'FAQ'
         }`}
       </TitleH2>
-      <Accordion defaultActiveKey={activeKeys} alwaysOpen>
+      <Accordion defaultActiveKey={activeKeys} alwaysOpen={!isSingleOpened}>
         {faqItems.map(({ title, description }) => (
           <Accordion.Item key={title} eventKey={title}>
             <Accordion.Header as="h3">{title}</Accordion.Header>
