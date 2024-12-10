@@ -1,17 +1,17 @@
-import FAQ from 'components/atoms/FAQ';
 import DirectionsFilesLink from 'components/common/DirectionsFilesLink';
 import Map from 'components/molecules/location/Map';
 import React from 'react';
 import { ContainerDefault } from 'styles/Containers.style';
-import {
-  LocationPageContainer,
-  OfficeLocationBoxTitle,
-} from 'styles/Locations.style';
+import { LocationPageContainer } from 'styles/Locations.style';
 import {
   SplitContentDescription,
   SplitContentHolder,
   SplitContentSidebar,
+  SplitContentText,
 } from 'styles/practices/PracticeContent.style';
+import { TitleH2 } from 'styles/common/Typography.style';
+import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
+import empty from 'is-empty';
 import GetInTouchForm from '../practices/GetInTouchForm';
 import SocialShare from '../post/SocialShare';
 
@@ -22,17 +22,17 @@ const LocationContent = ({
   currentOffice,
   mapAddress,
   anchorIdMap,
-  anchorIdFaq,
-  faqData,
+  description,
 }) => (
   <LocationPageContainer>
     <ContainerDefault>
-      <SocialShare isPractice customClass="social-share" />
-      <OfficeLocationBoxTitle as="p">
-        {changeTitle(title)}
-      </OfficeLocationBoxTitle>
+      <SocialShare isGetInTouch customClass="social-share" />
+
       <SplitContentHolder>
         <SplitContentDescription>
+          <TitleH2>
+            {`Your Trusted Legal Partners in ${changeTitle(title)}`}
+          </TitleH2>
           <Map
             title={title}
             map={mapAddress}
@@ -40,10 +40,15 @@ const LocationContent = ({
             height={600}
           />
           <DirectionsFilesLink currentOffice={currentOffice} />
-          <FAQ anchorId={anchorIdFaq} faqArrContent={faqData} />
+
+          {!empty(description) && (
+            <SplitContentText>
+              <JSXWithDynamicLinks HTML={description} />
+            </SplitContentText>
+          )}
         </SplitContentDescription>
         <SplitContentSidebar>
-          <GetInTouchForm />
+          <GetInTouchForm isGetInTouch />
         </SplitContentSidebar>
       </SplitContentHolder>
     </ContainerDefault>

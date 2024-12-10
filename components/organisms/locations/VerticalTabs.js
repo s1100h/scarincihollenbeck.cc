@@ -1,5 +1,5 @@
 import React, {
-  Fragment, useId, useRef, useState,
+  Fragment, useEffect, useId, useRef, useState,
 } from 'react';
 import empty from 'is-empty';
 import {
@@ -30,6 +30,12 @@ const VerticalTabs = ({ contentTabs, anchorId }) => {
     const offsetTop = containerRef.current.offsetTop - 135;
     window.scrollTo({ top: offsetTop, behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    if (activeTab >= contentTabs.length) {
+      setActiveTab(0);
+    }
+  }, [contentTabs, activeTab]);
 
   return (
     <VerticalTabsSection

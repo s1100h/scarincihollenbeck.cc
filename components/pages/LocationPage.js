@@ -5,6 +5,8 @@ import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
 import empty from 'is-empty';
 import LocationContent from 'components/organisms/locations/LocationContent';
+import { ContainerDefault } from 'styles/Containers.style';
+import { FaqContainer } from 'styles/Faq.style';
 import { sortByKey } from '../../utils/helpers';
 import SubHeaderDefault from '../../layouts/SubHeader/SubHeaderDefault';
 import PracticeAnchors from '../organisms/practices/PracticeAnchors';
@@ -14,15 +16,12 @@ const WhatWeDoSection = dynamic(() => import('../organisms/home/WhatWeDoSection'
 const WhyChooseUs = dynamic(() => import('../organisms/practices/WhyChooseUs'));
 const GoogleReviews = dynamic(() => import('../organisms/common/GoogleReviews'));
 const VerticalTabs = dynamic(() => import('components/organisms/locations/VerticalTabs'));
+const FAQ = dynamic(() => import('components/atoms/FAQ'));
 
 const anchorLocationsData = {
   map: {
     id: 'map',
     title: 'Map',
-  },
-  faq: {
-    id: 'faq-section',
-    title: 'FAQs',
   },
   info: {
     id: 'info-section',
@@ -31,6 +30,10 @@ const anchorLocationsData = {
   attorneys: {
     id: 'attorneys-section',
     title: 'Attorneys',
+  },
+  faq: {
+    id: 'faq-section',
+    title: 'FAQs',
   },
   whatWeDo: {
     id: 'what-we-do',
@@ -108,8 +111,7 @@ const LocationPage = ({
         currentOffice={currentOffice}
         mapAddress={currentOffice?.mapAddress}
         anchorIdMap={anchorData.map.id}
-        anchorIdFaq={anchorData.faq.id}
-        faqData={currentOffice.faq}
+        description={currentOffice?.description}
       />
       <VerticalTabs
         contentTabs={currentOffice.contentTabs}
@@ -121,6 +123,15 @@ const LocationPage = ({
           attorneys={sortByKey(currentOffice.attorneys, 'lastName')}
         />
       )}
+
+      <FaqContainer>
+        <FAQ
+          anchorId={anchorData.faq.id}
+          faqArrContent={currentOffice.faq}
+          isTwoColumns
+          isSingleOpened
+        />
+      </FaqContainer>
       <WhatWeDoSection
         practices={practices}
         anchorId={anchorLocationsData.whatWeDo.id}

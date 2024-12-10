@@ -1,8 +1,12 @@
 import { attorneysSanitize, checkOnPublish } from 'utils/helpers';
 import empty from 'is-empty';
+import { getPractices } from 'requests/getPractices';
 import { fetchAPI } from '../api';
 import { ScarinciHollenbeckKeyContact } from '../../utils/constants';
-import { practicesQuery } from './practicesQueryGenerator';
+import {
+  keyContactsByParentPracticeQuery,
+  practicesQuery,
+} from './practicesQueryGenerator';
 
 export const getPracticeAttorneys = async (uri) => {
   const data = await fetchAPI(practicesQuery, {
@@ -48,9 +52,49 @@ export const getPracticeAttorneys = async (uri) => {
     });
   }
 
-  const concatAttorneys = [...practiceChief, ...keyContactsArr];
+  const practices = await getPractices();
 
-  const publishedAttorneys = checkOnPublish(concatAttorneys);
+  const parentPracticeId = practices?.find((practice) => practice?.childPractice?.some((child) => child?.uri === uri))?.databaseId;
+
+  let keyContactsByParentPractice = [];
+
+  if (!empty(parentPracticeId)) {
+    const parentDataById = await fetchAPI(keyContactsByParentPracticeQuery, {
+      variables: {
+        id: parentPracticeId,
+      },
+    });
+
+    const parentPracticeChief = parentDataById?.practice?.practicesIncluded
+      .sectionChief
+      ? attorneysSanitize(
+        parentDataById.practice.practicesIncluded.sectionChief,
+      )
+      : [];
+
+    const parentKeyContactsArr = parentDataById?.practice?.practicesIncluded
+      .keyContactByPractice
+      ? attorneysSanitize(
+        parentDataById.practice.practicesIncluded.keyContactByPractice,
+      )
+      : [];
+    keyContactsByParentPractice = [
+      ...parentKeyContactsArr,
+      ...parentPracticeChief,
+    ];
+  }
+
+  const concatAttorneys = [
+    ...practiceChief,
+    ...keyContactsArr,
+    ...keyContactsByParentPractice,
+  ];
+
+  const uniqueAttorneys = Array.from(
+    new Map(concatAttorneys.map((item) => [item.databaseId, item])).values(),
+  );
+
+  const publishedAttorneys = checkOnPublish(uniqueAttorneys);
 
   const keyContacts = !empty(publishedAttorneys)
     ? publishedAttorneys
@@ -62,6 +106,7 @@ export const getPracticeAttorneys = async (uri) => {
     practiceChief: checkOnPublish(practiceChief),
     keyContactsList: keyContacts,
     faq: data.practice?.practicesIncluded?.faq,
+    practices,
   };
 };
 

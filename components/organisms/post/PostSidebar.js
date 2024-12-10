@@ -15,7 +15,7 @@ const PostSidebar = ({ keyContacts, corePractices }) => {
   return (
     <div>
       <ContactLinksBox>
-        <SocialShare />
+        <SocialShare isPrintBtn isEmailShare isCopyBtn={false} />
         <h3>Key Contacts</h3>
         {keyContacts.map((author) => (
           <AttorneyCard
