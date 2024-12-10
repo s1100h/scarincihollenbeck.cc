@@ -20,7 +20,7 @@ export const DescrBtnContainer = styled.div`
     font-family: var(--font-rajdhani), sans-serif;
     margin-bottom: 0;
     color: ${globalColor.white};
-    font-size: 1rem;
+    font-size: ${rem(16)};
     text-transform: uppercase;
     font-weight: 400;
   }
@@ -55,7 +55,7 @@ export const DescrBtnContainer = styled.div`
       padding: 10px 24px;
 
       span {
-        font-size: 1rem;
+        font-size: ${rem(16)};
         line-height: 24px;
       }
     }
@@ -63,7 +63,7 @@ export const DescrBtnContainer = styled.div`
 
   ${media_breakpoint_down('lg')} {
     > p {
-      font-size: 1rem;
+      font-size: ${rem(16)};
       line-height: 24px;
     }
   }

@@ -18,7 +18,7 @@ const HeaderTopLineItemStyles = `
   align-items: center;
   gap: 8px;
   color: ${globalColor.white};
-  font-size: 1rem;
+  font-size: ${rem(16)};
   font-weight: 600;
   line-height: 1.5;
   border-bottom: 2px solid transparent;

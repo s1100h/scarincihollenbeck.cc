@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { globalColor, globalShadow } from '../global_styles/Global.styles';
+import { globalColor, globalShadow, rem } from '../global_styles/Global.styles';
 
 export const RelatedPostsContainer = styled.div`
   padding-top: 60px;
 
   h3 {
-    font-size: 2rem;
+    font-size: ${rem(32)};
     font-weight: 500;
     line-height: 1.2;
   }
@@ -33,7 +33,7 @@ export const RelatedPostItem = styled.li`
     }
 
     h4 {
-      font-size: 1rem;
+      font-size: ${rem(16)};
       margin-bottom: 0;
     }
   }

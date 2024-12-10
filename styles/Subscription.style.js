@@ -17,7 +17,7 @@ export const CheckBoxesList = styled.ul`
     break-inside: avoid;
 
     span.checkbox-label {
-      font-size: 1rem !important;
+      font-size: ${rem(16)}!important;
     }
   }
 
@@ -26,7 +26,7 @@ export const CheckBoxesList = styled.ul`
 
     li {
       span.checkbox-label {
-        font-size: 0.8rem !important;
+        font-size: ${rem(12.8)} !important;
       }
     }
   }
@@ -127,7 +127,7 @@ export const FormSubscriptionContainer = styled.div`
     section {
       h4 {
         width: 61%;
-        font-size: 1rem;
+        font-size: ${rem(16)};
       }
     }
 

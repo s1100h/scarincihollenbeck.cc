@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { globalColor } from '../global_styles/Global.styles';
+import { globalColor, rem } from '../global_styles/Global.styles';
 import { TitleH2, TitleH3 } from 'styles/common/Typography.style';
 
 export const BioPagePrintContainer = styled.div`
@@ -23,10 +23,10 @@ export const BioPagePrintContainer = styled.div`
     .profile-title {
       padding-top: 3px;
       ${TitleH2} {
-        margin-top: 3px;
+        margin: 3px 0 0 0;
       }
       span {
-        font-size: 1rem;
+        font-size: ${rem(16)};
       }
     }
 
@@ -56,13 +56,13 @@ export const BioPagePrintContainer = styled.div`
       }
 
       li {
-        font-size: 10px;
+        font-size: ${rem(10)};
       }
     }
 
     .address-box {
       * {
-        font-size: 10px;
+        font-size: ${rem(10)};
       }
       svg {
         width: 12px;

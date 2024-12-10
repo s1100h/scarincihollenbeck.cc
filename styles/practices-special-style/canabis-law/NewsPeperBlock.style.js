@@ -4,6 +4,7 @@ import {
   globalColor,
   imageCoverBlock,
   paragraphStyles,
+  rem,
 } from '../../global_styles/Global.styles';
 import {
   media_breakpoint_down,
@@ -40,11 +41,11 @@ export const NewsPaperContainer = styled.section`
 
       article {
         .article-common-title {
-          font-size: 1.8rem;
+          font-size: ${rem(28.8)};
         }
 
         p {
-          font-size: 1.1rem;
+          font-size: ${rem(17.6)};
         }
       }
     }
@@ -67,13 +68,13 @@ export const NewsPaperContainer = styled.section`
           margin-bottom: 80px;
 
           .article-common-title {
-            font-size: 2.3rem;
+            font-size: ${rem(36.8)};
             margin-bottom: 30px;
             text-align: center;
           }
 
           p {
-            font-size: 1.3rem;
+            font-size: ${rem(20.8)};
             text-align: center;
           }
 
@@ -97,7 +98,7 @@ export const NewsPaperContainer = styled.section`
     > div {
       > :last-child {
         p {
-          font-size: 1rem;
+          font-size: ${rem(16)};
           margin-bottom: 0;
         }
 
@@ -112,7 +113,7 @@ export const NewsPaperContainer = styled.section`
     > div {
       > :last-child {
         p {
-          font-size: 0.9rem;
+          font-size: ${rem(14)};
           margin-bottom: 0;
         }
 
@@ -152,12 +153,12 @@ export const NewsPaperContainer = styled.section`
           align-items: start;
 
           .article-common-title {
-            font-size: 1.5rem;
+            font-size: ${rem(24)};
             text-align: left;
           }
 
           p {
-            font-size: 1rem;
+            font-size: ${rem(16)};
             text-align: left;
           }
         }
@@ -169,7 +170,7 @@ export const NewsPaperContainer = styled.section`
         p {
           padding-right: 20px;
           overflow-y: auto;
-          font-size: 0.7rem;
+          font-size: ${rem(11.2)};
           line-height: 12px;
         }
 
@@ -200,7 +201,7 @@ export const NewsPaperBox = styled.div`
 
   p {
     ${paragraphStyles};
-    font-size: 1rem;
+    font-size: ${rem(16)};
     color: ${cannabisLawColors.cannabisColorDarkGray};
     text-align: start;
     width: 420px;

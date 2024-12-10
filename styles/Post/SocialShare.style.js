@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { globalColor, globalTransition } from '../global_styles/Global.styles';
+import {
+  globalColor,
+  globalTransition,
+  rem,
+} from '../global_styles/Global.styles';
 
 export const ShareSocialBox = styled.nav`
   display: flex;
@@ -9,7 +13,7 @@ export const ShareSocialBox = styled.nav`
   margin-bottom: 40px;
 
   > h3 {
-    font-size: 1.1rem;
+    font-size: ${rem(17.6)};
     margin-right: 5%;
     margin-bottom: 0;
     font-weight: bold;
@@ -31,7 +35,7 @@ export const ShareSocialBox = styled.nav`
     margin: 0 10px;
 
     svg {
-      font-size: 1.4rem;
+      font-size: ${rem(22.4)};
       color: ${globalColor.grayLite.grayLite60};
 
       @media (hover: hover) {

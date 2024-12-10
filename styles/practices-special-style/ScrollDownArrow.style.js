@@ -22,7 +22,7 @@ export const ScrollDownContainer = styled(Link)`
     margin-bottom: 0;
 
     ${media_breakpoint_down('md')} {
-      font-size: 1rem;
+      font-size: ${rem(16)};
       line-height: 24px;
     }
   }
@@ -37,7 +37,7 @@ export const CircleArrowBox = styled.div`
   border-radius: 50%;
 
   svg {
-    font-size: 40px;
+    font-size: ${rem(40)};
     color: ${cannabisLawColors.cannabisColorDarkGray};
   }
 

@@ -1,6 +1,11 @@
-import styled from "styled-components";
-import { media_breakpoint_down } from "./mediaBreakpoints.style";
-import { globalBorderRadius, globalColor, globalTransition, rem } from "./global_styles/Global.styles";
+import styled from 'styled-components';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
+import {
+  globalBorderRadius,
+  globalColor,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
 
 const headingStyles = `
   margin: 0 0 4px 0;
@@ -53,7 +58,8 @@ export const OpenersList = styled.ol`
   row-gap: 40px;
   background-color: ${globalColor.white};
   border-radius: ${globalBorderRadius.middle};
-  box-shadow: 0px 12px 16px -4px rgba(9, 44, 71, 0.04), 0px 4px 6px -2px rgba(9, 44, 71, 0.02);
+  box-shadow: 0px 12px 16px -4px rgba(9, 44, 71, 0.04),
+    0px 4px 6px -2px rgba(9, 44, 71, 0.02);
   transition: all 0.3s ease-in-out;
 
   ${media_breakpoint_down('xxl')} {
@@ -88,7 +94,7 @@ export const TabOpener = styled.button`
   text-transform: uppercase;
   text-align: start;
   transition: ${globalTransition.default};
-  
+
   &.active {
     color: ${globalColor.blue.blue500};
   }
@@ -103,7 +109,7 @@ export const TabOpener = styled.button`
   }
 
   ${media_breakpoint_down('xl')} {
-    font-size: 1rem;
+    font-size: ${rem(16)};
     line-height: 1.5;
   }
 `;
@@ -113,7 +119,8 @@ export const TabMobileOpener = styled(TabOpener)`
   width: 100%;
   padding: 12px 16px;
   border-radius: ${globalBorderRadius.middle};
-  box-shadow: 0px 12px 16px -4px rgba(9, 44, 71, 0.04), 0px 4px 6px -2px rgba(9, 44, 71, 0.02);
+  box-shadow: 0px 12px 16px -4px rgba(9, 44, 71, 0.04),
+    0px 4px 6px -2px rgba(9, 44, 71, 0.02);
   background-color: ${globalColor.white};
 
   ${media_breakpoint_down('md')} {
@@ -125,7 +132,8 @@ export const VerticalTabsContent = styled.div`
   flex: 1;
   padding: 24px 60px;
   background-color: ${globalColor.white};
-  box-shadow: 0px 12px 16px -4px rgba(9, 44, 71, 0.04), 0px 4px 6px -2px rgba(9, 44, 71, 0.02);
+  box-shadow: 0px 12px 16px -4px rgba(9, 44, 71, 0.04),
+    0px 4px 6px -2px rgba(9, 44, 71, 0.02);
   border-radius: ${globalBorderRadius.middle};
 
   ${media_breakpoint_down('xxl')} {
@@ -158,7 +166,8 @@ export const TabContent = styled.div`
     display: block;
   }
 
-  p, ul {
+  p,
+  ul {
     &:last-child {
       margin: 0;
     }
@@ -169,7 +178,7 @@ export const TabContent = styled.div`
 
     li {
       &::marker {
-        font-size: 14px;
+        font-size: ${rem(14)};
       }
 
       margin-left: 24px;

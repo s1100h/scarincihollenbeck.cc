@@ -25,7 +25,7 @@ export const CannabisTitles = styled.div`
     max-width: 790px;
 
     p {
-      font-size: 1rem;
+      font-size: ${rem(16)};
     }
   }
 
@@ -33,7 +33,7 @@ export const CannabisTitles = styled.div`
     max-width: 620px;
 
     p {
-      font-size: 0.8rem;
+      font-size: ${rem(12.8)};
     }
   }
 `;

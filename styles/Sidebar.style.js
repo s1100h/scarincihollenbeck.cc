@@ -18,7 +18,7 @@ const sidebarBtnStyle = `
   justify-content: center;
   column-gap: 8px;
   color: ${globalColor.blue.darkBlue};
-  font-size: 1rem;
+  font-size: ${rem(16)};
   line-height: 1.5;
   font-weight: 600;
   transition: ${globalTransition.default};
@@ -61,7 +61,7 @@ const sidebarBtnStyle = `
 `;
 
 export const TitleSideBar = styled.h3`
-  font-size: 1.2rem;
+  font-size: ${rem(19.2)};
   font-family: var(--font-poppins), sans-serif;
   font-weight: 600;
   margin-bottom: 15px;
@@ -254,7 +254,7 @@ export const SidebarMenuItemOpener = styled(Link)`
   column-gap: 12px;
   color: ${({ $open }) =>
     $open ? globalColor.blue.blue400 : globalColor.blue.darkBlue};
-  font-size: 1rem;
+  font-size: ${rem(16)};
   line-height: 1.5;
   font-weight: 600;
   text-transform: capitalize;
@@ -386,7 +386,7 @@ export const SidebarMenuLinks = styled.div`
 export const SidebarMenuLink = styled(Link)`
   padding: 4px 0;
   color: ${globalColor.blue.darkBlue};
-  font-size: 1rem;
+  font-size: ${rem(16)};
   line-height: 1.5;
   font-weight: 600;
   text-transform: capitalize;
@@ -474,7 +474,7 @@ export const SidebarMenuSocial = styled(Link)`
   gap: 8px;
   align-items: center;
   color: ${globalColor.blue.darkBlue};
-  font-size: 1rem;
+  font-size: ${rem(16)};
   line-height: 1.5;
   transition: ${globalTransition.default};
 

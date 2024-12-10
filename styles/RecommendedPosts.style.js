@@ -9,7 +9,7 @@ export const NewsTitle = styled.h2`
   margin-bottom: 35px;
 
   ${media_breakpoint_down('lg')} {
-    font-size: 2.5rem;
+    font-size: ${rem(40)};
   }
 
   ${media_breakpoint_down('md')} {
@@ -17,6 +17,6 @@ export const NewsTitle = styled.h2`
   }
 
   ${media_breakpoint_down('sm')} {
-    font-size: 2rem;
+    font-size: ${rem(32)};
   }
 `;

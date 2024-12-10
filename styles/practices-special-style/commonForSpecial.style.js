@@ -17,7 +17,7 @@ export const ArticleCommonBox = styled.article`
 
   .article-common-title {
     font-size: ${({ titleFontSize }) =>
-      !empty(titleFontSize) ? `${rem(titleFontSize)}` : '1.3rem'};
+      !empty(titleFontSize) ? `${rem(titleFontSize)}` : `${rem(20.8)}`};
     font-weight: 600;
     margin-bottom: ${({ mbTitle }) =>
       !empty(mbTitle) ? `${mbTitle}px` : '48px'};

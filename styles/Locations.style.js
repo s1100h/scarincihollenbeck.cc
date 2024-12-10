@@ -40,7 +40,7 @@ export const DownloadTheMap = styled.a`
   gap: 16px;
   color: ${globalColor.blue.ultramarine};
   width: fit-content;
-  font-size: 1.2rem;
+  font-size: ${rem(19.2)};
 `;
 
 export const MediaBr = styled.br`
@@ -67,7 +67,7 @@ export const OfficeTabs = styled.nav`
 export const BlueLinkTab = styled(Link)`
   padding: 7px 16px;
   color: ${globalColor.white};
-  font-size: 1rem;
+  font-size: ${rem(16)};
   font-weight: 700;
   line-height: 1.5;
   position: relative;
@@ -135,7 +135,7 @@ export const OfficeCardContainer = styled.div`
     flex-direction: column;
     gap: 5px;
     padding: 20px 0;
-    font-size: 1.2rem;
+    font-size: ${rem(19.2)};
 
     ${media_breakpoint_range_exacly(992, 1500)} {
       ${addressPointConst}

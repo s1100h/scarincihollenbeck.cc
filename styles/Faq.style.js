@@ -50,7 +50,7 @@ export const FaqWrapper = styled.section`
       margin: 0;
       color: #231e1e;
       font-family: var(--font-poppins);
-      font-size: 1rem;
+      font-size: ${rem(16)};
       line-height: 1.5;
       font-weight: 600;
 
@@ -63,13 +63,13 @@ export const FaqWrapper = styled.section`
     }
 
     &-button {
+      font: inherit;
       border: none;
       background-color: transparent;
       box-shadow: none;
       padding: 20px 24px 12px 24px;
       border-radius: 0;
       color: #231e1e;
-      font-weight: 600;
 
       ${media_breakpoint_exactly_down(1850)} {
         padding: 16px 16px 12px 16px;
@@ -77,9 +77,6 @@ export const FaqWrapper = styled.section`
 
       ${media_breakpoint_down('sm')} {
         padding: 12px 8px 12px 8px;
-        font-size: ${rem(14)};
-        line-height: 20px;
-        font-weight: 400;
         color: #0d0d0d;
       }
     }
@@ -87,7 +84,7 @@ export const FaqWrapper = styled.section`
     &-body {
       padding: 0 24px 12px;
       color: ${globalColor.gray.gray80};
-      font-size: 1rem;
+      font-size: ${rem(16)};
       line-height: 24px;
       font-weight: 400;
       font-family: var(--font-poppins);

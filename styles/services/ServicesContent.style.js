@@ -3,6 +3,7 @@ import {
   globalColor,
   globalShadow,
   globalTransition,
+  rem,
 } from 'styles/global_styles/Global.styles';
 import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
 import {
@@ -80,11 +81,11 @@ export const ServicesAccordions = styled.ul`
   }
 
   ${SidebarMenuSubitemOpener} {
-    font-size: 1rem;
+    font-size: ${rem(16)};
     line-height: 1.5;
 
     ${media_breakpoint_down('md')} {
-      font-size: 0.875rem;
+      font-size: ${rem(14)};
     }
   }
 

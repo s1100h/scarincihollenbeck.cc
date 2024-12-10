@@ -168,7 +168,7 @@ export const imageCoverBlock = (imgUrl) =>
 
 export const paragraphStyles = `
 	font-weight: 500;
-	font-size: 1.35rem;
+	font-size: ${rem(21.6)};
 	text-align: center;
   font-family: var(--font-rajdhani), sans-serif;
   color: ${globalColor.white};
@@ -210,6 +210,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    --bs-body-font-size: ${rem(18)};
     --bs-body-font-family: var(--font-poppins);
     font-weight: 400;
     background-color: ${globalColor.graySmoke.extraLiteWhiteSmoke};
@@ -236,6 +237,10 @@ export const GlobalStyle = createGlobalStyle`
       ${media_breakpoint_down('lg')} {
         overflow: unset;
       }
+    }
+
+    ${media_breakpoint_down('xxl')} {
+      --bs-body-font-size: ${rem(16)};
     }
 
     @media print {
@@ -291,11 +296,11 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   h4, h5 {
-    font-size: 1.2rem;
+    font-size: ${rem(19.2)};
   }
 
   h6 {
-    font-size: 1.125rem;
+    font-size: ${rem(18)};
   }
 
   input {
@@ -344,12 +349,12 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     p {
-      margin-bottom: 1.125rem;
+      font-size: ${rem(18)};
       line-height: 1.7;
     }
 
     li {
-      font-size: 1rem;
+      font-size: ${rem(16)};
     }
 
     img {
@@ -362,14 +367,14 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   .smallExcerpt {
-    font-size: 13px;
+    font-size: ${rem(13)};
     line-height: 1.5;
     margin-top: 0;
     margin-bottom: 0;
   }
 
   .fs-1_2rem {
-    font-size: 1.2rem;
+    font-size: ${rem(19.2)};
   }
 
   .redTitle {
@@ -397,8 +402,8 @@ export const GlobalStyle = createGlobalStyle`
       // FireFox
       @supports not selector(::-webkit-scrollbar-thumb) {
         scrollbar-color: ${globalColor.blue.blue400} ${
-          globalColor.blue.blue6002
-        };
+  globalColor.blue.blue6002
+};
         scrollbar-width: thin;
       }
     }
@@ -441,7 +446,7 @@ export const GlobalStyle = createGlobalStyle`
   .aligncenter > figcaption {
     text-align: center;
     margin-top: 8px;
-    font-size: 14px;
+    font-size: ${rem(14)};
   }
 
   .alignleft {
@@ -615,7 +620,7 @@ export const GlobalStyle = createGlobalStyle`
   .key-contacts-title {
     color: ${globalColor.white};
     text-transform: uppercase;
-    font-size: 2.5rem;
+    font-size: ${rem(40)};
     font-weight: 700;
     margin-bottom: 40px;
   }
@@ -652,7 +657,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   .disclaimer {
-    font-size: 1rem;
+    font-size: ${rem(16)};
     font-weight: 700;
   }
   
@@ -700,7 +705,7 @@ export const ButtonLinkCss = `
   background: ${globalColor.red.darkRed};
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
+  font-size: ${rem(16)};
   line-height: 1;
   color: ${globalColor.white};
   text-decoration: none;
@@ -789,7 +794,7 @@ export const attorneyCardForCannabis = `
         margin: 0 0 20px 0;
         color: ${globalColor.white};
         font-family: var(--font-rajdhani);
-        font-size: 1rem;
+        font-size: ${rem(16)};
         line-height: 24px;
         font-weight: 500;
 
@@ -817,7 +822,7 @@ export const attorneyCardForCannabis = `
             text-transform: uppercase;
 
             ${media_breakpoint_down('sm')} {
-              font-size: 1rem;
+              font-size: ${rem(16)};
               line-height: 24px;
             }
           }
@@ -839,7 +844,7 @@ export const successMessage = `
   left: 0;
   z-index: 20;
   background-color: ${globalColor.white};
-  font-size: 2rem;
+  font-size: ${rem(32)};
   text-align: center;
   font-weight: 600;
   color: ${globalColor.black};
@@ -858,7 +863,7 @@ export const successMessage = `
   :after {
     content: 'Thank you for reaching out! We will get in touch with you soon.';
     width: 100%;
-    font-size: 1rem;
+    font-size: ${rem(16)};
     font-weight: 400;
   }
 `;

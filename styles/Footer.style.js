@@ -196,7 +196,7 @@ export const FooterColumn = styled.div`
 export const LinkTitle = styled.p`
   margin: 0;
   color: ${globalColor.white};
-  font-size: 1rem;
+  font-size: ${rem(16)};
   line-height: 1.5;
   font-weight: 600;
 
@@ -356,7 +356,7 @@ export const FooterNavigation = styled.nav`
         }
 
         ${media_breakpoint_down('md')} {
-          font-size: 1rem;
+          font-size: ${rem(16)};
           line-height: 1.5;
         }
       }

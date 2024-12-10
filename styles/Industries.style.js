@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import styled from 'styled-components';
 import {
   globalColor,
@@ -123,7 +122,7 @@ export const IndustriesCardWrapper = styled.article`
 
 export const IndustriesCardTitle = styled.h3`
   color: ${globalColor.blue.darkBlue};
-  font-size: 1rem;
+  font-size: ${rem(16)};
   line-height: 1.5;
   font-weight: 600;
   transition: ${globalTransition.default};

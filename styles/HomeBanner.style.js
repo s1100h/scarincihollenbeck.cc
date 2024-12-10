@@ -86,7 +86,7 @@ export const BannerSlogan = styled.li`
   text-transform: uppercase;
 
   ${media_breakpoint_down('md')} {
-    font-size: 1rem;
+    font-size: ${rem(16)};
     line-height: 1.5;
   }
 `;
@@ -115,7 +115,7 @@ export const BannerText = styled.p`
   font-style: italic;
 
   ${media_breakpoint_down('md')} {
-    font-size: 1rem;
+    font-size: ${rem(16)};
     line-height: 1.5;
   }
 `;
@@ -227,7 +227,7 @@ export const BannerCardTitle = styled.h2`
   text-transform: uppercase;
 
   ${media_breakpoint_down('sm')} {
-    font-size: 1rem;
+    font-size: ${rem(16)};
   }
 `;
 
@@ -243,7 +243,7 @@ export const BannerCardContent = styled.div`
     color: ${globalColor.gray.gray110};
 
     ${media_breakpoint_down('sm')} {
-      font-size: 0.875rem;
+      font-size: ${rem(14)};
     }
   }
 
@@ -253,7 +253,7 @@ export const BannerCardContent = styled.div`
     li {
       margin-left: 24px;
       &::marker {
-        font-size: 12px;
+        font-size: ${rem(12)};
       }
     }
   }

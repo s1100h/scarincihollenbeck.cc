@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { globalColor } from './global_styles/Global.styles';
+import { globalColor, rem } from './global_styles/Global.styles';
 import { media_breakpoint_exactly_down } from './mediaBreakpoints.style';
 
 export const AttorneyCardBox = styled.article`
@@ -58,9 +58,8 @@ export const LinkBox = styled.div`
 export const InfoBox = styled.section`
   display: flex;
   flex-direction: column;
-
   p {
-    font-size: 1rem;
+    font-size: ${rem(16)};
     color: ${globalColor.gray.gray80};
   }
 
@@ -70,12 +69,12 @@ export const InfoBox = styled.section`
 `;
 
 export const UserName = styled.h3`
-  font-size: 1.4rem;
+  font-size: ${rem(22.4)};
   line-height: 1.3;
   margin-bottom: 0;
 
   ${media_breakpoint_exactly_down(612)} {
-    font-size: 1.1rem;
+    font-size: ${rem(17.6)};
   }
 `;
 

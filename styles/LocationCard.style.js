@@ -30,7 +30,7 @@ export const LocationCardMain = styled.div`
     row-gap: 12px;
 
     a {
-      font-size: 1rem;
+      font-size: ${rem(16)};
       line-height: 24px;
     }
   }
@@ -152,7 +152,7 @@ export const Contact = styled.li`
   margin-bottom: 0;
 
   ${media_breakpoint_down('md')} {
-    font-size: 1rem;
+    font-size: ${rem(16)};
     line-height: 1.5;
   }
 
@@ -233,7 +233,7 @@ export const LocationCardList = styled.ul`
     font-weight: 500;
 
     ${media_breakpoint_down('sm')} {
-      font-size: 1rem;
+      font-size: ${rem(16)};
       line-height: 1.5;
     }
   }

@@ -62,31 +62,31 @@ export const SpecialSubHeaderContainer = styled.section`
 
   h1 {
     margin: 0;
-    font-size: 12rem;
+    font-size: ${rem(192)};
     font-weight: 300;
     line-height: 1;
     color: ${globalColor.white};
 
     ${media_breakpoint_down('xl')} {
-      font-size: 10rem;
+      font-size: ${rem(160)};
     }
 
     ${media_breakpoint_down('lg')} {
-      font-size: 8rem;
+      font-size: ${rem(128)};
     }
 
     ${media_breakpoint_exactly_down(630)} {
-      font-size: 6rem;
+      font-size: ${rem(96)};
       line-height: 100px;
     }
 
     ${media_breakpoint_down('sm')} {
-      font-size: 5rem;
+      font-size: ${rem(80)};
       line-height: 69px;
     }
 
     ${media_breakpoint_exactly_down(396)} {
-      font-size: 4rem;
+      font-size: ${rem(64)};
       line-height: 56px;
     }
   }
@@ -279,7 +279,7 @@ export const SlideBlock = styled.div`
 export const SlideSmallTitle = styled.div`
   margin: 0 0 24px 0;
   color: ${entAndMediaColors.entAndMediaColorGray};
-  font-size: 1rem;
+  font-size: ${rem(16)};
   font-family: var(--font-poppins);
   font-weight: 400;
   line-height: 24px;
@@ -307,7 +307,7 @@ export const SlideSubTitle = styled.p`
   margin: 24px 0 48px 0;
   font-family: var(--font-poppins);
   color: ${globalColor.grayExtraLite.grayExtraLite50};
-  font-size: 1rem;
+  font-size: ${rem(16)};
   font-weight: 400;
   line-height: 24px;
 
@@ -378,7 +378,7 @@ export const SlideNumberCount = styled.span`
   line-height: 48px;
 
   ${media_breakpoint_exactly_down(1439)} {
-    font-size: 1rem;
+    font-size: ${rem(16)};
     line-height: 24px;
   }
 `;
@@ -455,7 +455,7 @@ export const SliderPaginationArrowDown = styled.div`
 
 export const SlideDarkText = styled.div`
   color: ${entAndMediaColors.entAndMediaColorGray};
-  font-size: 1rem;
+  font-size: ${rem(16)};
   font-family: var(--font-poppins);
   font-weight: 400;
   line-height: 24px;

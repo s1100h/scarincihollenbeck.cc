@@ -53,7 +53,7 @@ export const ServicesLinksListItem = styled.li`
   break-inside: avoid;
 
   &::marker {
-    font-size: 12px;
+    font-size: ${rem(12)};
   }
 
   &:last-of-type {
@@ -74,7 +74,7 @@ export const ServicesLinksListItem = styled.li`
     }
 
     ${media_breakpoint_down('md')} {
-      font-size: 1rem;
+      font-size: ${rem(16)};
       line-height: 1.5;
     }
   }
