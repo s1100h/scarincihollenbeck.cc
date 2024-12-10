@@ -13,7 +13,7 @@ import SocialShare from '../post/SocialShare';
 
 const GetInTouchForm = ({
   handlePrint,
-  isPractice = false,
+  isGetInTouch = false,
   isPrintBtn = false,
 }) => {
   const dispatch = useDispatch();
@@ -41,7 +41,7 @@ const GetInTouchForm = ({
         </GetInTouchQuote>
 
         <SocialShare
-          isPractice={isPractice}
+          isGetInTouch={isGetInTouch}
           isPrintBtn={isPrintBtn}
           handlePrint={handlePrint}
         />

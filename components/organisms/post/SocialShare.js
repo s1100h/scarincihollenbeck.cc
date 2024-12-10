@@ -21,8 +21,10 @@ import { ShareSocialBox } from '../../../styles/Post/SocialShare.style';
 
 const SocialShare = ({
   title,
-  isPractice = false,
+  isGetInTouch = false,
   isPrintBtn = false,
+  isEmailShare = false,
+  isCopyBtn = true,
   customClass,
   handlePrint,
 }) => {
@@ -47,69 +49,64 @@ const SocialShare = ({
   };
 
   return (
-    <>
-      {isPractice ? (
-        <ShareSocialBox
-          isPracticeHr={isPractice ? 'true' : ''}
-          className={customClass}
-        >
+    <ShareSocialBox
+      isPracticeHr={isGetInTouch ? 'true' : ''}
+      className={customClass}
+    >
+      {isGetInTouch ? (
+        <>
           <hr className="second-hr" />
           Share
-          <FacebookShareButton url={postUrl} quote={title}>
-            <BsFacebook className="faceBookBtn" />
-          </FacebookShareButton>
-          <TwitterShareButton url={postUrl} quote={title}>
-            <BsTwitterX className="twitterBtn" />
-          </TwitterShareButton>
-          <LinkedinShareButton url={postUrl} quote={title}>
-            <BsLinkedin className="linkedIn" />
-          </LinkedinShareButton>
-          {isPrintBtn && (
-            <button
-              aria-label="print"
-              onClick={handlePrint}
-              className="print-button"
-            >
-              <FaFilePdf />
-            </button>
-          )}
-          <button
-            aria-label="copy link"
-            onClick={handleCopyLink}
-            className="copy-button"
-          >
-            <IoCopy />
-          </button>
-        </ShareSocialBox>
+        </>
       ) : (
-        <ShareSocialBox>
+        <>
           <h3>Share:</h3>
           <hr className="second-hr" />
-          <FacebookShareButton url={postUrl} quote={title}>
-            <BsFacebook className="faceBookBtn" />
-          </FacebookShareButton>
-          <TwitterShareButton url={postUrl} quote={title}>
-            <BsTwitterX className="twitterBtn" />
-          </TwitterShareButton>
-          <LinkedinShareButton url={postUrl} quote={title}>
-            <BsLinkedin className="linkedIn" />
-          </LinkedinShareButton>
-          <EmailShareButton subject={title} body={postUrl} separator="">
-            <FaEnvelope />
-          </EmailShareButton>
-          {isPrintBtn && (
-            <Button
-              variant="link"
-              className="m-0 p-0 text-dark"
-              aria-label="Print Page"
-              onClick={() => printScreen()}
-            >
-              <BsFillPrinterFill />
-            </Button>
-          )}
-        </ShareSocialBox>
+        </>
       )}
-    </>
+      <FacebookShareButton url={postUrl} quote={title}>
+        <BsFacebook className="faceBookBtn" />
+      </FacebookShareButton>
+      <TwitterShareButton url={postUrl} quote={title}>
+        <BsTwitterX className="twitterBtn" />
+      </TwitterShareButton>
+      <LinkedinShareButton url={postUrl} quote={title}>
+        <BsLinkedin className="linkedIn" />
+      </LinkedinShareButton>
+      {isEmailShare && (
+        <EmailShareButton subject={title} body={postUrl} separator="">
+          <FaEnvelope />
+        </EmailShareButton>
+      )}
+      {isPrintBtn
+        && (handlePrint ? (
+          <button
+            aria-label="print"
+            onClick={handlePrint}
+            className="print-button"
+          >
+            <FaFilePdf />
+          </button>
+        ) : (
+          <Button
+            variant="link"
+            className="m-0 p-0 text-dark"
+            aria-label="Print Page"
+            onClick={() => printScreen()}
+          >
+            <BsFillPrinterFill />
+          </Button>
+        ))}
+      {isCopyBtn && (
+        <button
+          aria-label="copy link"
+          onClick={handleCopyLink}
+          className="copy-button"
+        >
+          <IoCopy />
+        </button>
+      )}
+    </ShareSocialBox>
   );
 };
 

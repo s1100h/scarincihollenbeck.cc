@@ -26,7 +26,7 @@ const LocationContent = ({
 }) => (
   <LocationPageContainer>
     <ContainerDefault>
-      <SocialShare isPractice customClass="social-share" />
+      <SocialShare isGetInTouch customClass="social-share" />
 
       <SplitContentHolder>
         <SplitContentDescription>
@@ -48,7 +48,7 @@ const LocationContent = ({
           )}
         </SplitContentDescription>
         <SplitContentSidebar>
-          <GetInTouchForm />
+          <GetInTouchForm isGetInTouch />
         </SplitContentSidebar>
       </SplitContentHolder>
     </ContainerDefault>

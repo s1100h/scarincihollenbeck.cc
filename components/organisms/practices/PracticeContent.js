@@ -27,7 +27,7 @@ const PracticeContent = ({
   >
     <ContainerDefault>
       <SocialShare
-        isPractice
+        isGetInTouch
         isPrintBtn
         customClass="social-share"
         handlePrint={handlePrint}
@@ -45,7 +45,7 @@ const PracticeContent = ({
           <FAQ title={title} anchorId={anchorIdFaq} faqArrContent={faqData} />
         </SplitContentDescription>
         <SplitContentSidebar>
-          <GetInTouchForm handlePrint={handlePrint} isPractice isPrintBtn />
+          <GetInTouchForm handlePrint={handlePrint} isGetInTouch isPrintBtn />
         </SplitContentSidebar>
       </SplitContentHolder>
     </ContainerDefault>
