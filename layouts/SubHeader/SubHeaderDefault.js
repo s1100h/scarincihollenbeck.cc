@@ -8,9 +8,11 @@ import {
 } from 'styles/practices/SubHeader.style';
 import { changeTitle } from 'utils/helpers';
 import empty from 'is-empty';
-import SubHeaderKeyContacts from './SubHeaderKeyContacts';
-import SubHeaderLocations from './SubHeaderLocations';
-import SubHeaderIndustriesSlider from './SubHeaderIndustriesSlider';
+import dynamic from 'next/dynamic';
+
+const SubHeaderKeyContacts = dynamic(() => import('./SubHeaderKeyContacts'));
+const SubHeaderLocations = dynamic(() => import('./SubHeaderLocations'));
+const SubHeaderIndustriesSlider = dynamic(() => import('./SubHeaderIndustriesSlider'));
 
 const SubHeaderDefault = ({
   title,
