@@ -37,7 +37,7 @@ export const PracticesTabsOpener = styled.button`
   border-radius: 4px;
   background-color: transparent;
   color: ${globalColor.white};
-  font-size: ${rem(16)};
+  font-size: inherit;
   line-height: 1.5;
   font-weight: 600;
   transition: ${globalTransition.default};
@@ -71,7 +71,7 @@ export const PracticesTabsCards = styled.div`
   }
 
   ${ResultCardTitle} {
-    font-size: ${rem(16)};
+    font-size: inherit;
     line-height: 1.5;
   }
 `;

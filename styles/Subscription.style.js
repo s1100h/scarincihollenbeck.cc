@@ -17,7 +17,7 @@ export const CheckBoxesList = styled.ul`
     break-inside: avoid;
 
     span.checkbox-label {
-      font-size: ${rem(16)}!important;
+      font-size: inherit;
     }
   }
 

@@ -33,7 +33,7 @@ export const SelectionButton = styled(Button)`
   color: ${globalColor.white};
   background-color: ${globalColor.blue.blue500};
   border-radius: 4px;
-  font-size: ${rem(16)};
+  font-size: inherit;
   line-height: 1.5;
   padding: 4px 16px;
 
@@ -75,7 +75,7 @@ export const LetterSelectorBtn = styled.button`
   align-items: center;
   width: 20px;
   color: ${globalColor.white};
-  font-size: ${rem(16)};
+  font-size: inherit;
   line-height: 1.5;
   font-weight: 600;
   text-decoration: none;
@@ -343,8 +343,6 @@ export const FiltersNotFoundMessage = styled.div`
 export const FiltersNotFoundButton = styled.button`
   width: fit-content;
   color: ${globalColor.blue.blue400};
-  font-size: ${rem(16)};
-  line-height: 1.5;
   font-weight: 700;
   text-decoration: underline;
 

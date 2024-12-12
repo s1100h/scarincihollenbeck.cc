@@ -81,7 +81,7 @@ export const ServicesAccordions = styled.ul`
   }
 
   ${SidebarMenuSubitemOpener} {
-    font-size: ${rem(16)};
+    font-size: inherit;
     line-height: 1.5;
 
     ${media_breakpoint_down('md')} {

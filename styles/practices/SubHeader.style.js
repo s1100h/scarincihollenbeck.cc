@@ -237,7 +237,6 @@ export const SubHeaderContent = styled.div`
 `;
 
 export const SubHeaderDescription = styled.div`
-  font-size: ${rem(16)};
   line-height: 29.5px;
 
   p {

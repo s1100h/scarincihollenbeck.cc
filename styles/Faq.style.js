@@ -49,7 +49,7 @@ export const FaqWrapper = styled.section`
       margin: 0;
       color: #231e1e;
       font-family: var(--font-poppins);
-      font-size: ${rem(16)};
+      font-size: inherit;
       line-height: 1.5;
       font-weight: 600;
 
@@ -83,7 +83,7 @@ export const FaqWrapper = styled.section`
     &-body {
       padding: 0 24px 12px;
       color: ${globalColor.gray.gray80};
-      font-size: ${rem(16)};
+      font-size: inherit;
       line-height: 24px;
       font-weight: 400;
       font-family: var(--font-poppins);
@@ -161,7 +161,7 @@ export const FaqWrapper = styled.section`
         border-radius: 0;
         color: ${globalColor.blue.blue500};
         font-family: var(--font-lato);
-        font-size: ${rem(16)};
+        font-size: inherit;
         line-height: 1.6;
         margin-bottom: 4px;
         font-weight: 400;

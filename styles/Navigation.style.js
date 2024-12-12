@@ -200,7 +200,7 @@ export const NavbarLeftItemOpener = styled(Link)`
   align-items: center;
   justify-content: space-between;
   color: ${globalColor.white};
-  font-size: ${rem(16)};
+  font-size: inherit;
   line-height: 1.5;
   font-weight: 600;
   border-radius: 4px;
@@ -256,7 +256,7 @@ export const NavbarRightBlock = styled.div`
 export const NavbarRightTitle = styled.p`
   margin: 0;
   color: ${globalColor.white};
-  font-size: ${rem(16)};
+  font-size: inherit;
   line-height: 1.5;
   font-weight: 600;
   text-decoration: underline;
@@ -283,7 +283,7 @@ export const NavbarRightItem = styled.li`
 
 export const NavbarRightItemLink = styled(Link)`
   color: ${globalColor.gray.gray300};
-  font-size: ${rem(16)};
+  font-size: inherit;
   line-height: 1.5;
   font-weight: 400;
   transition: ${globalTransition.default};

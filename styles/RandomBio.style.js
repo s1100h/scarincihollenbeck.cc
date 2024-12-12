@@ -281,8 +281,7 @@ export const RandomBioControlButton = styled.button`
   align-items: center;
   column-gap: 4px;
   color: ${globalColor.white};
-  font-size: ${rem(16)};
-  line-height: 1.5;
+  font-size: inherit;
   font-weight: 600;
   border-bottom: 2px solid transparent;
   transition: ${globalTransition.default};

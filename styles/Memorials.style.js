@@ -42,7 +42,7 @@ export const MemorialInfoItems = styled.div`
       margin: 0;
       text-transform: none;
       color: ${globalColor.blue.darkBlue};
-      font-size: 1rem;
+      font-size: inherit;
       font-family: var(--font-poppins);
       line-height: 1.5;
 

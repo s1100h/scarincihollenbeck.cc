@@ -606,8 +606,6 @@ export const ProfileBioTitle = styled.h2`
 export const ProfileBioText = styled.p`
   margin: 0;
   color: ${globalColor.gray.gray110};
-  font-size: ${rem(16)};
-  line-height: 1.5;
 
   p {
     &:last-child {
@@ -795,7 +793,7 @@ export const ProfileBioListColumnSubtitle = styled.p`
 export const ProfileBioListColumnTitle = styled.h4`
   margin: 0;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: inherit;
   line-height: 1.5;
 
   ${media_breakpoint_down('sm')} {
@@ -899,9 +897,9 @@ export const NewsCardBlock = styled.article`
     overflow: hidden;
     text-overflow: ellipsis;
     color: ${globalColor.blue.darkBlue};
-    font-size: ${rem(16)};
+    font-size: inherit;
     font-weight: 400;
-    line-height: 24px;
+    line-height: 1.5;
 
     ${media_breakpoint_down('sm')} {
       font-size: ${rem(14)};
@@ -927,7 +925,7 @@ export const NewsCardBlock = styled.article`
 
 const footerLetterStyles = `
   color: ${globalColor.gray.gray110};
-  font-size: ${rem(16)};
+  font-size: inherit;
   font-weight: 300;
   line-height: 1.5;
 

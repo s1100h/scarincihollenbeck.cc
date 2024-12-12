@@ -196,7 +196,7 @@ export const FooterColumn = styled.div`
 export const LinkTitle = styled.p`
   margin: 0;
   color: ${globalColor.white};
-  font-size: ${rem(16)};
+  font-size: inherit;
   line-height: 1.5;
   font-weight: 600;
 

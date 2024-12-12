@@ -657,7 +657,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   .disclaimer {
-    font-size: ${rem(16)};
+    font-size: inherit;
     font-weight: 700;
   }
   
@@ -705,7 +705,7 @@ export const ButtonLinkCss = `
   background: ${globalColor.red.darkRed};
   font-style: normal;
   font-weight: 700;
-  font-size: ${rem(16)};
+  font-size: inherit;
   line-height: 1;
   color: ${globalColor.white};
   text-decoration: none;
