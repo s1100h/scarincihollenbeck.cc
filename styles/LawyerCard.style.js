@@ -8,7 +8,6 @@ import {
 } from './global_styles/Global.styles';
 import {
   media_breakpoint_down,
-  media_breakpoint_exactly_down,
 } from './mediaBreakpoints.style';
 
 export const LawyerCardImage = styled.picture`
@@ -199,5 +198,27 @@ export const LawyerCardWrapper = styled.div`
     ${media_breakpoint_down('lg')} {
       min-height: 190px;
     }
+  }
+`;
+
+export const LawyerCardLifespan = styled.ul`
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2px;
+  padding-top: var(--lawyer-card-gap);
+  border-top: 1px solid ${globalColor.gray.gray10};
+`;
+
+export const LawyerCardLifespanItem = styled.li`
+  font-size: ${rem(14)};
+  color: ${globalColor.gray.gray110};
+  display: inline-flex;
+  gap: 4px;
+
+  > span {
+    flex-shrink: 0;
+    width: 52px;
+    font-weight: 300;
   }
 `;

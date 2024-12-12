@@ -113,8 +113,7 @@ export const FormContainer = styled.div`
     }
 
     p {
-      font-size: ${rem(10)};
-      line-height: 16px;
+      font-size: ${rem(12)};
       color: ${globalColor.gray.gray80};
       font-weight: 400;
       font-family: var(--font-poppins);

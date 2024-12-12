@@ -172,6 +172,16 @@ export const ScarinciHollenbeckKeyContact = {
 /* List of Firm Pages found in the sidebar and in the footer */
 export const FIRM_PAGES = [
   {
+    id: 'menu-firm-05',
+    label: 'Firm Overview',
+    slug: '/firm-overview',
+  },
+  {
+    id: 'firm-administrations',
+    label: 'Administration',
+    slug: '/administration',
+  },
+  {
     id: 'community-involvement',
     label: 'Community Involvement',
     slug: '/community-involvement',
@@ -185,6 +195,11 @@ export const FIRM_PAGES = [
     id: 'pro-bono',
     label: 'Pro Bono',
     slug: '/pro-bono',
+  },
+  {
+    id: 'firm-in-memorials',
+    label: 'In Memoriam',
+    slug: '/memorials',
   },
   // conserved
   // {

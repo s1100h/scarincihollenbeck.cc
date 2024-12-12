@@ -230,11 +230,6 @@
     "statusCode": 301
   },
   {
-    "source": "/passing-attorney-harvey-r-poe/",
-    "destination": "/",
-    "statusCode": 301
-  },
-  {
     "source": "/law-firm-insights/intellectual-property/copyrighted-material-is-highly-transformative",
     "destination": "/law-firm-insights/intellectual-property/transformative-use-copyrighted-material-highly-subjective/",
     "statusCode": 301

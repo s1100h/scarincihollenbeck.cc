@@ -16,6 +16,7 @@ import {
   media_breakpoint_exactly_down,
 } from 'styles/mediaBreakpoints.style';
 import { OfficeCardContainer } from '../Locations.style';
+import Link from 'next/link';
 
 export const attorneyCardForPractices = `
   .attorney-card-box {
@@ -668,7 +669,7 @@ export const SubHeaderHolder = styled.div`
     background-color: ${globalColor.gray.gray1002};
   }
 
-  &.without-image {
+  &.sub-header--without-image {
     .sub-header__content {
       margin-left: auto;
       max-width: 965px;
@@ -695,5 +696,75 @@ export const SubHeaderHolder = styled.div`
         min-width: unset;
       }
     }
+  }
+
+  &.sub-header--menu {
+    ${media_breakpoint_exactly_down(1279)} {
+      flex-direction: row;
+      flex-wrap: wrap;
+      column-gap: unset;
+
+      .sub-header__image {
+        flex: unset;
+        max-width: unset;
+        width: 30%;
+        order: 1;
+        display: block;
+      }
+
+      .sub-header__content {
+        flex: unset;
+        width: 100%;
+      }
+    }
+
+    ${SubHeaderInteractive} {
+      max-width: 595px;
+
+      ${media_breakpoint_down('xxl')} {
+        max-width: 540px;
+      }
+
+      ${media_breakpoint_exactly_down(1279)} {
+        padding: 28px 32px;
+        order: 2;
+        max-width: 100%;
+      }
+
+      ${media_breakpoint_down('md')} {
+        padding: 16px;
+      }
+    }
+  }
+`;
+
+export const SubHeaderMenuList = styled.ul`
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+`;
+
+export const SubHeaderMenuLink = styled(Link)`
+  color: ${globalColor.white};
+  border-bottom: 1px dashed ${globalColor.blue.blue400};
+
+  @media (hover:hover) {
+    &:hover {
+      color: ${globalColor.blue.skyBlue};
+    }
+  }
+
+  &:active {
+    color: ${globalColor.blue.skyBlue};
+  }
+
+  &.active {
+    border-bottom: 1px solid ${globalColor.blue.blue200};
+    pointer-events: none;
+  }
+
+  ${media_breakpoint_down('md')} {
+    font-size: ${rem(14)};
   }
 `;

@@ -5,7 +5,7 @@ import {
   globalTransition,
   rem,
 } from '../global_styles/Global.styles';
-import { media_breakpoint_down } from '../mediaBreakpoints.style';
+import { media_breakpoint_down, media_breakpoint_exactly_down } from '../mediaBreakpoints.style';
 import { StandardBlueButton } from 'styles/Buttons.style';
 import { ChildrenBox, ModalContent } from 'styles/ModalWindow.style';
 import Image from 'next/image';
@@ -171,6 +171,7 @@ export const CardImageWrapper = styled.div`
   }
 
   ${media_breakpoint_down('lg')} {
+    min-height: 325px;
     position: relative;
     height: 100%;
 
@@ -709,6 +710,108 @@ export const ProfileBioListContent = styled.div`
     display: flex;
     flex-direction: column;
     row-gap: inherit;
+  }
+`;
+
+export const ProfileBioListColumns = styled.div`
+  --columns-gap: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--columns-gap);
+`;
+
+export const ProfileBioListColumn = styled.div`
+  flex: 1 1 calc((100% - var(--columns-gap) * 2) / 3);
+  padding-right: var(--columns-gap);
+  border-right: 1px solid ${globalColor.gray.gray300};
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  color: ${globalColor.blue.darkBlue};
+
+  &:nth-child(3n) {
+    padding-right: 0;
+    border-right: none;
+
+    ${media_breakpoint_exactly_down(1279)} {
+      padding-right: var(--columns-gap);
+      border-right: 1px solid ${globalColor.gray.gray300};
+    }
+
+    ${media_breakpoint_down('lg')} {
+      padding-right: 0;
+      border-right: none;
+    }
+  }
+
+  &:nth-child(2n) {
+    ${media_breakpoint_exactly_down(1279)} {
+      padding-right: 0;
+      border-right: none;
+    }
+
+    ${media_breakpoint_down('lg')} {
+      padding-right: var(--columns-gap);
+      border-right: 1px solid ${globalColor.gray.gray300};
+    }
+
+    ${media_breakpoint_down('md')} {
+      padding-right: 0;
+      border-right: none;
+    }
+  }
+
+  &:last-child {
+    padding: 0;
+    border: none;
+  }
+
+  ${media_breakpoint_exactly_down(1279)} {
+    flex: 1 1 calc((100% - var(--columns-gap)) / 2);
+  }
+
+  ${media_breakpoint_down('lg')} {
+    flex: 1 1 calc((100% - var(--columns-gap) * 2) / 3);
+  }
+
+  ${media_breakpoint_down('md')} {
+    flex: 1 1 100%;
+    border-right: none;
+    padding-right: 0;
+    border-bottom: 1px solid ${globalColor.gray.gray300};
+    padding-bottom: var(--columns-gap);
+  }
+`;
+
+export const ProfileBioListColumnSubtitle = styled.p`
+  margin: 0;
+  text-decoration: underline;
+
+  ${media_breakpoint_down('sm')} {
+    font-size: ${rem(14)};
+  }
+`;
+
+export const ProfileBioListColumnTitle = styled.h4`
+  margin: 0;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.5;
+
+  ${media_breakpoint_down('sm')} {
+    font-size: ${rem(14)};
+  }
+`;
+
+export const ProfileBioListColumnText = styled.div`
+  p, ul {
+    &:last-child {
+      margin: 0;
+    }
+  }
+
+  ${media_breakpoint_down('sm')} {
+    font-size: ${rem(14)};
   }
 `;
 

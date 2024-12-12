@@ -485,11 +485,6 @@ export const createMenuData = (practices, locations, industries) => [
         uri: '/administration',
       },
       {
-        databaseId: 'menu-firm-02',
-        title: 'Careers',
-        uri: '/careers',
-      },
-      {
         databaseId: 'menu-firm-03',
         title: 'Community Involvement',
         uri: '/community-involvement',
@@ -508,6 +503,11 @@ export const createMenuData = (practices, locations, industries) => [
         databaseId: 'menu-firm-06',
         title: 'Pro Bono',
         uri: '/pro-bono',
+      },
+      {
+        databaseId: 'menu-firm-07',
+        title: 'In Memoriam',
+        uri: '/memorials',
       },
       // this page went to the Draft status.
       // {

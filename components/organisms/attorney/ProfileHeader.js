@@ -69,6 +69,7 @@ const ProfileHeader = ({
   additionalInfo,
   isAdmin = false,
   handlePrint,
+  bioTitle = 'Bio Overview',
 }) => {
   const dispatch = useDispatch();
   const [designation] = useDesignationHook(title);
@@ -151,7 +152,7 @@ const ProfileHeader = ({
 
             {(!empty(attorneyBiography?.miniBio) || !empty(biography)) && (
               <ProfileBio>
-                <ProfileBioTitle>Bio Overview</ProfileBioTitle>
+                <ProfileBioTitle>{bioTitle}</ProfileBioTitle>
                 <ProfileBioText as={!empty(biography) && 'div'}>
                   <JSXWithDynamicLinks
                     HTML={attorneyBiography?.miniBio || biography}
