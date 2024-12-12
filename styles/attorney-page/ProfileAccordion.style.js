@@ -177,7 +177,7 @@ export const ProfileAccordionBody = styled.div`
   h5 {
     margin: 12px 0 4px 0;
     color: ${globalColor.blue.darkBlue};
-    font-size: 1rem;
+    font-size: ${rem(16)};
     line-height: 1.5;
     font-weight: 600;
 

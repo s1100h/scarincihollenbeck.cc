@@ -39,7 +39,7 @@ export const SearchInput = styled(Form.Control)`
   background-color: ${globalColor.white};
   color: ${globalColor.blue.darkBlue};
   font-family: var(--font-poppins);
-  font-size: 1rem;
+  font-size: ${rem(16)};
   line-height: 1.5;
   font-weight: 500;
   border: none;
@@ -130,7 +130,7 @@ export const ResultsContainer = styled.div`
           align-items: center;
           justify-content: center;
           color: ${globalColor.gray.gray500};
-          font-size: 1rem;
+          font-size: ${rem(16)};
           line-height: 1.5;
           font-weight: 500;
           transition: ${globalTransition.default};

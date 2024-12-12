@@ -66,7 +66,7 @@ export const LawyerCardName = styled.h3`
   font-weight: 500;
 
   ${media_breakpoint_down('md')} {
-    font-size: 1rem;
+    font-size: ${rem(16)};
     line-height: 1.5;
   }
 `;

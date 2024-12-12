@@ -12,7 +12,7 @@ export const CareerCard = styled.div`
   transition: 0.8s;
 
   h3 {
-    font-size: 1rem;
+    font-size: ${rem(16)};
     font-weight: 600;
     color: ${globalColor.blue.dirtyBlue};
     overflow: hidden;

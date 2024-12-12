@@ -67,7 +67,7 @@ export const SearchableItemTitle = styled.h4`
   font-weight: 500;
 
   ${media_breakpoint_down('md')} {
-    font-size: 1rem;
+    font-size: ${rem(16)};
     line-height: 1.5;
     font-weight: 400;
   }
@@ -99,7 +99,7 @@ export const SearchableItemLabel = styled.p`
 export const SearchableItemText = styled.p`
   margin: 0 0 0 auto;
   color: ${globalColor.gray.gray300};
-  font-size: 1rem;
+  font-size: ${rem(16)};
   line-height: 1.5;
   font-weight: 300;
 

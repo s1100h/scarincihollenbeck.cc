@@ -53,7 +53,7 @@ export const CardCannabis = styled.li`
     background: ${globalColor.black} url('/images/cuted_leaf.webp') no-repeat 3%
       0 / contain;
     color: ${globalColor.white};
-    font-size: 2rem;
+    font-size: ${rem(32)};
     margin-bottom: 30px;
   }
 
@@ -83,11 +83,11 @@ export const CardCannabis = styled.li`
     height: 404px;
 
     .article-common-title {
-      font-size: 1.8rem;
+      font-size: ${rem(28.8)};
     }
 
     p {
-      font-size: 1rem;
+      font-size: ${rem(16)};
       line-height: 20px;
     }
   }
@@ -105,7 +105,7 @@ export const CardCannabis = styled.li`
     }
 
     p {
-      font-size: 1rem;
+      font-size: ${rem(16)};
       line-height: 24px;
     }
   }

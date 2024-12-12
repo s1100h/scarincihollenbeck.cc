@@ -17,7 +17,7 @@ export const PrintContainer = styled.div`
     }
 
     * {
-      font-size: 10px;
+      font-size: ${rem(10)};
       line-height: 1.6;
     }
 

@@ -123,7 +123,7 @@ export const PhotoCannabisBox = styled.div`
   ${media_breakpoint_down('lg')} {
     .prev-arrow,
     .next-arrow {
-      font-size: 44px;
+      font-size: ${rem(44)};
       color: ${globalColor.white};
       display: block;
     }
@@ -137,7 +137,7 @@ export const PhotoCannabisBox = styled.div`
     .prev-arrow,
     .next-arrow {
       top: 193px;
-      font-size: 30px;
+      font-size: ${rem(30)};
     }
 
     .prev-arrow {
@@ -227,14 +227,14 @@ export const ArticlePhotoContainer = styled.div`
     font-weight: 500;
 
     ${media_breakpoint_down('xxl')} {
-      font-size: 1rem;
+      font-size: ${rem(16)};
       line-height: 24px;
     }
   }
 
   ${media_breakpoint_range_exacly(992, 1478)} {
     .article-common-title {
-      font-size: 2rem;
+      font-size: ${rem(32)};
     }
   }
 
@@ -268,7 +268,7 @@ export const ArticlePhotoContainer = styled.div`
     }
 
     p {
-      font-size: 1rem;
+      font-size: ${rem(16)};
       text-align: start;
       line-height: 24px;
     }

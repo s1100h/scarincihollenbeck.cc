@@ -33,7 +33,7 @@ export const SelectionButton = styled(Button)`
   color: ${globalColor.white};
   background-color: ${globalColor.blue.blue500};
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: ${rem(16)};
   line-height: 1.5;
   padding: 4px 16px;
 
@@ -75,7 +75,7 @@ export const LetterSelectorBtn = styled.button`
   align-items: center;
   width: 20px;
   color: ${globalColor.white};
-  font-size: 1rem;
+  font-size: ${rem(16)};
   line-height: 1.5;
   font-weight: 600;
   text-decoration: none;
@@ -225,7 +225,7 @@ export const ResultCardTitle = styled.h4`
   }
 
   ${media_breakpoint_down('md')} {
-    font-size: 1rem;
+    font-size: ${rem(16)};
     line-height: 1.5;
   }
 `;
@@ -343,7 +343,7 @@ export const FiltersNotFoundMessage = styled.div`
 export const FiltersNotFoundButton = styled.button`
   width: fit-content;
   color: ${globalColor.blue.blue400};
-  font-size: 1rem;
+  font-size: ${rem(16)};
   line-height: 1.5;
   font-weight: 700;
   text-decoration: underline;
@@ -353,6 +353,6 @@ export const FiltersNotFoundButton = styled.button`
   }
 
   ${media_breakpoint_down('md')} {
-    font-size: 0.875rem;
+    font-size: ${rem(14)};
   }
 `;

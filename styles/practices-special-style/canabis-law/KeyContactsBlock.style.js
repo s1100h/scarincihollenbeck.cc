@@ -82,7 +82,7 @@ export const KeyContactsBlockContainer = styled.section`
     .list-smoker-box {
       ul {
         li {
-          font-size: 1.1rem;
+          font-size: ${rem(17.6)};
         }
       }
     }
@@ -158,7 +158,7 @@ export const KeyContactsWrapper = styled.div`
         padding: 10px 24px;
 
         span {
-          font-size: 1rem;
+          font-size: ${rem(16)};
           line-height: 24px;
         }
       }

@@ -194,9 +194,7 @@ export const SplitContentDescription = styled.div`
   }
 `;
 
-export const SplitContentText = styled.div`
-
-`;
+export const SplitContentText = styled.div``;
 
 export const SplitContentSidebar = styled.div`
   width: 500px;

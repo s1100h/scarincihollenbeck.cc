@@ -62,7 +62,7 @@ export const NavbarItemOpener = styled.button`
   }
 
   ${media_breakpoint_down('xl')} {
-    font-size: 1rem;
+    font-size: ${rem(16)};
     line-height: 1.5;
   }
 
@@ -72,7 +72,7 @@ export const NavbarItemOpener = styled.button`
   }
 
   ${media_breakpoint_down('md')} {
-    font-size: 1rem;
+    font-size: ${rem(16)};
     line-height: 1.5;
   }
 `;
@@ -200,7 +200,7 @@ export const NavbarLeftItemOpener = styled(Link)`
   align-items: center;
   justify-content: space-between;
   color: ${globalColor.white};
-  font-size: 1rem;
+  font-size: ${rem(16)};
   line-height: 1.5;
   font-weight: 600;
   border-radius: 4px;
@@ -256,7 +256,7 @@ export const NavbarRightBlock = styled.div`
 export const NavbarRightTitle = styled.p`
   margin: 0;
   color: ${globalColor.white};
-  font-size: 1rem;
+  font-size: ${rem(16)};
   line-height: 1.5;
   font-weight: 600;
   text-decoration: underline;
@@ -277,13 +277,13 @@ export const NavbarRightItem = styled.li`
   color: ${globalColor.gray.gray300};
 
   &::marker {
-    font-size: 15px;
+    font-size: ${rem(15)};
   }
 `;
 
 export const NavbarRightItemLink = styled(Link)`
   color: ${globalColor.gray.gray300};
-  font-size: 1rem;
+  font-size: ${rem(16)};
   line-height: 1.5;
   font-weight: 400;
   transition: ${globalTransition.default};
@@ -329,7 +329,7 @@ export const NavbarServicesTabsButton = styled.button`
   }
 
   ${media_breakpoint_down('md')} {
-    font-size: 1rem;
+    font-size: ${rem(16)};
   }
 `;
 

@@ -120,7 +120,8 @@ export const AwardCardContent = styled.div`
     margin: 0;
     color: ${({ $isLightVariant }) =>
       $isLightVariant ? globalColor.blue.darkBlue : globalColor.white};
-    font-size: ${({ $isLightVariant }) => ($isLightVariant ? rem(16) : rem(18))};
+    font-size: ${({ $isLightVariant }) =>
+      $isLightVariant ? rem(16) : rem(18)};
     line-height: ${({ $isLightVariant }) => ($isLightVariant ? 1.5 : 1.56)};
     font-weight: ${({ $isLightVariant }) => ($isLightVariant ? 700 : 500)};
     display: -webkit-box;

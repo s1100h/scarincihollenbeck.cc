@@ -26,7 +26,7 @@ export const ContactModalHeader = styled.div``;
 
 export const ContactModalTitle = styled.p`
   margin: 0;
-  font-size: 1.2rem;
+  font-size: ${rem(19.2)};
   line-height: 1.2;
   font-weight: 500;
 `;
@@ -95,7 +95,7 @@ export const ContactModalWrapper = styled.div`
 
       .form-control,
       .form-control::placeholder {
-        font-size: 1rem;
+        font-size: ${rem(16)};
         line-height: 1.5;
 
         ${media_breakpoint_down('sm')} {
@@ -252,7 +252,7 @@ export const ContactModalWrapper = styled.div`
 
     ${ContactModalTitle} {
       color: ${globalColor.white};
-      font-size: 1rem;
+      font-size: ${rem(16)};
       line-height: 1.5;
       font-weight: 600;
 

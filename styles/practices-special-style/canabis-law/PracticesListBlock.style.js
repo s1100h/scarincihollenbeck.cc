@@ -88,7 +88,7 @@ export const PracticesListContainer = styled.section`
       ul {
         li {
           a {
-            font-size: 1rem;
+            font-size: ${rem(16)};
           }
         }
       }
@@ -100,7 +100,7 @@ export const PracticesListContainer = styled.section`
 
         li {
           a {
-            font-size: 1.2rem;
+            font-size: ${rem(19.2)};
           }
         }
       }

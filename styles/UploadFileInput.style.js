@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { rem } from './global_styles/Global.styles';
 
 export const UploadContainer = styled.label`
   width: 100%;
@@ -21,12 +22,12 @@ export const UploadRow = styled.div`
 `;
 
 export const UploadTitle = styled.div`
-  font-size: 18px;
+  font-size: ${rem(18)};
   margin-bottom: 15px;
   font-weight: 700;
 
   span {
-    font-size: 14px;
+    font-size: ${rem(14)};
     font-weight: 400;
   }
 `;

@@ -44,7 +44,7 @@ export const HelpArticleBlockContainer = styled(WeAdviseThisBlockContainer)`
 
       ${media_breakpoint_down('xxl')} {
         margin: 0 0 24px 0;
-        font-size: 1rem;
+        font-size: ${rem(16)};
         line-height: 24px;
       }
     }
@@ -55,7 +55,7 @@ export const HelpArticleBlockContainer = styled(WeAdviseThisBlockContainer)`
       width: 80%;
 
       h2 {
-        font-size: 2.3rem;
+        font-size: ${rem(36.8)};
         text-align: center;
       }
 
@@ -68,11 +68,11 @@ export const HelpArticleBlockContainer = styled(WeAdviseThisBlockContainer)`
   ${media_breakpoint_down('md')} {
     .attorneys-article-box {
       h2 {
-        font-size: 1.8rem;
+        font-size: ${rem(28.8)};
       }
 
       p {
-        font-size: 1rem;
+        font-size: ${rem(16)};
         max-width: 525px;
       }
     }
@@ -83,7 +83,7 @@ export const HelpArticleBlockContainer = styled(WeAdviseThisBlockContainer)`
       width: 100%;
       align-items: start;
       h2 {
-        font-size: 1.5rem;
+        font-size: ${rem(24)};
         text-align: start;
       }
 

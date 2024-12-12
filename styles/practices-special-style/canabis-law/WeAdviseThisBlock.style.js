@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { paragraphStyles } from '../../global_styles/Global.styles';
+import { paragraphStyles, rem } from '../../global_styles/Global.styles';
 import { media_breakpoint_down } from '../../mediaBreakpoints.style';
 
 export const WeAdviseThisBlockContainer = styled.div`
@@ -35,7 +35,7 @@ export const WeAdviseThisBlockContainer = styled.div`
 
   ${media_breakpoint_down('md')} {
     div {
-      font-size: 1rem;
+      font-size: ${rem(16)};
     }
   }
 

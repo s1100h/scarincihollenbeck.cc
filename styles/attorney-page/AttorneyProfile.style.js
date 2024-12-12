@@ -464,7 +464,7 @@ export const ProfileDesignation = styled.span`
 
   ${media_breakpoint_down('sm')} {
     margin: 2px 0 0 0;
-    font-size: 1rem;
+    font-size: ${rem(16)};
   }
 `;
 
@@ -606,7 +606,7 @@ export const ProfileBioTitle = styled.h2`
 export const ProfileBioText = styled.p`
   margin: 0;
   color: ${globalColor.gray.gray110};
-  font-size: 1rem;
+  font-size: ${rem(16)};
   line-height: 1.5;
 
   p {
@@ -616,7 +616,7 @@ export const ProfileBioText = styled.p`
   }
 
   ${media_breakpoint_down('sm')} {
-    font-size: 0.875rem;
+    font-size: ${rem(14)};
   }
 `;
 
@@ -899,7 +899,7 @@ export const NewsCardBlock = styled.article`
     overflow: hidden;
     text-overflow: ellipsis;
     color: ${globalColor.blue.darkBlue};
-    font-size: 1rem;
+    font-size: ${rem(16)};
     font-weight: 400;
     line-height: 24px;
 
@@ -927,7 +927,7 @@ export const NewsCardBlock = styled.article`
 
 const footerLetterStyles = `
   color: ${globalColor.gray.gray110};
-  font-size: 1rem;
+  font-size: ${rem(16)};
   font-weight: 300;
   line-height: 1.5;
 

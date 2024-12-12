@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { globalColor, globalShadow } from './global_styles/Global.styles';
+import { globalColor, globalShadow, rem } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import Link from 'next/link';
 
@@ -24,7 +24,7 @@ export const VirtualListItem = styled.li`
   width: 100%;
   height: 28px;
   transform: ${(props) => props?.transform};
-  font-size: 1rem;
+  font-size: ${rem(16)};
 `;
 
 export const LinkWithEllipsis = styled(Link)`

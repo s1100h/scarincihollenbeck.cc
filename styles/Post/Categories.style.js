@@ -14,7 +14,7 @@ export const CategoriesNavContainer = styled.nav`
   h3 {
     margin-bottom: 0;
     font-weight: 500;
-    font-size: 1.2rem;
+    font-size: ${rem(19.2)};
     line-height: 1.2;
   }
 

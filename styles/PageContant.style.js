@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
+import { rem } from './global_styles/Global.styles';
 
 export const ContentContainer = styled.div`
   overflow: hidden;
@@ -42,7 +43,7 @@ export const ContentContainer = styled.div`
         margin-top: 0;
         background-color: #e9e9e9;
         padding: 10px;
-        font-size: 1.2rem;
+        font-size: ${rem(19.2)};
       }
 
       background-color: #e9e9e9;

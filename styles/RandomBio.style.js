@@ -86,7 +86,7 @@ export const RandomBioSubtitle = styled.p`
   text-transform: uppercase;
 
   ${media_breakpoint_down('md')} {
-    font-size: 1rem;
+    font-size: ${rem(16)};
     line-height: 1.5;
   }
 `;
@@ -281,7 +281,7 @@ export const RandomBioControlButton = styled.button`
   align-items: center;
   column-gap: 4px;
   color: ${globalColor.white};
-  font-size: 1rem;
+  font-size: ${rem(16)};
   line-height: 1.5;
   font-weight: 600;
   border-bottom: 2px solid transparent;

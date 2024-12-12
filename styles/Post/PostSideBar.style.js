@@ -3,6 +3,7 @@ import {
   buttonsHoverActive,
   globalColor,
   globalGradient,
+  rem,
 } from '../global_styles/Global.styles';
 
 export const ContactLinksBox = styled.section`
@@ -33,7 +34,7 @@ export const ContactLinksBox = styled.section`
     }
 
     h3 {
-      font-size: 1.1rem;
+      font-size: ${rem(17.6)};
     }
 
     p {
@@ -75,7 +76,7 @@ export const GradientPracticeBox = styled.nav`
     li {
       a {
         color: ${globalColor.grayLite.grayLite50};
-        font-size: 1.1rem;
+        font-size: ${rem(17.6)};
         :before {
           content: '☞';
           margin-right: 5px;
