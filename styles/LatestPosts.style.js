@@ -107,7 +107,7 @@ export const LatestsPostsCardTitle = styled.h3`
   transition: ${globalTransition.default};
 
   ${media_breakpoint_down('sm')} {
-    font-size: 1rem;
+    font-size: ${rem(16)};
     line-height: 1.5;
   }
 `;
@@ -203,7 +203,7 @@ export const LatestsPostsCardWrapper = styled.article`
   border-bottom: 1px solid ${globalColor.gray.gray500};
   position: relative;
 
-  &:nth-last-child(-n+2) {
+  &:nth-last-child(-n + 2) {
     border-bottom: 0;
     padding-bottom: 0;
   }

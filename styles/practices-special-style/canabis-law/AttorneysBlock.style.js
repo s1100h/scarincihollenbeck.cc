@@ -69,13 +69,13 @@ export const AttorneysCannabisContainer = styled.section`
 
     ${media_breakpoint_down('lg')} {
       h3 {
-        font-size: 2rem;
+        font-size: ${rem(32)};
         width: 70%;
         text-align: center;
       }
 
       p {
-        font-size: 1.2rem;
+        font-size: ${rem(19.2)};
       }
     }
 
@@ -92,7 +92,7 @@ export const AttorneysCannabisContainer = styled.section`
       }
 
       p {
-        font-size: 1.1rem;
+        font-size: ${rem(17.6)};
         line-height: 24px;
         max-width: 525px;
       }
@@ -110,7 +110,7 @@ export const AttorneysCannabisContainer = styled.section`
       p {
         text-align: start;
         width: 90%;
-        font-size: 1rem;
+        font-size: ${rem(16)};
       }
     }
   }

@@ -1,12 +1,16 @@
 import styled from 'styled-components';
-import { globalColor, successMessage } from './global_styles/Global.styles';
+import {
+  globalColor,
+  rem,
+  successMessage,
+} from './global_styles/Global.styles';
 import { Row } from 'react-bootstrap';
 
 export const CareersBlock = styled(Row)`
   margin-bottom: 80px;
 `;
 export const CareerBlockTitle = styled.h2`
-  font-size: 2rem;
+  font-size: ${rem(32)};
   text-transform: capitalize;
   font-weight: 500;
 `;

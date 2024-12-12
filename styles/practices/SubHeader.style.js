@@ -236,7 +236,7 @@ export const SubHeaderContent = styled.div`
 `;
 
 export const SubHeaderDescription = styled.div`
-  font-size: 1rem;
+  font-size: ${rem(16)};
   line-height: 29.5px;
 
   p {
@@ -268,7 +268,7 @@ export const SubHeaderInteractive = styled.div`
     font-weight: 500;
 
     ${media_breakpoint_down('md')} {
-      font-size: 1rem;
+      font-size: ${rem(16)};
       line-height: 20px;
     }
   }
@@ -291,7 +291,7 @@ export const SubHeaderInteractive = styled.div`
       font-weight: 400;
 
       ${media_breakpoint_down('sm')} {
-        font-size: 1rem;
+        font-size: ${rem(16)};
       }
     }
 
@@ -304,7 +304,7 @@ export const SubHeaderInteractive = styled.div`
     address {
       padding: 0;
       margin: 0;
-      font-size: 1rem;
+      font-size: ${rem(16)};
       color: ${globalColor.white};
       row-gap: 12px;
       font-weight: 600;

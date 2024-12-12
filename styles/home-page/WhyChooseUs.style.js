@@ -91,7 +91,7 @@ export const ArticleList = styled.ul`
       line-height: 36px;
 
       ${media_breakpoint_down('sm')} {
-        font-size: 1rem;
+        font-size: ${rem(16)};
         line-height: 1.5;
       }
     }

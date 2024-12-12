@@ -79,7 +79,7 @@ export const AboutDescription = styled.div`
     li {
       margin-left: 24px;
       &::marker {
-        font-size: 12px;
+        font-size: ${rem(12)};
       }
     }
   }

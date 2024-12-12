@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { globalColor } from './global_styles/Global.styles';
+import { globalColor, rem } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const ArticleContainer = styled.article`
@@ -12,7 +12,7 @@ export const ArticleContainer = styled.article`
 `;
 
 export const Title = styled.h3`
-  font-size: ${({ props }) => (props?.size ? props.size : '1.5rem')};
+  font-size: ${({ props }) => (props?.size ? props.size : `${rem(24)}`)};
   font-weight: 600;
   margin-bottom: 10px;
 
@@ -22,7 +22,7 @@ export const Title = styled.h3`
 `;
 
 export const ArticleBody = styled.section`
-  font-size: 1.15rem;
+  font-size: ${rem(18.4)};
   color: ${globalColor.gray.gray80};
 
   .awards-and-content {
@@ -50,7 +50,7 @@ export const ArticleBody = styled.section`
       flex-direction: column;
     }
     .content {
-      font-size: 0.8rem;
+      font-size: ${rem(12.8)};
     }
   }
 `;

@@ -95,7 +95,7 @@ export const WhyChooseUsCardContent = styled.div`
     color: inherit;
 
     ${media_breakpoint_down('md')} {
-      font-size: 1rem;
+      font-size: ${rem(16)};
       line-height: 1.5;
     }
 
@@ -121,7 +121,6 @@ export const WhyChooseUsCardContent = styled.div`
 
 export const WhyChooseUsCardDescription = styled.div`
   margin: 0;
-  font-size: 1rem;
   line-height: 1.5;
   font-weight: 400;
 
@@ -151,7 +150,7 @@ export const WhyChooseUsCardDescription = styled.div`
       }
 
       &::marker {
-        font-size: 14px;
+        font-size: ${rem(14)};
       }
 
       list-style: disc;

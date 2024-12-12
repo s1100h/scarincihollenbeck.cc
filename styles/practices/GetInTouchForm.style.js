@@ -134,7 +134,7 @@ export const GetInTouchMobileBtn = styled.button`
     transition: ${globalTransition.default};
 
     ${media_breakpoint_down('sm')} {
-      font-size: 1rem;
+      font-size: ${rem(16)};
       line-height: 20px;
       font-weight: 400;
     }

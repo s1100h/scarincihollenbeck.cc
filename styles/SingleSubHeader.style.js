@@ -103,7 +103,7 @@ export const GradientWrapper = styled.div`
 export const SubHeaderContent = styled(Container)`
   h1 {
     margin-bottom: 0;
-    font-size: 3rem;
+    font-size: ${rem(48)};
     font-weight: 400;
     text-transform: uppercase;
     color: ${globalColor.black};
@@ -115,7 +115,7 @@ export const SubHeaderContent = styled(Container)`
 
   ${media_breakpoint_down('sm')} {
     h1 {
-      font-size: 1.85rem;
+      font-size: ${rem(29.6)};
     }
   }
 `;

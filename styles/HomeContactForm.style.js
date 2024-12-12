@@ -56,11 +56,11 @@ export const ContactFormHolder = styled.div`
 
     .form-control,
     .form-control::placeholder {
-      font-size: 1rem;
+      font-size: ${rem(16)};
       line-height: 1.5;
 
       ${media_breakpoint_down('sm')} {
-        font-size: 0.875rem;
+        font-size: ${rem(14)};
       }
     }
 

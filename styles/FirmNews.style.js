@@ -113,7 +113,7 @@ export const TextNews = styled.section`
     display: flex;
     justify-content: space-between;
     font-weight: 400;
-    font-size: 16px;
+    font-size: ${rem(16)};
     line-height: 1;
     color: rgba(0, 0, 0, 0.63);
     margin-bottom: 0;
@@ -123,10 +123,10 @@ export const TextNews = styled.section`
     width: 100%;
 
     h2 {
-      font-size: 1.1rem;
+      font-size: ${rem(17.6)};
     }
     p {
-      font-size: 0.9rem;
+      font-size: ${rem(14.4)};
     }
   }
 `;

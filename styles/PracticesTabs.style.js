@@ -1,12 +1,10 @@
 import styled from 'styled-components';
 import {
-  globalBorderRadius,
   globalColor,
   globalTransition,
   rem,
 } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
-import { ChildrenBox } from './ModalWindow.style';
 import { ResultCard, ResultCardTitle } from './Filters.style';
 
 export const PracticesTabsWrapper = styled.div`
@@ -39,7 +37,7 @@ export const PracticesTabsOpener = styled.button`
   border-radius: 4px;
   background-color: transparent;
   color: ${globalColor.white};
-  font-size: 1rem;
+  font-size: ${rem(16)};
   line-height: 1.5;
   font-weight: 600;
   transition: ${globalTransition.default};
@@ -73,7 +71,7 @@ export const PracticesTabsCards = styled.div`
   }
 
   ${ResultCardTitle} {
-    font-size: 1rem;
+    font-size: ${rem(16)};
     line-height: 1.5;
   }
 `;
