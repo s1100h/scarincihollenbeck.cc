@@ -101,7 +101,7 @@ export const WhyChooseUsCardContent = styled.div`
 
     @media print {
       font-size: ${rem(16)};
-      line-height: 1.6;
+      line-height: 1.4;
       margin-bottom: 8px;
     }
   }

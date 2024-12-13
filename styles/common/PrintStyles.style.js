@@ -23,13 +23,13 @@ export const PrintContainer = styled.div`
 
     ${TitleH2} {
       font-size: ${rem(20)};
-      line-height: 1.6;
+      line-height: 1.4;
       margin-bottom: 10px;
     }
 
     ${TitleH3} {
       font-size: ${rem(16)};
-      line-height: 1.6;
+      line-height: 1.4;
       margin-bottom: 8px;
     }
   }
@@ -43,7 +43,7 @@ export const HeaderPrintVersionContainer = styled.div`
   padding: 12px;
   border-radius: 16px;
   border: 1px solid #cbcbcb;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 
   .contacts-list {
     display: flex;

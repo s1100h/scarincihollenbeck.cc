@@ -26,8 +26,7 @@ export const PracticePrintPageContainer = styled.div`
 `;
 
 export const HeaderWrapperPrintVersion = styled.div`
-  background-color: ${globalColor.gray.gray10};
-  padding: 20px 10px;
+  padding: 0;
 `;
 
 export const SubHeaderPrintVersionContainer = styled.div`
@@ -123,9 +122,9 @@ export const SubHeaderMain = styled.div`
 
   ${SubHeaderDescription} {
     flex: 1;
-    background-color: ${globalColor.gray.gray1002};
+    background-color: ${globalColor.gray.gray10};
     border-radius: 12px;
-    padding: 12px 16px;
+    padding: 12px;
     font-size: ${rem(14)};
     line-height: 20px;
   }
