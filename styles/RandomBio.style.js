@@ -214,6 +214,7 @@ export const RandomBioDescription = styled.div`
 export const RandomBioDescriptionText = styled.p`
   margin: 0;
   color: ${globalColor.blue.darkBlue};
+  font-size: ${rem(16)};
   font-weight: 300;
   display: -webkit-box;
   -webkit-line-clamp: 6;
