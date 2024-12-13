@@ -14,6 +14,7 @@ export const BioPagePrintContainer = styled.div`
       gap: 20px;
 
       .card-image-wrapper {
+        min-height: auto;
         margin-top: 6px;
         width: 188px;
         height: 186px;

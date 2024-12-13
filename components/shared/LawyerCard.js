@@ -10,6 +10,8 @@ import {
   LawyerCardDesignation,
   LawyerCardHeader,
   LawyerCardImage,
+  LawyerCardLifespan,
+  LawyerCardLifespanItem,
   LawyerCardLocation,
   LawyerCardLocations,
   LawyerCardName,
@@ -27,6 +29,8 @@ const LawyerCard = ({
   locations,
   number,
   email,
+  born,
+  death,
   isHorizontal,
 }) => (
   <LawyerCardWrapper className={isHorizontal ? 'horizontal-card' : ''}>
@@ -44,18 +48,42 @@ const LawyerCard = ({
     <LawyerCardContent>
       <LawyerCardHeader>
         <LawyerCardDescription>
-          <LawyerCardName>{name}</LawyerCardName>
-          <LawyerCardDesignation>{designation}</LawyerCardDesignation>
+          {!empty(name) && <LawyerCardName>{name}</LawyerCardName>}
+          {!empty(designation) && (
+            <LawyerCardDesignation>{designation}</LawyerCardDesignation>
+          )}
         </LawyerCardDescription>
-        <LawyerCardContacts>
-          <LawyerCardContact href={`tel:${number}`}>
-            <MdLocalPhone size={20} />
-          </LawyerCardContact>
-          <LawyerCardContact href={`mailto:${email}`}>
-            <BsFillEnvelopeFill />
-          </LawyerCardContact>
-        </LawyerCardContacts>
+        {(!empty(number) || !empty(email)) && (
+          <LawyerCardContacts>
+            {!empty(number) && (
+              <LawyerCardContact href={`tel:${number}`}>
+                <MdLocalPhone size={20} />
+              </LawyerCardContact>
+            )}
+            {!empty(email) && (
+              <LawyerCardContact href={`mailto:${email}`}>
+                <BsFillEnvelopeFill />
+              </LawyerCardContact>
+            )}
+          </LawyerCardContacts>
+        )}
       </LawyerCardHeader>
+      {(!empty(born) || !empty(death)) && (
+        <LawyerCardLifespan>
+          {!empty(born) && (
+            <LawyerCardLifespanItem>
+              <span>Born:</span>
+              {born}
+            </LawyerCardLifespanItem>
+          )}
+          {!empty(death) && (
+            <LawyerCardLifespanItem>
+              <span>Death:</span>
+              {death}
+            </LawyerCardLifespanItem>
+          )}
+        </LawyerCardLifespan>
+      )}
       {!empty(locations) && Array.isArray(locations) && (
         <LawyerCardLocations>
           {locations.map((location, index) => (

@@ -35,6 +35,7 @@ export const ClearButton = styled(Button)`
   color: ${globalColor.gray.gray1002};
   font-weight: 600;
   overflow: hidden;
+  font-size: inherit;
 
   :hover {
     border: 1px solid ${globalColor.blue.blue500};
@@ -57,6 +58,7 @@ export const StandardRedButton = styled(Button)`
   border-radius: 0;
   background-color: ${globalColor.red.darkRed};
   color: ${globalColor.white};
+  font-size: inherit;
 
   :hover {
     background: ${globalColor.red.liteRed};

@@ -67,7 +67,7 @@ export const OfficeTabs = styled.nav`
 export const BlueLinkTab = styled(Link)`
   padding: 7px 16px;
   color: ${globalColor.white};
-  font-size: ${rem(16)};
+  font-size: inherit;
   font-weight: 700;
   line-height: 1.5;
   position: relative;

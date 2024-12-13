@@ -15,11 +15,6 @@ const PERMANENT_REDIRECTS = [
     permanent: true,
   },
   {
-    source: '/funeral-announcements/:slug*',
-    destination: '/',
-    permanent: true,
-  },
-  {
     source: '/attorneys/scarinci-hollenbeck',
     destination: '/firm-overview',
     permanent: true,

@@ -1244,3 +1244,69 @@ query IndustryQuery($id: ID! = "/cannabis") {
   }
 }
 `;
+
+export const memorialsPageContentQuery = `
+query MemorialsPageContentQuery {
+  pageBy(pageId: 169052) {
+    title
+    memoriam {
+      description
+      pageImage {
+        sourceUrl
+      }
+    }
+    seo {
+      metaDesc
+      title
+    }
+  }
+}
+`;
+
+export const memorialsQuery = `
+query MemorialsQuery {
+  memorials(first: 100) {
+    nodes {
+      title
+      databaseId
+      memorialFields {
+        born
+        death
+        image {
+          sourceUrl
+        }
+      }
+      uri
+    }
+  }
+}`;
+
+export const memorialPageQuery = `
+query MemorialPageQuery($slug: String) {
+  memorialBy(slug: $slug) {
+    seo {
+      metaDesc
+      title
+    }
+    title
+    memorialFields {
+      additionalInformation {
+        columns {
+          subtitle
+          text
+          title
+        }
+        content
+        title
+      }
+      born
+      death
+      description
+      image {
+        sourceUrl
+      }
+      name
+      title
+    }
+  }
+}`;

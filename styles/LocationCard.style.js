@@ -30,8 +30,8 @@ export const LocationCardMain = styled.div`
     row-gap: 12px;
 
     a {
-      font-size: ${rem(16)};
-      line-height: 24px;
+      font-size: inherit;
+      line-height: 1.5;
     }
   }
 

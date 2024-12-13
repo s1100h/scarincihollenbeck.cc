@@ -120,19 +120,19 @@ const SITE_PAGES_REWRITES = [
   /** Start of Funeral Pages */
   {
     source: '/passing-attorney-harvey-r-poe',
-    destination: '/funeral-announcements/passing-attorney-harvey-r-poe',
+    destination: '/memorials/harvey-poe',
   },
   {
     source: '/passing-attorney-david-a-einhorn',
-    destination: '/funeral-announcements/passing-attorney-david-a-einhorn',
+    destination: '/memorials/david-a-einhorn',
   },
   {
     source: '/the-passing-of-harold-friedman',
-    destination: '/funeral-announcements/the-passing-of-harold-friedman',
+    destination: '/memorials/harold-friedman',
   },
   {
     source: '/the-passing-of-peter-r-yarem',
-    destination: '/funeral-announcements/the-passing-of-peter-r-yarem',
+    destination: '/memorials/peter-r-yarem',
   },
   /** End of Funeral Pages */
   /** Start of Firm Pages */

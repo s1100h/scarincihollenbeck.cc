@@ -122,7 +122,7 @@ export const IndustriesCardWrapper = styled.article`
 
 export const IndustriesCardTitle = styled.h3`
   color: ${globalColor.blue.darkBlue};
-  font-size: ${rem(16)};
+  font-size: inherit;
   line-height: 1.5;
   font-weight: 600;
   transition: ${globalTransition.default};

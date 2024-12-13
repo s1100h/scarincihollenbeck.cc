@@ -13,6 +13,7 @@ import dynamic from 'next/dynamic';
 const SubHeaderKeyContacts = dynamic(() => import('./SubHeaderKeyContacts'));
 const SubHeaderLocations = dynamic(() => import('./SubHeaderLocations'));
 const SubHeaderIndustriesSlider = dynamic(() => import('./SubHeaderIndustriesSlider'));
+const SubHeaderMenu = dynamic(() => import('./SubHeaderMenu'));
 
 const SubHeaderDefault = ({
   title,
@@ -22,10 +23,13 @@ const SubHeaderDefault = ({
   officeInfo,
   locations,
   industries,
+  menu,
   customClass = '',
 }) => (
   <SubHeaderHolder
-    className={`${customClass} ${!backgroundImage ? 'without-image' : ''}`}
+    className={`sub-header ${
+      !backgroundImage ? 'sub-header--without-image' : ''
+    } ${customClass}`}
     data-testid="default-sub-header"
   >
     {backgroundImage && (
@@ -56,13 +60,16 @@ const SubHeaderDefault = ({
       </div>
     </SubHeaderContent>
 
-    <SubHeaderKeyContacts keyContacts={keyContacts} />
-    <SubHeaderLocations
-      locations={locations}
-      title={title}
-      officeInfo={officeInfo}
-    />
+    {!empty(keyContacts) && <SubHeaderKeyContacts keyContacts={keyContacts} />}
+    {!empty(locations) && (
+      <SubHeaderLocations
+        locations={locations}
+        title={title}
+        officeInfo={officeInfo}
+      />
+    )}
     {!empty(industries) && <SubHeaderIndustriesSlider slides={industries} />}
+    {!empty(menu) && <SubHeaderMenu menu={menu} />}
   </SubHeaderHolder>
 );
 
