@@ -39,10 +39,10 @@ const delegatePathFunc = (list, router, data) => {
   if (list.includes('location')) {
     return (
       <>
-        <li className={list?.includes('little-falls') ? 'active' : ''}>
+        {/* <li className={list?.includes('little-falls') ? 'active' : ''}>
           <Link href="/location/little-falls">{convertPath(list[0])}</Link>
           <BsChevronRight />
-        </li>
+        </li> */}
         <li>
           <span>{convertPath(router.query.slug)}</span>
         </li>
