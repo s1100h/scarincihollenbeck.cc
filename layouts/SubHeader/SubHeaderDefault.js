@@ -25,6 +25,7 @@ const SubHeaderDefault = ({
   industries,
   menu,
   customClass = '',
+  isLocationTabs = false,
 }) => (
   <SubHeaderHolder
     className={`sub-header ${
@@ -66,6 +67,7 @@ const SubHeaderDefault = ({
         locations={locations}
         title={title}
         officeInfo={officeInfo}
+        isLocationTabs={isLocationTabs}
       />
     )}
     {!empty(industries) && <SubHeaderIndustriesSlider slides={industries} />}

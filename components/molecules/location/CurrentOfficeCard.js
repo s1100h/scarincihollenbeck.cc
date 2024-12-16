@@ -33,10 +33,10 @@ const CurrentOfficeCard = ({
         <MdLocalPhone size={20} />
         {phone}
       </a>
-      <a href={`fax:${fax}`}>
+      <span>
         <IoPrintSharp size={20} />
         {fax}
-      </a>
+      </span>
     </address>
   </OfficeCardContainer>
 );

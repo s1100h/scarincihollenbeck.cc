@@ -28,8 +28,8 @@ export async function getStaticProps() {
 const Memorials = ({
   seo, title, description, image, memorials,
 }) => {
-  const router = useRouter();
-  const canonicalUrl = `${PRODUCTION_URL}${router.asPath}`;
+  const { asPath } = useRouter();
+  const canonicalUrl = `${PRODUCTION_URL}${asPath}`;
 
   const memorialsProps = {
     seo,

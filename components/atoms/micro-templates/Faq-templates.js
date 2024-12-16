@@ -10,7 +10,7 @@ export const HawCanIGet = () => (
     <a href="mailto:info@sh-law.com"> info@sh-law.com</a>
     {' '}
     or click
-    <Link href="/contact"> here.</Link>
+    <Link href="/contact-us"> here.</Link>
   </>
 );
 
@@ -26,7 +26,7 @@ export const HawDoIKnow = () => (
     {' '}
     <a href="mailto:info@sh-law.com"> info@sh-law.com </a>
     or click
-    <Link href="/contact"> here.</Link>
+    <Link href="/contact-us"> here.</Link>
   </>
 );
 

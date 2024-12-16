@@ -160,11 +160,11 @@ const SITE_PAGES_REWRITES = [
   /** Start of form pages */
   {
     source: '/contact',
-    destination: '/contact-us/contact',
+    destination: '/contact-us',
   },
   {
     source: '/subscribe',
-    destination: '/contact-us/subscribe',
+    destination: '/contact-us',
   },
   /** End of form pages */
   {

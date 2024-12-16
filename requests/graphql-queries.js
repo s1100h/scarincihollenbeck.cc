@@ -248,7 +248,7 @@ export const attorneysQuery = `query FirmPageQuery {
   }
 }`;
 
-export const officeLocationQuery = `query BasicPageQuery {
+export const officeLocationQuery = `query OfficeLocationsQuery {
   officeLocations(first: 50, where: {orderby: {field: MENU_ORDER, order: ASC}}) {
     nodes {
       databaseId
@@ -653,6 +653,23 @@ export const contactSubscribePageQuery = `query ContactSubscribePageQuery($slug:
       formLabel
     }
     content(format: RENDERED)
+  }
+}`;
+
+export const contactPageQuery = `
+query ContactPageQuery {
+  pageBy(pageId: 29488) {
+    seo {
+      metaDesc
+      title
+    }
+    title
+    content(format: RENDERED)
+    featuredImage {
+      node {
+        sourceUrl
+      }
+    }
   }
 }`;
 

@@ -5,7 +5,6 @@ import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
 import empty from 'is-empty';
 import LocationContent from 'components/organisms/locations/LocationContent';
-import { ContainerDefault } from 'styles/Containers.style';
 import { FaqContainer } from 'styles/Faq.style';
 import { sortByKey } from '../../utils/helpers';
 import SubHeaderDefault from '../../layouts/SubHeader/SubHeaderDefault';

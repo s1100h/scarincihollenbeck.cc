@@ -85,7 +85,10 @@ const SidebarMenu = memo(
               <SidebarMenuFooter>
                 <SidebarMenuContainer>
                   <SidebarMenuButtons>
-                    <ButtonRed href="/contact" className="sidebar-contact-btn">
+                    <ButtonRed
+                      href="/contact-us"
+                      className="sidebar-contact-btn"
+                    >
                       Contact us
                     </ButtonRed>
                     <button

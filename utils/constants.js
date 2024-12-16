@@ -622,7 +622,7 @@ export const Links404NavArr = [
   {
     id: 2,
     title: 'Contact us',
-    href: '/contact',
+    href: '/contact-us',
   },
   {
     id: 3,

@@ -325,3 +325,15 @@ export const PuzzleContainer = styled.section`
     color: ${globalColor.black};
   }
 `;
+
+export const ContactSection = styled.section``;
+
+export const ContactHolder = styled.div``;
+
+export const ContactItems = styled.div``;
+
+export const ContactItem = styled.div``;
+
+export const ContactItemTitle = styled.h2``;
+
+export const ContactItemText = styled.p``;

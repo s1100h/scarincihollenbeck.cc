@@ -116,8 +116,8 @@ export const FooterPrintVersionContainer = styled.div`
 
   @media print {
     padding: 12px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex !important;
+    justify-content: space-between;
     gap: 12px;
     background-color: ${globalColor.blue.blue6002};
     color: ${globalColor.white};
@@ -125,18 +125,24 @@ export const FooterPrintVersionContainer = styled.div`
     break-inside: avoid;
     page-break-inside: avoid;
 
+    .advertising-block {
+      width: calc(50% - 6px);
+    }
+
     .advertising-title-print {
       margin-bottom: 4px;
     }
 
     .advertising-text-print {
-      font-size: ${rem(9)};
+      font-size: ${rem(8)};
       margin-bottom: 24px;
+      width: 65%;
     }
   }
 `;
 
 export const ContactsWrapperPrintVersion = styled.div`
+  width: calc(50% - 6px);
   display: flex;
   align-items: center;
   justify-content: flex-end;

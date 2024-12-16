@@ -5,11 +5,6 @@ const PERMANENT_REDIRECTS = [
     permanent: true,
   },
   {
-    source: '/contact-us/:slug*',
-    destination: '/',
-    permanent: true,
-  },
-  {
     source: '/firm-page/:slug*',
     destination: '/',
     permanent: true,

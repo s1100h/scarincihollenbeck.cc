@@ -72,7 +72,7 @@ const DefaultHeader = ({
 
             <HeaderMainButtons $wide={isOpenSearch}>
               <ButtonRed
-                href="/contact"
+                href="/contact-us"
                 className="contact-header-btn"
                 onClick={() => setIsSidebarOpen(false)}
               >
