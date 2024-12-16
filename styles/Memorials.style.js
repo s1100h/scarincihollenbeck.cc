@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import { TitleH2 } from './common/Typography.style';
-import { globalBorderRadius, globalColor, rem } from './global_styles/Global.styles';
+import {
+  globalBorderRadius,
+  globalColor,
+  rem,
+} from './global_styles/Global.styles';
 import { ProfileBioListContent } from './attorney-page/AttorneyProfile.style';
 import { LawyerCardLifespan } from './LawyerCard.style';
 
@@ -37,7 +41,6 @@ export const MemorialInfoItems = styled.div`
   }
 
   ${ProfileBioListContent} {
-    
     p {
       margin: 0;
       text-transform: none;

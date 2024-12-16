@@ -6,9 +6,7 @@ import {
   globalTransition,
   rem,
 } from './global_styles/Global.styles';
-import {
-  media_breakpoint_down,
-} from './mediaBreakpoints.style';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const LawyerCardImage = styled.picture`
   height: 325px;

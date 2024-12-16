@@ -146,9 +146,9 @@ export const FaqWrapper = styled.section`
         margin: 0;
         color: ${globalColor.blue.blue500};
         font-family: var(--font-lato);
-        font-size: ${rem(20)};
+        font-size: ${rem(16)};
+        line-height: 1.4;
         font-weight: 400;
-        line-height: 32px;
         text-transform: uppercase;
       }
 
@@ -161,8 +161,8 @@ export const FaqWrapper = styled.section`
         border-radius: 0;
         color: ${globalColor.blue.blue500};
         font-family: var(--font-lato);
-        font-size: inherit;
-        line-height: 1.6;
+        font-size: ${rem(16)};
+        line-height: 1.4;
         margin-bottom: 4px;
         font-weight: 400;
         text-transform: uppercase;

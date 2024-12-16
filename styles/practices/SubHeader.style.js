@@ -748,7 +748,7 @@ export const SubHeaderMenuLink = styled(Link)`
   color: ${globalColor.white};
   border-bottom: 1px dashed ${globalColor.blue.blue400};
 
-  @media (hover:hover) {
+  @media (hover: hover) {
     &:hover {
       color: ${globalColor.blue.skyBlue};
     }
@@ -761,6 +761,7 @@ export const SubHeaderMenuLink = styled(Link)`
   &.active {
     border-bottom: 1px solid ${globalColor.blue.blue200};
     pointer-events: none;
+    font-weight: 600;
   }
 
   ${media_breakpoint_down('md')} {

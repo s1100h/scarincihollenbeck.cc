@@ -5,7 +5,10 @@ import {
   globalTransition,
   rem,
 } from '../global_styles/Global.styles';
-import { media_breakpoint_down, media_breakpoint_exactly_down } from '../mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from '../mediaBreakpoints.style';
 import { StandardBlueButton } from 'styles/Buttons.style';
 import { ChildrenBox, ModalContent } from 'styles/ModalWindow.style';
 import Image from 'next/image';
@@ -802,7 +805,8 @@ export const ProfileBioListColumnTitle = styled.h4`
 `;
 
 export const ProfileBioListColumnText = styled.div`
-  p, ul {
+  p,
+  ul {
     &:last-child {
       margin: 0;
     }
