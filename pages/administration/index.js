@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import AdministrationPage from 'components/pages/AdminDirectory';
-import { PRODUCTION_URL, SITE_PHONE } from 'utils/constants';
+import { desiredOrder, PRODUCTION_URL, SITE_PHONE } from 'utils/constants';
 import { fetchAPI } from 'requests/api';
 import { administrationPageQuery, adminsQuery } from 'requests/graphql-queries';
 
@@ -32,6 +32,10 @@ export async function getStaticProps() {
   const page = await archivesPageContent();
   const { title, seo, administrationArchive } = page;
 
+  const sortedAdmins = [...admins].sort(
+    (a, b) => desiredOrder.indexOf(a.title) - desiredOrder.indexOf(b.title),
+  );
+
   return {
     props: {
       seo,
@@ -39,7 +43,7 @@ export async function getStaticProps() {
         title,
         description: administrationArchive.description,
       },
-      admins,
+      admins: sortedAdmins,
     },
     revalidate: 86400,
   };

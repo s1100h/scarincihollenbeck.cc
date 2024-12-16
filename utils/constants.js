@@ -868,3 +868,10 @@ export const defaultWhyChooseUsData = [
 ];
 
 export const excludedPrintFooter = ['/attorneys/[slug]', '/practices/[slug]'];
+
+export const desiredOrder = [
+  'Katerin Traugh',
+  'John Palumbo',
+  'Peter S. Moeller',
+  'Dan Scarpulla',
+];
