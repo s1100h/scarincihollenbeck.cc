@@ -1161,7 +1161,7 @@
   },
   {
     "source": "/contact-attorney",
-    "destination": "/contact",
+    "destination": "/contact-us",
     "statusCode": 301
   },
   {

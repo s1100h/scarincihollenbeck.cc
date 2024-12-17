@@ -248,7 +248,7 @@ export const attorneysQuery = `query FirmPageQuery {
   }
 }`;
 
-export const officeLocationQuery = `query OfficeLocationsQuery {
+export const officeLocationsQuery = `query OfficeLocationsQuery {
   officeLocations(first: 50, where: {orderby: {field: MENU_ORDER, order: ASC}}) {
     nodes {
       databaseId
@@ -640,21 +640,6 @@ export const categoryPostQuery = `query CategoryPosts($name:String) {
   }
 }
 `;
-
-// contact/subscribe page query
-export const contactSubscribePageQuery = `query ContactSubscribePageQuery($slug:String) {
-  pageBy(uri: $slug) {
-    seo {
-      metaDesc
-      title
-    }
-    title
-    formPages {
-      formLabel
-    }
-    content(format: RENDERED)
-  }
-}`;
 
 export const contactPageQuery = `
 query ContactPageQuery {

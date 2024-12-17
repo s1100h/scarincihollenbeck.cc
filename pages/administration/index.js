@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import AdministrationPage from 'components/pages/AdminDirectory';
 import { desiredOrder, PRODUCTION_URL, SITE_PHONE } from 'utils/constants';
 import { fetchAPI } from 'requests/api';
@@ -55,8 +54,7 @@ export async function getStaticProps() {
 
 /** Administration directory page component */
 const Administration = ({ admins, seo, site }) => {
-  const router = useRouter();
-  const canonicalUrl = `${PRODUCTION_URL}${router.asPath}`;
+  const canonicalUrl = `${PRODUCTION_URL}/administration`;
 
   const adminProps = {
     admins,

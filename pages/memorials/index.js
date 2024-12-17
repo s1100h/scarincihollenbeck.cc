@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { PRODUCTION_URL } from 'utils/constants';
 import { fetchAPI } from 'requests/api';
 import {
@@ -28,8 +27,7 @@ export async function getStaticProps() {
 const Memorials = ({
   seo, title, description, image, memorials,
 }) => {
-  const { asPath } = useRouter();
-  const canonicalUrl = `${PRODUCTION_URL}${asPath}`;
+  const canonicalUrl = `${PRODUCTION_URL}/memorials`;
 
   const memorialsProps = {
     seo,

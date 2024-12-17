@@ -52,7 +52,7 @@ const ServicesPageDirectory = ({
   seo,
 }) => {
   useNotFoundNotification('The practice or industry no longer exists.');
-  const canonicalUrl = `${PRODUCTION_URL}/industries`;
+  const canonicalUrl = `${PRODUCTION_URL}/services`;
   const propsPage = {
     title,
     content,

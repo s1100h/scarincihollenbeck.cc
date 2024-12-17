@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import CareersPage from 'components/pages/CareersDirectory';
 import { PRODUCTION_URL } from 'utils/constants';
 import { fetchAPI } from '../../requests/api';
@@ -55,8 +54,7 @@ export const getStaticProps = async () => {
 
 /** The careers page directory component */
 const CareersDirectory = ({ careerList, seo, site }) => {
-  const router = useRouter();
-  const canonicalUrl = `${PRODUCTION_URL}${router.asPath}`;
+  const canonicalUrl = `${PRODUCTION_URL}/careers`;
 
   const careerProps = {
     seo,

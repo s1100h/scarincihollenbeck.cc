@@ -1,12 +1,17 @@
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import React from 'react';
 import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
+import dynamic from 'next/dynamic';
+
+const ContactBlock = dynamic(() => import('components/organisms/contact-us/ContactBlock'));
+const AllOfficeLocations = dynamic(() => import('components/organisms/home/AllOfficeLocations'));
 
 const ContactPage = ({
   seo,
   title,
   description,
   officeLocations,
+  mapLocations,
   featuredImage,
   canonicalUrl,
 }) => (
@@ -23,6 +28,8 @@ const ContactPage = ({
       locations={officeLocations}
       isLocationTabs
     />
+    <ContactBlock />
+    <AllOfficeLocations offices={mapLocations} />
   </>
 );
 

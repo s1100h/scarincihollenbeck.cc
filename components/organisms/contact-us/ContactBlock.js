@@ -1,9 +1,13 @@
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
 import ContactForm from 'components/shared/ContactForm/ContactForm';
+import Image from 'next/image';
 import React from 'react';
+import { TitleH2 } from 'styles/common/Typography.style';
 import {
+  ContactFormWrapper,
   ContactHolder,
   ContactItem,
+  ContactItemImage,
   ContactItems,
   ContactItemText,
   ContactItemTitle,
@@ -18,17 +22,23 @@ const ContactBlock = () => (
       <ContactHolder>
         <ContactItems>
           {tileContentArr?.map((tile) => (
-            <ContactItem>
+            <ContactItem href={tile?.link} key={tile?.id}>
               <ContactItemTitle>{tile?.title}</ContactItemTitle>
 
               <ContactItemText>
                 <JSXWithDynamicLinks HTML={tile?.textContent} />
               </ContactItemText>
+              <ContactItemImage>
+                <Image src={tile?.image} alt={tile?.title} fill quality={100} />
+              </ContactItemImage>
             </ContactItem>
           ))}
         </ContactItems>
 
-        <ContactForm buttonText="Send" blockName="contact-us-contact-form" />
+        <ContactFormWrapper>
+          <TitleH2>Let’s get in touch!</TitleH2>
+          <ContactForm buttonText="Send" blockName="contact-us-contact-form" />
+        </ContactFormWrapper>
       </ContactHolder>
     </ContainerDefault>
   </ContactSection>

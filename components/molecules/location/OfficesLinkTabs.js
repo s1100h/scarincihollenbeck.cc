@@ -4,23 +4,17 @@ import { BlueLinkTab, OfficeTabs } from '../../../styles/Locations.style';
 const OfficesLinkTabs = ({
   officesForTabs,
   isActiveTab,
-  setIsActiveTab,
   isLocationTabs,
+  onClick,
 }) => {
   const { query } = useRouter();
-
-  const onClick = (e, index) => {
-    if (!isLocationTabs) return null;
-    e.preventDefault();
-    setIsActiveTab(index);
-  };
 
   return (
     <OfficeTabs>
       {officesForTabs.map((office, index) => (
         <BlueLinkTab
           key={office.databaseId}
-          href={office.uri || '#'}
+          href={office.uri || '/'}
           $isActiveLocation={
             (query.slug && query.slug === office.slug)
             || (isLocationTabs && isActiveTab === index)

@@ -273,12 +273,22 @@ export const SubHeaderInteractive = styled.div`
     }
   }
 
-  ${OfficeCardContainer} {
+  .sub-header__contacts {
     flex: 1;
     max-width: 450px;
-    padding: 24px;
-    background-color: ${globalColor.blue.blue6002};
     border-radius: ${globalBorderRadius.small};
+    background-color: ${globalColor.blue.blue6002};
+
+    ${media_breakpoint_exactly_down(1279)} {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+
+  ${OfficeCardContainer} {
+    flex: 1;
+    padding: 24px;
+    background-color: transparent;
     row-gap: 20px;
 
     .current-office-card-title {
@@ -341,14 +351,9 @@ export const SubHeaderInteractive = styled.div`
       }
     }
 
-    ${media_breakpoint_exactly_down(1279)} {
-      max-width: 100%;
-      width: 100%;
-    }
-
     ${media_breakpoint_down('sm')} {
-      padding: 8px;
       row-gap: 12px;
+      padding: 8px;
     }
   }
 

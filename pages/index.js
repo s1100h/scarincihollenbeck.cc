@@ -7,7 +7,7 @@ import {
   latestClientAlertsArticles,
   latestFirmInsightsArticles,
   latestFirmNewsArticles,
-  officeLocationQuery,
+  officeLocationsQuery,
 } from 'requests/graphql-queries';
 import { chunkArray } from 'utils/helpers';
 
@@ -19,7 +19,7 @@ export async function homePageContent() {
 }
 
 const getMapDataFrmLocations = async () => {
-  const { officeLocations } = await fetchAPI(officeLocationQuery, {});
+  const { officeLocations } = await fetchAPI(officeLocationsQuery, {});
   return officeLocations?.nodes;
 };
 
@@ -94,12 +94,11 @@ export const getStaticProps = async () => {
   /** get firm locations */
   // const offices = await homePageLocations();
 
-  const sortedOffices = offices.sort((a, b) => (a.title > b.title ? 1 : -1));
   return {
     props: {
       seo,
       awards,
-      offices: sanitizeOffices(sortedOffices),
+      offices: sanitizeOffices(offices),
       isHoliday,
       firstSection,
       whoWeAre,
