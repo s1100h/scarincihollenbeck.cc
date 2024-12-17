@@ -83,6 +83,12 @@ export const AwardCardWrapper = styled.div`
         border-color: ${globalColor.blue.skyBlue};
       }
     `}
+
+  @media print {
+    padding-top: 12px;
+    border-radius: ${globalBorderRadius.extraSmall};
+    break-inside: avoid !important;
+  }
 `;
 
 export const AwardCardImage = styled.div`
@@ -101,6 +107,12 @@ export const AwardCardImage = styled.div`
   ${media_breakpoint_down('md')} {
     width: 144px;
     height: 144px;
+  }
+
+  @media print {
+    page-break-inside: avoid;
+    width: 100px;
+    height: 100px;
   }
 `;
 
@@ -134,6 +146,15 @@ export const AwardCardContent = styled.div`
       font-size: ${rem(16)};
       line-height: 1.5;
     }
+
+    @media print {
+      font-size: ${rem(10)};
+      line-height: 1.5;
+      display: block;
+      overflow: visible;
+      -webkit-line-clamp: unset;
+      -webkit-box-orient: initial;
+    }
   }
 
   > span {
@@ -148,9 +169,33 @@ export const AwardCardContent = styled.div`
       font-size: ${rem(18)};
       line-height: 1.56;
     }
+
+    @media print {
+      font-size: ${rem(12)};
+      line-height: 1.5;
+    }
   }
 
   ${media_breakpoint_down('md')} {
     padding: 8px 12px;
   }
+
+  @media print {
+    padding: 8px 12px;
+  }
+`;
+
+export const AwardsPrintContainer = styled.div`
+  .disclaimer {
+    color: ${globalColor.blue.darkBlue};
+    margin: 8px 0 0 0;
+    font-weight: 600;
+    text-align: center;
+  }
+`;
+
+export const AwardsPrintList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
 `;

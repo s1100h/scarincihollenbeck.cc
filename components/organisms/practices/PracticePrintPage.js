@@ -12,6 +12,7 @@ import { useGetLocationsQuery } from '../../../redux/services/project-api';
 import SubHeaderPrintVersion from './SubHeaderPrintVersion';
 import PracticeDescriptionPrint from './PracticeDescriptionPrint';
 import WhyChooseUs from './WhyChooseUs';
+import AwardsPrint from './AwardsPrint';
 
 const PracticePrintPage = ({
   title,
@@ -20,6 +21,7 @@ const PracticePrintPage = ({
   contentSection,
   whyChooseUsData,
   faqData,
+  awards,
   onReady,
 }) => {
   const { data: locations } = useGetLocationsQuery();
@@ -39,6 +41,8 @@ const PracticePrintPage = ({
             keyContacts={keyContacts}
           />
         </HeaderWrapperPrintVersion>
+
+        <AwardsPrint awards={awards} />
 
         <PracticeDescriptionPrint contentSection={contentSection} />
 

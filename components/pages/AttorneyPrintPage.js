@@ -4,6 +4,7 @@ import { TitleH2, TitleH3 } from 'styles/common/Typography.style';
 import { useImagesLoad } from 'hooks/useImagesLoad';
 import { useRef } from 'react';
 import { PrintContainer } from 'styles/common/PrintStyles.style';
+import AwardsPrint from 'components/organisms/practices/AwardsPrint';
 import {
   CardImageWrapper,
   ProfileDesignation,
@@ -50,6 +51,7 @@ const AttorneyPrintPage = ({
   contact,
   practices,
   attorneyBiography,
+  awards,
   education,
   barAdmissions,
   affiliations,
@@ -131,6 +133,7 @@ const AttorneyPrintPage = ({
               ),
             )}
         </div>
+        <AwardsPrint awards={awards} />
         {!empty(attorneyBiography.biographyContent) && (
           <div>
             <TitleH3>Full Biography</TitleH3>

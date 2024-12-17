@@ -662,3 +662,38 @@ export const isMobileCheck = () => {
   }(navigator.userAgent || navigator.vendor || window.opera));
   return check;
 };
+
+// Formate awards
+export const formateAwards = (awards) => {
+  if (empty(awards)) return [];
+
+  return awards
+    ?.map(
+      (
+        {
+          appearanceOrder,
+          imageHeight,
+          imageWidth,
+          label,
+          awardImage,
+          year,
+          awardTitle,
+          awardLink,
+        },
+        index,
+      ) => ({
+        id: label || awardTitle,
+        order: appearanceOrder || index,
+        year,
+        label: label || awardTitle,
+        image: {
+          src: formatSrcToCloudinaryUrl(awardImage.sourceUrl),
+          alt: label || awardTitle,
+          width: imageWidth || 200,
+          height: imageHeight || 200,
+        },
+        link: awardLink || null,
+      }),
+    )
+    .sort((a, b) => (a.order > b.order ? 1 : -1));
+};

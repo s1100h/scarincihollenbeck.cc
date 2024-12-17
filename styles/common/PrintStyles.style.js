@@ -43,7 +43,7 @@ export const HeaderPrintVersionContainer = styled.div`
   padding: 12px;
   border-radius: 16px;
   border: 1px solid #cbcbcb;
-  margin-bottom: 16px;
+  margin: 0 1px 16px 1px;
 
   .contacts-list {
     display: flex;
@@ -90,6 +90,7 @@ export const HeaderPrintVersionContainer = styled.div`
     }
 
     .locations-item {
+      color: ${globalColor.blue.darkBlue};
       display: flex;
       align-items: center;
       gap: 8px;
@@ -102,12 +103,7 @@ export const HeaderPrintVersionContainer = styled.div`
   }
 
   .locations-item {
-    color: ${globalColor.blue.darkBlue};
-
-    &:hover,
-    &:focus {
-      color: ${globalColor.blue.blue500};
-    }
+    color: ${globalColor.blue.blue500};
   }
 `;
 
