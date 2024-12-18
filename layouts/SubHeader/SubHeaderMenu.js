@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { globalColor } from 'styles/global_styles/Global.styles';
 import {
   SubHeaderInteractive,
@@ -8,8 +8,14 @@ import {
 } from 'styles/practices/SubHeader.style';
 
 const SubHeaderMenu = ({ menu }) => {
-  if (!menu) return null;
+  const [currentPath, setCurrentPath] = useState(null);
   const { asPath } = useRouter();
+
+  useEffect(() => {
+    setCurrentPath(asPath);
+  }, [asPath]);
+
+  if (!menu) return null;
   return (
     <SubHeaderInteractive $bg={globalColor.blue.blue6002}>
       <SubHeaderMenuList>
@@ -17,7 +23,7 @@ const SubHeaderMenu = ({ menu }) => {
           <li key={item?.id}>
             <SubHeaderMenuLink
               href={item?.slug}
-              className={asPath === item?.slug ? 'active' : ''}
+              className={currentPath === item?.slug ? 'active' : ''}
             >
               {item?.label}
             </SubHeaderMenuLink>

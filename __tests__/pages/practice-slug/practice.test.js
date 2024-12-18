@@ -6,7 +6,7 @@ import {
   within,
 } from '@testing-library/react';
 import FAQ from 'components/atoms/FAQ';
-import GetInTouchForm from 'components/organisms/practices/GetInTouchForm';
+import GetInTouchSidebar from 'components/organisms/common/GetInTouchSidebar';
 import PracticeAttorneys from 'components/organisms/practices/PracticeAttorneys';
 import PracticePageNew from 'components/pages/PracticePageNew';
 import ReduxProvider from 'hoks/reduxTestHoc';
@@ -255,7 +255,7 @@ describe('Practice page', () => {
   it('GetInTouch form component render', () => {
     render(
       <ReduxProvider>
-        <GetInTouchForm />
+        <GetInTouchSidebar />
       </ReduxProvider>,
     );
 

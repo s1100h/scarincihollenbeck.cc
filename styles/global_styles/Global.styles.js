@@ -243,6 +243,10 @@ export const GlobalStyle = createGlobalStyle`
       --bs-body-font-size: ${rem(16)};
     }
 
+    ${media_breakpoint_down('md')} {
+      --bs-body-font-size: ${rem(14)};
+    }
+
     @media print {
       background-color: ${globalColor.white};
     }

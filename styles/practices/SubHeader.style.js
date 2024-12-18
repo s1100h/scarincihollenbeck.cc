@@ -669,10 +669,6 @@ export const SubHeaderHolder = styled.div`
     flex-direction: column;
   }
 
-  &.sub-header--slider {
-    background-color: ${globalColor.gray.gray1002};
-  }
-
   &.sub-header--without-image {
     .sub-header__content {
       margin-left: auto;
@@ -739,6 +735,12 @@ export const SubHeaderHolder = styled.div`
         padding: 16px;
       }
     }
+
+    &.sub-header--without-image {
+      .sub-header__content {
+        max-width: 1230px;
+      }
+    }
   }
 `;
 
@@ -753,10 +755,8 @@ export const SubHeaderMenuLink = styled(Link)`
   color: ${globalColor.white};
   border-bottom: 1px dashed ${globalColor.blue.blue400};
 
-  @media (hover: hover) {
-    &:hover {
-      color: ${globalColor.blue.skyBlue};
-    }
+  &:hover {
+    color: ${globalColor.blue.skyBlue};
   }
 
   &:active {
@@ -764,6 +764,7 @@ export const SubHeaderMenuLink = styled(Link)`
   }
 
   &.active {
+    color: ${globalColor.white};
     border-bottom: 1px solid ${globalColor.blue.blue200};
     pointer-events: none;
     font-weight: 600;

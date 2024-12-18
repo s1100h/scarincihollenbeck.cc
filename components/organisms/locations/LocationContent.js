@@ -12,7 +12,7 @@ import {
 import { TitleH2 } from 'styles/common/Typography.style';
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
 import empty from 'is-empty';
-import GetInTouchForm from '../practices/GetInTouchForm';
+import GetInTouchSidebar from '../common/GetInTouchSidebar';
 import SocialShare from '../post/SocialShare';
 
 const changeTitle = (title) => title.replace(/(^|\s+)Lawyers(\s+|$)/g, ' ');
@@ -48,7 +48,7 @@ const LocationContent = ({
           )}
         </SplitContentDescription>
         <SplitContentSidebar>
-          <GetInTouchForm isGetInTouch />
+          <GetInTouchSidebar />
         </SplitContentSidebar>
       </SplitContentHolder>
     </ContainerDefault>

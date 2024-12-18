@@ -14,7 +14,6 @@ import {
 
 export const ServicesContentWrapper = styled.section`
   padding: 60px 0;
-  background-color: ${globalColor.gray.gray10};
 
   ${media_breakpoint_down('xl')} {
     padding: 40px 0;

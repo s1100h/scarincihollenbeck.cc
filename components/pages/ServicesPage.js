@@ -23,7 +23,6 @@ const ServicesPage = ({
       title={title}
       subtitle={content?.description}
       industries={industries}
-      customClass="sub-header--slider"
     />
     <ServicesContent
       practices={createOverviewLinks(practices, true)}

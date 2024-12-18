@@ -803,12 +803,6 @@ export const careersQuery = `query BasicPageQuery {
   }
 }`;
 
-export const profileStatusQuery = `query BasicPageQuery($id: ID!) {
-  attorneyProfile(id: $id, idType: SLUG) {
-    status
-  }
-}`;
-
 /** administration landing page query */
 export const administrationPageQuery = `query AdministrationPagesQuery {
   pageBy(pageId: 46670) {
@@ -819,6 +813,11 @@ export const administrationPageQuery = `query AdministrationPagesQuery {
     }
     administrationArchive {
       description
+    }
+    featuredImage {
+      node {
+        sourceUrl
+      }
     }
   }
 }
@@ -983,6 +982,11 @@ export const firmPagesQuery = `query FirmPageQuery(
       tab5Header
       tabContent
       tabHeader
+    }
+    featuredImage {
+      node {
+        sourceUrl
+      }
     }
   }
 }`;

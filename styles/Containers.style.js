@@ -4,7 +4,6 @@ import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
 } from './mediaBreakpoints.style';
-import { FormContainer } from './attorney-page/GetInTouchForm.styles';
 
 export const ContainerXXL = styled.section`
   display: flex;
@@ -45,36 +44,6 @@ export const CentralizedBox = styled.div`
     width: 100vw;
     border: none;
     ${(props) => props?.notSurface && 'padding: 0 30px;'};
-  }
-`;
-
-export const TwoColumnsContainer = styled.section`
-  display: grid;
-  grid-template-columns: 0.33fr 1.8fr 0.7fr 0.33fr;
-
-  ${media_breakpoint_down('lg')} {
-    grid-template-columns: 0.22fr 1.8fr 0.7fr 0.22fr;
-  }
-`;
-
-export const FirstColumn = styled.div`
-  grid-area: 2/2;
-  padding-right: 4vw;
-
-  ${FormContainer} {
-    margin: 0 0 32px 0;
-  }
-
-  ${media_breakpoint_exactly_down(1100)} {
-    grid-area: 1/2/1/4;
-  }
-`;
-
-export const SecondColumn = styled.div`
-  grid-area: 2/3;
-
-  ${media_breakpoint_exactly_down(1100)} {
-    grid-area: 2/2/2/4;
   }
 `;
 

@@ -5,17 +5,13 @@ import {
   GetInTouchMobileBtn,
   GetInTouchQuote,
   GetInTouchText,
-} from 'styles/practices/GetInTouchForm.style';
+} from 'styles/GetInTouchSidebar.style';
 import { MdTouchApp } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { handleModalOpener } from '../../../redux/slices/modals.slice';
 import SocialShare from '../post/SocialShare';
 
-const GetInTouchForm = ({
-  handlePrint,
-  isGetInTouch = false,
-  isPrintBtn = false,
-}) => {
+const GetInTouchSidebar = ({ handlePrint, isPrintBtn = false }) => {
   const dispatch = useDispatch();
 
   return (
@@ -41,7 +37,7 @@ const GetInTouchForm = ({
         </GetInTouchQuote>
 
         <SocialShare
-          isGetInTouch={isGetInTouch}
+          isGetInTouch
           isPrintBtn={isPrintBtn}
           handlePrint={handlePrint}
         />
@@ -55,4 +51,4 @@ const GetInTouchForm = ({
     </GetInTouchHolder>
   );
 };
-export default GetInTouchForm;
+export default GetInTouchSidebar;

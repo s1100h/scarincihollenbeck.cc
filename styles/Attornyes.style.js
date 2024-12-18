@@ -83,5 +83,13 @@ export const AttorneyCardsWrapper = styled.div`
 `;
 
 export const AdministrationsHolder = styled.div`
-  margin: 40px 0;
+  padding: 100px 0;
+
+  ${media_breakpoint_down('xxl')} {
+    padding: 60px 0;
+  }
+
+  ${media_breakpoint_down('md')} {
+    padding: 40px 0;
+  }
 `;

@@ -9,7 +9,7 @@ import {
   SplitContentHolder,
 } from 'styles/practices/PracticeContent.style';
 import { ContainerDefault } from 'styles/Containers.style';
-import GetInTouchForm from './GetInTouchForm';
+import GetInTouchSidebar from '../common/GetInTouchSidebar';
 import SocialShare from '../post/SocialShare';
 
 const PracticeContent = ({
@@ -45,7 +45,7 @@ const PracticeContent = ({
           <FAQ title={title} anchorId={anchorIdFaq} faqArrContent={faqData} />
         </SplitContentDescription>
         <SplitContentSidebar>
-          <GetInTouchForm handlePrint={handlePrint} isGetInTouch isPrintBtn />
+          <GetInTouchSidebar handlePrint={handlePrint} isPrintBtn />
         </SplitContentSidebar>
       </SplitContentHolder>
     </ContainerDefault>

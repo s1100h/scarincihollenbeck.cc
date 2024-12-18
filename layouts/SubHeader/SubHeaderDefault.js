@@ -24,13 +24,12 @@ const SubHeaderDefault = ({
   locations,
   industries,
   menu,
-  customClass = '',
   isLocationTabs = false,
 }) => (
   <SubHeaderHolder
     className={`sub-header ${
       !backgroundImage ? 'sub-header--without-image' : ''
-    } ${customClass}`}
+    } ${menu ? 'sub-header--menu' : ''}`}
     data-testid="default-sub-header"
   >
     {backgroundImage && (
@@ -50,7 +49,7 @@ const SubHeaderDefault = ({
     <SubHeaderContent className="sub-header__content">
       <PostBreadCrumbs />
 
-      <div className="sub-header__text">
+      <div className="sub-header__text" key={`${title}-subheader-content`}>
         {title && <JSXWithDynamicLinks HTML={changeTitle(title, true)} />}
 
         {subtitle?.length > 0 && (

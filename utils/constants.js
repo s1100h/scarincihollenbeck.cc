@@ -95,14 +95,19 @@ export const footerNavList = [
 /** List of firm blog category links found in the sidebar */
 export const FIRM_BLOG_PAGES = [
   {
-    id: 'firm-news',
-    label: 'Firm News',
-    slug: '/library/category/firm-news',
+    id: 'client-alerts',
+    label: 'Client Alerts',
+    slug: '/library/category/client-alert',
   },
   {
     id: 'firm-events',
     label: 'Firm Events',
     slug: '/library/category/firm-events',
+  },
+  {
+    id: 'firm-news',
+    label: 'Firm News',
+    slug: '/library/category/firm-news',
   },
   {
     id: 'firm-insights',

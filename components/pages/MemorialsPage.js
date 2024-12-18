@@ -25,7 +25,6 @@ const MemorialsPage = ({
       title={title}
       subtitle={description}
       menu={FIRM_PAGES}
-      customClass="sub-header--menu"
     />
 
     <Memorials memorials={memorials} />

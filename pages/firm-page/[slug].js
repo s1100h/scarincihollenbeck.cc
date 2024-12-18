@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import FirmPage from 'components/pages/FirmPage';
-import { FIRM_PAGES, PRODUCTION_URL } from 'utils/constants';
+import { PRODUCTION_URL } from 'utils/constants';
 import { fetchAPI } from 'requests/api';
 import { firmPagesQuery } from 'requests/graphql-queries';
 import empty from 'is-empty';
@@ -69,7 +69,9 @@ export const getStaticProps = async ({ params }) => {
     firmPagesRelatedPostsMembers,
     firmPagesDescription,
     firmPagesTabs,
+    featuredImage,
   } = req;
+
   const { groupChair, groupMembers, relatedPosts } = firmPagesRelatedPostsMembers;
   let blogRecommendedPosts = [];
 
@@ -82,10 +84,6 @@ export const getStaticProps = async ({ params }) => {
       uri: node?.uri.replace('https://scarincihollenbeck.com/', '/'),
     }));
   }
-
-  const relatedPages = FIRM_PAGES.filter(
-    (a) => a.slug.replace('/', '') !== params.slug,
-  );
 
   const firstTab = {};
   if (firmPagesTabs?.tabContent) {
@@ -111,12 +109,12 @@ export const getStaticProps = async ({ params }) => {
     title,
     description: firmPagesDescription?.description,
     attorneysRecommendedPosts: blogRecommendedPosts,
-    tabs: [firstTab, ...additionalTabs],
+    sections: [firstTab, ...additionalTabs],
     members: {
       member: modMembers || [],
       chair: modChair || [],
     },
-    relatedPages,
+    image: featuredImage?.node?.sourceUrl || null,
     seo,
   };
 

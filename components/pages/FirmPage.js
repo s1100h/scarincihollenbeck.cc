@@ -1,30 +1,22 @@
 import dynamic from 'next/dynamic';
-import Subscription from 'components/molecules/subscription/Subscription';
-import Sidebar from 'components/shared/Sidebar';
-import SubHeader from 'layouts/SubHeader/SubHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
-import { FIRM_BLOG_PAGES } from 'utils/constants';
-import Article from 'components/atoms/Article';
-import {
-  FirstColumn,
-  BottomContainer,
-  SecondColumn,
-  TwoColumnsContainer,
-} from 'styles/Containers.style';
+import { FIRM_PAGES } from 'utils/constants';
+import { BottomContainer } from 'styles/Containers.style';
+import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
 
 const RecommendedPosts = dynamic(() => import('components/common/RecommendedPosts'));
 const RelatedAttorneys = dynamic(() => import('components/molecules/practice/RelatedAttorneys'));
+const FirmContent = dynamic(() => import('components/organisms/firm/FirmContent'));
 
 export default function FirmPage({ page, canonicalUrl, handleLink }) {
   const {
     seo,
-    tabs,
-    relatedPages,
+    sections,
     attorneysRecommendedPosts,
     title,
     description,
     members,
+    image,
   } = page;
 
   const titlesMap = {
@@ -39,26 +31,15 @@ export default function FirmPage({ page, canonicalUrl, handleLink }) {
         metaDescription={seo.metaDesc}
         canonicalUrl={canonicalUrl}
       />
-      <SubHeader title={title} subtitle={description} />
-      <TwoColumnsContainer>
-        <FirstColumn>
-          {tabs.map((tab) => (
-            <Article
-              key={tab.title}
-              title={tab.title}
-              highlight
-              contentBody={formatPageImageToCloudinaryUrl(tab.content)}
-            />
-          ))}
-        </FirstColumn>
-        <SecondColumn>
-          <Subscription />
-          <hr />
-          <Sidebar title="Firm Library" content={FIRM_BLOG_PAGES} tabKey={2} />
-          <hr />
-          <Sidebar title="Diversity" content={relatedPages} tabKey={2} />
-        </SecondColumn>
-      </TwoColumnsContainer>
+      <SubHeaderDefault
+        title={title}
+        subtitle={description}
+        backgroundImage={image}
+        menu={FIRM_PAGES}
+      />
+
+      <FirmContent sections={sections} />
+
       <BottomContainer>
         {members && (
           <RelatedAttorneys

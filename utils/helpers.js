@@ -28,7 +28,6 @@ import GamingIcon from 'components/common/icons/GamingIcon';
 import {
   CLOUDINARY_BASE_URL,
   EMAGE_UPLOAD_CLOUDINARY,
-  OFFICE_LOCATIONS,
   PRODUCTION_URL,
   readyIndustriesUrls,
 } from './constants';
@@ -36,11 +35,6 @@ import CheckIcon from '../components/common/icons/CheckIcon';
 import MapIcon from '../components/common/icons/MapIcon';
 import ScopeIcon from '../components/common/icons/ScopeIcon';
 
-// this is HTML checker
-export function isHTML(text) {
-  const htmlRegex = /^<([a-z]+)([^<]+)*(?:>(.*)<\/\1>|\s+\/>)$/i;
-  return htmlRegex.test(text);
-}
 // sort a list by its key
 export function sortByKey(list, key) {
   if (list !== undefined) {
@@ -60,42 +54,10 @@ export function sortByKey(list, key) {
 
 export const convertBooleanToString = (booleanArg) => (booleanArg ? 'true' : '');
 
-// take a term lower case and replace white spaces with dashes
-export const urlify = (str) => str.toLowerCase().replace(/\s/g, '-');
-
 // create mark up
 export const createMarkup = (content) => ({ __html: content });
 
 export const cutDomain = (url) => url.replace(PRODUCTION_URL, '');
-
-// get current directions to office location func
-export function getDirectionsFromLocation(location) {
-  const options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0,
-  };
-
-  const success = (pos) => {
-    const crd = pos.coords;
-    const lat = crd.latitude;
-    const long = crd.longitude;
-    const currentOffice = location.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase();
-
-    // filter through available offices
-    const destination = OFFICE_LOCATIONS.filter(
-      (v) => v.label === currentOffice,
-    )[0].address;
-    const map = `https://www.google.com/maps/dir/${lat}+${long}/${destination}`;
-    window.open(map, '_blank');
-  };
-
-  const error = (err) => {
-    console.warn(`ERROR(${err.code}):${err.message}`);
-  };
-
-  navigator.geolocation.getCurrentPosition(success, error, options);
-}
 
 export const cutAnchorUrl = (slug) => {
   const index = slug.indexOf('#');
@@ -119,9 +81,6 @@ export function filterByKey(list, key) {
   }
   return results;
 }
-
-// make title
-export const makeTitle = (string) => string.replace(/-|\s/g, ' ').replace(/\+/g, ' ').toUpperCase();
 
 // format GMT date
 export function formatDate(date) {
@@ -151,22 +110,6 @@ export function printScreen() {
   return false;
 }
 
-// limit the string length to 200 characters
-export function setTextLen(title, len) {
-  if (title.length > len) {
-    return `${title.substring(0, len)} ...`;
-  }
-
-  return title;
-}
-
-// create a description from post content
-export const extractDescription = (content) => {
-  const strip = content.replace(/<[^>]*>?/gm, '').replace(/(\r\n|\n|\r)/gm, '');
-  const excerpt = `${strip.split(' ').splice(0, 25).join(' ')} ...`;
-  return excerpt;
-};
-
 // external blog fetch helper
 export const fetchExternalPosts = async (site, authorId, amount) => {
   try {
@@ -195,6 +138,7 @@ export const formatSrcToCloudinaryUrl = (src) => {
 
 // Format image src into a cloudinary url
 export const formatPageImageToCloudinaryUrl = (page) => {
+  if (empty(page)) return '';
   const tossUrl = 'https://wp.scarincihollenbeck.com/wp-content/uploads/';
   if (page.includes(tossUrl)) {
     return page
@@ -240,11 +184,6 @@ export const getSubTitleFromHTML = (htmlContent) => {
     clearBody: bodyContentCutSubTitle.replace(/<h2(.*?)><\/h2>/gim, ''),
     subTitle,
   };
-};
-
-export const correctAttorneyLink = (link) => {
-  const regEx = /(attorney)/g;
-  return link.replace(regEx, 'attorneys');
 };
 
 export const changeTitle = (title, isH1) => {
