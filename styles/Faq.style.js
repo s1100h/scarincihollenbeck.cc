@@ -182,7 +182,7 @@ export const FaqWrapper = styled.section`
           &:last-child {
             margin: 0;
           }
-          line-height: 24px;
+          line-height: 1.5;
         }
 
         ul {

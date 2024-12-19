@@ -9,7 +9,7 @@ import {
   latestFirmNewsArticles,
   officeLocationsQuery,
 } from 'requests/graphql-queries';
-import { chunkArray } from 'utils/helpers';
+import { chunkArray, formateAwards } from 'utils/helpers';
 
 /** Get homepage content WP GRAPHQL API */
 export async function homePageContent() {
@@ -97,7 +97,7 @@ export const getStaticProps = async () => {
   return {
     props: {
       seo,
-      awards,
+      awards: formateAwards(awards),
       offices: sanitizeOffices(offices),
       isHoliday,
       firstSection,

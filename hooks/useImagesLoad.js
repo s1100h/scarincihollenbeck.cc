@@ -8,8 +8,6 @@ export const useImagesLoad = (onReadyCallback, containerRef) => {
     if (!container) return;
 
     const allImages = Array.from(container.querySelectorAll('img'));
-    // eslint-disable-next-line no-console
-    console.log('allImages', allImages);
     const imageLoadPromises = allImages.map(
       (img) => new Promise((resolve) => {
         if (img.complete && img.naturalHeight !== 0) {

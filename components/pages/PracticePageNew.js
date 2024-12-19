@@ -93,6 +93,7 @@ const PracticePageNew = ({
     contentSection: practice?.practicesIncluded?.contentSection,
     whyChooseUsData,
     faqData: faq,
+    awards,
   };
 
   const { isRenderPdf, setIsPrintReady, handlePrint } = usePrintLogic();

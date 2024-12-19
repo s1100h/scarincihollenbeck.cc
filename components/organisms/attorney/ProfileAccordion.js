@@ -10,7 +10,6 @@ import empty from 'is-empty';
 import Link from 'next/link';
 import ProfileClients from 'components/molecules/attorney/ProfileClients';
 import dynamic from 'next/dynamic';
-import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import { StandardLightBlueButton } from 'styles/Buttons.style';
 import AccordionDynamicItem from 'components/molecules/attorney/AccordionDynamicItem';
 import GallerySlider from 'components/molecules/attorney/GallerySlider';
@@ -23,29 +22,6 @@ import { postsForPaginationByAuthorIdQuery } from '../../../requests/graphql-que
 const AwardsSlider = dynamic(() => import('components/molecules/home/AwardsSlider'));
 
 const BlogsBox = dynamic(() => import('../../molecules/attorney/BlogsBox'));
-
-const sanitizeAwardsForSlider = (awards) => {
-  if (empty(awards)) return null;
-
-  const formattedAwards = awards.map(
-    ({
-      awardImage, awardLink, awardTitle, year,
-    }) => ({
-      id: awardTitle,
-      year,
-      label: awardTitle,
-      image: {
-        src: formatSrcToCloudinaryUrl(awardImage.sourceUrl),
-        alt: awardTitle,
-        width: 200,
-        height: 200,
-      },
-      link: awardLink,
-    }),
-  );
-
-  return formattedAwards;
-};
 
 const renderBlogPosts = (data, config, blogTitles, isWide, name) => blogTitles?.includes(config?.title) && (
 <AccordionItem
@@ -91,7 +67,6 @@ const ProfileAccordion = ({
   authorId,
 }) => {
   const router = useRouter();
-  const sanitizedAwardsForSlider = sanitizeAwardsForSlider(awards);
 
   // News Press Releases section START
   const newsPressReleasesConfig = {
@@ -155,7 +130,7 @@ const ProfileAccordion = ({
       <ContainerDefault>
         <ProfileAccordionHolder>
           <Accordion as="ul" alwaysOpen>
-            {!empty(sanitizedAwardsForSlider) && (
+            {!empty(awards) && (
               <AccordionItem
                 as="li"
                 eventKey={`profile-awards-${name}`}
@@ -164,7 +139,7 @@ const ProfileAccordion = ({
                 <StandardLightBlueButton as={Link} href="/awards">
                   Award Methodology
                 </StandardLightBlueButton>
-                <AwardsSlider items={sanitizedAwardsForSlider} isLightVariant />
+                <AwardsSlider items={awards} isLightVariant />
               </AccordionItem>
             )}
 

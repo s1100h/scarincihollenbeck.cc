@@ -35,7 +35,7 @@ const MediaSlider = ({ items }) => {
             <SimpleNewsCard
               title={item?.title}
               label={item?.label || item?.publisher}
-              date={item?.date}
+              date={item?.date || item?.videoDate}
               video={item?.video?.videoLink || item?.video?.uploadVideo}
               link={item?.link}
               textPost={item?.description}

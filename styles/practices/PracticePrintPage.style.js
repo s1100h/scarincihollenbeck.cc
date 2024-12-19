@@ -152,6 +152,23 @@ export const DescriptionArticlePrint = styled.article`
   }
 
   .article-main {
+    columns: 2;
+    column-gap: 16px;
+
+    h3,
+    h4 {
+      font-size: ${rem(16)};
+      line-height: 1.4;
+    }
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      line-height: 1.4;
+    }
+
     p,
     ul {
       margin-bottom: 8px;
@@ -161,9 +178,20 @@ export const DescriptionArticlePrint = styled.article`
       margin-bottom: 0;
     }
 
+    .row {
+      margin: 0;
+      gap: 8px;
+    }
+
     .col-sm-12 {
       flex: 0 0 auto;
-      width: 50%;
+      width: calc(50% - 4px);
+      padding: 0;
+
+      img {
+        width: 100%;
+        padding: 0;
+      }
     }
   }
 `;

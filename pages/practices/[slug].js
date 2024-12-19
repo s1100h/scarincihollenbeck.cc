@@ -4,6 +4,7 @@ import { PRODUCTION_URL } from 'utils/constants';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 import empty from 'is-empty';
 import PracticePageNew from 'components/pages/PracticePageNew';
+import { formateAwards } from 'utils/helpers';
 import { fetchAPI } from '../../requests/api';
 import { getPracticeAttorneys } from '../../requests/practices/practice-default';
 
@@ -94,7 +95,7 @@ export const getStaticProps = async ({ params }) => {
       faq,
       whyChooseUsData: practice?.practicesIncluded?.whyChooseUs,
       practices,
-      awards: practice?.practicesIncluded?.awards,
+      awards: formateAwards(practice?.practicesIncluded?.awards),
       // googleReviews: deleteReviewsWithoutComment(googleReviews.flat()),
     },
     revalidate: 8600,

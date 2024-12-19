@@ -8,6 +8,7 @@ import {
   concatNameUser,
   fetchExternalPosts,
   formatSrcToCloudinaryUrl,
+  formateAwards,
   sanitizeExternalArticles,
 } from 'utils/helpers';
 import { GOV_LAW_URL } from 'utils/constants';
@@ -211,7 +212,7 @@ export const getStaticProps = async ({ params }) => {
 
   const accordionData = {
     clients: attorneyBio.attorneyAwardsClientsBlogsVideos?.clients,
-    awards: attorneyBio.attorneyAwardsClientsBlogsVideos?.awards,
+    awards: formateAwards(attorneyBio.attorneyAwardsClientsBlogsVideos?.awards),
     attorneyBiography: attorneyBio?.attorneyBiography,
     representativeMatters: attorneyBio.attorneyRepresentativeMatters.repMatters
       ? attorneyBio.attorneyRepresentativeMatters.repMatters[0].content
