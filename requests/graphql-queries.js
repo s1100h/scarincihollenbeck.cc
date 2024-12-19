@@ -68,7 +68,7 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
         orientationImage
       }
       attorneyVideos {
-        date
+        videoDate
         title
         video {
           videoLink

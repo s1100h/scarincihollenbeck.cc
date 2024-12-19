@@ -125,14 +125,6 @@ export const makeTitle = (string) => string.replace(/-|\s/g, ' ').replace(/\+/g,
 
 // format GMT date
 export function formatDate(date) {
-  // In the video from YouTube the date comes in the format MM-DD-YYYY,
-  // which is not processed correctly in Safari,
-  // so this date must first be converted to the format YYYY-MM-DD
-  if (/\d{2}-\d{2}-\d{4}/.test(date)) {
-    const [month, day, year] = date.split('-');
-    date = `${year}-${month}-${day}`;
-  }
-
   const dateObj = new Date(date);
 
   const month = [
