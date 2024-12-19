@@ -5,11 +5,12 @@ import { ContainerDefault } from 'styles/Containers.style';
 import dynamic from 'next/dynamic';
 import React from 'react';
 import { TitleH2 } from 'styles/common/Typography.style';
+import empty from 'is-empty';
 
 const AwardsSlider = dynamic(() => import('components/molecules/home/AwardsSlider'));
 
 const Awards = ({ awards, anchorId }) => {
-  if (!awards) return null;
+  if (empty(awards)) return null;
 
   return (
     <AwardsWrapper id={anchorId} data-testid="awards" className="margin-scroll">

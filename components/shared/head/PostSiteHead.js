@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import { STANDARD_SCHEMA, articleSchema } from 'utils/json-ld-schemas';
 
