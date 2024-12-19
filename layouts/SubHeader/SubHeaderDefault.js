@@ -33,7 +33,7 @@ const SubHeaderDefault = ({
     data-testid="default-sub-header"
   >
     {backgroundImage && (
-      <picture className="sub-header__image">
+      <picture className="sub-header__image" key={`${title}-subheader-image`}>
         <Image
           src={backgroundImage}
           alt={title || 'sub header image'}

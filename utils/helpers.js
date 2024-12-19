@@ -231,6 +231,7 @@ export const deleteReviewsWithoutComment = (reviews) => reviews.filter((review) 
 
 export const changePostLink = (url) => {
   const parts = url.replace(`${PRODUCTION_URL}/`, '').split('/');
+  if (empty(parts[0])) return url;
   const result = `/${parts[0]}/${parts[parts.length - 1]}`;
   return result;
 };
@@ -449,12 +450,6 @@ export const createMenuData = (practices, locations, industries) => [
         title: 'In Memoriam',
         uri: '/memorials',
       },
-      // this page went to the Draft status.
-      // {
-      //   databaseId: 'menu-firm-07',
-      //   title: 'Women Lead',
-      //   uri: '/women-lead',
-      // },
     ],
   },
   {

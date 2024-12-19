@@ -206,12 +206,6 @@ export const FIRM_PAGES = [
     label: 'In Memoriam',
     slug: '/memorials',
   },
-  // conserved
-  // {
-  //   id: 'women-lead',
-  //   label: 'Women Lead',
-  //   slug: '/women-lead',
-  // },
 ];
 
 export const sitemapAddon = [

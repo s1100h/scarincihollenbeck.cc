@@ -818,6 +818,7 @@ export const ProfileBioListColumnText = styled.div`
 `;
 
 export const NewsCardBlock = styled.article`
+  min-height: 192px;
   width: ${({ $isWide, $isFull }) =>
     $isFull
       ? '100%'

@@ -33,9 +33,11 @@ const LatestPostsCard = ({ article, isBig }) => (
     <LatestsPostsCardContent>
       <LatestsPostsCardTitle>{article?.title}</LatestsPostsCardTitle>
 
-      <LatestsPostsCardDescription>
-        <JSXWithDynamicLinks HTML={article?.excerpt} />
-      </LatestsPostsCardDescription>
+      {article?.excerpt && (
+        <LatestsPostsCardDescription>
+          <JSXWithDynamicLinks HTML={article?.excerpt} />
+        </LatestsPostsCardDescription>
+      )}
 
       <LatestsPostsCardFooter>
         <LatestsPostsCardAuthor

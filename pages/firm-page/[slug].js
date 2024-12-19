@@ -1,43 +1,32 @@
-import { useRouter } from 'next/router';
-import dynamic from 'next/dynamic';
 import FirmPage from 'components/pages/FirmPage';
 import { PRODUCTION_URL } from 'utils/constants';
 import { fetchAPI } from 'requests/api';
 import { firmPagesQuery } from 'requests/graphql-queries';
 import empty from 'is-empty';
 
-const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
+const sanitizePosts = (data) => {
+  if (empty(data)) return [];
 
-/** sanitize the attorney and administration response mapping the data to the same keys */
-const sanitizeAttorneyProfile = (node) => ({
-  ID: node.id,
-  name: node.title,
-  lastName: node.attorneyMainInformation?.lastName,
-  link: node.uri,
-  image: node.featuredImage?.node?.sourceUrl,
-  email: node.attorneyMainInformation?.email,
-  contact: node.attorneyMainInformation?.phoneNumber,
-  designation: node.attorneyMainInformation?.designation,
-});
+  return data[0]?.posts?.edges.map(({ node }) => ({
+    databaseId: node?.id,
+    title: node?.title,
+    date: node?.date,
+    author: node.author,
+    uri: node?.uri,
+  }));
+};
 
 /** firm page content  WP GRAPHQL query */
-export async function getFirmPageContent(slug, relatedPostsCategoryId) {
+const getFirmPageContent = async (slug) => {
   const data = await fetchAPI(firmPagesQuery, {
-    variables: { slug, categoryId: relatedPostsCategoryId },
+    variables: { slug },
   });
+
   if (data.page?.status !== 'publish') {
     return null;
   }
 
   return data?.page;
-}
-
-const diversityCategoryId = (slug) => {
-  const pagesMap = {
-    diversity: 5789,
-  };
-
-  return pagesMap[slug] || 98;
 };
 
 export async function getStaticPaths() {
@@ -52,10 +41,7 @@ export async function getStaticPaths() {
 
 /** Set firm page data to props */
 export const getStaticProps = async ({ params }) => {
-  const req = await getFirmPageContent(
-    params.slug,
-    diversityCategoryId(params.slug),
-  );
+  const req = await getFirmPageContent(params.slug);
 
   if (empty(req)) {
     return {
@@ -72,18 +58,7 @@ export const getStaticProps = async ({ params }) => {
     featuredImage,
   } = req;
 
-  const { groupChair, groupMembers, relatedPosts } = firmPagesRelatedPostsMembers;
-  let blogRecommendedPosts = [];
-
-  if (relatedPosts) {
-    blogRecommendedPosts = relatedPosts[0]?.posts?.edges.map(({ node }) => ({
-      title: node?.title,
-      date: node?.date,
-      featuredImage: node.featuredImage?.node?.sourceUrl,
-      author: node.author?.node?.name,
-      uri: node?.uri.replace('https://scarincihollenbeck.com/', '/'),
-    }));
-  }
+  const { relatedPosts } = firmPagesRelatedPostsMembers;
 
   const firstTab = {};
   if (firmPagesTabs?.tabContent) {
@@ -102,51 +77,25 @@ export const getStaticProps = async ({ params }) => {
     }))
     .filter((a) => a.title !== null);
 
-  const modMembers = groupMembers?.map((node) => sanitizeAttorneyProfile(node));
-  const modChair = groupChair?.map((node) => sanitizeAttorneyProfile(node));
-
   const page = {
     title,
     description: firmPagesDescription?.description,
-    attorneysRecommendedPosts: blogRecommendedPosts,
+    attorneysRecommendedPosts: sanitizePosts(relatedPosts),
     sections: [firstTab, ...additionalTabs],
-    members: {
-      member: modMembers || [],
-      chair: modChair || [],
-    },
     image: featuredImage?.node?.sourceUrl || null,
     seo,
+    canonicalLink: `${PRODUCTION_URL}/${params?.slug}`,
   };
 
   return {
     props: {
       page,
-      currentPage: params.slug,
     },
     revalidate: 86400,
   };
 };
 
 /** The firm pages component - Pro Bono, Community Involvement, Diversity, Women LEAD etc. */
-const FirmPages = ({ page, currentPage }) => {
-  const router = useRouter();
-  const canonicalUrl = `${PRODUCTION_URL}/${currentPage}`;
-
-  if (router.isFallback) {
-    return <SiteLoader />;
-  }
-
-  const handleLink = (e) => {
-    router.push(e.target.value);
-  };
-
-  const firmPageProps = {
-    page,
-    canonicalUrl,
-    handleLink,
-  };
-
-  return <FirmPage {...firmPageProps} />;
-};
+const FirmPages = ({ page }) => <FirmPage page={page} />;
 
 export default FirmPages;

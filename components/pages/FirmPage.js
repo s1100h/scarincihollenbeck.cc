@@ -1,26 +1,23 @@
 import dynamic from 'next/dynamic';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { FIRM_PAGES } from 'utils/constants';
-import { BottomContainer } from 'styles/Containers.style';
 import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
 
-const RecommendedPosts = dynamic(() => import('components/common/RecommendedPosts'));
-const RelatedAttorneys = dynamic(() => import('components/molecules/practice/RelatedAttorneys'));
 const FirmContent = dynamic(() => import('components/organisms/firm/FirmContent'));
+const LatestPostsSection = dynamic(() => import('components/organisms/home/LatestPostsSection'));
 
-export default function FirmPage({ page, canonicalUrl, handleLink }) {
+export default function FirmPage({ page }) {
   const {
     seo,
     sections,
     attorneysRecommendedPosts,
     title,
     description,
-    members,
     image,
+    canonicalLink,
   } = page;
 
   const titlesMap = {
-    'Women LEAD': 'Latest from Woman Lead',
     Diversity: 'Latest Diversity News',
   };
 
@@ -29,7 +26,7 @@ export default function FirmPage({ page, canonicalUrl, handleLink }) {
       <BasicSiteHead
         title={seo.title}
         metaDescription={seo.metaDesc}
-        canonicalUrl={canonicalUrl}
+        canonicalUrl={canonicalLink}
       />
       <SubHeaderDefault
         title={title}
@@ -40,25 +37,10 @@ export default function FirmPage({ page, canonicalUrl, handleLink }) {
 
       <FirmContent sections={sections} />
 
-      <BottomContainer>
-        {members && (
-          <RelatedAttorneys
-            members={members.member}
-            chair={members.chair}
-            handleLink={handleLink}
-            title="Chair"
-          />
-        )}
-
-        {attorneysRecommendedPosts.length > 0 && (
-          <div className="mt-lg-5">
-            <RecommendedPosts
-              titleGeneralBlock={titlesMap[title] || 'Latest from the firm'}
-              attorneyFooterNewsArticles={attorneysRecommendedPosts}
-            />
-          </div>
-        )}
-      </BottomContainer>
+      <LatestPostsSection
+        title={titlesMap[title] || 'Latest from the firm'}
+        posts={attorneysRecommendedPosts}
+      />
     </>
   );
 }

@@ -896,10 +896,8 @@ query BasicPageQuery {
 }`;
 
 /** querying firm pages content */
-export const firmPagesQuery = `query FirmPageQuery(
-	$slug: ID!,
-  $categoryId: Int
-  ) {
+export const firmPagesQuery = `
+query FirmPageQuery($slug: ID!) {
   page(idType: URI, id: $slug) {
     title
     status
@@ -908,56 +906,14 @@ export const firmPagesQuery = `query FirmPageQuery(
       title
     }
     firmPagesRelatedPostsMembers {
-      groupChair {
-        ... on AttorneyProfile {
-          id
-          uri
-          title
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
-          attorneyMainInformation {
-            designation
-            email
-            phoneNumber
-            lastName
-          }
-        }
-      }
-      groupMembers {
-        ... on AttorneyProfile {
-          id
-          uri
-          title
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
-          attorneyMainInformation {
-            designation
-            email
-            phoneNumber
-            lastName
-          }
-        }
-      }
       relatedPosts {
-        posts(first: 3, where: {categoryId: $categoryId}) {
+        posts(first: 6) {
           edges {
             node {
               id
               uri
               date
-              excerpt
               title(format: RENDERED)
-              featuredImage {
-                node {
-                  sourceUrl
-                }
-              }
               author {
                 node {
                   name

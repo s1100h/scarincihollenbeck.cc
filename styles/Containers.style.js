@@ -47,10 +47,6 @@ export const CentralizedBox = styled.div`
   }
 `;
 
-export const BottomContainer = styled.section`
-  grid-area: 3/2/3/4;
-`;
-
 export const ContainerDefault = styled.div`
   width: min(100%, 1816px);
   max-width: 100%;

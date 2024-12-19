@@ -85,10 +85,6 @@ const POST_CATEGORY_REWRITES = [
     destination: '/post/:slug*?category=mandarin',
   },
   {
-    source: '/women-lead',
-    destination: '/firm-page/women-lead',
-  },
-  {
     source: '/women-lead/:slug*',
     destination: '/post/:slug*?category=women-lead',
   },
@@ -151,10 +147,6 @@ const SITE_PAGES_REWRITES = [
   {
     source: '/pro-bono',
     destination: '/firm-page/pro-bono',
-  },
-  {
-    source: '/women-lead',
-    destination: '/firm-page/women-lead',
   },
   /** End of firm pages */
   /** Start of form pages */
