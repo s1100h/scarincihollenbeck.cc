@@ -200,7 +200,7 @@ export const SubHeaderContent = styled.div`
   .sub-header__text {
     max-width: 800px;
     margin: auto 0;
-    padding: 54px 0;
+    padding: 24px 0;
     display: flex;
     flex-direction: column;
     row-gap: 12px;
@@ -216,11 +216,8 @@ export const SubHeaderContent = styled.div`
       }
     }
 
-    ${media_breakpoint_exactly_down(1850)} {
-      padding: 38px 0;
-    }
-
     ${media_breakpoint_exactly_down(1279)} {
+      max-width: 100%;
       padding: 0;
     }
   }
@@ -635,6 +632,7 @@ export const SubHeaderLocationsHolder = styled.div`
 `;
 
 export const SubHeaderHolder = styled.div`
+  min-height: 340px;
   max-width: 1920px;
   margin: 0 auto;
   background-color: ${globalColor.gray.gray10};
@@ -666,6 +664,7 @@ export const SubHeaderHolder = styled.div`
   }
 
   ${media_breakpoint_exactly_down(1279)} {
+    min-height: unset;
     flex-direction: column;
   }
 

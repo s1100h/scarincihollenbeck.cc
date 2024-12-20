@@ -64,7 +64,7 @@ export const CareersInfoSection = styled.section`
   padding-block: 60px;
   background-color: ${globalColor.gray.gray10};
 
-  ${media_breakpoint_down('xxl')} {
+  ${media_breakpoint_down('md')} {
     padding-block: 40px;
   }
 `;

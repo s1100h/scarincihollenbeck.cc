@@ -1,10 +1,11 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import SubHeader from 'layouts/SubHeader/SubHeader';
 import SingleCareerBody from 'components/organisms/career/CareerBody';
 import Subscription from 'components/molecules/subscription/Subscription';
 import CommonSidebarLinks from 'components/molecules/CommonSidebarLinks';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { SITE_TITLE } from 'utils/constants';
+import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
+import SubHeaderBgImage from '../../public/images/contact-tiles-2.webp';
 
 const CareerProfile = ({ career, canonicalUrl }) => {
   const { seo } = career;
@@ -17,11 +18,10 @@ const CareerProfile = ({ career, canonicalUrl }) => {
         metaDescription={seo.metaDescription}
         canonicalUrl={canonicalUrl}
       />
-      <SubHeader
+      <SubHeaderDefault
         title={career.title}
         subtitle={seo.metaDescription}
-        offset={0}
-        span={8}
+        backgroundImage={SubHeaderBgImage}
       />
       <Container>
         <Row>

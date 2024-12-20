@@ -88,9 +88,9 @@ export const OpenersListItem = styled.li`
 export const TabOpener = styled.button`
   color: ${globalColor.gray.gray500};
   font-family: var(--font-lato);
-  font-size: ${rem(24)};
+  font-size: ${rem(22)};
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 600;
   text-transform: uppercase;
   text-align: start;
   transition: ${globalTransition.default};
@@ -104,7 +104,7 @@ export const TabOpener = styled.button`
   }
 
   ${media_breakpoint_down('xxl')} {
-    font-size: ${rem(20)};
+    font-size: ${rem(18)};
     line-height: 1.6;
   }
 

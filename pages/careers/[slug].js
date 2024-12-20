@@ -1,9 +1,5 @@
-import { useRouter } from 'next/router';
-import dynamic from 'next/dynamic';
 import CareerProfile from 'components/pages/CareerPage';
 import { PRODUCTION_URL, BASE_API_URL, headers } from 'utils/constants';
-
-const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 /** Fetch career post data from WP REST API */
 const getCareersContent = async (slug) => {
@@ -29,20 +25,13 @@ export async function getServerSideProps({ params }) {
   return {
     props: {
       career: careersContent,
+      canonicalUrl: `${PRODUCTION_URL}${params.slug}`,
     },
   };
 }
 
 /** Single career post component */
-const Career = ({ career }) => {
-  const router = useRouter();
-
-  if (router.isFallback) {
-    return <SiteLoader />;
-  }
-
-  const canonicalUrl = `${PRODUCTION_URL}${router.asPath}`;
-
+const Career = ({ career, canonicalUrl }) => {
   const careerProps = {
     career,
     canonicalUrl,
