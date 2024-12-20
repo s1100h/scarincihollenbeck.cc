@@ -1,6 +1,6 @@
 import AwardCard from 'components/molecules/home/AwardCard';
 import DisclaimerText from 'components/atoms/DisclaimerText';
-import { TitleH3 } from 'styles/common/Typography.style';
+import { Title20 } from 'styles/common/Typography.style';
 import { AwardsPrintContainer, AwardsPrintList } from 'styles/Awards.style';
 import empty from 'is-empty';
 
@@ -9,7 +9,7 @@ const AwardsPrint = ({ awards }) => {
 
   return (
     <AwardsPrintContainer>
-      <TitleH3>Awards / Accolades</TitleH3>
+      <Title20>Awards / Accolades</Title20>
       <AwardsPrintList>
         {awards?.map((item) => (
           <AwardCard

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
-import { titleH2Styles } from './common/Typography.style';
+import { title32Styles } from './common/Typography.style';
 
 export const SeparatedTitleWrapper = styled.h2`
   margin: 0;
@@ -10,7 +10,7 @@ export const SeparatedTitleWrapper = styled.h2`
   text-wrap: balance;
 
   .title-text {
-    ${titleH2Styles};
+    ${title32Styles};
   }
 
   .title-separator {

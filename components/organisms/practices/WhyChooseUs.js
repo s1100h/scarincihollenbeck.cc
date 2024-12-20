@@ -1,6 +1,6 @@
 import WhyChooseUsCard from 'components/molecules/practice/WhyChooseUsCard';
 import React, { useId } from 'react';
-import { TitleH2 } from 'styles/common/Typography.style';
+import { Title32 } from 'styles/common/Typography.style';
 import { ContainerDefault } from 'styles/Containers.style';
 import {
   WhyChooseUsCards,
@@ -30,7 +30,7 @@ const WhyChooseUs = ({ anchorId, data, isPrint }) => {
       data-testid="why-choose-us"
     >
       <ContainerDefault>
-        <TitleH2>Why Choose Us?</TitleH2>
+        <Title32>Why Choose Us?</Title32>
         <WhyChooseUsCards>
           {data.map((card, index) => (
             <WhyChooseUsCard

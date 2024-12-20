@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { globalColor, rem } from '../global_styles/Global.styles';
-import { TitleH2, TitleH3 } from 'styles/common/Typography.style';
+import { Title32, Title20 } from 'styles/common/Typography.style';
 
 export const BioPagePrintContainer = styled.div`
   @media print {
@@ -23,7 +23,7 @@ export const BioPagePrintContainer = styled.div`
 
     .profile-title {
       padding-top: 3px;
-      ${TitleH2} {
+      ${Title32} {
         margin: 3px 0 0 0;
       }
       span {
@@ -84,7 +84,7 @@ export const BioPagePrintContainer = styled.div`
     column-gap: 20px;
   }
 
-  ${TitleH3} {
+  ${Title20} {
     margin-bottom: 8px;
   }
 `;

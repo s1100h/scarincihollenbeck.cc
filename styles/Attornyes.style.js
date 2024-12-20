@@ -6,9 +6,8 @@ import {
 import { globalColor } from './global_styles/Global.styles';
 import { SearchInput } from './GlobalSearch.style';
 import { ContainerDefault } from './Containers.style';
-import { LogoSeparatorWrapper } from './Separators.style';
 import { LawyerCardWrapper } from './LawyerCard.style';
-import { TitleH2 } from './common/Typography.style';
+import { Title32 } from './common/Typography.style';
 
 export const MainAttorneysContainer = styled.section`
   background-color: ${globalColor.gray.gray1002};
@@ -27,30 +26,7 @@ export const AttorneyCardsHolder = styled.section`
   flex-direction: column;
   row-gap: 24px;
 
-  + ${LogoSeparatorWrapper} {
-    margin: 40px 0;
-
-    &::before,
-    &::after {
-      background-color: ${globalColor.gray.gray300};
-    }
-
-    > img {
-      width: 64px;
-      height: 64px;
-
-      ${media_breakpoint_down('md')} {
-        width: 28px;
-        height: 28px;
-      }
-    }
-
-    ${media_breakpoint_down('lg')} {
-      margin: 32px 0;
-    }
-  }
-
-  ${TitleH2} {
+  ${Title32} {
     text-transform: capitalize;
   }
 `;

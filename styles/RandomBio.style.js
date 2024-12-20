@@ -9,7 +9,7 @@ import { attorneyCardForPractices } from './practices/SubHeader.style';
 import { ContactBox, InfoBox, LinkBox } from './AttorneyCard.style';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import Image from 'next/image';
-import { TitleH2 } from './common/Typography.style';
+import { Title32 } from './common/Typography.style';
 
 export const RandomBioWrapper = styled.section`
   padding: 60px 0 160px;
@@ -68,7 +68,7 @@ export const RandomBioHolder = styled.div`
   }
 `;
 
-export const RandomBioTitle = styled(TitleH2)`
+export const RandomBioTitle = styled(Title32)`
   margin-bottom: 12px !important;
 
   ${media_breakpoint_down('md')} {

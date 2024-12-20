@@ -37,7 +37,9 @@ const sanitizeCareers = (careerArr) => {
 export const getStaticProps = async () => {
   const careerList = await getCareerList();
   const page = await careersPageContent();
-  const { seo, title, careersPage } = page;
+  const {
+    seo, title, careersPage, featuredImage, focusedCards,
+  } = page;
   return {
     props: {
       seo,
@@ -45,6 +47,8 @@ export const getStaticProps = async () => {
         title,
         description: careersPage.description,
         bodyContent: careersPage.equalEmploymentOpportunityContent,
+        image: featuredImage.node.sourceUrl,
+        focusedCards: focusedCards?.cards,
       },
       careerList: sanitizeCareers(careerList),
     },

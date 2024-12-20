@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { globalColor, rem } from 'styles/global_styles/Global.styles';
-import { TitleH2, TitleH3 } from './Typography.style';
+import { Title32, Title20 } from './Typography.style';
 
 export const PrintContainer = styled.div`
   display: none;
@@ -21,13 +21,13 @@ export const PrintContainer = styled.div`
       line-height: 1.6;
     }
 
-    ${TitleH2} {
+    ${Title32} {
       font-size: ${rem(20)};
       line-height: 1.4;
       margin-bottom: 10px;
     }
 
-    ${TitleH3} {
+    ${Title20} {
       font-size: ${rem(16)};
       line-height: 1.4;
       margin-bottom: 8px;

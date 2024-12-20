@@ -1,6 +1,6 @@
 import empty from 'is-empty';
 import Link from 'next/link';
-import { TitleH2, TitleH3 } from 'styles/common/Typography.style';
+import { Title32, Title20 } from 'styles/common/Typography.style';
 import { useImagesLoad } from 'hooks/useImagesLoad';
 import { useRef } from 'react';
 import { PrintContainer } from 'styles/common/PrintStyles.style';
@@ -30,7 +30,7 @@ const renderAwardsAndRecognitions = (additionalTabsArg) => {
   }
   return (
     <div>
-      <TitleH3>Awards & Recognitions</TitleH3>
+      <Title20>Awards & Recognitions</Title20>
       <ProfileAccordionBody
         className="print-pdf-representative-matters"
         $columnsCountUl={2}
@@ -101,7 +101,7 @@ const AttorneyPrintPage = ({
           </CardImageWrapper>
           <ProfileHeaderRight>
             <ProfileTitle className="profile-title">
-              <TitleH2 as="h1">{name}</TitleH2>
+              <Title32 as="h1">{name}</Title32>
               <ProfileDesignation>{designation}</ProfileDesignation>
             </ProfileTitle>
             <ProfileServices
@@ -136,7 +136,7 @@ const AttorneyPrintPage = ({
         <AwardsPrint awards={awards} />
         {!empty(attorneyBiography.biographyContent) && (
           <div>
-            <TitleH3>Full Biography</TitleH3>
+            <Title20>Full Biography</Title20>
             <InfoPrintBox>
               <JSXWithDynamicLinks HTML={attorneyBiography.biographyContent} />
             </InfoPrintBox>
@@ -144,7 +144,7 @@ const AttorneyPrintPage = ({
         )}
         {!empty(clients) && (
           <div>
-            <TitleH3>Clients</TitleH3>
+            <Title20>Clients</Title20>
             <ProfileAccordionBody
               className="print-pdf-clients"
               $columnsCountUl={3}
@@ -165,7 +165,7 @@ const AttorneyPrintPage = ({
         )}
         {!empty(representativeMatters) && (
           <div>
-            <TitleH3>Representative Matters</TitleH3>
+            <Title20>Representative Matters</Title20>
             <ProfileAccordionBody
               className="print-pdf-representative-matters"
               $columnsCountUl={2}

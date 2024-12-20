@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { StandardBlueButton } from 'styles/Buttons.style';
-import { TitleH3 } from 'styles/common/Typography.style';
+import { Title20 } from 'styles/common/Typography.style';
 import {
   SubscriptionSidebarContent,
   SubscriptionSidebarHolder,
@@ -20,7 +20,7 @@ const SubscriptionSidebar = () => {
   return (
     <SubscriptionSidebarHolder>
       <SubscriptionSidebarContent>
-        <TitleH3 as="h2">Sign up to get the latest from our attorneys!</TitleH3>
+        <Title20 as="h2">Sign up to get the latest from our attorneys!</Title20>
 
         <SubscriptionSidebarText>
           Consider subscribing to our Firm Insights mailing list by clicking the

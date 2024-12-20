@@ -4,7 +4,7 @@ import {
   ServicesIndustriesCarLabel,
 } from 'styles/services/ServicesIndustries.style';
 import empty from 'is-empty';
-import { TitleH2, UnderlinedLink } from 'styles/common/Typography.style';
+import { Title32, UnderlinedLink } from 'styles/common/Typography.style';
 
 const ServicesIndustriesCard = ({
   title,
@@ -17,9 +17,9 @@ const ServicesIndustriesCard = ({
   return (
     <ServicesIndustriesCardWrapper>
       <ServicesIndustriesCarLabel>{label}</ServicesIndustriesCarLabel>
-      <TitleH2 as="h3" $isWhite>
+      <Title32 as="h3" $isWhite>
         {title}
-      </TitleH2>
+      </Title32>
       {!empty(link) ? (
         <UnderlinedLink href={link} $isWhite>
           Learn about this industry

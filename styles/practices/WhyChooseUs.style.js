@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TitleH2, TitleH3 } from 'styles/common/Typography.style';
+import { Title32, Title20 } from 'styles/common/Typography.style';
 import {
   globalBorderRadius,
   globalColor,
@@ -11,7 +11,7 @@ export const WhyChooseUsSection = styled.div`
   padding: 40px 0;
   background-color: ${globalColor.white};
 
-  ${TitleH2} {
+  ${Title32} {
     margin-bottom: 24px;
 
     ${media_breakpoint_down('xxl')} {
@@ -85,7 +85,7 @@ export const WhyChooseUsCardContent = styled.div`
   display: flex;
   flex-direction: column;
 
-  ${TitleH3} {
+  ${Title20} {
     margin: 0 0 4px 0;
     font-size: ${rem(24)};
     font-weight: 400;

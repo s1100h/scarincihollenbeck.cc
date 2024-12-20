@@ -5,7 +5,7 @@ import {
   SubHeaderInteractive,
   SubHeaderKeyContactsCards,
 } from './SubHeader.style';
-import { TitleH2 } from 'styles/common/Typography.style';
+import { Title32 } from 'styles/common/Typography.style';
 import {
   AttorneyCardBox,
   ContactBox,
@@ -105,7 +105,7 @@ export const SubHeaderMain = styled.div`
   gap: 8px;
   flex: 1;
 
-  ${TitleH2} {
+  ${Title32} {
     color: ${globalColor.black};
     margin-bottom: 0;
   }

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TitleH2, titleH2Styles } from 'styles/common/Typography.style';
+import { title32Styles } from 'styles/common/Typography.style';
 import { FaqWrapper } from 'styles/Faq.style';
 import {
   globalColor,
@@ -98,7 +98,7 @@ export const SplitContentDescription = styled.div`
     h2,
     h3,
     h4 {
-      ${titleH2Styles};
+      ${title32Styles};
       margin: 0 0 8px 0;
 
       & * {

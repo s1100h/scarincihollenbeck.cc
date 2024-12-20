@@ -8,7 +8,7 @@ import {
 } from 'styles/global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import Link from 'next/link';
-import { TitleH2 } from './common/Typography.style';
+import { Title32 } from './common/Typography.style';
 
 export const LocationsHomeSection = styled.section`
   padding-top: 60px;
@@ -16,7 +16,7 @@ export const LocationsHomeSection = styled.section`
   background-color: ${globalColor.gray.gray10};
 `;
 
-export const LocationTitle = styled(TitleH2)`
+export const LocationTitle = styled(Title32)`
   margin-bottom: 16px !important;
 `;
 

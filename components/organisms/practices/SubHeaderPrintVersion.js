@@ -8,7 +8,7 @@ import {
   SubHeaderMain,
   SubHeaderPrintVersionContainer,
 } from 'styles/practices/PracticePrintPage.style';
-import { TitleH2 } from 'styles/common/Typography.style';
+import { Title32 } from 'styles/common/Typography.style';
 
 const SubHeaderPrintVersion = ({ title, subtitle, keyContacts }) => {
   const { asPath } = useRouter();
@@ -18,7 +18,7 @@ const SubHeaderPrintVersion = ({ title, subtitle, keyContacts }) => {
       <SubHeaderKeyContacts keyContacts={keyContacts} isPrint />
 
       <SubHeaderMain>
-        <TitleH2 as="h1">{title}</TitleH2>
+        <Title32 as="h1">{title}</Title32>
 
         <Link href={`${CURRENT_DOMAIN}${asPath}`}>
           {`${CURRENT_DOMAIN}${asPath}`}

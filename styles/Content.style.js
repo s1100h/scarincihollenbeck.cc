@@ -52,4 +52,17 @@ export const ContentContainer = styled.div`
       }
     }
   }
+
+  a {
+    color: currentColor;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  strong {
+    font-weight: 500;
+  }
 `;

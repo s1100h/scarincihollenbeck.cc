@@ -5,13 +5,13 @@ import {
   ContactFormHolder,
   ContactFormWrapper,
 } from 'styles/HomeContactForm.style';
-import { TitleH2 } from 'styles/common/Typography.style';
+import { Title32 } from 'styles/common/Typography.style';
 
 const HomeContactForm = () => (
   <ContactFormWrapper data-testid="ContactFormWrapper">
     <ContainerDefault>
       <ContactFormHolder>
-        <TitleH2>Let’s get in touch!</TitleH2>
+        <Title32>Let’s get in touch!</Title32>
         <ContactForm buttonText="Send" blockName="homepage-contact-form" />
       </ContactFormHolder>
     </ContainerDefault>

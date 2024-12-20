@@ -8,11 +8,11 @@ import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
 } from './mediaBreakpoints.style';
-import { TitleH2 } from './common/Typography.style';
+import { Title32 } from './common/Typography.style';
 import { ContainerDefault } from './Containers.style';
 
 export const FaqWrapper = styled.section`
-  ${TitleH2} {
+  ${Title32} {
     margin-bottom: 12px;
   }
 
@@ -118,7 +118,7 @@ export const FaqWrapper = styled.section`
   @media print {
     margin-bottom: 0;
 
-    ${TitleH2} {
+    ${Title32} {
       margin-bottom: 20px;
       page-break-before: auto;
     }

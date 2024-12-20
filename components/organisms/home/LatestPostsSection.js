@@ -9,7 +9,7 @@ import {
   LatestPostsHolder,
   LatestPostsWrapper,
 } from 'styles/LatestPosts.style';
-import { TitleH2 } from 'styles/common/Typography.style';
+import { Title32 } from 'styles/common/Typography.style';
 import empty from 'is-empty';
 
 const LatestPostsTabsRender = dynamic(() => import('./LatestPostsTabsRender'));
@@ -32,7 +32,7 @@ const LatestPostsSection = ({
       <ContainerDefault>
         <LatestPostsHolder>
           <LatestPostsHeader>
-            <TitleH2>{title}</TitleH2>
+            <Title32>{title}</Title32>
 
             <StandardBlueButton href="/library/category/client-alert" as={Link}>
               Open library

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
-import { TitleH2 } from './common/Typography.style';
+import { Title32 } from './common/Typography.style';
 import {
   globalBorderRadius,
   globalColor,
@@ -21,7 +21,7 @@ export const MemorialsSection = styled.section`
   }
 `;
 
-export const MemorialTitle = styled(TitleH2)`
+export const MemorialTitle = styled(Title32)`
   width: fit-content;
   padding-bottom: 12px;
   border-bottom: 1px solid ${globalColor.blue.skyBlue};

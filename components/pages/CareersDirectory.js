@@ -1,10 +1,9 @@
 import dynamic from 'next/dynamic';
-import FullWidth from 'layouts/FullWidth';
-import SubHeader from 'layouts/SubHeader/SubHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import CareersResults from '../organisms/careers/CareersResults';
+import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
 
-const CareersEqualOpportunity = dynamic(() => import('components/atoms/Article'));
+const CareersResults = dynamic(() => import('../organisms/careers/CareersResults'));
+const CareersInfo = dynamic(() => import('components/organisms/careers/CareersInfo'));
 
 const CareersPage = ({
   careers, seo, site, canonicalUrl,
@@ -15,19 +14,20 @@ const CareersPage = ({
       metaDescription={seo.metaDesc}
       canonicalUrl={canonicalUrl}
     />
-    <SubHeader
+    <SubHeaderDefault
       title={site.title}
       subtitle={site.description}
-      offset={3}
-      span={7}
+      backgroundImage={site.image}
+      isSubscription
     />
-    <FullWidth>
-      {careers && <CareersResults positions={careers} />}
-      <CareersEqualOpportunity
-        title="Equal Employment Opportunity"
-        contentBody={site.bodyContent}
-      />
-    </FullWidth>
+
+    <CareersResults positions={careers} />
+    <CareersInfo
+      title="Scarinci Hollenbeck is an Equal Opportunity Employer."
+      subtitle="Equal Employment Opportunity"
+      description={site.bodyContent}
+      focusedCards={site?.focusedCards}
+    />
   </>
 );
 

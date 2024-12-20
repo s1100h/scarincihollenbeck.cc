@@ -742,6 +742,26 @@ export const SubHeaderHolder = styled.div`
       }
     }
   }
+
+  &.sub-header--subscription {
+    ${SubHeaderInteractive} {
+      max-width: 595px;
+
+      ${media_breakpoint_down('xxl')} {
+        max-width: 540px;
+      }
+
+      ${media_breakpoint_exactly_down(1279)} {
+        max-width: 100%;
+      }
+    }
+
+    &.sub-header--without-image {
+      .sub-header__content {
+        max-width: 1230px;
+      }
+    }
+  }
 `;
 
 export const SubHeaderMenuList = styled.ul`
@@ -772,5 +792,43 @@ export const SubHeaderMenuLink = styled(Link)`
 
   ${media_breakpoint_down('md')} {
     font-size: ${rem(14)};
+  }
+`;
+
+export const SubHeaderSubscriptionHolder = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  color: ${globalColor.white};
+
+  button {
+    max-width: 240px;
+  }
+
+  ${media_breakpoint_down('md')} {
+    row-gap: 12px;
+  }
+`;
+
+export const SubHeaderSubscriptionContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+
+  p {
+    margin: 0;
+  }
+`;
+
+export const SubHeaderSubscriptionTitle = styled.h2`
+  margin: 0;
+  font-size: ${rem(24)};
+  line-height: 1.5;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-family: var(--font-lato);
+
+  ${media_breakpoint_down('md')} {
+    font-size: ${rem(16)};
   }
 `;

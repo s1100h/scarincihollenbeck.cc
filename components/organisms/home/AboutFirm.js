@@ -14,7 +14,7 @@ import Image from 'next/image';
 import LogoSeparator from 'components/common/LogoSeparator';
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
 import empty from 'is-empty';
-import { TitleH2 } from 'styles/common/Typography.style';
+import { Title32 } from 'styles/common/Typography.style';
 
 const AboutFirm = ({
   title,
@@ -30,7 +30,7 @@ const AboutFirm = ({
     <ContainerDefault>
       <AboutBlocks>
         <AboutBlock>
-          <TitleH2 $isWhite>{title}</TitleH2>
+          <Title32 $isWhite>{title}</Title32>
           {!empty(arcticle) && (
             <AboutDescription>
               <JSXWithDynamicLinks HTML={arcticle} />

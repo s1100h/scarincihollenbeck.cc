@@ -8,7 +8,7 @@ import { media_breakpoint_down } from '../mediaBreakpoints.style';
 import Link from 'next/link';
 
 //Titles
-export const titleH2Styles = `
+export const title32Styles = `
   margin: 0;
   color: ${globalColor.blue.darkBlue};
   font-size: ${rem(32)};
@@ -22,18 +22,23 @@ export const titleH2Styles = `
   }
 `;
 
-export const TitleH2 = styled.h2`
-  ${titleH2Styles};
+export const Title32 = styled.h2`
+  ${title32Styles};
   color: ${({ $isWhite }) => (!$isWhite ? undefined : globalColor.white)};
 `;
 
-export const TitleH3 = styled.h3`
+export const Title20 = styled.h3`
   margin: 0;
   color: ${globalColor.blue.darkBlue};
   font-size: ${rem(20)};
   line-height: 1.6;
   font-weight: 600;
   font-family: var(--font-poppins);
+
+  ${media_breakpoint_down('md')} {
+    font-size: ${rem(18)};
+    line-height: 1.56;
+  }
 `;
 
 //Links

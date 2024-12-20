@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { globalBorderRadius, globalColor, rem } from "./global_styles/Global.styles";
-import { TitleH3 } from "./common/Typography.style";
+import { Title20 } from "./common/Typography.style";
 import { media_breakpoint_down } from "./mediaBreakpoints.style";
 
 export const SubscriptionSidebarHolder = styled.div`
@@ -26,12 +26,8 @@ export const SubscriptionSidebarContent = styled.div`
   flex-direction: column;
   row-gap: 12px;
 
-  ${TitleH3} {
+  ${Title20} {
     color: currentColor;
-
-    ${media_breakpoint_down('md')} {
-      font-size: ${rem(18)};
-    }
   }
 
   ${media_breakpoint_down('md')} {

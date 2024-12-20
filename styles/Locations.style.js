@@ -13,7 +13,6 @@ import {
   rem,
 } from './global_styles/Global.styles';
 import { PracticeContentSection } from './practices/PracticeContent.style';
-import { TitleH2 } from './common/Typography.style';
 
 const addressPointConst = `
       span {

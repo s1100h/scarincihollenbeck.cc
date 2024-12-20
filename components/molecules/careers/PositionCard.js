@@ -1,9 +1,13 @@
-import { CareerCard } from 'styles/PositionCard.style';
 import {
-  BsFillBriefcaseFill,
-  BsFillClockFill,
-  BsFillGeoAltFill,
-} from 'react-icons/bs';
+  CareerCard,
+  CareerCardContent,
+  CareerCardDescription,
+  CareerCardDuration,
+  CareerCardFooter,
+  CareerCardLocation,
+  CareerCardTitle,
+} from 'styles/PositionCard.style';
+import { BsFillBriefcaseFill } from 'react-icons/bs';
 
 export const checkAllOffices = (location) => {
   if (!location) return null;
@@ -17,52 +21,35 @@ export const checkAllOffices = (location) => {
 };
 
 export default function PositionCard({
-  handleClickToCareer,
-  slug,
   title,
   miniDescription,
   positionLocation,
-  positionType,
-  startDate,
   duration,
+  href,
 }) {
   return (
-    <CareerCard onClick={() => handleClickToCareer(slug)}>
-      {title && <h3 title={title}>{title}</h3>}
-
-      <div className="position-location-box">
-        {positionType && (
-        <div className="position-type">
-          #
-          {positionType}
-        </div>
+    <CareerCard href={href}>
+      <CareerCardContent>
+        {title && <CareerCardTitle title={title}>{title}</CareerCardTitle>}
+        {miniDescription && (
+          <CareerCardDescription>{miniDescription}</CareerCardDescription>
         )}
-        {positionLocation && (
-          <p className="icon-and-info">
-            <BsFillGeoAltFill />
-            {checkAllOffices(positionLocation)}
-          </p>
-        )}
-      </div>
-      {miniDescription && (
-        <p className="job-mini-description">{miniDescription}</p>
-      )}
+      </CareerCardContent>
 
-      {(startDate || duration) && (
-        <div className="d-flex gap-4 mt-auto">
-          {startDate && (
-            <p className="icon-and-info">
-              <BsFillClockFill />
-              {startDate}
-            </p>
+      {(positionLocation || duration) && (
+        <CareerCardFooter>
+          {positionLocation && (
+            <CareerCardLocation>
+              {checkAllOffices(positionLocation)}
+            </CareerCardLocation>
           )}
           {duration && (
-            <p className="icon-and-info">
+            <CareerCardDuration>
               <BsFillBriefcaseFill />
               {duration}
-            </p>
+            </CareerCardDuration>
           )}
-        </div>
+        </CareerCardFooter>
       )}
     </CareerCard>
   );

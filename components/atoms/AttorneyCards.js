@@ -5,7 +5,7 @@ import {
   AttorneyCardsHolder,
   AttorneyCardsWrapper,
 } from 'styles/Attornyes.style';
-import { TitleH2 } from 'styles/common/Typography.style';
+import { Title32 } from 'styles/common/Typography.style';
 
 const LawyerCard = dynamic(() => import('components/shared/LawyerCard'));
 
@@ -21,7 +21,7 @@ const AttorneyCards = ({
   return (
     <AttorneyCardsHolder>
       {!empty(changedTitle) && pathname !== '/administration' && (
-        <TitleH2>{changedTitle}</TitleH2>
+        <Title32>{changedTitle}</Title32>
       )}
       <AttorneyCardsWrapper>
         {content.map((info) => (

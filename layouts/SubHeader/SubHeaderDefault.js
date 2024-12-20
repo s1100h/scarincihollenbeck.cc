@@ -14,6 +14,7 @@ const SubHeaderKeyContacts = dynamic(() => import('./SubHeaderKeyContacts'));
 const SubHeaderLocations = dynamic(() => import('./SubHeaderLocations'));
 const SubHeaderIndustriesSlider = dynamic(() => import('./SubHeaderIndustriesSlider'));
 const SubHeaderMenu = dynamic(() => import('./SubHeaderMenu'));
+const SubHeaderSubscription = dynamic(() => import('./SubHeaderSubscription'));
 
 const SubHeaderDefault = ({
   title,
@@ -24,12 +25,15 @@ const SubHeaderDefault = ({
   locations,
   industries,
   menu,
+  isSubscription,
   isLocationTabs = false,
 }) => (
   <SubHeaderHolder
     className={`sub-header ${
       !backgroundImage ? 'sub-header--without-image' : ''
-    } ${menu ? 'sub-header--menu' : ''}`}
+    } ${menu ? 'sub-header--menu' : ''} ${
+      isSubscription ? 'sub-header--subscription' : ''
+    }`}
     data-testid="default-sub-header"
   >
     {backgroundImage && (
@@ -71,6 +75,8 @@ const SubHeaderDefault = ({
     )}
     {!empty(industries) && <SubHeaderIndustriesSlider slides={industries} />}
     {!empty(menu) && <SubHeaderMenu menu={menu} />}
+
+    {isSubscription && <SubHeaderSubscription />}
   </SubHeaderHolder>
 );
 

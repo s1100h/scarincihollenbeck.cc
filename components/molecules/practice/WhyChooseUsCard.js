@@ -1,7 +1,7 @@
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
 import Image from 'next/image';
 import React from 'react';
-import { TitleH3 } from 'styles/common/Typography.style';
+import { Title20 } from 'styles/common/Typography.style';
 import {
   WhyChooseUsCardContent,
   WhyChooseUsCardDescription,
@@ -20,7 +20,7 @@ const WhyChooseUsCard = ({
   return (
     <WhyChooseUsCardWrapper>
       <WhyChooseUsCardContent>
-        {title && <TitleH3>{title}</TitleH3>}
+        {title && <Title20>{title}</Title20>}
         <WhyChooseUsCardDescription as={isJSXDescription ? 'div' : 'p'}>
           <JSXWithDynamicLinks HTML={text} />
         </WhyChooseUsCardDescription>

@@ -7,7 +7,7 @@ import {
   rem,
 } from '../global_styles/Global.styles';
 import { media_breakpoint_down } from '../mediaBreakpoints.style';
-import { TitleH2 } from 'styles/common/Typography.style';
+import { Title32 } from 'styles/common/Typography.style';
 
 export const WhyChooseUsSection = styled.section`
   padding: 60px 0;
@@ -66,7 +66,7 @@ export const ArticleBoxSimple = styled.article`
   }
 `;
 
-export const WhyChooseUsTitle = styled(TitleH2)`
+export const WhyChooseUsTitle = styled(Title32)`
   margin-bottom: 16px !important;
 `;
 

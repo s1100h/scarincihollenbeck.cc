@@ -872,7 +872,3 @@ export const successMessage = `
   }
 `;
 
-export const OptionalIndent = styled.div`
-  margin-top: ${({ mt }) => (mt ? `${mt}px` : '0')};
-  margin-bottom: ${({ mb }) => (mb ? `${mb}px` : '0')};
-`;

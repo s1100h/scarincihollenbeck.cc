@@ -48,4 +48,27 @@ export const LogoSeparatorWrapper = styled.div`
   ${media_breakpoint_down('xl')} {
     flex-direction: row;
   }
+
+  &.separator-big {
+    margin: 40px 0;
+
+    &::before,
+    &::after {
+      background-color: ${globalColor.gray.gray300};
+    }
+
+    > img {
+      width: 64px;
+      height: 64px;
+
+      ${media_breakpoint_down('md')} {
+        width: 28px;
+        height: 28px;
+      }
+    }
+
+    ${media_breakpoint_down('lg')} {
+      margin: 32px 0;
+    }
+  }
 `;

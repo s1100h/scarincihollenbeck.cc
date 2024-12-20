@@ -1,16 +1,18 @@
-import React, { useId } from 'react';
+import React, { Fragment, useId } from 'react';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
-import { Col } from 'react-bootstrap';
 import empty from 'is-empty';
-import Loader from '../../atoms/Loader';
+import { ContainerDefault } from 'styles/Containers.style';
+import { Title32 } from 'styles/common/Typography.style';
+import LogoSeparator from 'components/common/LogoSeparator';
 import PositionCard from '../../molecules/careers/PositionCard';
 import {
-  CareerBlockSubtitle,
-  CareerBlockTitle,
+  CareersBlockSubtitle,
   CareersBlock,
+  CareersBlockHeader,
+  CareersBlocks,
+  CareersSection,
+  CareersBlockCards,
 } from '../../../styles/Careers.style';
-import { OptionalIndent } from '../../../styles/global_styles/Global.styles';
 
 const EmptyResults = dynamic(() => import('components/molecules/careers/EmptyResults'));
 
@@ -29,53 +31,44 @@ const renderSubTitle = (title) => {
 
   return subTitleMap[title] || `Open position in our ${title} team`;
 };
-const renderCareersBlocks = (careersObj, handleClickCareerCallback) => Object.keys(careersObj).map((careerType) => (
-  <CareersBlock key={useId()}>
-    <CareerBlockTitle>{addPluralToEnd(careerType)}</CareerBlockTitle>
-    <CareerBlockSubtitle>
-      {renderSubTitle(addPluralToEnd(careerType))}
-    </CareerBlockSubtitle>
-    {careersObj[careerType].map((position) => (
-      <Col
-        sm={12}
-        md={6}
-        xl={4}
-        className="mt-3 mb-2"
-        key={position.databaseId}
-      >
-        <PositionCard
-          handleClickToCareer={handleClickCareerCallback}
-          slug={`careers/${position.slug}`}
-          title={position.position}
-          miniDescription={position.jobSummaryForCard}
-          positionLocation={position.positionLocation}
-          positionType={position.positionType}
-          startDate={position.startDate}
-          duration={position.duration}
-        />
-      </Col>
-    ))}
-  </CareersBlock>
+const renderCareersBlocks = (careersObj) => Object.keys(careersObj).map((careerType, index) => (
+  <Fragment key={useId()}>
+    <CareersBlock>
+      <CareersBlockHeader>
+        <Title32>{addPluralToEnd(careerType)}</Title32>
+        <CareersBlockSubtitle>
+          {renderSubTitle(addPluralToEnd(careerType))}
+        </CareersBlockSubtitle>
+      </CareersBlockHeader>
+      <CareersBlockCards>
+        {careersObj[careerType].map((position) => (
+          <PositionCard
+            key={position.databaseId}
+            title={position.position}
+            miniDescription={position.jobSummaryForCard}
+            positionLocation={position.positionLocation}
+            duration={position.duration}
+            href={`careers/${position.slug}`}
+          />
+        ))}
+      </CareersBlockCards>
+    </CareersBlock>
+    {index < Object.entries(careersObj).length - 1 && (
+    <LogoSeparator direction="row" isBig />
+    )}
+  </Fragment>
 ));
 
-const CareersResults = ({ positions }) => {
-  const { push } = useRouter();
-  const handleClickCareer = (slug) => push(slug);
-
-  return (
-    <>
-      {empty(positions) ? (
-        <Loader />
-      ) : !empty(positions) ? (
-        <>
-          <OptionalIndent mt={30} />
-          {renderCareersBlocks(positions, handleClickCareer)}
-        </>
+const CareersResults = ({ positions }) => (
+  <CareersSection>
+    <ContainerDefault>
+      {!empty(positions) ? (
+        <CareersBlocks>{renderCareersBlocks(positions)}</CareersBlocks>
       ) : (
         <EmptyResults />
       )}
-    </>
-  );
-};
+    </ContainerDefault>
+  </CareersSection>
+);
 
 export default CareersResults;

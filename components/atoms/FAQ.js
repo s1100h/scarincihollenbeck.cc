@@ -2,7 +2,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import { FaqWrapper } from 'styles/Faq.style';
 import { ATTORNEYS_FAQ } from 'utils/constants';
 import empty from 'is-empty';
-import { TitleH2 } from 'styles/common/Typography.style';
+import { Title32 } from 'styles/common/Typography.style';
 import { JSXWithDynamicLinks } from './micro-templates/JSXWithDynamicLinks';
 
 export default function FAQ({
@@ -23,11 +23,11 @@ export default function FAQ({
       id={anchorId}
       data-testid="faq-wrapper"
     >
-      <TitleH2>
+      <Title32>
         {`${
           !empty(title) && !empty(faqArrContent) ? `FAQ about ${title}` : 'FAQ'
         }`}
-      </TitleH2>
+      </Title32>
       <Accordion defaultActiveKey={activeKeys} alwaysOpen={!isSingleOpened}>
         {faqItems.map(({ title, description }) => (
           <Accordion.Item key={title} eventKey={title}>

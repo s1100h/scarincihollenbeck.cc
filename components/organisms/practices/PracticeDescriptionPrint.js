@@ -1,5 +1,5 @@
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
-import { TitleH2, TitleH3 } from 'styles/common/Typography.style';
+import { Title32, Title20 } from 'styles/common/Typography.style';
 import {
   DescriptionArticlePrint,
   DescriptionSectionPrint,
@@ -7,11 +7,11 @@ import {
 
 const PracticeDescriptionPrint = ({ contentSection }) => (
   <DescriptionSectionPrint>
-    <TitleH2>Description</TitleH2>
+    <Title32>Description</Title32>
 
     {contentSection?.map((article) => (
       <DescriptionArticlePrint key={article.title}>
-        <TitleH3>{article.title}</TitleH3>
+        <Title20>{article.title}</Title20>
         <div className="article-main">
           <JSXWithDynamicLinks HTML={article.content} print />
         </div>

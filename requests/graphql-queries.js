@@ -768,7 +768,8 @@ export const attorneysPageQuery = `query AttorneysPagesQuery {
 }`;
 
 /** careers landing page query */
-export const careersPageQuery = `query CareersPagesQuery {
+export const careersPageQuery = `
+query CareersPagesQuery {
   pageBy(pageId: 46660) {
     title
     seo {
@@ -782,19 +783,30 @@ export const careersPageQuery = `query CareersPagesQuery {
         name
       }
     }
+    featuredImage {
+      node {
+        sourceUrl
+      }
+    }
+    focusedCards {
+      cards {
+        icon
+        text
+        title
+      }
+    }
   }
 }`;
 
-export const careersQuery = `query BasicPageQuery {
-  careers {
+export const careersQuery = `
+query BasicPageQuery {
+  careers(first: 100) {
     nodes {
       databaseId
       slug
       careerFields {
-        contact
         duration
         position
-        startDate
         positionLocation
         positionType
         jobSummaryForCard

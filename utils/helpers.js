@@ -25,6 +25,10 @@ import GlobeIcon from 'components/common/icons/GlobeIcon';
 import BulbIcon from 'components/common/icons/BulbIcon';
 import GovernmentIcon from 'components/common/icons/GovernmentIcon';
 import GamingIcon from 'components/common/icons/GamingIcon';
+import CultureIcon from 'components/common/icons/CultureIcon';
+import BalanceIcon from 'components/common/icons/BalanceIcon';
+import BenefitsIcon from 'components/common/icons/BenefitsIcon';
+import CollaborativeIcon from 'components/common/icons/CollaborativeIcon';
 import {
   CLOUDINARY_BASE_URL,
   EMAGE_UPLOAD_CLOUDINARY,
@@ -512,6 +516,10 @@ export const getIcon = (name) => {
     Bulb: <BulbIcon />,
     Government: <GovernmentIcon />,
     Gaming: <GamingIcon />,
+    Culture: <CultureIcon />,
+    Balance: <BalanceIcon />,
+    Benefits: <BenefitsIcon />,
+    Collaborative: <CollaborativeIcon />,
   };
 
   return icons[name];

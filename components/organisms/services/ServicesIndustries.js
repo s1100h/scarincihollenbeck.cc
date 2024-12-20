@@ -1,5 +1,5 @@
 import React from 'react';
-import { TitleH2 } from 'styles/common/Typography.style';
+import { Title32 } from 'styles/common/Typography.style';
 import { ContainerDefault } from 'styles/Containers.style';
 import {
   ServicesIndustriesCards,
@@ -24,7 +24,7 @@ const ServicesIndustries = ({ industries }) => {
     <ServicesIndustriesSection id="industries">
       <ContainerDefault>
         <ServicesIndustriesHolder>
-          <TitleH2>Industries we work with</TitleH2>
+          <Title32>Industries we work with</Title32>
 
           <ServicesIndustriesCards>
             {industries.map((item) => (

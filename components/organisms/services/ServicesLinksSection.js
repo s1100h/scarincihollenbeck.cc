@@ -6,13 +6,13 @@ import {
   ServicesLinksList,
   ServicesLinksListItem,
 } from 'styles/services/ServicesBlock.style';
-import { TitleH2 } from 'styles/common/Typography.style';
+import { Title32 } from 'styles/common/Typography.style';
 
 const ServicesLinksSection = ({ title, links, anchorId }) => {
   if (empty(links)) return null;
   return (
     <ServicesLinksBlock id={anchorId}>
-      {!empty(title) && <TitleH2>{title}</TitleH2>}
+      {!empty(title) && <Title32>{title}</Title32>}
       <ServicesLinksList>
         {links.map((link) => (
           <ServicesLinksListItem key={link?.databaseId}>

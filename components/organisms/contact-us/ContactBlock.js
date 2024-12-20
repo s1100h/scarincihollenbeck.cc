@@ -2,7 +2,7 @@ import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDyn
 import ContactForm from 'components/shared/ContactForm/ContactForm';
 import Image from 'next/image';
 import React from 'react';
-import { TitleH2 } from 'styles/common/Typography.style';
+import { Title32 } from 'styles/common/Typography.style';
 import {
   ContactFormWrapper,
   ContactHolder,
@@ -36,7 +36,7 @@ const ContactBlock = () => (
         </ContactItems>
 
         <ContactFormWrapper>
-          <TitleH2>Let’s get in touch!</TitleH2>
+          <Title32>Let’s get in touch!</Title32>
           <ContactForm buttonText="Send" blockName="contact-us-contact-form" />
         </ContactFormWrapper>
       </ContactHolder>

@@ -26,7 +26,7 @@ import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDyn
 import empty from 'is-empty';
 import WhiteButton from 'components/molecules/attorney/WhiteButton';
 import ProfileBioList from 'components/molecules/attorney/ProfileBioList';
-import { TitleH2 } from 'styles/common/Typography.style';
+import { Title32 } from 'styles/common/Typography.style';
 import { useDispatch } from 'react-redux';
 import PostBreadCrumbs from '../post/PostBreadcrumbs';
 import { handleModalOpener } from '../../../redux/slices/modals.slice';
@@ -140,7 +140,7 @@ const ProfileHeader = ({
 
           <ProfileHeaderRight>
             <ProfileTitle>
-              <TitleH2 as="h1">{name}</TitleH2>
+              <Title32 as="h1">{name}</Title32>
               <ProfileDesignation>{designation}</ProfileDesignation>
             </ProfileTitle>
 

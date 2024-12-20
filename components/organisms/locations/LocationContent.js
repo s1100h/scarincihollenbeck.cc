@@ -9,7 +9,7 @@ import {
   SplitContentSidebar,
   SplitContentText,
 } from 'styles/practices/PracticeContent.style';
-import { TitleH2 } from 'styles/common/Typography.style';
+import { Title32 } from 'styles/common/Typography.style';
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
 import empty from 'is-empty';
 import GetInTouchSidebar from '../common/GetInTouchSidebar';
@@ -30,9 +30,9 @@ const LocationContent = ({
 
       <SplitContentHolder>
         <SplitContentDescription>
-          <TitleH2>
+          <Title32>
             {`Your Trusted Legal Partners in ${changeTitle(title)}`}
-          </TitleH2>
+          </Title32>
           <Map
             title={title}
             map={mapAddress}

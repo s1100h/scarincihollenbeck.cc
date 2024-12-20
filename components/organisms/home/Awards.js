@@ -4,7 +4,7 @@ import { StandardLightBlueButton } from 'styles/Buttons.style';
 import { ContainerDefault } from 'styles/Containers.style';
 import dynamic from 'next/dynamic';
 import React from 'react';
-import { TitleH2 } from 'styles/common/Typography.style';
+import { Title32 } from 'styles/common/Typography.style';
 import empty from 'is-empty';
 
 const AwardsSlider = dynamic(() => import('components/molecules/home/AwardsSlider'));
@@ -17,7 +17,7 @@ const Awards = ({ awards, anchorId }) => {
       <ContainerDefault>
         <AwardsHolder>
           <AwardsHeader>
-            <TitleH2 $isWhite>Awards / Accolades</TitleH2>
+            <Title32 $isWhite>Awards / Accolades</Title32>
 
             <StandardLightBlueButton as={Link} href="/awards">
               Award Methodology

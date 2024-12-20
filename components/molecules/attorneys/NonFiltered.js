@@ -19,7 +19,7 @@ const NonFiltered = ({ attorneys, isVertical = false }) => {
         isHorizontal={!isVertical && attorney[0] !== 'Firm Managing Partner'}
       />
       {index < Object.entries(attorneys).length - 1 && (
-        <LogoSeparator direction="row" />
+        <LogoSeparator direction="row" isBig />
       )}
     </Fragment>
   ));
