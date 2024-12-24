@@ -32,26 +32,6 @@ export const CheckBoxesList = styled.ul`
   }
 `;
 
-export const GradientSubscriptionBox = styled.article`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-
-  .subscription-title {
-    font-weight: bold;
-    font-size: ${rem(28)};
-    text-align: start;
-  }
-
-  ${media_breakpoint_down('lg')} {
-    span {
-      display: flex;
-    }
-  }
-`;
-
 export const FormSubscriptionContainer = styled.div`
   display: flex;
   flex-direction: column;

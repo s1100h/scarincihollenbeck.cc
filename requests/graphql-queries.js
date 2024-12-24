@@ -807,9 +807,47 @@ query BasicPageQuery {
       careerFields {
         duration
         position
-        positionLocation
         positionType
         jobSummaryForCard
+        locations {
+          ... on OfficeLocation {
+            title
+          }
+        }
+      }
+    }
+  }
+}`;
+
+export const careerPageQuery = `
+query CareerPageQuery($slug: ID!) {
+  career(id: $slug, idType: SLUG) {
+    careerFields {
+      locations {
+        ... on OfficeLocation {
+          title
+          databaseId
+        }
+      }
+      positionType
+      duration
+      jobSummaryForCard
+    }
+    title
+    status
+    seo {
+      title
+      metaDesc
+    }
+    pagesFields {
+      sections {
+        content
+        link {
+          title
+          target
+          url
+        }
+        title
       }
     }
   }

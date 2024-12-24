@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { globalColor, rem } from "./global_styles/Global.styles";
+import { globalColor } from "./global_styles/Global.styles";
 import { media_breakpoint_down } from "./mediaBreakpoints.style";
 
 export const ContentWrapper = styled.section`
   display: flex;
   flex-direction: column;
-  row-gap: 12px;
+  row-gap: ${({$isSmaller}) => $isSmaller ? '8px' : '12px'};
 
   ${media_breakpoint_down('xxl')} {
     row-gap: 8px;

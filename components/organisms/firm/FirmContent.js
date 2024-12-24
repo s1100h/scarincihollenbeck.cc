@@ -3,32 +3,32 @@ import empty from 'is-empty';
 import { ContainerDefault } from 'styles/Containers.style';
 import ContentSection from 'components/molecules/ContentSection';
 import {
-  FirmContentHolder,
-  FirmContentSections,
-  FirmContentSidebar,
-  FirmContentWrapper,
-} from 'styles/FirmContent.style';
+  ArticleContent,
+  ArticleContentHolder,
+  ArticleContentSections,
+  ArticleContentSidebar,
+} from 'styles/Article.style';
 import SubscriptionSidebar from '../common/SubscriptionSidebar';
 
 const FirmContent = ({ sections }) => {
   if (empty(sections)) return null;
 
   return (
-    <FirmContentWrapper>
+    <ArticleContent>
       <ContainerDefault>
-        <FirmContentHolder>
-          <FirmContentSections>
+        <ArticleContentHolder>
+          <ArticleContentSections>
             {sections?.map(({ title, content }) => (
               <ContentSection key={title} title={title} content={content} />
             ))}
-          </FirmContentSections>
+          </ArticleContentSections>
 
-          <FirmContentSidebar>
+          <ArticleContentSidebar>
             <SubscriptionSidebar />
-          </FirmContentSidebar>
-        </FirmContentHolder>
+          </ArticleContentSidebar>
+        </ArticleContentHolder>
       </ContainerDefault>
-    </FirmContentWrapper>
+    </ArticleContent>
   );
 };
 

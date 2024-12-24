@@ -60,20 +60,6 @@ const sidebarBtnStyle = `
   }
 `;
 
-export const TitleSideBar = styled.h3`
-  font-size: ${rem(19.2)};
-  font-family: var(--font-poppins), sans-serif;
-  font-weight: 600;
-  margin-bottom: 15px;
-`;
-
-export const NavList = styled.ul`
-  padding: 0;
-
-  li {
-    margin-bottom: 6px;
-  }
-`;
 export const SideBarContainer = styled.div`
   box-shadow: ${globalShadow.allSideShadow};
   height: fit-content;

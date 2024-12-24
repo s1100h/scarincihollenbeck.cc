@@ -225,6 +225,10 @@ export const SubHeaderContent = styled.div`
   ${media_breakpoint_exactly_down(1279)} {
     padding: 0 32px;
     row-gap: 40px;
+
+    &:last-child {
+      padding-bottom: 24px;
+    }
   }
 
   ${media_breakpoint_down('md')} {
