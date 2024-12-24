@@ -11,7 +11,6 @@ import {
   sortAttorneysByCategory,
   sortByKey,
 } from 'utils/helpers';
-import empty from 'is-empty';
 
 /** Fetch the firm overview page content WP GRAPHQL API */
 export async function getFirmOverviewContent() {
@@ -41,23 +40,6 @@ const sanitizeMembers = (members) => members.map((member) => ({
         ? member.attorneyChairCoChair
         : member.attorneyMainInformation.designation)
       || member.administration?.title,
-  location_array: !empty(
-    member.attorneyPrimaryRelatedPracticesLocationsGroups,
-  )
-    ? member.attorneyPrimaryRelatedPracticesLocationsGroups?.officeLocation?.map(
-      ({ id, title }) => ({
-        id,
-        officeMainInformation: title,
-      }),
-    )
-    : !empty(member.administration)
-      ? member.administration?.location?.map(
-        ({ id, officeMainInformation }) => ({
-          id,
-          officeMainInformation: officeMainInformation.addressLocality,
-        }),
-      )
-      : [],
 }));
 
 export const getStaticProps = async () => {
@@ -87,7 +69,7 @@ export const getStaticProps = async () => {
       seo,
       content,
       firmOverviewTabs,
-      firmMembers: sorteredFirmMembers,
+      FirmMembers: sorteredFirmMembers,
       subHeaderImage: featuredImage.node.sourceUrl,
     },
     revalidate: 86400,
@@ -100,7 +82,7 @@ const FirmOverview = ({
   seo,
   content,
   firmOverviewTabs,
-  firmMembers,
+  FirmMembers,
   subHeaderImage,
 }) => {
   const { clearBody, subTitle } = getSubTitleFromHTML(content);
@@ -113,7 +95,7 @@ const FirmOverview = ({
     bodyContent: clearBody,
     subTitle,
     firmOverviewTabs,
-    firmMembers,
+    FirmMembers,
     subHeaderImage,
   };
 

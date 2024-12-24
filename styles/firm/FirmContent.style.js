@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { media_breakpoint_down } from "./mediaBreakpoints.style";
+import styled from 'styled-components';
+import { media_breakpoint_down } from '../mediaBreakpoints.style';
 
 export const FirmContentWrapper = styled.section`
   padding: 60px 0;

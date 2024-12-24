@@ -7,7 +7,7 @@ import {
   FirmContentSections,
   FirmContentSidebar,
   FirmContentWrapper,
-} from 'styles/FirmContent.style';
+} from 'styles/firm/FirmContent.style';
 import SubscriptionSidebar from '../common/SubscriptionSidebar';
 
 const FirmContent = ({ sections }) => {

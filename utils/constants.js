@@ -92,6 +92,7 @@ export const footerNavList = [
     id: 7,
   },
 ];
+
 /** List of firm blog category links found in the sidebar */
 export const FIRM_BLOG_PAGES = [
   {
@@ -205,6 +206,30 @@ export const FIRM_PAGES = [
     id: 'firm-in-memorials',
     label: 'In Memoriam',
     slug: '/memorials',
+  },
+];
+
+/** List of basic pages links found in the sidebar */
+export const BASIC_PAGES = [
+  {
+    id: 'terms-of-use',
+    label: 'Terms of Use',
+    slug: '/terms-of-use',
+  },
+  {
+    id: 'privacy-policy',
+    label: 'Privacy Policy',
+    slug: '/privacy-policy',
+  },
+  {
+    id: 'awards',
+    label: 'Awards Methodology',
+    slug: '/awards',
+  },
+  {
+    id: 'disclaimer',
+    label: 'Disclaimer',
+    slug: '/disclaimer',
   },
 ];
 

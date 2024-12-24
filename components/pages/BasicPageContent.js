@@ -2,9 +2,12 @@ import { Container, Row, Col } from 'react-bootstrap';
 import PagesBody from 'components/organisms/page/BasicPageBody';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import ContactForm from 'components/shared/ContactForm/ContactForm';
-import SubHeader from 'layouts/SubHeader/SubHeader';
 import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import { BigGrayTitle } from 'styles/BigGrayTitle.style';
+import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
+import { BASIC_PAGES } from 'utils/constants';
+import { ContainerDefault } from 'styles/Containers.style';
+import ContentRender from 'components/atoms/ContentRender';
 
 const BasicPageContent = ({
   seo,
@@ -12,6 +15,7 @@ const BasicPageContent = ({
   canonicalUrl,
   bodyContent,
   pageForm,
+  subHeaderImage,
 }) => {
   // replace image url from post content
   const modPage = formatPageImageToCloudinaryUrl(bodyContent);
@@ -23,13 +27,18 @@ const BasicPageContent = ({
         metaDescription={seo.metaDesc}
         canonicalUrl={canonicalUrl}
       />
-      <SubHeader
+      <SubHeaderDefault
         title={site.title}
         subtitle={site.description}
-        span={7}
-        offset={2}
+        backgroundImage={subHeaderImage}
+        menu={BASIC_PAGES}
       />
-      <Container>
+
+      <ContainerDefault>
+        <ContentRender content={modPage} />
+      </ContainerDefault>
+
+      {/* <Container>
         <Row>
           <Col sm={12}>
             <PagesBody content={modPage} />
@@ -45,7 +54,7 @@ const BasicPageContent = ({
             )}
           </Col>
         </Row>
-      </Container>
+      </Container> */}
     </>
   );
 };

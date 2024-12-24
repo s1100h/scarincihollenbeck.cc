@@ -47,7 +47,7 @@ export const getStaticProps = async ({ params }) => {
   }
 
   const {
-    title, content, seo, addFormToPage,
+    title, content, seo, addFormToPage, featuredImage,
   } = request;
 
   return {
@@ -60,6 +60,7 @@ export const getStaticProps = async ({ params }) => {
         formLabel: addFormToPage?.formLabel,
       },
       slug: params.slug,
+      subHeaderImage: featuredImage.node.sourceUrl,
     },
     revalidate: 86400,
   };
@@ -67,7 +68,7 @@ export const getStaticProps = async ({ params }) => {
 
 /** Basic page component - Awards, Privacy Policy, Work Life Balance etc. */
 const BasicPage = ({
-  content, seo, slug, title, pageForm,
+  content, seo, slug, title, pageForm, subHeaderImage,
 }) => {
   const { clearBody, subTitle } = getSubTitleFromHTML(content);
   const canonicalUrl = `${PRODUCTION_URL}/${slug}`;
@@ -81,6 +82,7 @@ const BasicPage = ({
       title,
       description: subTitle,
     },
+    subHeaderImage,
   };
   return <BasicPageContent {...basicPageProps} />;
 };
