@@ -871,4 +871,3 @@ export const successMessage = `
     font-weight: 400;
   }
 `;
-

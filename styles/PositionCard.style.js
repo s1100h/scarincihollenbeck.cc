@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { globalBorderRadius, globalColor, globalTransition, rem } from './global_styles/Global.styles';
+import {
+  globalBorderRadius,
+  globalColor,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
 import Link from 'next/link';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 

@@ -1,8 +1,5 @@
 import styled from 'styled-components';
-import {
-  globalColor,
-  successMessage,
-} from './global_styles/Global.styles';
+import { globalColor, successMessage } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import { ContainerDefault } from './Containers.style';
 import { Title32 } from './common/Typography.style';
