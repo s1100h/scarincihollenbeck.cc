@@ -188,11 +188,6 @@ export const FIRM_PAGES = [
     slug: '/administration',
   },
   {
-    id: 'community-involvement',
-    label: 'Community Involvement',
-    slug: '/community-involvement',
-  },
-  {
     id: 'diversity',
     label: 'Diversity',
     slug: '/diversity',
@@ -201,6 +196,11 @@ export const FIRM_PAGES = [
     id: 'pro-bono',
     label: 'Pro Bono',
     slug: '/pro-bono',
+  },
+  {
+    id: 'community-involvement',
+    label: 'Community Involvement',
+    slug: '/community-involvement',
   },
   {
     id: 'firm-in-memorials',

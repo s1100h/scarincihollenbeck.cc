@@ -27,6 +27,7 @@ export const globalColor = {
     gray50: '#757575',
     gray40: '#888888',
     gray10: '#F2F2F2',
+    dark: '#787E93',
   },
 
   grayLite: {

@@ -17,8 +17,13 @@ export const SubscriptionSidebarHolder = styled.div`
   color: ${globalColor.white};
   position: sticky;
   top: calc(var(--header-height) + 8px);
-  max-height: calc(100dvh - var(--header-height) + 8px);
+  max-height: calc(100dvh - var(--header-height));
+  overflow: auto;
   transition: all 0.3s ease-in-out;
+
+  > button {
+    flex-shrink: 0;
+  }
 
   ${media_breakpoint_down('md')} {
     padding: 12px 16px;
@@ -43,7 +48,7 @@ export const SubscriptionSidebarText = styled.p`
   margin: 0;
 `;
 
-export const SubscriptionSidebarLibrary = styled.div`
+export const SubscriptionSidebarBlock = styled.div`
   padding: 12px 16px;
   display: flex;
   flex-direction: column;
@@ -53,7 +58,7 @@ export const SubscriptionSidebarLibrary = styled.div`
   box-shadow: 0px 4px 12px 0px rgba(10, 62, 108, 0.06);
 `;
 
-export const SubscriptionSidebarLibraryTitle = styled.h3`
+export const SubscriptionSidebarBlockTitle = styled.h3`
   margin: 0;
   display: flex;
   align-items: center;
@@ -69,7 +74,7 @@ export const SubscriptionSidebarLibraryTitle = styled.h3`
   }
 `;
 
-export const SubscriptionSidebarLibraryLinks = styled.ul`
+export const SubscriptionSidebarBlockLinks = styled.ul`
   margin: 0;
   display: flex;
   flex-wrap: wrap;

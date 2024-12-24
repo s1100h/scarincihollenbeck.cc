@@ -5,7 +5,7 @@ import { ContainerDefault } from 'styles/Containers.style';
 import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
 import { FIRM_PAGES } from 'utils/constants';
 import empty from 'is-empty';
-import { FirmOverviewlWrapper } from 'styles/firm/FirmOverview.style';
+import { FirmOverviewlWrapper } from 'styles/FirmOverview.style';
 import WhyChooseUs from 'components/organisms/practices/WhyChooseUs';
 import KeyPoints from 'components/molecules/firm/KeyPoints';
 import ContentRender from 'components/atoms/ContentRender';

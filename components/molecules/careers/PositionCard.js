@@ -8,22 +8,22 @@ import {
   CareerCardTitle,
 } from 'styles/PositionCard.style';
 import { BsFillBriefcaseFill } from 'react-icons/bs';
+import empty from 'is-empty';
 
-export const checkAllOffices = (location) => {
-  if (!location) return null;
-  const splitLocs = location.split(',').filter((i) => i.trim() !== 'NJ');
+export const checkAllOffices = (locations) => {
+  if (empty(locations)) return null;
 
-  if (splitLocs.length > 1) {
+  if (locations.length > 1) {
     return 'Multiple locations';
   }
 
-  return location;
+  return locations[0].title;
 };
 
 export default function PositionCard({
   title,
   miniDescription,
-  positionLocation,
+  locations,
   duration,
   href,
 }) {
@@ -36,14 +36,14 @@ export default function PositionCard({
         )}
       </CareerCardContent>
 
-      {(positionLocation || duration) && (
+      {(!empty(locations) || !empty(duration)) && (
         <CareerCardFooter>
-          {positionLocation && (
+          {!empty(locations) && (
             <CareerCardLocation>
-              {checkAllOffices(positionLocation)}
+              {checkAllOffices(locations)}
             </CareerCardLocation>
           )}
-          {duration && (
+          {!empty(duration) && (
             <CareerCardDuration>
               <BsFillBriefcaseFill />
               {duration}

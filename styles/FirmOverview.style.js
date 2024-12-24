@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { media_breakpoint_down } from '../mediaBreakpoints.style';
-import { WhyChooseUsSection } from 'styles/practices/WhyChooseUs.style';
-import { globalColor } from 'styles/global_styles/Global.styles';
-import { LogoSeparatorWrapper } from 'styles/Separators.style';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
+import { WhyChooseUsSection } from './practices/WhyChooseUs.style';
+import { globalColor } from './global_styles/Global.styles';
+import { LogoSeparatorWrapper } from './Separators.style';
 
 export const FirmOverviewlWrapper = styled.div`
   background-color: ${globalColor.white};

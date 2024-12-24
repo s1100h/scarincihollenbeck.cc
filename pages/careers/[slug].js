@@ -1,22 +1,27 @@
 import CareerProfile from 'components/pages/CareerPage';
-import { PRODUCTION_URL, BASE_API_URL, headers } from 'utils/constants';
+import { fetchAPI } from 'requests/api';
+import { careerPageQuery } from 'requests/graphql-queries';
+import { PRODUCTION_URL } from 'utils/constants';
+import empty from 'is-empty';
 
 /** Fetch career post data from WP REST API */
-const getCareersContent = async (slug) => {
-  const url = `${BASE_API_URL}/wp-json/individual-career/career/${slug}`;
-  try {
-    const res = await fetch(url, { headers });
+const getCareerPageContent = async (slug) => {
+  const data = await fetchAPI(careerPageQuery, {
+    variables: { slug },
+  });
 
-    return await res.json();
-  } catch (error) {
-    console.error(error);
+  if (data.career?.status !== 'publish') {
+    return null;
   }
+
+  return data?.career;
 };
 
 /** Set career post data to props */
 export async function getServerSideProps({ params }) {
-  const careersContent = await getCareersContent(params.slug);
-  if (careersContent.status === 404) {
+  const careersContent = await getCareerPageContent(params.slug);
+
+  if (empty(careersContent)) {
     return {
       notFound: true,
     };
@@ -25,7 +30,7 @@ export async function getServerSideProps({ params }) {
   return {
     props: {
       career: careersContent,
-      canonicalUrl: `${PRODUCTION_URL}${params.slug}`,
+      canonicalUrl: `${PRODUCTION_URL}/careers/${params.slug}`,
     },
   };
 }

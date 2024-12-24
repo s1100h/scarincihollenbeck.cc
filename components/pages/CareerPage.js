@@ -1,14 +1,13 @@
-import { Container, Row, Col } from 'react-bootstrap';
-import SingleCareerBody from 'components/organisms/career/CareerBody';
-import Subscription from 'components/molecules/subscription/Subscription';
-import CommonSidebarLinks from 'components/molecules/CommonSidebarLinks';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { SITE_TITLE } from 'utils/constants';
 import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
+import dynamic from 'next/dynamic';
 import SubHeaderBgImage from '../../public/images/contact-tiles-2.webp';
 
+const CareerContent = dynamic(() => import('components/organisms/career/CareerContent'));
+
 const CareerProfile = ({ career, canonicalUrl }) => {
-  const { seo } = career;
+  const { seo, careerFields, pagesFields } = career;
   const title = `${seo.title} | Career at ${SITE_TITLE}`;
 
   return (
@@ -20,24 +19,14 @@ const CareerProfile = ({ career, canonicalUrl }) => {
       />
       <SubHeaderDefault
         title={career.title}
-        subtitle={seo.metaDescription}
+        subtitle={careerFields?.jobSummaryForCard}
         backgroundImage={SubHeaderBgImage}
       />
-      <Container>
-        <Row>
-          <Col sm={12} lg={9} className="mt-3">
-            <SingleCareerBody
-              title={career.title}
-              position={career.positionDescription}
-              contact={career.contact}
-            />
-          </Col>
-          <Col sm={12} lg={3}>
-            <Subscription />
-            <CommonSidebarLinks />
-          </Col>
-        </Row>
-      </Container>
+      <CareerContent
+        locations={careerFields?.locations}
+        duration={careerFields?.duration}
+        sections={pagesFields?.sections}
+      />
     </>
   );
 };

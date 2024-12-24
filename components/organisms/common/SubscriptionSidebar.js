@@ -5,17 +5,17 @@ import { Title20 } from 'styles/common/Typography.style';
 import {
   SubscriptionSidebarContent,
   SubscriptionSidebarHolder,
-  SubscriptionSidebarLibrary,
-  SubscriptionSidebarLibraryLinks,
-  SubscriptionSidebarLibraryTitle,
+  SubscriptionSidebarBlock,
+  SubscriptionSidebarBlockLinks,
+  SubscriptionSidebarBlockTitle,
   SubscriptionSidebarText,
 } from 'styles/SubscriptionSidebar.style';
-import { FIRM_BLOG_PAGES } from 'utils/constants';
+import { FIRM_BLOG_PAGES, FIRM_PAGES } from 'utils/constants';
 import Link from 'next/link';
 import { getIcon } from 'utils/helpers';
 import { handleSubscriptionModalOpener } from '../../../redux/slices/modals.slice';
 
-const SubscriptionSidebar = () => {
+const SubscriptionSidebar = ({ isFirmLinks = false }) => {
   const dispatch = useDispatch();
   return (
     <SubscriptionSidebarHolder>
@@ -29,19 +29,35 @@ const SubscriptionSidebar = () => {
         </SubscriptionSidebarText>
       </SubscriptionSidebarContent>
 
-      <SubscriptionSidebarLibrary>
-        <SubscriptionSidebarLibraryTitle>
+      <SubscriptionSidebarBlock>
+        <SubscriptionSidebarBlockTitle>
           <span>{getIcon('News paper')}</span>
           Library
-        </SubscriptionSidebarLibraryTitle>
-        <SubscriptionSidebarLibraryLinks>
+        </SubscriptionSidebarBlockTitle>
+        <SubscriptionSidebarBlockLinks>
           {FIRM_BLOG_PAGES.map(({ id, label, slug }) => (
             <li key={id}>
               <Link href={slug}>{label}</Link>
             </li>
           ))}
-        </SubscriptionSidebarLibraryLinks>
-      </SubscriptionSidebarLibrary>
+        </SubscriptionSidebarBlockLinks>
+      </SubscriptionSidebarBlock>
+
+      {isFirmLinks && (
+        <SubscriptionSidebarBlock>
+          <SubscriptionSidebarBlockTitle>
+            <span>{getIcon('Firm')}</span>
+            The Firm
+          </SubscriptionSidebarBlockTitle>
+          <SubscriptionSidebarBlockLinks>
+            {FIRM_PAGES.map(({ id, label, slug }) => (
+              <li key={id}>
+                <Link href={slug}>{label}</Link>
+              </li>
+            ))}
+          </SubscriptionSidebarBlockLinks>
+        </SubscriptionSidebarBlock>
+      )}
 
       <StandardBlueButton
         onClick={() => dispatch(handleSubscriptionModalOpener({ active: true }))}
