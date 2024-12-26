@@ -1,6 +1,6 @@
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
-import { BASIC_PAGES } from 'utils/constants';
+import { BASIC_PAGES, FIRM_PAGES } from 'utils/constants';
 import { ContainerDefault } from 'styles/Containers.style';
 import empty from 'is-empty';
 import ContentSection from 'components/molecules/ContentSection';
@@ -24,7 +24,9 @@ const BasicPageContent = ({
       title={site.title}
       subtitle={site.description}
       backgroundImage={subHeaderImage}
-      menu={BASIC_PAGES}
+      menu={
+        canonicalUrl.includes('work-life-balance') ? FIRM_PAGES : BASIC_PAGES
+      }
     />
     <ContainerDefault>
       <ArticleContent>
