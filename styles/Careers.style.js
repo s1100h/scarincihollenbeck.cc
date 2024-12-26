@@ -109,6 +109,7 @@ export const CareerFormContainer = styled.div`
   background-color: ${globalColor.gray.gray1002};
   box-shadow: 0px 2px 16px 0px rgba(10, 62, 108, 0.08);
   border-radius: ${globalBorderRadius.big};
+  overflow: hidden;
 
   .form-fields {
     .form-control {

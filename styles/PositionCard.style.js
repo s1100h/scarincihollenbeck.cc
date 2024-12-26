@@ -22,7 +22,7 @@ export const CareerCardTitle = styled.h3`
   }
 `;
 
-export const CareerCardDescription = styled.p`
+export const CareerCardDescription = styled.div`
   margin: 0;
   min-height: 96px;
   font-size: ${rem(16)};

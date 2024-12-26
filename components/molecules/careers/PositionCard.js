@@ -9,6 +9,7 @@ import {
 } from 'styles/PositionCard.style';
 import { BsFillBriefcaseFill } from 'react-icons/bs';
 import empty from 'is-empty';
+import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
 
 export const checkAllOffices = (locations) => {
   if (empty(locations)) return null;
@@ -32,7 +33,9 @@ export default function PositionCard({
       <CareerCardContent>
         {title && <CareerCardTitle title={title}>{title}</CareerCardTitle>}
         {miniDescription && (
-          <CareerCardDescription>{miniDescription}</CareerCardDescription>
+          <CareerCardDescription>
+            <JSXWithDynamicLinks HTML={miniDescription} />
+          </CareerCardDescription>
         )}
       </CareerCardContent>
 

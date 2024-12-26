@@ -20,7 +20,7 @@ const CareerForm = () => {
 
   return (
     <CareerFormContainer>
-      <FormContainer isPositionRelative>
+      <FormContainer>
         <form
           action={GET_IN_TOUCH_FORM_API}
           className="kwes-form d-print-none w-100"

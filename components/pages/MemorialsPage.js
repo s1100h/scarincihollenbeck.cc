@@ -19,7 +19,7 @@ const MemorialsPage = ({
       canonicalUrl={canonicalUrl}
     />
     <SubHeaderDefault
-      backgroundImage={image?.sourceUrl}
+      backgroundImage={image}
       title={title}
       subtitle={description}
       menu={FIRM_PAGES}

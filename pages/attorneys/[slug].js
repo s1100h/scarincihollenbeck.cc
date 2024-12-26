@@ -25,7 +25,7 @@ export async function attorneyBySlug(slug) {
 
 const attorneysSlugsQuery = `
 query attorneysSlugs {
-  attorneyProfiles(first: 100) {
+  attorneyProfiles(first: 100, where: {status: PUBLISH}) {
     nodes {
       slug
     }

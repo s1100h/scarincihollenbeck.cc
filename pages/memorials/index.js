@@ -8,7 +8,9 @@ import MemorialsPage from 'components/pages/MemorialsPage';
 
 export async function getStaticProps() {
   const {
-    pageBy: { title, seo, memoriam },
+    pageBy: {
+      title, seo, pagesFields, featuredImage,
+    },
   } = await fetchAPI(memorialsPageContentQuery);
   const { memorials } = await fetchAPI(memorialsQuery);
 
@@ -16,8 +18,8 @@ export async function getStaticProps() {
     props: {
       seo,
       title,
-      description: memoriam?.description,
-      image: memoriam?.pageImage,
+      description: pagesFields?.description,
+      image: featuredImage?.node?.sourceUrl || null,
       memorials: memorials?.nodes,
     },
     revalidate: 86400,

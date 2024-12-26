@@ -7,7 +7,7 @@ import { administrationPersoneQuery } from '../../requests/graphql-queries';
 
 const adminsSlugsQuery = `
 query attorneysSlugs {
-  administrations(first: 100) {
+  administrations(first: 100, where: {status: PUBLISH}) {
     nodes {
       slug
     }

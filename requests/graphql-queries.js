@@ -649,11 +649,13 @@ query ContactPageQuery {
       title
     }
     title
-    content(format: RENDERED)
     featuredImage {
       node {
         sourceUrl
       }
+    }
+    pagesFields {
+      description
     }
   }
 }`;
@@ -758,11 +760,13 @@ export const attorneysPageQuery = `query AttorneysPagesQuery {
       title
     }
     attorneyArchives {
-      description
       designationSectionTitles {
         name
         order
       }
+    }
+    pagesFields {
+      description
     }
   }
 }`;
@@ -777,7 +781,6 @@ query CareersPagesQuery {
       title
     }
     careersPage {
-      description
       equalEmploymentOpportunityContent
       positionTypes {
         name
@@ -795,6 +798,9 @@ query CareersPagesQuery {
         title
       }
     }
+    pagesFields {
+      description
+    }
   }
 }`;
 
@@ -808,12 +814,14 @@ query BasicPageQuery {
         duration
         position
         positionType
-        jobSummaryForCard
         locations {
           ... on OfficeLocation {
             title
           }
         }
+      }
+      pagesFields {
+        description
       }
     }
   }
@@ -831,7 +839,6 @@ query CareerPageQuery($slug: ID!) {
       }
       positionType
       duration
-      jobSummaryForCard
     }
     title
     status
@@ -840,6 +847,7 @@ query CareerPageQuery($slug: ID!) {
       metaDesc
     }
     pagesFields {
+      description
       sections {
         content
         link {
@@ -854,14 +862,15 @@ query CareerPageQuery($slug: ID!) {
 }`;
 
 /** administration landing page query */
-export const administrationPageQuery = `query AdministrationPagesQuery {
+export const administrationPageQuery = `
+query AdministrationPagesQuery {
   pageBy(pageId: 46670) {
     title
     seo {
       metaDesc
       title
     }
-    administrationArchive {
+    pagesFields {
       description
     }
     featuredImage {
@@ -870,8 +879,7 @@ export const administrationPageQuery = `query AdministrationPagesQuery {
       }
     }
   }
-}
-`;
+}`;
 
 export const administrationPersoneQuery = `
 query FirmPageQuery($id: ID!) {
@@ -974,24 +982,21 @@ query FirmPageQuery($slug: ID!) {
         }
       }
     }
-    firmPagesDescription {
-      description
-    }
-    firmPagesTabs {
-      tab2Content
-      tab2Header
-      tab3Content
-      tab3Header
-      tab4Content
-      tab4Header
-      tab5Content
-      tab5Header
-      tabContent
-      tabHeader
-    }
     featuredImage {
       node {
         sourceUrl
+      }
+    }
+    pagesFields {
+      description
+      sections {
+        content
+        link {
+          title
+          target
+          url
+        }
+        title
       }
     }
   }
@@ -1233,21 +1238,17 @@ export const getSEOforAuthorPosts = `query FirmOverviewQuery($id: ID!) {
 
 export const getServicesQuery = `
 query ServicesQuery {
-  page(id: "/services", idType: URI) {
+  page(id: 168619, idType: DATABASE_ID) {
     title
-    servicesPage {
-      description
-      pageImage {
-        sourceUrl
-      }
-    }
     seo {
       title
       metaDesc
     }
+    pagesFields {
+      description
+    }
   }
-}
-`;
+}`;
 
 export const getIndustryQuery = `
 query IndustryQuery($id: ID! = "/cannabis") {
@@ -1261,9 +1262,11 @@ export const memorialsPageContentQuery = `
 query MemorialsPageContentQuery {
   pageBy(pageId: 169052) {
     title
-    memoriam {
+    pagesFields {
       description
-      pageImage {
+    }
+    featuredImage {
+      node {
         sourceUrl
       }
     }
@@ -1272,8 +1275,7 @@ query MemorialsPageContentQuery {
       title
     }
   }
-}
-`;
+}`;
 
 export const memorialsQuery = `
 query MemorialsQuery {

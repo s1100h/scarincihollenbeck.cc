@@ -1,7 +1,6 @@
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { SITE_TITLE } from 'utils/constants';
 import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
-import dynamic from 'next/dynamic';
 import CareerContent from 'components/organisms/career/CareerContent';
 import SubHeaderBgImage from '../../public/images/contact-tiles-2.webp';
 
@@ -18,7 +17,7 @@ const CareerProfile = ({ career, canonicalUrl }) => {
       />
       <SubHeaderDefault
         title={career.title}
-        subtitle={careerFields?.jobSummaryForCard}
+        subtitle={pagesFields?.description}
         backgroundImage={SubHeaderBgImage}
       />
       <CareerContent

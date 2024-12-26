@@ -11,7 +11,9 @@ import { getPractices } from 'requests/getPractices';
 /** Map all the page data to component props */
 export async function getStaticProps() {
   const page = await attorneysPageContent();
-  const { title, seo, attorneyArchives } = page;
+  const {
+    title, seo, attorneyArchives, pagesFields,
+  } = page;
   const attorneys = await getAttorneysFromRestApi();
 
   const sortedTitlesByOrder = sortByKey(
@@ -49,7 +51,7 @@ export async function getStaticProps() {
       seo,
       site: {
         title,
-        description: attorneyArchives?.description,
+        description: pagesFields?.description,
       },
       attorneyArchives,
       seoAttorneys: sortedAttorneysByCategory,

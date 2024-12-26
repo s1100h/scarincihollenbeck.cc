@@ -12,7 +12,7 @@ const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 const practicesSlugsQuery = `
 query practicesSlugs {
-  practices(first: 100) {
+  practices(first: 100, where: {status: PUBLISH}) {
     nodes {
       slug
     }

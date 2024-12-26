@@ -30,7 +30,7 @@ export async function getStaticProps() {
   const admins = await getAdministration();
   const page = await archivesPageContent();
   const {
-    title, seo, administrationArchive, featuredImage,
+    title, seo, pagesFields, featuredImage,
   } = page;
 
   const sortedAdmins = [...admins].sort((a, b) => {
@@ -46,7 +46,7 @@ export async function getStaticProps() {
       seo,
       site: {
         title,
-        description: administrationArchive.description,
+        description: pagesFields.description,
         image: featuredImage.node.sourceUrl,
       },
       admins: sortedAdmins,

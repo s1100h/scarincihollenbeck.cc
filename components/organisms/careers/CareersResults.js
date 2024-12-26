@@ -45,7 +45,7 @@ const renderCareersBlocks = (careersObj) => Object.keys(careersObj).map((careerT
           <PositionCard
             key={position.databaseId}
             title={position.position}
-            miniDescription={position.jobSummaryForCard}
+            miniDescription={position.description}
             locations={position.locations}
             duration={position.duration}
             href={`careers/${position.slug}`}

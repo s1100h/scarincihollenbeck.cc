@@ -13,7 +13,7 @@ export async function memorialBySlug(slug) {
 
 const memorialsSlugsQuery = `
 query memorialsSlugs {
-  memorials(first: 100) {
+  memorials(first: 100, where: {status: PUBLISH}) {
     nodes {
       slug
     }

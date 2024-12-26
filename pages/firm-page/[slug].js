@@ -53,35 +53,17 @@ export const getStaticProps = async ({ params }) => {
     title,
     seo,
     firmPagesRelatedPostsMembers,
-    firmPagesDescription,
-    firmPagesTabs,
+    pagesFields,
     featuredImage,
   } = req;
 
   const { relatedPosts } = firmPagesRelatedPostsMembers;
 
-  const firstTab = {};
-  if (firmPagesTabs?.tabContent) {
-    firstTab.content = firmPagesTabs?.tabContent;
-  }
-
-  if (firmPagesTabs?.tabHeader) {
-    firstTab.title = firmPagesTabs?.tabHeader;
-  }
-
-  const additionalTabs = [2, 3, 4, 5]
-    .map((i) => ({
-      id: i,
-      title: firmPagesTabs[`tab${i}Header`],
-      content: firmPagesTabs[`tab${i}Content`],
-    }))
-    .filter((a) => a.title !== null);
-
   const page = {
     title,
-    description: firmPagesDescription?.description,
+    description: pagesFields?.description,
     attorneysRecommendedPosts: sanitizePosts(relatedPosts),
-    sections: [firstTab, ...additionalTabs],
+    sections: pagesFields?.sections,
     image: featuredImage?.node?.sourceUrl || null,
     seo,
     canonicalLink: `${PRODUCTION_URL}/${params?.slug}`,

@@ -15,11 +15,16 @@ const getCareerList = async () => {
 };
 
 const sanitizeCareers = (careerArr) => {
-  const restructured = careerArr.map(({ databaseId, slug, careerFields }) => ({
-    databaseId,
-    slug,
-    ...careerFields,
-  }));
+  const restructured = careerArr.map(
+    ({
+      databaseId, slug, careerFields, pagesFields,
+    }) => ({
+      databaseId,
+      slug,
+      ...careerFields,
+      ...pagesFields,
+    }),
+  );
 
   return restructured.reduce((result, career) => {
     const { positionType } = career;
@@ -38,14 +43,14 @@ export const getStaticProps = async () => {
   const careerList = await getCareerList();
   const page = await careersPageContent();
   const {
-    seo, title, careersPage, featuredImage, focusedCards,
+    seo, title, careersPage, featuredImage, focusedCards, pagesFields,
   } = page;
   return {
     props: {
       seo,
       site: {
         title,
-        description: careersPage.description,
+        description: pagesFields.description,
         bodyContent: careersPage.equalEmploymentOpportunityContent,
         image: featuredImage.node.sourceUrl,
         focusedCards: focusedCards?.cards,

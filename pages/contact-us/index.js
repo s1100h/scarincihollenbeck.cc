@@ -4,7 +4,6 @@ import {
   contactPageQuery,
   officeLocationsQuery,
 } from 'requests/graphql-queries';
-import { getSubTitleFromHTML } from 'utils/helpers';
 import ContactPage from 'components/pages/ContactPage';
 import { sanitizeOffices } from 'pages';
 
@@ -16,17 +15,16 @@ const sanitizeLocations = (locations) => locations.map((office) => ({
 export async function getStaticProps() {
   const {
     pageBy: {
-      title, seo, content, featuredImage,
+      title, seo, pagesFields, featuredImage,
     },
   } = await fetchAPI(contactPageQuery);
   const { officeLocations } = await fetchAPI(officeLocationsQuery, {});
-  const { subTitle } = getSubTitleFromHTML(content);
 
   return {
     props: {
       seo,
       title,
-      description: subTitle,
+      description: pagesFields?.description,
       officeLocations: sanitizeLocations(officeLocations.nodes),
       mapLocations: sanitizeOffices(officeLocations.nodes),
       featuredImage: featuredImage.node.sourceUrl,

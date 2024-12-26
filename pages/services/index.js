@@ -35,7 +35,7 @@ export const getStaticProps = async () => {
   return {
     props: {
       title: data?.title,
-      content: data?.servicesPage,
+      content: data?.pagesFields,
       industries: sortByKey(industries, 'title'),
       practices: practicesSorted,
       seo: data?.seo,

@@ -17,8 +17,31 @@ const getCareerPageContent = async (slug) => {
   return data?.career;
 };
 
-/** Set career post data to props */
-export async function getServerSideProps({ params }) {
+const careersSlugsQuery = `
+query careersSlugs {
+  careers(first: 100, where: {status: PUBLISH}) {
+    nodes {
+      slug
+    }
+  }
+}`;
+
+export async function getStaticPaths() {
+  const listId = await fetchAPI(careersSlugsQuery);
+
+  const paths = [];
+
+  listId?.careers?.nodes?.forEach((node) => {
+    paths.push(`/careers/${node?.slug}`);
+  });
+
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+}
+
+export const getStaticProps = async ({ params }) => {
   const careersContent = await getCareerPageContent(params.slug);
 
   if (empty(careersContent)) {
@@ -33,9 +56,8 @@ export async function getServerSideProps({ params }) {
       canonicalUrl: `${PRODUCTION_URL}/careers/${params.slug}`,
     },
   };
-}
+};
 
-/** Single career post component */
 const Career = ({ career, canonicalUrl }) => {
   const careerProps = {
     career,
