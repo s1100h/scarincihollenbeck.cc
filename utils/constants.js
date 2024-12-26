@@ -314,11 +314,6 @@ export const CORE_PRACTICES = [
     label: 'Environmental',
   },
   {
-    id: 6,
-    slug: '/practices/government-strategies',
-    label: 'Government Strategies',
-  },
-  {
     id: 7,
     slug: '/practices/intellectual-property',
     label: 'Intellectual Property',
@@ -842,6 +837,7 @@ export const NAVBAR_SERVICES_TABS = ['Practices', 'Industries'];
 export const readyIndustriesUrls = [
   '/industries/cannabis',
   '/industries/entertainment-and-media',
+  '/industries/government-strategies',
 ];
 
 export const defaultWhyChooseUsData = [
