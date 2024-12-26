@@ -179,6 +179,10 @@ const SITE_PAGES_REWRITES = [
     source: '/practices/entertainment-and-media',
     destination: '/industries/entertainment-and-media',
   },
+  {
+    source: '/industries/government-strategies',
+    destination: '/practices/government-strategies',
+  },
 ];
 
 module.exports = {
