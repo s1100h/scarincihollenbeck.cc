@@ -1,10 +1,8 @@
+import Memorials from 'components/organisms/memorials/Memorials';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
-import dynamic from 'next/dynamic';
 import React from 'react';
 import { FIRM_PAGES } from 'utils/constants';
-
-const Memorials = dynamic(() => import('components/organisms/memorials/Memorials'));
 
 const MemorialsPage = ({
   seo,

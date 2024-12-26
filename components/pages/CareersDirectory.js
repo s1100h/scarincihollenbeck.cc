@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
+import CareersResults from 'components/organisms/careers/CareersResults';
 
-const CareersResults = dynamic(() => import('../organisms/careers/CareersResults'));
 const CareersInfo = dynamic(() => import('components/organisms/careers/CareersInfo'));
 
 const CareersPage = ({

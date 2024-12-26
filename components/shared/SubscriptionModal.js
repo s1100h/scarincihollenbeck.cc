@@ -5,6 +5,8 @@ import { FormContainer } from 'styles/attorney-page/GetInTouchForm.styles';
 import {
   CheckBoxesList,
   FormSubscriptionContainer,
+  FormSubscriptionHeader,
+  FormSubscriptionHeaderText,
 } from 'styles/Subscription.style';
 import {
   RECAPTCHA_SITE_KEY,
@@ -65,7 +67,7 @@ const SubscriptionModal = ({ categoriesFromWP }) => {
         setOpenModal={setIsShowContactModal}
       >
         <FormSubscriptionContainer>
-          <section>
+          <FormSubscriptionHeader>
             <Image
               className="modal-subscription-logo"
               src={SHDiamond}
@@ -75,13 +77,10 @@ const SubscriptionModal = ({ categoriesFromWP }) => {
               loading="lazy"
               sizes="80px"
             />
-            <p>
-              Sign up to get the latest from the
-              {SITE_TITLE}
-              {' '}
-              attorneys!
-            </p>
-          </section>
+            <FormSubscriptionHeaderText>
+              {`Sign up to get the latest from the ${SITE_TITLE} attorneys!`}
+            </FormSubscriptionHeaderText>
+          </FormSubscriptionHeader>
           <FormContainer>
             <form
               className="kwes-form"
@@ -98,12 +97,12 @@ const SubscriptionModal = ({ categoriesFromWP }) => {
                 attorneySlug={router.asPath}
               />
               <fieldset
-                className="checkboxes-box"
+                className="form-checkboxes"
                 data-kw-group="true"
                 // eslint-disable-next-line react/no-unknown-property
                 rules="required"
               >
-                <span className="smallExcerpt">
+                <span className="form-checkboxes__label">
                   Please select a category(s) below:
                 </span>
                 <div className="btn-choose-box">
@@ -130,18 +129,21 @@ const SubscriptionModal = ({ categoriesFromWP }) => {
                     <>
                       {categoriesFromWP?.map(({ id, name }) => (
                         <li key={`${useIdVar}${id}`}>
-                          <label htmlFor={`${useIdVar}${id}`} className="mb-0">
+                          <label
+                            htmlFor={`${useIdVar}${id}`}
+                            className="form-checkbox"
+                          >
                             <input
                               type="checkbox"
-                              className="disclaimer-input"
+                              className="form-checkbox__input"
                               id={`${useIdVar}${id}`}
                               name="category"
                               value={name}
                               onChange={() => handleCheckCategory(id)}
                               checked={categoriesChosen?.includes(id)}
                             />
-                            <span className="disclaimer-checkbox" />
-                            <span className="checkbox-label">{name}</span>
+                            <span className="form-checkbox__icon" />
+                            <span className="form-checkbox__label">{name}</span>
                           </label>
                         </li>
                       ))}
@@ -152,6 +154,7 @@ const SubscriptionModal = ({ categoriesFromWP }) => {
                 </CheckBoxesList>
               </fieldset>
               <StandardBlueButton
+                className="form-button"
                 disabled={empty(categoriesChosen)}
                 type="submit"
               >

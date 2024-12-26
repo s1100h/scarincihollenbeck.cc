@@ -33,6 +33,8 @@ export const ModalContent = styled.div`
 `;
 
 export const ModalCloser = styled.button`
+  --icon-size: 24px;
+  --icon-wrapper-size: 40px;
   margin-left: auto;
   display: flex;
   align-items: center;
@@ -40,28 +42,25 @@ export const ModalCloser = styled.button`
   position: relative;
   border: 0;
   padding: 0;
-  width: 40px;
-  height: 40px;
+  width: var(--icon-wrapper-size);
+  height: var(--icon-wrapper-size);
   background: transparent;
   transition: ${globalTransition.default};
   color: ${globalColor.blue.darkBlue};
 
   ${media_breakpoint_down('md')} {
-    width: 36px;
-    height: 36px;
+    --icon-wrapper-size: 36px;
   }
 
   &:before,
   &:after {
     content: '';
     position: absolute;
-    left: 50%;
     transform: scale(1, 1);
-    margin-left: -12.5px;
     background-color: currentColor;
     border-radius: 2px;
     height: 3px;
-    width: 24px;
+    width: var(--icon-size);
     transition: all 0.15s linear;
     transform: translateY(-50%);
   }

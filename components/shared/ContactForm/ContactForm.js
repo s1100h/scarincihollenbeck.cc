@@ -33,7 +33,7 @@ export default function ContactForm({
     <FormContainer isPositionRelative={isPositionRelativeProp && 'true'}>
       <form
         action={GET_IN_TOUCH_FORM_API}
-        className="kwes-form d-print-none w-100"
+        className="kwes-form d-print-none"
         // eslint-disable-next-line react/no-unknown-property
         has-recaptcha-v3="true"
         // eslint-disable-next-line react/no-unknown-property
@@ -45,7 +45,7 @@ export default function ContactForm({
           arrayOfAttributes={inputsGetInTouchAttributes}
           attorneySlug={router.asPath}
         />
-        <p className="mb-1">
+        <p className="form-disclaimer">
           * The use of the Internet or this form for communication with the firm
           or any individual member of the firm does not establish an
           attorney-client relationship. Confidential or time-sensitive
@@ -53,10 +53,17 @@ export default function ContactForm({
         </p>
         {!empty(blockName) && (
           // eslint-disable-next-line react/no-unknown-property
-          <fieldset data-kw-group="true" rules="required" className="mb-2">
-            <label htmlFor={`disclaimer-${blockName}`}>
+          <fieldset
+            data-kw-group="true"
+            rules="required"
+            className="form-checkboxes"
+          >
+            <label
+              htmlFor={`disclaimer-${blockName}`}
+              className="form-checkbox"
+            >
               <input
-                className="disclaimer-input"
+                className="form-checkbox__input"
                 type="checkbox"
                 name={`disclaimer-${blockName}`}
                 // eslint-disable-next-line react/no-unknown-property
@@ -69,15 +76,17 @@ export default function ContactForm({
                 onChange={handleCheck}
                 required
               />
-              <span className="disclaimer-checkbox" />
-              <span className="ml-2">I have read the disclaimer</span>
+              <span className="form-checkbox__icon" />
+              <span className="form-checkbox__label">
+                I have read the disclaimer
+              </span>
             </label>
           </fieldset>
         )}
         <StandardBlueButton
           disabled={!(isCheckedDisclaimer === blockName)}
-          className="mt-2"
           type="submit"
+          className="form-button"
         >
           {buttonText}
         </StandardBlueButton>

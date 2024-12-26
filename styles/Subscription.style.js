@@ -9,69 +9,81 @@ import {
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const CheckBoxesList = styled.ul`
-  margin: 8px 0 16px 0;
-  column-count: 3;
+  margin: 0;
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr));
+  gap: 16px;
 
-  li {
-    margin-bottom: 16px;
-    break-inside: avoid;
-
-    span.checkbox-label {
-      font-size: inherit;
-    }
-  }
-
-  ${media_breakpoint_down('md')} {
-    column-count: 2;
-
-    li {
-      span.checkbox-label {
-        font-size: ${rem(12.8)} !important;
-      }
-    }
+  > div {
+    grid-column: -1 / 1;
   }
 `;
 
 export const FormSubscriptionContainer = styled.div`
+  --subscription-container-gap: 16px;
   display: flex;
   flex-direction: column;
+  row-gap: var(--subscription-container-gap);
   max-width: 816px;
   min-width: 320px;
 
-  section {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-
-    > p {
-      margin-bottom: 0;
-      margin-left: 10px;
-      font-size: ${rem(22)};
-      font-weight: 400;
-      width: 48%;
-    }
+  .kwes-form,
+  .kwes-form-init {
+    gap: 32px;
   }
+
+  .kw-field-error-message {
+    display: none;
+  }
+
   #field-error-category {
     width: 100%;
     position: static;
-    margin-bottom: 10px;
   }
 
-  .checkboxes-box {
+  .form-fields {
+    --form-fields-gap: 12px !important;
+    row-gap: 20px !important;
+  }
+
+  .form-field--2 {
+    width: 100% !important;
+  }
+
+  .form-checkboxes {
     display: flex;
     flex-direction: column;
+    gap: 8px;
     width: 100%;
-    margin-top: 12px;
+    color: ${globalColor.gray.gray120};
+
+    &.kw-color-error {
+      .form-checkboxes__label {
+        color: #ff3852;
+      }
+    }
   }
+
+  .form-checkbox__label {
+    font-size: inherit !important;
+  }
+  
   .btn-choose-box {
     display: flex;
     justify-content: space-between;
   }
+
   .btn-link {
-    color: ${globalColor.blue.dirtyBlue};
+    padding: 0;
+    color: ${globalColor.blue.blue400};
+    font-size: inherit;
     text-transform: uppercase;
     font-weight: 700;
-    padding-left: 0;
+
+    &[disabled] {
+      color: ${globalColor.gray.gray130};
+    }
   }
 
   .kw-alert-success {
@@ -80,10 +92,10 @@ export const FormSubscriptionContainer = styled.div`
       content: 'Thank you for subscribing! You are now part of our newsletter.';
     }
   }
-  .btn-primary {
-    margin-left: auto;
-    margin-right: auto;
-    width: 47.5%;
+
+  .form-button {
+    margin: 0 auto !important;
+    max-width: 400px;
   }
 
   ${media_breakpoint_down('md')} {
@@ -98,22 +110,42 @@ export const FormSubscriptionContainer = styled.div`
       width: 52px;
       height: 52px;
     }
+
     .kwes-form,
     .kwes-form-init {
-      .input-group {
+      .form-field {
         width: 100%;
       }
     }
-    section {
-      h4 {
-        width: 61%;
-        font-size: ${rem(16)};
-      }
-    }
+  }
+`;
 
-    .btn-primary {
-      width: 100%;
-    }
+export const FormSubscriptionHeader = styled.div`
+  padding-right: 52px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: var(--subscription-container-gap);
+  border-bottom: 1px solid #D7E3F4;
+
+  ${media_breakpoint_down('md')} {
+    padding-right: 40px;
+  }
+
+  ${media_breakpoint_down('sm')} {
+    gap: 8px;
+  }
+`;
+
+export const FormSubscriptionHeaderText = styled.p`
+  margin: 0;
+  font-size: ${rem(22)};
+  font-weight: 400;
+  max-width: 410px;
+
+  ${media_breakpoint_down('sm')} {
+    max-width: 290px;
+    font-size: ${rem(16)};
   }
 `;
 

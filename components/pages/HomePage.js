@@ -5,6 +5,7 @@ import { CURRENT_DOMAIN } from 'utils/constants';
 import HappyHolidayLink from 'components/molecules/home/HappyHolidayLink';
 import { filterAttorneysByDesignation } from 'utils/helpers';
 import { useMemo } from 'react';
+import HomeContactForm from 'components/organisms/home/HomeContactForm';
 import { useGetAttorneysQuery } from '../../redux/services/project-api';
 // import InfoModal from '../atoms/InfoModal';
 
@@ -17,7 +18,6 @@ const AboutFirmSection = dynamic(
   () => import('components/organisms/home/AboutFirm'),
   { ssr: true },
 );
-const HomeContactForm = dynamic(() => import('components/organisms/home/HomeContactForm'));
 const IndustriesSection = dynamic(() => import('components/organisms/home/IndustriesSection'));
 const RandomBioSection = dynamic(() => import('components/organisms/home/RandomBioSection'));
 const WhatWeDoSection = dynamic(() => import('components/organisms/home/WhatWeDoSection'));

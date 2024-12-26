@@ -53,32 +53,6 @@ export const ClearButton = styled(Button)`
   }
 `;
 
-export const StandardRedButton = styled(Button)`
-  border: none;
-  border-radius: 0;
-  background-color: ${globalColor.red.darkRed};
-  color: ${globalColor.white};
-  font-size: inherit;
-
-  :hover {
-    background: ${globalColor.red.liteRed};
-    color: ${globalColor.white};
-  }
-
-  :active {
-    background-color: ${globalColor.red.burgundy} !important;
-  }
-
-  :focus-visible {
-    box-shadow: none;
-    background-color: ${globalColor.red.burgundy};
-  }
-
-  :disabled {
-    background-color: ${globalColor.grayExtraLite.grayExtraLite50};
-  }
-`;
-
 export const StandardBlueButton = styled.button`
   padding: 10px 40px;
   width: 100%;

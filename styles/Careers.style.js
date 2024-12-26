@@ -110,51 +110,12 @@ export const CareerFormContainer = styled.div`
   box-shadow: 0px 2px 16px 0px rgba(10, 62, 108, 0.08);
   border-radius: ${globalBorderRadius.big};
 
-  .career-form-wrapper {
-    margin-bottom: 12px;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 32px;
-
-    .input-group {
-      height: auto;
-      margin: 0;
-
-      &:last-of-type {
-        margin: 0;
-      }
-    }
-
-    .input-group--0,
-    .input-group--1,
-    .input-group--2,
-    .input-group--3 {
-      width: calc(50% - 16px);
-
-      ${media_breakpoint_down('sm')} {
-        width: 100%;
-      }
-    }
-
+  .form-fields {
     .form-control {
       padding: 12px 16px;
-      border-bottom: 1px solid ${globalColor.gray.gray300};
-      font-size: inherit;
-      line-height: 1.5;
-
-      &::placeholder {
-        font-size: inherit;
-        line-height: inherit;
-      }
-
-      ${media_breakpoint_down('xxl')} {
-        padding: 10px 16px;
-      }
 
       ${media_breakpoint_down('md')} {
         padding: 8px 12px;
-        font-size: ${rem(14)};
       }
     }
   }
@@ -166,81 +127,13 @@ export const CareerFormContainer = styled.div`
     }
   }
 
-  /* .kwes-form,
-  .kwes-form-init {
+  ${media_breakpoint_down('xxl')} {
+    padding: 24px;
+  }
 
-    .input-group {
-      margin-bottom: 32px;
-
-      &:last-of-type {
-        margin-bottom: 12px;
-
-        ${media_breakpoint_down('md')} {
-          margin-bottom: 8px;
-        }
-      }
-
-      ${media_breakpoint_down('md')} {
-        margin-bottom: 16px;
-      }
-    }
-
-    .form-control {
-      padding: 12px 16px;
-      border-bottom: 1px solid ${globalColor.gray.gray300};
-      font-size: inherit;
-      line-height: 1.5;
-
-      &::placeholder {
-        font-size: inherit;
-        line-height: inherit;
-      }
-
-      ${media_breakpoint_down('xxl')} {
-        padding: 10px 16px;
-      }
-
-      ${media_breakpoint_down('md')} {
-        padding: 8px 12px;
-        font-size: ${rem(14)};
-      }
-    }
-
-    textarea.form-control {
-      height: 80px;
-    }
-
-    fieldset {
-      margin: 8px 0 0 0 !important;
-
-      ${media_breakpoint_down('md')} {
-        margin: 4px 0 0 0 !important;
-      }
-    }
-
-    p {
-      color: ${globalColor.gray.gray110};
-    }
-
-    label {
-      span {
-        font-size: ${rem(14)};
-        color: ${globalColor.gray.gray110};
-      }
-    }
-
-    small {
-      align-self: flex-end;
-    }
-
-    ${StandardBlueButton} {
-      margin-top: 32px !important;
-
-      ${media_breakpoint_down('md')} {
-        margin-top: 12px !important;
-      }
-    }
-  } */
+  ${media_breakpoint_down('md')} {
+    padding: 12px;
+  }
 `;
 
 

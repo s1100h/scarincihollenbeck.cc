@@ -23,7 +23,7 @@ export const PracticeAttorneysSection = styled.section`
     > button {
       height: 100%;
       display: flex;
-      color: #377ec4;
+      color: ${globalColor.blue.blue600};
       font-family: var(--font-poppins);
       font-size: ${rem(16)};
       line-height: 24px;

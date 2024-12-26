@@ -65,7 +65,7 @@ const RenderInputs = ({ arrayOfAttributes, attorneySlug }) => {
   };
 
   return (
-    <>
+    <div className="form-fields">
       <input
         type="hidden"
         name="currentPage"
@@ -74,7 +74,7 @@ const RenderInputs = ({ arrayOfAttributes, attorneySlug }) => {
       {arrayOfAttributes.map((attributes, index) => (
         <InputGroupStyled
           key={attributes.name}
-          className={`input-group--${index}`}
+          className={`form-field form-field--${index}`}
         >
           <InputsController
             attributes={attributes}
@@ -83,7 +83,7 @@ const RenderInputs = ({ arrayOfAttributes, attorneySlug }) => {
           />
         </InputGroupStyled>
       ))}
-    </>
+    </div>
   );
 };
 

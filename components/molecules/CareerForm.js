@@ -1,8 +1,7 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { Col, Row } from 'react-bootstrap';
 import { FormContainer } from 'styles/attorney-page/GetInTouchForm.styles';
-import { StandardRedButton } from '../../styles/Buttons.style';
+import { StandardBlueButton } from '../../styles/Buttons.style';
 import {
   THANKS_MESSAGE,
   inputsCareerForm,
@@ -32,47 +31,51 @@ const CareerForm = () => {
           // eslint-disable-next-line react/no-unknown-property
           success-message={THANKS_MESSAGE.title}
         >
-          <div className="career-form-wrapper">
-            <RenderInputs
-              arrayOfAttributes={inputsCareerForm}
-              attorneySlug={router.asPath}
-            />
-          </div>
+          <RenderInputs
+            arrayOfAttributes={inputsCareerForm}
+            attorneySlug={router.asPath}
+          />
 
-          <Row className="mb-0">
-            <Col sm={12}>
-              <p className="mb-1">
-                * The use of the Internet or this form for communication with
-                the firm or any individual member of the firm does not establish
-                an attorney-client relationship. Confidential or time-sensitive
-                information should not be sent through this form.
-              </p>
-              {/* eslint-disable-next-line react/no-unknown-property */}
-              <fieldset data-kw-group="true" rules="required" className="mb-2">
-                <label htmlFor="disclaimer">
-                  <input
-                    type="checkbox"
-                    name="disclaimer"
-                    // eslint-disable-next-line react/no-unknown-property
-                    feedback="You must agree before submitting."
-                    value="disclaimer"
-                    id="disclaimer"
-                    label="I have read the disclaimer"
-                    checked={isCheckedDisclaimer}
-                    onChange={careerHandleCheckDisclaimer}
-                  />
-                  <span className="p-2">I have read the disclaimer</span>
-                </label>
-              </fieldset>
-            </Col>
-          </Row>
-          <StandardRedButton
+          <p className="form-disclaimer">
+            * The use of the Internet or this form for communication with the
+            firm or any individual member of the firm does not establish an
+            attorney-client relationship. Confidential or time-sensitive
+            information should not be sent through this form.
+          </p>
+          {/* eslint-disable-next-line react/no-unknown-property */}
+          <fieldset
+            data-kw-group="true"
+            rules="required"
+            className="form-checkboxes"
+          >
+            <label htmlFor="disclaimer-career-form" className="form-checkbox">
+              <input
+                className="form-checkbox__input"
+                type="checkbox"
+                name="disclaimer-career-form"
+                // eslint-disable-next-line react/no-unknown-property
+                feedback="You must agree before submitting."
+                value="disclaimer-career-form"
+                id="disclaimer-career-form"
+                label="I have read the disclaimer"
+                checked={isCheckedDisclaimer}
+                onChange={careerHandleCheckDisclaimer}
+                required
+              />
+              <span className="form-checkbox__icon" />
+              <span className="form-checkbox__label">
+                I have read the disclaimer
+              </span>
+            </label>
+          </fieldset>
+
+          <StandardBlueButton
             disabled={isDisabledSubmitButton}
-            className="mt-2 ml-0"
+            className="form-button"
             type="submit"
           >
             Submit form
-          </StandardRedButton>
+          </StandardBlueButton>
         </form>
       </FormContainer>
     </CareerFormContainer>

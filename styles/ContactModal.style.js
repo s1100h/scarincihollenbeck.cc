@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
-import { ChildrenBox } from './ModalWindow.style';
+import { ChildrenBox, ModalContent } from './ModalWindow.style';
 import {
   cannabisLawColors,
   globalBorderRadius,
@@ -10,16 +10,11 @@ import {
 } from './global_styles/Global.styles';
 
 export const ContactModalBox = styled.div`
-  width: 500px;
   display: flex;
   flex-direction: column;
   row-gap: 20px;
   padding-left: 1px;
   height: content-box;
-
-  ${media_breakpoint_down('sm')} {
-    width: 100%;
-  }
 `;
 
 export const ContactModalHeader = styled.div``;
@@ -32,15 +27,31 @@ export const ContactModalTitle = styled.p`
 `;
 
 export const ContactModalWrapper = styled.div`
+  .kwes-form,
+  .kwes-form-init {
+
+    .form-fields {
+      --form-fields-gap: 20px;
+    }
+  }
+
+  .modal-open {
+    max-width: 600px;
+
+    ${media_breakpoint_down('sm')} {
+      max-width: 100%;
+    }
+  }
+
   &.no-transition {
     .kwes-form,
     .kwes-form-init {
-      > button {
+      .form-button {
         transition: none !important;
       }
 
-      > fieldset {
-        > label {
+      .form-checkboxes {
+        .form-checkbox {
           transition: none !important;
         }
       }
@@ -82,27 +93,6 @@ export const ContactModalWrapper = styled.div`
     .kwes-form-init {
       column-gap: 16px;
 
-      .input-group--0,
-      .input-group--1,
-      .input-group--2,
-      .input-group--3 {
-        width: calc(50% - 8px);
-
-        ${media_breakpoint_down('sm')} {
-          width: 100%;
-        }
-      }
-
-      .form-control,
-      .form-control::placeholder {
-        font-size: ${rem(16)};
-        line-height: 1.5;
-
-        ${media_breakpoint_down('sm')} {
-          font-size: ${rem(14)};
-        }
-      }
-
       .form-control {
         background-color: transparent;
         border-color: ${globalColor.gray.gray500};
@@ -122,20 +112,18 @@ export const ContactModalWrapper = styled.div`
         }
       }
 
-      > p {
-        margin-bottom: 24px !important;
+      .form-disclaimer {
+        margin-bottom: 12px;
         color: ${globalColor.gray.gray300};
       }
 
-      > fieldset {
+      .form-checkboxes {
         order: 2;
-        height: 100%;
-        align-self: center;
         margin: 0 0 0 -40px !important;
         width: calc(50% + 32px);
         position: relative;
 
-        > label {
+        .form-checkbox {
           height: 100%;
           width: 100%;
           padding: 16px 16px 16px 40px;
@@ -157,8 +145,7 @@ export const ContactModalWrapper = styled.div`
           }
         }
 
-        span {
-          font-size: ${rem(14)};
+        .form-checkbox__label {
           color: ${globalColor.gray.gray300};
         }
 
@@ -168,7 +155,7 @@ export const ContactModalWrapper = styled.div`
         }
 
         &:hover {
-          + button {
+          + .form-button {
             &::before {
               content: none;
             }
@@ -181,7 +168,7 @@ export const ContactModalWrapper = styled.div`
         }
       }
 
-      > button {
+      .form-button {
         order: 3;
         padding: 16px 40px 16px;
         margin: 0 -40px 0 -16px !important;
@@ -224,7 +211,6 @@ export const ContactModalWrapper = styled.div`
     }
 
     ${ContactModalBox} {
-      width: 100%;
       flex: 1;
       padding: 16px 40px 0;
       row-gap: 12px;
@@ -264,51 +250,92 @@ export const ContactModalWrapper = styled.div`
 
   &.cannabis-modal {
     .modal-open {
-      max-width: 600px;
       background-color: ${cannabisLawColors.cannabisColorGray};
     }
 
-    ${ContactModalBox} {
-      width: 100%;
+    .form-checkbox__icon {
+      border-color: ${globalColor.gray.gray110} !important;
+    }
 
-      button {
-        padding: 14px 24px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: ${cannabisLawColors.cannabisColorDarkGray};
-        border: 2px solid ${cannabisLawColors.cannabisColorDarkGray};
-        color: ${globalColor.white};
-        border-radius: 40px;
-        font-size: ${rem(18)};
-        line-height: 27px;
-        font-weight: 600;
-        font-family: var(--font-poppins), sans-serif;
-        transition: all 0.3s ease;
-
-        :hover {
-          color: ${cannabisLawColors.cannabisColorDarkGray};
-          background-color: transparent;
-
-          &::after {
-            display: none;
-          }
+    .form-checkbox__input {
+      &:checked {
+        & + .form-checkbox__icon {
+          border-color: ${globalColor.blue.dirtyBlue} !important;
         }
+      }
+    }
 
-        ${media_breakpoint_down('xxl')} {
-          padding: 10px 24px;
-          font-size: ${rem(16)};
-          line-height: 1.5;
+    .form-button {
+      padding: 14px 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: ${cannabisLawColors.cannabisColorDarkGray};
+      border: 2px solid ${cannabisLawColors.cannabisColorDarkGray};
+      color: ${globalColor.white};
+      border-radius: 40px;
+      font-weight: 600;
+      transition: ${globalTransition.default};
+
+      :hover {
+        color: ${cannabisLawColors.cannabisColorDarkGray};
+        background-color: transparent;
+
+        &::after {
+          display: none;
         }
+      }
+
+      ${media_breakpoint_down('xxl')} {
+        padding: 10px 24px;
       }
     }
   }
 `;
 
 export const SubscriptionModalWrapper = styled.div`
+  .modal-closer {
+    position: absolute;
+    top: 40px;
+    right: 20px;
+
+    ${media_breakpoint_down('md')} {
+      --icon-wrapper-size: 32px;
+      top: 32px;
+      right: 12px;
+    }
+
+    ${media_breakpoint_down('sm')} {
+      top: 12px;
+      right: 8px;
+    }
+  }
+
+  ${ModalContent} {
+    ${media_breakpoint_down('md')} {
+      padding: 12px;
+    }
+
+    ${media_breakpoint_down('sm')} {
+      padding: 8px;
+    }
+  }
+
   &.cannabis-modal {
     .modal-open {
       background-color: ${cannabisLawColors.cannabisColorGray};
+
+      .form-checkbox__icon {
+        border-color: ${globalColor.gray.gray110} !important;
+      }
+
+      .form-checkbox__input {
+        &:checked {
+          & + .form-checkbox__icon {
+            border-color: ${globalColor.blue.dirtyBlue} !important;
+          }
+        }
+      }
 
       .form-control {
         ::placeholder {
@@ -320,9 +347,9 @@ export const SubscriptionModalWrapper = styled.div`
         color: ${cannabisLawColors.cannabisColorDarkGray};
       }
 
-      .disclaimer-input {
+      .form-checkbox__input {
         &:checked {
-          & + span.disclaimer-checkbox {
+          & + span.form-checkbox__icon {
             background-color: ${cannabisLawColors.cannabisTransparentBlack};
           }
         }
@@ -332,8 +359,7 @@ export const SubscriptionModalWrapper = styled.div`
         margin-bottom: 10px;
       }
 
-      .btn-primary {
-        padding: 14px 24px;
+      .form-button {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -341,11 +367,9 @@ export const SubscriptionModalWrapper = styled.div`
         border: 2px solid ${cannabisLawColors.cannabisColorDarkGray};
         color: ${globalColor.white};
         border-radius: 40px;
-        font-size: ${rem(18)};
-        line-height: 27px;
+        font-size: inherit;
         font-weight: 600;
-        font-family: var(--font-poppins), sans-serif;
-        transition: all 0.3s ease;
+        transition: ${globalTransition.default};
 
         :hover {
           color: ${cannabisLawColors.cannabisColorDarkGray};
@@ -354,12 +378,6 @@ export const SubscriptionModalWrapper = styled.div`
           :after {
             opacity: 0;
           }
-        }
-
-        ${media_breakpoint_down('xxl')} {
-          padding: 10px 24px;
-          font-size: ${rem(16)};
-          line-height: 1.5;
         }
       }
     }

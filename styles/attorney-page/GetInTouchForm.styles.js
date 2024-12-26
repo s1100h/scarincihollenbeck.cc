@@ -1,64 +1,90 @@
+import { globalColor, globalTransition, rem, successMessage } from "styles/global_styles/Global.styles";
+import { InputGroup, Form } from 'react-bootstrap';
+import styled from 'styled-components';
+import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
+
 export const FormContainer = styled.div`
   ${({ isPositionRelative }) => isPositionRelative && 'position: relative;'}
 
   .kwes-form, .kwes-form-init {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    column-gap: 8px;
+    gap: 12px;
 
-    .input-group {
-      height: 100%;
-      &--0,
-      &--1 {
-        height: 100%;
-        width: calc(50% - 4px);
+    .form-fields {
+      width: 100%;
+      --form-fields-gap: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--form-fields-gap);
+
+      ${media_breakpoint_down('md')} {
+        --form-fields-gap: 16px;
       }
+    }
 
-      &:last-of-type {
-        margin-bottom: 8px;
+    .form-field {
+      &--0,
+      &--1,
+      &--2,
+      &--3 {
+        width: calc((100% - var(--form-fields-gap)) / 2);
+
+        ${media_breakpoint_down('sm')} {
+          width: 100%;
+        }
       }
     }
 
     .form-control {
+      height: fit-content;
       border-radius: 0;
-      padding: 8px 12px;
+      padding: 12px 16px;
       border: none;
-      border-bottom: 1px solid rgba(22, 58, 107, 0.37);
+      border-bottom: 1px solid ${globalColor.gray.gray300};
       background-color: ${globalColor.white};
-      transition: all 0.5s ease-in-out;
+      transition: ${globalTransition.default};
       font-family: var(--font-poppins);
-      font-size: ${rem(14)};
-      line-height: 20px;
+      font-size: inherit;
+      line-height: 1.5;
       font-weight: 400;
-      color: #040c10;
+      color: ${globalColor.blue.darkBlue};
 
       &:hover {
-        border-bottom: 1px solid var(--Kate-400, #377ec4);
+        border-bottom: 1px solid ${globalColor.blue.blue600};
         background-color: ${globalColor.gray.gray10};
       }
 
       &:focus {
-        border-bottom: 1px solid var(--Kate-400, #377ec4);
+        border-bottom: 1px solid ${globalColor.blue.blue600};
         background-color: #fbfbfb;
         box-shadow: none;
       }
 
       &::placeholder {
-        color: #568edc;
-        font-size: ${rem(14)};
-        font-weight: 400;
-        line-height: 20px;
-        font-family: var(--font-poppins);
+        color: ${globalColor.blue.blue400};
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        font-family: inherit;
       }
 
       &.kw-border-success {
         border-color: #23d160 !important;
       }
+
+      ${media_breakpoint_down('xxl')} {
+        padding: 10px 16px;
+      }
+
+      ${media_breakpoint_down('md')} {
+        padding: 8px 12px;
+      }
     }
 
-    .kw-alert-error,
-    .kw-alert-warning {
-      margin-bottom: 20px;
+    .kw-alert {
+      margin: 0;
     }
 
     .kw-alert-success {
@@ -109,38 +135,47 @@ export const FormContainer = styled.div`
     }
 
     textarea.form-control {
-      height: 56px;
+      height: 80px;
+
+      ${media_breakpoint_down('xxl')} {
+        height: 68px;
+      }
     }
 
-    p {
+    .form-disclaimer {
+      margin: 0;
       font-size: ${rem(12)};
-      color: ${globalColor.gray.gray80};
+      color: ${globalColor.gray.gray110};
       font-weight: 400;
       font-family: var(--font-poppins);
     }
 
-    label {
+    .form-checkboxes__label {
+      font-size: ${rem(12)};
+    }
+
+    .form-checkbox {
       display: flex;
       align-items: center;
 
-      .disclaimer-checkbox {
+      .form-checkbox__icon {
         display: flex;
         justify-content: center;
         width: 24px;
         height: 24px;
         margin-right: 8px;
         border-radius: 0;
-        border: 1px solid ${globalColor.grayExtraLite.grayExtraLite100};
+        border: 1px solid ${globalColor.gray.gray300};
         flex-shrink: 0;
       }
 
-      .disclaimer-input {
+      .form-checkbox__input {
         appearance: none;
         border: none;
         display: none;
 
         &:checked {
-          & + .disclaimer-checkbox {
+          & + .form-checkbox__icon {
             background-color: ${globalColor.blue.dirtyBlue};
             ::before {
               content: '';
@@ -155,28 +190,35 @@ export const FormContainer = styled.div`
         }
       }
 
-      span {
-        color: ${globalColor.gray.gray80};
-        font-size: ${rem(12)};
-        line-height: 20px;
+      .form-checkbox__label {
+        color: ${globalColor.gray.gray110};
+        font-size: ${rem(14)};
+        line-height: 1.5;
         font-weight: 400;
-        font-family: var(--font-poppins);
       }
+    }
+
+    .form-button {
+      margin-top: 20px;
+
+      ${media_breakpoint_down('md')} {
+        margin-top: 4px;
+      }
+    }
+
+    .kw-field-error-message {
+      font-size: ${rem(12)};
+      align-self: flex-end;
+    }
+
+    ${media_breakpoint_down('md')} {
+      gap: 8px;
     }
   }
 `;
 
-import { InputGroup, Form } from 'react-bootstrap';
-import styled from 'styled-components';
-
-import {
-  globalColor,
-  rem,
-  successMessage,
-} from 'styles/global_styles/Global.styles';
-
 export const InputGroupStyled = styled(InputGroup)`
-  margin-bottom: 20px;
+
   .kw-field-error-message {
     width: 100%;
     position: static;

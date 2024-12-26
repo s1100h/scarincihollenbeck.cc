@@ -276,7 +276,7 @@ describe('Practice page', () => {
     expect(submitButton).toHaveAttribute('type', 'submit');
     expect(submitButton).toBeDisabled();
 
-    const checkbox = container.querySelector('.disclaimer-input');
+    const checkbox = container.querySelector('.form-checkbox__input');
     expect(checkbox).toBeInTheDocument();
     expect(checkbox).toHaveAttribute('type', 'checkbox');
 

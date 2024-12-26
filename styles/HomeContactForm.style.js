@@ -32,41 +32,11 @@ export const ContactFormHolder = styled.div`
   border-radius: ${globalBorderRadius.big};
   background-color: ${globalColor.gray.gray1002};
   box-shadow: 0px 2px 16px 0px rgba(10, 62, 108, 0.08);
+  position: relative;
+  overflow: hidden;
 
   .kwes-form,
   .kwes-form-init {
-    column-gap: 16px;
-
-    .input-group {
-      ${media_breakpoint_down('sm')} {
-        margin-bottom: 16px;
-      }
-    }
-
-    .input-group--0,
-    .input-group--1,
-    .input-group--2,
-    .input-group--3 {
-      width: calc(50% - 8px);
-
-      ${media_breakpoint_down('sm')} {
-        width: 100%;
-      }
-    }
-
-    .form-control,
-    .form-control::placeholder {
-      font-size: ${rem(16)};
-      line-height: 1.5;
-
-      ${media_breakpoint_down('sm')} {
-        font-size: ${rem(14)};
-      }
-    }
-
-    .form-control {
-      border-color: ${globalColor.gray.gray300};
-    }
 
     textarea.form-control {
       height: 64px;
@@ -76,28 +46,32 @@ export const ContactFormHolder = styled.div`
       }
     }
 
-    > p {
-      margin-bottom: 16px !important;
+    .form-disclaimer {
+      margin-bottom: 4px;
       max-width: 800px;
-      color: ${globalColor.gray.gray110};
 
       ${media_breakpoint_down('sm')} {
-        margin-bottom: 8px !important;
+        margin: 0;
       }
     }
 
-    > fieldset {
+    .form-checkboxes, .form-button {
+      width: calc(50% - 6px);
+    }
+
+    .form-fields {
+      --form-fields-gap: 20px;
+
+      ${media_breakpoint_down('md')} {
+        --form-fields-gap: 16px;
+      }
+    }
+
+    .form-checkboxes {
       height: 100%;
       align-self: center;
-      margin: 0 !important;
-      width: calc(50% - 8px);
       display: flex;
       position: relative;
-
-      span {
-        font-size: ${rem(14)};
-        color: ${globalColor.gray.gray110};
-      }
 
       + .kw-field-error-message {
         order: 1;
@@ -108,14 +82,12 @@ export const ContactFormHolder = styled.div`
       }
 
       ${media_breakpoint_down('sm')} {
-        margin-bottom: 12px !important;
         width: 100%;
       }
     }
 
-    > button {
+    .form-button {
       margin: 0 !important;
-      width: calc(50% - 8px);
 
       ${media_breakpoint_down('sm')} {
         width: 100%;

@@ -228,82 +228,11 @@ export const ContactFormWrapper = styled.div`
   background-color: ${globalColor.white};
   border-radius: ${globalBorderRadius.big};
   box-shadow: 0px 2px 16px 0px rgba(10, 62, 108, 0.08);
+  position: relative;
+  overflow: hidden;
 
-  .kwes-form,
-  .kwes-form-init {
-
-    .input-group {
-      width: 100%;
-      margin-bottom: 32px;
-
-      &:last-of-type {
-        margin-bottom: 12px;
-
-        ${media_breakpoint_down('md')} {
-          margin-bottom: 8px;
-        }
-      }
-
-      ${media_breakpoint_down('md')} {
-        margin-bottom: 16px;
-      }
-    }
-
-    .form-control {
-      padding: 12px 16px;
-      border-bottom: 1px solid ${globalColor.gray.gray300};
-      font-size: inherit;
-      line-height: 1.5;
-
-      &::placeholder {
-        font-size: inherit;
-        line-height: inherit;
-      }
-
-      ${media_breakpoint_down('xxl')} {
-        padding: 10px 16px;
-      }
-
-      ${media_breakpoint_down('md')} {
-        padding: 8px 12px;
-        font-size: ${rem(14)};
-      }
-    }
-
-    textarea.form-control {
-      height: 80px;
-    }
-
-    fieldset {
-      margin: 8px 0 0 0 !important;
-
-      ${media_breakpoint_down('md')} {
-        margin: 4px 0 0 0 !important;
-      }
-    }
-
-    p {
-      color: ${globalColor.gray.gray110};
-    }
-
-    label {
-      span {
-        font-size: ${rem(14)};
-        color: ${globalColor.gray.gray110};
-      }
-    }
-
-    small {
-      align-self: flex-end;
-    }
-
-    ${StandardBlueButton} {
-      margin-top: 32px !important;
-
-      ${media_breakpoint_down('md')} {
-        margin-top: 12px !important;
-      }
-    }
+  .form-field {
+    width: 100% !important;
   }
 
   ${media_breakpoint_down('xxl')} {

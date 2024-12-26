@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import {
   media_breakpoint_down,
   media_breakpoint_up,
@@ -369,13 +369,6 @@ export const GlobalStyle = createGlobalStyle`
 
   .slick-list {
     text-align: center;
-  }
-
-  .smallExcerpt {
-    font-size: ${rem(13)};
-    line-height: 1.5;
-    margin-top: 0;
-    margin-bottom: 0;
   }
 
   .fs-1_2rem {
