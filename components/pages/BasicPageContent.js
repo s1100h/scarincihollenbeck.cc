@@ -1,62 +1,49 @@
-import { Container, Row, Col } from 'react-bootstrap';
-import PagesBody from 'components/organisms/page/BasicPageBody';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import ContactForm from 'components/shared/ContactForm/ContactForm';
-import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
-import { BigGrayTitle } from 'styles/BigGrayTitle.style';
 import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
 import { BASIC_PAGES } from 'utils/constants';
 import { ContainerDefault } from 'styles/Containers.style';
-import ContentRender from 'components/atoms/ContentRender';
+import empty from 'is-empty';
+import ContentSection from 'components/molecules/ContentSection';
+import { ArticleContent } from 'styles/Article.style';
+import { BasicPageContentHolder } from 'styles/BasicPage.style';
 
 const BasicPageContent = ({
   seo,
   site,
   canonicalUrl,
-  bodyContent,
-  pageForm,
+  sections,
   subHeaderImage,
-}) => {
-  // replace image url from post content
-  const modPage = formatPageImageToCloudinaryUrl(bodyContent);
-
-  return (
-    <>
-      <BasicSiteHead
-        title={seo.title}
-        metaDescription={seo.metaDesc}
-        canonicalUrl={canonicalUrl}
-      />
-      <SubHeaderDefault
-        title={site.title}
-        subtitle={site.description}
-        backgroundImage={subHeaderImage}
-        menu={BASIC_PAGES}
-      />
-
-      <ContainerDefault>
-        <ContentRender content={modPage} />
-      </ContainerDefault>
-
-      {/* <Container>
-        <Row>
-          <Col sm={12}>
-            <PagesBody content={modPage} />
-            {pageForm?.enableForm && (
-              <>
-                {pageForm.formLabel && (
-                  <BigGrayTitle className="mb-5 w-75">
-                    {pageForm.formLabel}
-                  </BigGrayTitle>
-                )}
-                <ContactForm />
-              </>
-            )}
-          </Col>
-        </Row>
-      </Container> */}
-    </>
-  );
-};
+}) => (
+  <>
+    <BasicSiteHead
+      title={seo.title}
+      metaDescription={seo.metaDesc}
+      canonicalUrl={canonicalUrl}
+    />
+    <SubHeaderDefault
+      title={site.title}
+      subtitle={site.description}
+      backgroundImage={subHeaderImage}
+      menu={BASIC_PAGES}
+    />
+    <ContainerDefault>
+      <ArticleContent>
+        <BasicPageContentHolder>
+          {!empty(sections)
+            && sections?.map(({ title, content, link }, index) => (
+              <ContentSection
+                // eslint-disable-next-line react/no-array-index-key
+                key={index}
+                title={title}
+                content={content}
+                link={link}
+                isSmaller
+              />
+            ))}
+        </BasicPageContentHolder>
+      </ArticleContent>
+    </ContainerDefault>
+  </>
+);
 
 export default BasicPageContent;

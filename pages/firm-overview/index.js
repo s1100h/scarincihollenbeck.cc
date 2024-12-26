@@ -6,11 +6,8 @@ import {
 } from 'utils/constants';
 import { fetchAPI } from 'requests/api';
 import { firmOverviewQuery } from 'requests/graphql-queries';
-import {
-  getSubTitleFromHTML,
-  sortAttorneysByCategory,
-  sortByKey,
-} from 'utils/helpers';
+import { sortAttorneysByCategory, sortByKey } from 'utils/helpers';
+import empty from 'is-empty';
 
 /** Fetch the firm overview page content WP GRAPHQL API */
 export async function getFirmOverviewContent() {
@@ -40,13 +37,30 @@ const sanitizeMembers = (members) => members.map((member) => ({
         ? member.attorneyChairCoChair
         : member.attorneyMainInformation.designation)
       || member.administration?.title,
+  location_array: !empty(
+    member.attorneyPrimaryRelatedPracticesLocationsGroups,
+  )
+    ? member.attorneyPrimaryRelatedPracticesLocationsGroups?.officeLocation?.map(
+      ({ id, title }) => ({
+        id,
+        officeMainInformation: title,
+      }),
+    )
+    : !empty(member.administration)
+      ? member.administration?.location?.map(
+        ({ id, officeMainInformation }) => ({
+          id,
+          officeMainInformation: officeMainInformation.addressLocality,
+        }),
+      )
+      : [],
 }));
 
 export const getStaticProps = async () => {
   const pageRequest = await getFirmOverviewContent();
 
   const {
-    title, seo, content, firmOverviewTabs, featuredImage,
+    title, seo, pagesFields, firmOverviewTabs, featuredImage,
   } = pageRequest;
 
   const { directors, firmLeaders } = firmOverviewTabs;
@@ -67,9 +81,9 @@ export const getStaticProps = async () => {
     props: {
       title,
       seo,
-      content,
+      pagesFields,
       firmOverviewTabs,
-      FirmMembers: sorteredFirmMembers,
+      firmMembers: sorteredFirmMembers,
       subHeaderImage: featuredImage.node.sourceUrl,
     },
     revalidate: 86400,
@@ -80,22 +94,22 @@ export const getStaticProps = async () => {
 const FirmOverview = ({
   title,
   seo,
-  content,
+  pagesFields,
   firmOverviewTabs,
-  FirmMembers,
+  firmMembers,
   subHeaderImage,
 }) => {
-  const { clearBody, subTitle } = getSubTitleFromHTML(content);
+  const { description, sections } = pagesFields;
   const canonicalUrl = `${PRODUCTION_URL}/firm-overview`;
 
   const firmOverviewProps = {
     title,
     seo,
     canonicalUrl,
-    bodyContent: clearBody,
-    subTitle,
+    sections,
+    subTitle: description,
     firmOverviewTabs,
-    FirmMembers,
+    firmMembers,
     subHeaderImage,
   };
 

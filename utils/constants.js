@@ -207,6 +207,11 @@ export const FIRM_PAGES = [
     label: 'In Memoriam',
     slug: '/memorials',
   },
+  {
+    id: 'work-life-balance',
+    label: 'Work Life Balance',
+    slug: '/work-life-balance',
+  },
 ];
 
 /** List of basic pages links found in the sidebar */

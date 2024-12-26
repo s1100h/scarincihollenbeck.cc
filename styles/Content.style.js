@@ -7,6 +7,10 @@ export const ContentWrapper = styled.section`
   flex-direction: column;
   row-gap: ${({ $isSmaller }) => ($isSmaller ? '8px' : '12px')};
 
+  ${media_breakpoint_down('lg')} {
+    columns: unset;
+  }
+
   ${media_breakpoint_down('xxl')} {
     row-gap: 8px;
   }

@@ -1,5 +1,4 @@
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import NonFiltered from 'components/molecules/attorneys/NonFiltered';
 import { ContainerDefault } from 'styles/Containers.style';
 import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
@@ -8,14 +7,14 @@ import empty from 'is-empty';
 import { FirmOverviewlWrapper } from 'styles/FirmOverview.style';
 import WhyChooseUs from 'components/organisms/practices/WhyChooseUs';
 import KeyPoints from 'components/molecules/firm/KeyPoints';
-import ContentRender from 'components/atoms/ContentRender';
 import { FirmOverviewContentSection } from 'styles/KeyPoints.style';
+import ContentSection from 'components/molecules/ContentSection';
 
 const FirmOverviewPage = ({
   title,
   seo,
   canonicalUrl,
-  bodyContent,
+  sections,
   subTitle,
   firmOverviewTabs,
   firmMembers,
@@ -36,12 +35,17 @@ const FirmOverviewPage = ({
     <FirmOverviewlWrapper>
       <ContainerDefault>
         <FirmOverviewContentSection>
-          <ContentRender
-            as="article"
-            content={formatPageImageToCloudinaryUrl(bodyContent)}
-            customClass="two-columns"
-          />
-
+          {!empty(sections)
+            && sections?.map(({ title, content, link }) => (
+              <ContentSection
+                key={title}
+                title={title}
+                content={content}
+                link={link}
+                isSmaller
+                isTwoColumns
+              />
+            ))}
           <KeyPoints items={firmOverviewTabs.mainTabs} />
         </FirmOverviewContentSection>
       </ContainerDefault>

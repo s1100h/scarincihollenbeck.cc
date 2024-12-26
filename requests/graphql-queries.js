@@ -919,14 +919,21 @@ export const basicPagesQuery = `query BasicPageQuery($slug: String) {
       metaDesc
       title
     }
-    content(format: RENDERED)
-    addFormToPage {
-      enableForm
-      formLabel
-    }
     featuredImage {
       node {
         sourceUrl
+      }
+    }
+    pagesFields {
+      description
+      sections {
+        content
+        link {
+          target
+          title
+          url
+        }
+        title
       }
     }
   }
@@ -1009,7 +1016,6 @@ export const firmOverviewQuery = `query FirmOverviewQuery {
       metaDesc
       title
     }
-    content
     firmOverviewTabs {
       additionalContent {
         content
@@ -1099,6 +1105,18 @@ export const firmOverviewQuery = `query FirmOverviewQuery {
     featuredImage {
       node {
         sourceUrl
+      }
+    }
+    pagesFields {
+      description
+      sections {
+        content
+        link {
+          target
+          title
+          url
+        }
+        title
       }
     }
   }
