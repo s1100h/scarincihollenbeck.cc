@@ -7,7 +7,7 @@ import {
 } from 'styles/global_styles/Global.styles';
 import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
 
-export const WhyChooseUsSection = styled.div`
+export const WhyChooseUsSection = styled.section`
   padding: 40px 0;
   background-color: ${globalColor.white};
 

@@ -635,7 +635,7 @@ export const SubHeaderLocationsHolder = styled.div`
   }
 `;
 
-export const SubHeaderHolder = styled.div`
+export const SubHeaderHolder = styled.section`
   min-height: 340px;
   max-width: 1920px;
   margin: 0 auto;

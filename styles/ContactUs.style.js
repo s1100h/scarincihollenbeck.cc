@@ -213,7 +213,12 @@ export const ContactItemImage = styled.picture`
     left: -40%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, #FFF 41.12%, rgba(255, 255, 255, 0.75) 68.45%, rgba(255, 255, 255, 0.00) 100%);
+    background: linear-gradient(
+      90deg,
+      #fff 41.12%,
+      rgba(255, 255, 255, 0.75) 68.45%,
+      rgba(255, 255, 255, 0) 100%
+    );
     z-index: 1;
   }
 `;

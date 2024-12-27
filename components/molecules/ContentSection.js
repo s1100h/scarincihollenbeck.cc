@@ -10,7 +10,11 @@ import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import { ContentWrapper } from 'styles/Content.style';
 
 const ContentSection = ({
-  title, isSmaller = false, content, link,
+  title,
+  isSmaller = false,
+  content,
+  link,
+  isTwoColumns = false,
 }) => (
   <ContentWrapper key={title} $isSmaller={isSmaller}>
     {!empty(title)
@@ -19,7 +23,10 @@ const ContentSection = ({
       ) : (
         <Title20 as="h2">{title}</Title20>
       ))}
-    <ContentRender content={formatPageImageToCloudinaryUrl(content)} />
+    <ContentRender
+      content={formatPageImageToCloudinaryUrl(content)}
+      customClass={isTwoColumns ? 'two-columns' : ''}
+    />
     {!empty(link?.url) && (
       <UnderlinedLink
         href={link?.url}

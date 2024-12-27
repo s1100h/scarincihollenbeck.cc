@@ -1,53 +1,48 @@
-import { Container, Row, Col } from 'react-bootstrap';
-import PagesBody from 'components/organisms/page/BasicPageBody';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import ContactForm from 'components/shared/ContactForm/ContactForm';
-import SubHeader from 'layouts/SubHeader/SubHeader';
-import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
-import { BigGrayTitle } from 'styles/BigGrayTitle.style';
+import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
+import { BASIC_PAGES, FIRM_PAGES } from 'utils/constants';
+import { ContainerDefault } from 'styles/Containers.style';
+import empty from 'is-empty';
+import ContentSection from 'components/molecules/ContentSection';
+import { BasicPageContentHolder } from 'styles/BasicPage.style';
 
 const BasicPageContent = ({
-  seo,
-  site,
+  sections,
   canonicalUrl,
-  bodyContent,
-  pageForm,
-}) => {
-  // replace image url from post content
-  const modPage = formatPageImageToCloudinaryUrl(bodyContent);
-
-  return (
-    <>
-      <BasicSiteHead
-        title={seo.title}
-        metaDescription={seo.metaDesc}
-        canonicalUrl={canonicalUrl}
-      />
-      <SubHeader
-        title={site.title}
-        subtitle={site.description}
-        span={7}
-        offset={2}
-      />
-      <Container>
-        <Row>
-          <Col sm={12}>
-            <PagesBody content={modPage} />
-            {pageForm?.enableForm && (
-              <>
-                {pageForm.formLabel && (
-                  <BigGrayTitle className="mb-5 w-75">
-                    {pageForm.formLabel}
-                  </BigGrayTitle>
-                )}
-                <ContactForm />
-              </>
-            )}
-          </Col>
-        </Row>
-      </Container>
-    </>
-  );
-};
+  seo,
+  title,
+  description,
+  subHeaderImage,
+}) => (
+  <>
+    <BasicSiteHead
+      title={seo.title}
+      metaDescription={seo.metaDesc}
+      canonicalUrl={canonicalUrl}
+    />
+    <SubHeaderDefault
+      title={title}
+      subtitle={description}
+      backgroundImage={subHeaderImage}
+      menu={
+        canonicalUrl.includes('work-life-balance') ? FIRM_PAGES : BASIC_PAGES
+      }
+    />
+    <ContainerDefault as="section">
+      <BasicPageContentHolder as="div">
+        {!empty(sections)
+          && sections?.map(({ title, content, link }, index) => (
+            <ContentSection
+              key={`${index + 1}-basic-page-section`}
+              title={title}
+              content={content}
+              link={link}
+              isSmaller
+            />
+          ))}
+      </BasicPageContentHolder>
+    </ContainerDefault>
+  </>
+);
 
 export default BasicPageContent;

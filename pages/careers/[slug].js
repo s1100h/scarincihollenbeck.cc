@@ -55,6 +55,7 @@ export const getStaticProps = async ({ params }) => {
       career: careersContent,
       canonicalUrl: `${PRODUCTION_URL}/careers/${params.slug}`,
     },
+    revalidate: 86400,
   };
 };
 

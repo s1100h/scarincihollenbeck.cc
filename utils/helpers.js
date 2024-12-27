@@ -454,6 +454,11 @@ export const createMenuData = (practices, locations, industries) => [
         title: 'In Memoriam',
         uri: '/memorials',
       },
+      {
+        databaseId: 'menu-firm-08',
+        title: 'Work Life Balance',
+        uri: '/work-life-balance',
+      },
     ],
   },
   {

@@ -6,11 +6,8 @@ import {
 } from 'utils/constants';
 import { fetchAPI } from 'requests/api';
 import { firmOverviewQuery } from 'requests/graphql-queries';
-import {
-  getSubTitleFromHTML,
-  sortAttorneysByCategory,
-  sortByKey,
-} from 'utils/helpers';
+import { sortAttorneysByCategory, sortByKey } from 'utils/helpers';
+import empty from 'is-empty';
 
 /** Fetch the firm overview page content WP GRAPHQL API */
 export async function getFirmOverviewContent() {
@@ -40,28 +37,42 @@ const sanitizeMembers = (members) => members.map((member) => ({
         ? member.attorneyChairCoChair
         : member.attorneyMainInformation.designation)
       || member.administration?.title,
+  location_array: !empty(
+    member.attorneyPrimaryRelatedPracticesLocationsGroups,
+  )
+    ? member.attorneyPrimaryRelatedPracticesLocationsGroups?.officeLocation?.map(
+      ({ id, title }) => ({
+        id,
+        officeMainInformation: title,
+      }),
+    )
+    : !empty(member.administration)
+      ? member.administration?.location?.map(
+        ({ id, officeMainInformation }) => ({
+          id,
+          officeMainInformation: officeMainInformation.addressLocality,
+        }),
+      )
+      : [],
 }));
 
 export const getStaticProps = async () => {
   const pageRequest = await getFirmOverviewContent();
 
   const {
-    title, seo, content, firmOverviewTabs,
+    title, seo, pagesFields, firmOverviewTabs, featuredImage,
   } = pageRequest;
-  const {
-    // this was committed(2.02.2022). it need for /firm-overview.
-    // firmChairsCochairs,
-    directors,
-    firmLeaders,
-  } = firmOverviewTabs;
+
+  const { directors, firmLeaders } = firmOverviewTabs;
+
   const restFirmMembers = [
     ...sanitizeMembers(firmLeaders),
-    // this was committed(2.02.2022). it need for /firm-overview.
-    // ...sanitizeMembers(firmChairsCochairs),
     ...sanitizeMembers(directors),
   ];
+
   const sortedTitlesByOrder = sortByKey(firmOverViewTitles, 'order');
-  const sorteredFirmMembers = sortAttorneysByCategory(
+
+  const sortedFirmMembers = sortAttorneysByCategory(
     restFirmMembers,
     sortedTitlesByOrder,
   );
@@ -70,9 +81,11 @@ export const getStaticProps = async () => {
     props: {
       title,
       seo,
-      content,
+      description: pagesFields?.description,
+      sections: pagesFields?.sections,
       firmOverviewTabs,
-      FirmMembers: sorteredFirmMembers,
+      firmMembers: sortedFirmMembers,
+      subHeaderImage: featuredImage.node.sourceUrl,
     },
     revalidate: 86400,
   };
@@ -82,23 +95,23 @@ export const getStaticProps = async () => {
 const FirmOverview = ({
   title,
   seo,
-  content,
+  description,
+  sections,
   firmOverviewTabs,
-  administration,
-  FirmMembers,
+  firmMembers,
+  subHeaderImage,
 }) => {
-  const { clearBody, subTitle } = getSubTitleFromHTML(content);
   const canonicalUrl = `${PRODUCTION_URL}/firm-overview`;
 
   const firmOverviewProps = {
     title,
     seo,
     canonicalUrl,
-    bodyContent: clearBody,
-    subTitle,
+    sections,
+    description,
     firmOverviewTabs,
-    administration,
-    FirmMembers,
+    firmMembers,
+    subHeaderImage,
   };
 
   return <FirmOverviewPage {...firmOverviewProps} />;

@@ -15,7 +15,13 @@ const createCardImage = (index) => ({
   height: 700,
 });
 
-const WhyChooseUs = ({ anchorId, data, isPrint }) => {
+const WhyChooseUs = ({
+  anchorId,
+  data,
+  isPrint,
+  withImage,
+  isSectionTitle = true,
+}) => {
   let isJSX = true;
   if (empty(data)) {
     data = defaultWhyChooseUsData;
@@ -30,13 +36,16 @@ const WhyChooseUs = ({ anchorId, data, isPrint }) => {
       data-testid="why-choose-us"
     >
       <ContainerDefault>
-        <Title32>Why Choose Us?</Title32>
+        <Title32 className={isSectionTitle ? '' : 'sr-only'}>
+          Why Choose Us?
+        </Title32>
         <WhyChooseUsCards>
           {data.map((card, index) => (
             <WhyChooseUsCard
               key={`${id}-${index + 1}-card`}
               title={card?.title}
-              text={card?.description}
+              text={card?.description || card?.content}
+              withImage={withImage}
               image={createCardImage(index)}
               isJSXDescription={isJSX}
               isPrint={isPrint}

@@ -2,7 +2,6 @@ import BasicPageContent from 'components/pages/BasicPageContent';
 import { PRODUCTION_URL } from 'utils/constants';
 import { fetchAPI } from 'requests/api';
 import { basicPagesQuery } from 'requests/graphql-queries';
-import { getSubTitleFromHTML } from 'utils/helpers';
 
 /** Fetch page data from WP GRAPHQL API */
 const getBasicPageContent = async (slug) => {
@@ -31,13 +30,6 @@ export async function getStaticPaths() {
 /** Set data from API response to page props */
 export const getStaticProps = async ({ params }) => {
   const slug = params?.slug;
-
-  if (!slug) {
-    return {
-      notFound: true,
-    };
-  }
-
   const request = await getBasicPageContent(slug);
 
   if (!request) {
@@ -47,19 +39,17 @@ export const getStaticProps = async ({ params }) => {
   }
 
   const {
-    title, content, seo, addFormToPage,
+    title, seo, featuredImage, pagesFields,
   } = request;
 
   return {
     props: {
       title,
-      content,
       seo,
-      pageForm: {
-        enableForm: addFormToPage?.enableForm,
-        formLabel: addFormToPage?.formLabel,
-      },
-      slug: params.slug,
+      subHeaderImage: featuredImage?.node.sourceUrl,
+      description: pagesFields?.description,
+      sections: pagesFields?.sections,
+      canonicalUrl: `${PRODUCTION_URL}/${params.slug}`,
     },
     revalidate: 86400,
   };
@@ -67,21 +57,22 @@ export const getStaticProps = async ({ params }) => {
 
 /** Basic page component - Awards, Privacy Policy, Work Life Balance etc. */
 const BasicPage = ({
-  content, seo, slug, title, pageForm,
+  seo,
+  title,
+  subHeaderImage,
+  canonicalUrl,
+  description,
+  sections,
 }) => {
-  const { clearBody, subTitle } = getSubTitleFromHTML(content);
-  const canonicalUrl = `${PRODUCTION_URL}/${slug}`;
-
   const basicPageProps = {
-    bodyContent: clearBody,
+    sections,
     canonicalUrl,
     seo,
-    pageForm,
-    site: {
-      title,
-      description: subTitle,
-    },
+    title,
+    description,
+    subHeaderImage,
   };
+
   return <BasicPageContent {...basicPageProps} />;
 };
 

@@ -1,4 +1,4 @@
-import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
+import ContentRender from 'components/atoms/ContentRender';
 import Image from 'next/image';
 import React from 'react';
 import { Title20 } from 'styles/common/Typography.style';
@@ -15,6 +15,7 @@ const WhyChooseUsCard = ({
   image,
   isJSXDescription,
   isPrint = false,
+  withImage = true,
 }) => {
   const TagImage = isPrint ? 'img' : Image;
   return (
@@ -22,17 +23,19 @@ const WhyChooseUsCard = ({
       <WhyChooseUsCardContent>
         {title && <Title20>{title}</Title20>}
         <WhyChooseUsCardDescription as={isJSXDescription ? 'div' : 'p'}>
-          <JSXWithDynamicLinks HTML={text} />
+          <ContentRender content={text} customClass="why-choose-us" />
         </WhyChooseUsCardDescription>
       </WhyChooseUsCardContent>
-      <WhyChooseUsCardImage>
-        <TagImage
-          src={image.src}
-          alt={title || 'Building'}
-          width={image.width}
-          height={image.height}
-        />
-      </WhyChooseUsCardImage>
+      {withImage && (
+        <WhyChooseUsCardImage>
+          <TagImage
+            src={image.src}
+            alt={title || 'Building'}
+            width={image.width}
+            height={image.height}
+          />
+        </WhyChooseUsCardImage>
+      )}
     </WhyChooseUsCardWrapper>
   );
 };

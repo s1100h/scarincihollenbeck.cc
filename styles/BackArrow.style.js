@@ -1,7 +1,10 @@
-import Link from "next/link";
-import styled from "styled-components";
-import { globalColor, globalTransition, rem } from "./global_styles/Global.styles";
-
+import Link from 'next/link';
+import styled from 'styled-components';
+import {
+  globalColor,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
 
 export const BackArrowWrapper = styled(Link)`
   display: inline-flex;

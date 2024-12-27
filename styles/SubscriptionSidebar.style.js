@@ -1,7 +1,11 @@
-import styled from "styled-components";
-import { globalBorderRadius, globalColor, rem } from "./global_styles/Global.styles";
-import { Title20 } from "./common/Typography.style";
-import { media_breakpoint_down } from "./mediaBreakpoints.style";
+import styled from 'styled-components';
+import {
+  globalBorderRadius,
+  globalColor,
+  rem,
+} from './global_styles/Global.styles';
+import { Title20 } from './common/Typography.style';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const SubscriptionSidebarHolder = styled.div`
   padding: 16px 24px;
@@ -68,7 +72,6 @@ export const SubscriptionSidebarBlockTitle = styled.h3`
     height: 28px;
     color: ${globalColor.blue.skyBlue};
   }
-
 `;
 
 export const SubscriptionSidebarBlockLinks = styled.ul`

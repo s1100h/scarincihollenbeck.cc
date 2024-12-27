@@ -1,26 +1,26 @@
-import SubHeader from 'layouts/SubHeader/SubHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
-import dynamic from 'next/dynamic';
 import NonFiltered from 'components/molecules/attorneys/NonFiltered';
-import {
-  CentralizedBox,
-  ContainerDefault,
-  ContainerXXL,
-} from 'styles/Containers.style';
+import { ContainerDefault } from 'styles/Containers.style';
+import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
+import { FIRM_PAGES } from 'utils/constants';
+import empty from 'is-empty';
+import { FirmOverviewWrapper } from 'styles/FirmOverview.style';
+import KeyPoints from 'components/molecules/firm/KeyPoints';
+import { FirmOverviewContentSection } from 'styles/KeyPoints.style';
+import ContentSection from 'components/molecules/ContentSection';
+import dynamic from 'next/dynamic';
 
-const AdditionalInformation = dynamic(() => import('components/atoms/Article'));
-const MainInformation = AdditionalInformation;
-const HeadInformation = AdditionalInformation;
+const WhyChooseUs = dynamic(() => import('components/organisms/practices/WhyChooseUs'));
 
 const FirmOverviewPage = ({
   title,
   seo,
   canonicalUrl,
-  bodyContent,
-  subTitle,
+  sections,
+  description,
   firmOverviewTabs,
-  FirmMembers,
+  firmMembers,
+  subHeaderImage,
 }) => (
   <>
     <BasicSiteHead
@@ -28,32 +28,42 @@ const FirmOverviewPage = ({
       metaDescription={seo.metaDesc}
       canonicalUrl={canonicalUrl}
     />
-    <SubHeader title={title} subtitle={subTitle} span={6} offset={3} />
-    <ContainerXXL>
-      <CentralizedBox notSurface="true">
-        <HeadInformation
-          contentBody={formatPageImageToCloudinaryUrl(bodyContent)}
+    <SubHeaderDefault
+      title={title}
+      subtitle={description}
+      backgroundImage={subHeaderImage}
+      menu={FIRM_PAGES}
+    />
+    <FirmOverviewWrapper>
+      <ContainerDefault>
+        <FirmOverviewContentSection>
+          {!empty(sections)
+            && sections?.map(({ title, content, link }) => (
+              <ContentSection
+                key={title}
+                title={title}
+                content={content}
+                link={link}
+                isSmaller
+                isTwoColumns
+              />
+            ))}
+          <KeyPoints items={firmOverviewTabs.mainTabs} />
+        </FirmOverviewContentSection>
+      </ContainerDefault>
+
+      <ContainerDefault>
+        <NonFiltered attorneys={firmMembers} isVertical />
+      </ContainerDefault>
+
+      {!empty(firmOverviewTabs) && (
+        <WhyChooseUs
+          data={firmOverviewTabs.additionalContent}
+          withImage={false}
+          isSectionTitle={false}
         />
-        {firmOverviewTabs.mainTabs.map(({ subtitle, title, content }) => (
-          <MainInformation key={title} title={subtitle} contentBody={content} />
-        ))}
-      </CentralizedBox>
-    </ContainerXXL>
-    <ContainerDefault className="mt-5 mb-5">
-      <NonFiltered attorneys={FirmMembers} />
-    </ContainerDefault>
-    <ContainerXXL>
-      <CentralizedBox notSurface="true">
-        {firmOverviewTabs.additionalContent.map(({ content, title }) => (
-          <AdditionalInformation
-            key={title}
-            highlight
-            title={title}
-            contentBody={content}
-          />
-        ))}
-      </CentralizedBox>
-    </ContainerXXL>
+      )}
+    </FirmOverviewWrapper>
   </>
 );
 

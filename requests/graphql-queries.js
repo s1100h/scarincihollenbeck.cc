@@ -927,10 +927,22 @@ export const basicPagesQuery = `query BasicPageQuery($slug: String) {
       metaDesc
       title
     }
-    content(format: RENDERED)
-    addFormToPage {
-      enableForm
-      formLabel
+    featuredImage {
+      node {
+        sourceUrl
+      }
+    }
+    pagesFields {
+      description
+      sections {
+        content
+        link {
+          target
+          title
+          url
+        }
+        title
+      }
     }
   }
 }`;
@@ -1002,14 +1014,14 @@ query FirmPageQuery($slug: ID!) {
   }
 }`;
 
-export const firmOverviewQuery = `query FirmOverviewQuery {
-  pageBy(uri: "firm-overview") {
+export const firmOverviewQuery = `
+query FirmOverviewQuery {
+  pageBy(pageId: 29492) {
     title
     seo {
       metaDesc
       title
     }
-    content
     firmOverviewTabs {
       additionalContent {
         content
@@ -1021,36 +1033,6 @@ export const firmOverviewQuery = `query FirmOverviewQuery {
         title
         mainImage {
           sourceUrl
-        }
-      }
-      firmChairsCochairs {
-        ... on AttorneyProfile {
-          slug
-          title
-          attorneyMainInformation {
-            designation
-            email
-            phoneNumber
-            profileImage {
-              sourceUrl
-            }
-          }
-          attorneyChairCoChair {
-            chair {
-              ... on Practice {
-                id
-                title
-                slug
-              }
-            }
-            coChair {
-              ... on Practice {
-                id
-                title
-                slug
-              }
-            }
-          }
         }
       }
       firmLeaders {
@@ -1066,6 +1048,15 @@ export const firmOverviewQuery = `query FirmOverviewQuery {
             featuredImage {
               sourceUrl
             }
+            location {
+              ... on OfficeLocation {
+                officeMainInformation {
+                  addressLocality
+                }
+                uri
+                id
+              }
+            }
           }
         }
         ... on AttorneyProfile {
@@ -1078,6 +1069,15 @@ export const firmOverviewQuery = `query FirmOverviewQuery {
             phoneNumber
             profileImage {
               sourceUrl
+            }
+          }
+          attorneyPrimaryRelatedPracticesLocationsGroups {
+            officeLocation {
+              ... on OfficeLocation {
+                id
+                title
+                uri
+              }
             }
           }
         }
@@ -1095,8 +1095,34 @@ export const firmOverviewQuery = `query FirmOverviewQuery {
             featuredImage {
               sourceUrl
             }
+            location {
+              ... on OfficeLocation {
+                officeMainInformation {
+                  addressLocality
+                }
+                uri
+                id
+              }
+            }
           }
         }
+      }
+    }
+    featuredImage {
+      node {
+        sourceUrl
+      }
+    }
+    pagesFields {
+      description
+      sections {
+        content
+        link {
+          target
+          title
+          url
+        }
+        title
       }
     }
   }

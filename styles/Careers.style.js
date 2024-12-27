@@ -137,7 +137,6 @@ export const CareerFormContainer = styled.div`
   }
 `;
 
-
 export const CareerHeaderItems = styled.ul`
   margin: 0;
   padding: 15px 23px;
