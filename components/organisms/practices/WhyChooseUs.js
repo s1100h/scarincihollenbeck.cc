@@ -19,7 +19,7 @@ const WhyChooseUs = ({
   anchorId,
   data,
   isPrint,
-  withImage,
+  isHideImage,
   isSectionTitle = true,
 }) => {
   let isJSX = true;
@@ -45,7 +45,7 @@ const WhyChooseUs = ({
               key={`${id}-${index + 1}-card`}
               title={card?.title}
               text={card?.description || card?.content}
-              withImage={withImage}
+              isHideImage={isHideImage}
               image={createCardImage(index)}
               isJSXDescription={isJSX}
               isPrint={isPrint}

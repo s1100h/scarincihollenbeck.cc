@@ -90,16 +90,4 @@ export const ContentContainer = styled.div`
       gap: 32px;
     }
   }
-
-  &.why-choose-us {
-    --content-text-color: ${globalColor.white};
-
-    p {
-      margin: 0 0 16px 0;
-
-      ${media_breakpoint_down('md')} {
-        margin: 0 0 12px 0;
-      }
-    }
-  }
 `;

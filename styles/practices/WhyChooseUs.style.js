@@ -44,39 +44,6 @@ export const WhyChooseUsCards = styled.div`
   }
 `;
 
-export const WhyChooseUsCardWrapper = styled.div`
-  flex: 1 1 calc((100% - 32px) / 2);
-  min-height: 285px;
-  display: flex;
-  column-gap: 48px;
-  border-radius: ${globalBorderRadius.middle};
-  background: linear-gradient(98deg, #060b2a -0.14%, #377ec4 108.53%);
-  overflow: hidden;
-
-  ${media_breakpoint_down('xxl')} {
-    column-gap: 16px;
-  }
-
-  ${media_breakpoint_down('xl')} {
-    flex-direction: column;
-    flex-basis: calc((100% - 16px) / 2);
-  }
-
-  ${media_breakpoint_down('lg')} {
-    flex-basis: 100%;
-  }
-
-  @media print {
-    flex: 1 1 calc((100% - 16px) / 2);
-    width: 100%;
-    flex: 1;
-    break-inside: avoid;
-    page-break-inside: avoid;
-    column-gap: 8px;
-    flex-direction: row;
-  }
-`;
-
 export const WhyChooseUsCardContent = styled.div`
   flex: 1;
   padding: 24px 0 24px 24px;
@@ -200,5 +167,52 @@ export const WhyChooseUsCardImage = styled.picture`
     width: 34%;
     height: 100%;
     order: 0;
+  }
+`;
+
+export const WhyChooseUsCardWrapper = styled.div`
+  flex: 1 1 calc((100% - 32px) / 2);
+  min-height: 285px;
+  display: flex;
+  column-gap: 48px;
+  border-radius: ${globalBorderRadius.middle};
+  background: linear-gradient(98deg, #060b2a -0.14%, #377ec4 108.53%);
+  overflow: hidden;
+
+  &:not(:has(${WhyChooseUsCardImage})) {
+    ${WhyChooseUsCardContent} {
+      padding: 24px;
+
+      ${media_breakpoint_down('xl')} {
+        padding: 8px 16px;
+      }
+
+      ${media_breakpoint_down('md')} {
+        padding: 8px 12px;
+      }
+    }
+  }
+
+  ${media_breakpoint_down('xxl')} {
+    column-gap: 16px;
+  }
+
+  ${media_breakpoint_down('xl')} {
+    flex-direction: column;
+    flex-basis: calc((100% - 16px) / 2);
+  }
+
+  ${media_breakpoint_down('lg')} {
+    flex-basis: 100%;
+  }
+
+  @media print {
+    flex: 1 1 calc((100% - 16px) / 2);
+    width: 100%;
+    flex: 1;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    column-gap: 8px;
+    flex-direction: row;
   }
 `;

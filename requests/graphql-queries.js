@@ -1027,14 +1027,6 @@ query FirmOverviewQuery {
         content
         title
       }
-      mainTabs {
-        content
-        subtitle
-        title
-        mainImage {
-          sourceUrl
-        }
-      }
       firmLeaders {
         ... on Administration {
           id
