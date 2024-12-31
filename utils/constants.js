@@ -214,30 +214,6 @@ export const FIRM_PAGES = [
   },
 ];
 
-/** List of basic pages links found in the sidebar */
-export const BASIC_PAGES = [
-  {
-    id: 'terms-of-use',
-    label: 'Terms of Use',
-    slug: '/terms-of-use',
-  },
-  {
-    id: 'privacy-policy',
-    label: 'Privacy Policy',
-    slug: '/privacy-policy',
-  },
-  {
-    id: 'awards',
-    label: 'Awards Methodology',
-    slug: '/awards',
-  },
-  {
-    id: 'disclaimer',
-    label: 'Disclaimer',
-    slug: '/disclaimer',
-  },
-];
-
 export const sitemapAddon = [
   'community-involvement',
   'diversity',
@@ -787,18 +763,27 @@ export const ALT_PREFIX = 'Image showing the text: ';
 
 export const NAVIGATION_OPENERS = ['Attorneys', 'Services', 'Locations'];
 
+/** List of basic pages links found in the sidebar, SubheaderDefault menu, footer */
 export const SIDEBAR_POLITIC_LINKS = [
   {
-    title: 'Privacy policy',
-    link: '/privacy-policy',
+    id: 'privacy-policy',
+    label: 'Privacy Policy',
+    slug: '/privacy-policy',
   },
   {
-    title: 'Terms of use',
-    link: '/terms-of-use',
+    id: 'terms-of-use',
+    label: 'Terms of Use',
+    slug: '/terms-of-use',
   },
   {
-    title: 'Awards Methodology',
-    link: '/awards',
+    id: 'disclaimer',
+    label: 'Disclaimer',
+    slug: '/disclaimer',
+  },
+  {
+    id: 'awards',
+    label: 'Awards Methodology',
+    slug: '/awards',
   },
 ];
 

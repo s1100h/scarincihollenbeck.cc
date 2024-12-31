@@ -37,7 +37,6 @@ export const ContactFormHolder = styled.div`
 
   .kwes-form,
   .kwes-form-init {
-
     textarea.form-control {
       height: 64px;
 
@@ -55,7 +54,8 @@ export const ContactFormHolder = styled.div`
       }
     }
 
-    .form-checkboxes, .form-button {
+    .form-checkboxes,
+    .form-button {
       width: calc(50% - 6px);
     }
 

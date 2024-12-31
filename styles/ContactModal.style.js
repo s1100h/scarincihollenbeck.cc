@@ -29,7 +29,6 @@ export const ContactModalTitle = styled.p`
 export const ContactModalWrapper = styled.div`
   .kwes-form,
   .kwes-form-init {
-
     .form-fields {
       --form-fields-gap: 20px;
     }

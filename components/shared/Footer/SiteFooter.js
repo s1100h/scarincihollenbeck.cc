@@ -4,6 +4,7 @@ import {
   OFFICE_LOCATIONS,
   CORE_PRACTICES,
   excludedPrintFooter,
+  SIDEBAR_POLITIC_LINKS,
 } from 'utils/constants';
 import {
   Advertising,
@@ -105,12 +106,11 @@ export default function Footer() {
                 , Scarinci Hollenbeck, LLC, all rights reserved
               </p>
               <BottomLinks className="d-print-none">
-                <li>
-                  <Link href="/privacy-policy">Privacy policy</Link>
-                </li>
-                <li className="list-inline-item">
-                  <Link href="/terms-of-use">Terms of use</Link>
-                </li>
+                {SIDEBAR_POLITIC_LINKS?.slice(0, -1).map((item) => (
+                  <li key={item?.id}>
+                    <Link href={item?.slug}>{item?.label}</Link>
+                  </li>
+                ))}
               </BottomLinks>
             </section>
           </Advertising>

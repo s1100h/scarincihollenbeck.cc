@@ -80,7 +80,12 @@ export const DetailsContainer = styled.section`
 export const BottomLinks = styled.ul`
   margin: 12px 0 0 0;
   display: flex;
+  flex-wrap: wrap;
   gap: 24px;
+
+  ${media_breakpoint_down('sm')} {
+    gap: 8px 12px;
+  }
 
   li {
     a {

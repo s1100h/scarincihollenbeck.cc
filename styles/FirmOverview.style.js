@@ -2,18 +2,16 @@ import styled from 'styled-components';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import { WhyChooseUsSection } from './practices/WhyChooseUs.style';
 import { globalColor } from './global_styles/Global.styles';
-import { UnderlinedLink } from './common/Typography.style';
+import { ArticleContent } from './Article.style';
 
-export const FirmOverviewWrapper = styled.section`
+export const FirmOverviewWrapper = styled(ArticleContent)`
   background-color: ${globalColor.white};
   display: flex;
   flex-direction: column;
   gap: 60px;
-  padding: 60px 0;
 
   ${media_breakpoint_down('xxl')} {
     gap: 40px;
-    padding: 40px 0;
   }
 
   ${WhyChooseUsSection} {
@@ -43,18 +41,5 @@ export const KeyPointsWrapper = styled.div`
 
   ${media_breakpoint_down('lg')} {
     grid-template-columns: repeat(1, 1fr);
-  }
-
-  ${UnderlinedLink} {
-    padding: 0;
-    color: ${globalColor.blue.blue500};
-    border-bottom: none;
-    text-decoration: none;
-
-    &:hover,
-    &:focus,
-    &:active {
-      color: ${globalColor.blue.blue400};
-    }
   }
 `;

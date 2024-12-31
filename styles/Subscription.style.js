@@ -68,7 +68,7 @@ export const FormSubscriptionContainer = styled.div`
   .form-checkbox__label {
     font-size: inherit !important;
   }
-  
+
   .btn-choose-box {
     display: flex;
     justify-content: space-between;
@@ -126,7 +126,7 @@ export const FormSubscriptionHeader = styled.div`
   align-items: center;
   gap: 12px;
   padding-bottom: var(--subscription-container-gap);
-  border-bottom: 1px solid #D7E3F4;
+  border-bottom: 1px solid #d7e3f4;
 
   ${media_breakpoint_down('md')} {
     padding-right: 40px;

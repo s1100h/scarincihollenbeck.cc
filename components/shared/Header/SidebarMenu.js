@@ -72,11 +72,11 @@ const SidebarMenu = memo(
                 <SidebarMenuLinks>
                   {SIDEBAR_POLITIC_LINKS?.map((item) => (
                     <SidebarMenuLink
-                      key={item?.title}
-                      href={item?.link}
+                      key={item?.id}
+                      href={item?.slug}
                       onClick={() => setIsSidebarOpen(false)}
                     >
-                      {item?.title}
+                      {item?.label}
                     </SidebarMenuLink>
                   ))}
                 </SidebarMenuLinks>

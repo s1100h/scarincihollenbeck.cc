@@ -3,7 +3,7 @@ import empty from 'is-empty';
 import {
   Title20,
   Title32,
-  UnderlinedLink,
+  NotUnderlinedLink,
 } from 'styles/common/Typography.style';
 import ContentRender from 'components/atoms/ContentRender';
 import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
@@ -28,13 +28,13 @@ const ContentSection = ({
       customClass={isTwoColumns ? 'two-columns' : ''}
     />
     {!empty(link?.url) && (
-      <UnderlinedLink
+      <NotUnderlinedLink
         href={link?.url}
         target={!empty(link?.target) ? '_blank' : undefined}
         rel={!empty(link?.target) ? 'noopener noreferrer' : undefined}
       >
         {link?.title}
-      </UnderlinedLink>
+      </NotUnderlinedLink>
     )}
   </ContentWrapper>
 );

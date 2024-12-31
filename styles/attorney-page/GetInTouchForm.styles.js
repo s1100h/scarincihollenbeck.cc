@@ -1,4 +1,9 @@
-import { globalColor, globalTransition, rem, successMessage } from "styles/global_styles/Global.styles";
+import {
+  globalColor,
+  globalTransition,
+  rem,
+  successMessage,
+} from 'styles/global_styles/Global.styles';
 import { InputGroup, Form } from 'react-bootstrap';
 import styled from 'styled-components';
 import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
@@ -218,7 +223,6 @@ export const FormContainer = styled.div`
 `;
 
 export const InputGroupStyled = styled(InputGroup)`
-
   .kw-field-error-message {
     width: 100%;
     position: static;

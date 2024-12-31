@@ -73,3 +73,18 @@ export const UnderlinedLink = styled(Link)`
   ${underlinedLinkStyles};
   color: ${({ $isWhite }) => (!$isWhite ? undefined : globalColor.white)};
 `;
+
+export const NotUnderlinedLink = styled(Link)`
+  padding: 0;
+  font-weight: 600;
+  color: ${globalColor.blue.blue500};
+  text-decoration: none;
+  text-transform: unset;
+  transition: ${globalTransition.default};
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: ${globalColor.blue.blue400};
+  }
+`;
