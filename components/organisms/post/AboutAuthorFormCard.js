@@ -9,7 +9,7 @@ const AboutAuthorFormCard = ({ modalClassName = '' }) => {
   const dispatch = useDispatch();
 
   return (
-    <AboutAuthorFormCardContainer className="d-print-none mt-4">
+    <AboutAuthorFormCardContainer className="d-print-none">
       <ContactNowBtn
         className="contact-now-btn"
         onClick={() => dispatch(

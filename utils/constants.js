@@ -12,7 +12,6 @@ import {
 import { BsFacebook, BsLinkedin } from 'react-icons/bs';
 import { FaSquareXTwitter } from 'react-icons/fa6';
 import { FaFacebookSquare, FaLinkedin } from 'react-icons/fa';
-import AboutAuthorFormCard from '../components/organisms/post/AboutAuthorFormCard';
 import SHDiamond from '../public/images/sh-mini-diamond-PNG.svg';
 
 export const LETTERS_LIST = [
@@ -178,6 +177,11 @@ export const ScarinciHollenbeckKeyContact = {
 /* List of Firm Pages found in the sidebar and in the footer */
 export const FIRM_PAGES = [
   {
+    databaseId: 'menu-firm-05',
+    title: 'Firm Overview',
+    uri: '/firm-overview',
+  },
+  {
     databaseId: 'firm-administrations',
     title: 'Administration',
     uri: '/administration',
@@ -191,11 +195,6 @@ export const FIRM_PAGES = [
     databaseId: 'diversity',
     title: 'Diversity',
     uri: '/diversity',
-  },
-  {
-    databaseId: 'menu-firm-05',
-    title: 'Firm Overview',
-    uri: '/firm-overview',
   },
   {
     databaseId: 'pro-bono',
@@ -212,17 +211,6 @@ export const FIRM_PAGES = [
     title: 'Work Life Balance',
     uri: '/work-life-balance',
   },
-];
-
-export const sitemapAddon = [
-  'community-involvement',
-  'diversity',
-  'pro-bono',
-  'women-lead',
-  'contact',
-  'privacy-policy',
-  'terms-of-use',
-  'awards',
 ];
 
 /** List of Client Alert links on the covid pages and category landing pages */
@@ -430,14 +418,7 @@ export const ATTORNEYS_FAQ = [
 
 export const firmOverViewTitles = [
   { name: 'Firm management', order: 1 },
-  // this was committed(2.02.2022). it need for /firm-overview.
-  // { name: 'Practice Leaders', order: 2 },
-  { name: 'Directors', order: 3 },
-];
-
-export const administrationTitles = [
-  { name: 'Firm management', order: 2 },
-  { name: 'Administrative Management', order: 3 },
+  { name: 'Directors', order: 2 },
 ];
 
 export const inputsCareerForm = [
@@ -646,62 +627,7 @@ export const Links404NavArr = [
   },
 ];
 
-export const locationInfoBlockArticles = [
-  {
-    id: 0,
-    article: `
-    <p>
-      OUR commitment to excellence, combined with our mission to deliver outstanding client service, has earned our firm a solid reputation.
-    </p>
-    <p>
-      Scarinci Hollenbeck, LLC is a business law firm based in New Jersey, New York, and Washington, D.C servicing clients worldwide.
-    </p>
-    `,
-    image: SHDiamond,
-    reactComponent: null,
-  },
-  {
-    id: 1,
-    article: `
-    <p>
-      Our focus is niche areas of law most often required by corporate entities, owners, leaders, and operators. 
-      Our prestigious roster of attorneys offers the experience and proven results that businesses need to move projects forward.
-    </p>
-    <p>
-      Regardless of the size of your business or the scale of the project, we embrace the unique complexity that comes 
-      with doing business in an evolving economy. Contact us today to learn more about how we can assist you
-    </p>
-    `,
-    image: '/images/beautiful-office.webp',
-    reactComponent: null,
-  },
-  {
-    id: 2,
-    article: '',
-    reactComponent: 'custom',
-  },
-  {
-    id: 3,
-    article: `
-    <p>
-      Scarinci Hollenbeck, LLC also offers services in a wide range of other legal practice areas not listed here.
-    </p>
-    <p>
-      If you have a legal need that is not mentioned, please contact us to discuss how we may help you.
-    </p>
-    <p>
-      Our experienced attorneys are ready to provide the quality representation you deserve.
-    </p>
-    `,
-    image: '/images/beautiful-office.webp',
-    isBackgroundImage: true,
-    reactComponent: <AboutAuthorFormCard blockName="articleBlock" />,
-  },
-];
 export const GOV_LAW_URL = 'https://scarincilawyer.com';
-
-/** the blog id for covid pages  */
-export const COVID_POSTS_ID = 20250;
 
 export const IMAGE_UPLOAD_CLOUDINARY = 'https://res.cloudinary.com/scarinci-hollenbeck/images/v';
 export const CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/wp.scarincihollenbeck/';

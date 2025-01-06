@@ -11,7 +11,6 @@ import {
   media_breakpoint_exactly_down,
 } from '../../mediaBreakpoints.style';
 import {
-  AboutAuthorFormCardContainer,
   ContactNowBtn,
 } from 'styles/AboutAuthorFormCard.style';
 
@@ -100,9 +99,10 @@ export const KeyContactsBlockContainer = styled.section`
 export const KeyContactsWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  row-gap: 24px;
 
   .key-contacts-title {
-    margin: 0 0 40px 0;
+    margin: 0 0 16px 0;
     color: ${cannabisLawColors.cannabisColorGray};
     font-size: ${rem(54)};
     line-height: 70px;
@@ -110,7 +110,7 @@ export const KeyContactsWrapper = styled.div`
     font-family: var(--font-poppins), sans-serif;
 
     ${media_breakpoint_down('xxl')} {
-      margin: 0 0 32px 0;
+      margin: 0 0 8px 0;
       font-size: ${rem(36)};
       line-height: 47px;
     }
@@ -125,51 +125,39 @@ export const KeyContactsWrapper = styled.div`
     ${attorneyCardForCannabis};
   }
 
-  ${AboutAuthorFormCardContainer} {
-    margin: 0;
-    padding: 0;
+  ${ContactNowBtn} {
+    max-width: 300px;
+    padding: 14px 24px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 2px solid ${cannabisLawColors.cannabisColorGray};
+    color: ${cannabisLawColors.cannabisColorGray};
+    border-radius: 40px;
+    transition: all 0.3s ease;
 
-    ${ContactNowBtn} {
-      max-width: 300px;
-      padding: 14px 24px;
-      height: auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: transparent;
-      border: 2px solid ${cannabisLawColors.cannabisColorGray};
-      color: ${cannabisLawColors.cannabisColorGray};
-      border-radius: 40px;
-      transition: all 0.3s ease;
+    span {
+      font-size: ${rem(20)};
+      line-height: 30px;
+      font-weight: 600;
+      font-family: var(--font-poppins), sans-serif;
+    }
 
-      span {
-        font-size: ${rem(20)};
-        line-height: 30px;
-        font-weight: 600;
-        font-family: var(--font-poppins), sans-serif;
-      }
-
-      :hover {
-        background-color: ${cannabisLawColors.cannabisColorGray};
-        color: ${cannabisLawColors.cannabisColorDarkGray};
-      }
-
-      ${media_breakpoint_exactly_down(1440)} {
-        padding: 10px 24px;
-
-        span {
-          font-size: ${rem(16)};
-          line-height: 24px;
-        }
-      }
+    :hover {
+      background-color: ${cannabisLawColors.cannabisColorGray};
+      color: ${cannabisLawColors.cannabisColorDarkGray};
     }
 
     ${media_breakpoint_exactly_down(1440)} {
-      width: 100%;
+      padding: 10px 24px;
+      align-self: center;
+      max-width: 450px;
 
-      ${ContactNowBtn} {
-        align-self: center;
-        max-width: 450px;
+      span {
+        font-size: ${rem(16)};
+        line-height: 24px;
       }
     }
   }

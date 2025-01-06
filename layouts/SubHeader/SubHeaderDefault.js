@@ -27,6 +27,7 @@ const SubHeaderDefault = ({
   menu,
   isSubscription,
   isLocationTabs = false,
+  handlePrint,
 }) => (
   <SubHeaderHolder
     className={`sub-header ${
@@ -64,7 +65,12 @@ const SubHeaderDefault = ({
       </div>
     </SubHeaderContent>
 
-    {!empty(keyContacts) && <SubHeaderKeyContacts keyContacts={keyContacts} />}
+    {!empty(keyContacts) && (
+      <SubHeaderKeyContacts
+        keyContacts={keyContacts}
+        handlePrint={handlePrint}
+      />
+    )}
     {!empty(locations) && (
       <SubHeaderLocations
         locations={locations}

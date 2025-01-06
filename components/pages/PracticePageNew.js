@@ -111,6 +111,7 @@ const PracticePageNew = ({
           title={practice?.title}
           subtitle={practice?.practicesIncluded.description}
           keyContacts={keyContactsList}
+          handlePrint={handlePrint}
           backgroundImage={
             practice?.practicesIncluded?.practiceImage?.sourceUrl
           }

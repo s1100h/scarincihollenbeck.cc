@@ -1,20 +1,26 @@
 import React, { Fragment } from 'react';
 import {
   SubHeaderInteractive,
+  SubHeaderKeyContactsButtons,
   SubHeaderKeyContactsCards,
 } from 'styles/practices/SubHeader.style';
 import empty from 'is-empty';
 import AttorneyCard from 'components/shared/AttorneyCard';
-import AboutAuthorFormCard from 'components/organisms/post/AboutAuthorFormCard';
 import { globalColor } from 'styles/global_styles/Global.styles';
 import { QRCodesBoxForPDF } from 'styles/common/PrintStyles.style';
+import { FaFilePdf } from 'react-icons/fa6';
+import { OutlinedButton, StandardBlueButton } from 'styles/Buttons.style';
+import { useDispatch } from 'react-redux';
+import { handleModalOpener } from '../../redux/slices/modals.slice';
 
-const SubHeaderKeyContacts = ({ keyContacts, isPrint }) => {
+const SubHeaderKeyContacts = ({ keyContacts, isPrint, handlePrint }) => {
   if (empty(keyContacts)) return null;
+  const dispatch = useDispatch();
 
   return (
     <SubHeaderInteractive $bg={globalColor.blue.blue6002}>
       <h2>Key Contacts</h2>
+
       <SubHeaderKeyContactsCards>
         {keyContacts?.slice(0, 1)?.map((keyContact) => (
           <Fragment key={keyContact.databaseId}>
@@ -57,7 +63,25 @@ const SubHeaderKeyContacts = ({ keyContacts, isPrint }) => {
           </Fragment>
         ))}
       </SubHeaderKeyContactsCards>
-      <AboutAuthorFormCard blockName="subheader" />
+
+      <SubHeaderKeyContactsButtons>
+        <StandardBlueButton
+          onClick={() => dispatch(
+            handleModalOpener({
+              active: true,
+            }),
+          )}
+          $isLightHover
+        >
+          <span>Contact now</span>
+        </StandardBlueButton>
+        {handlePrint && (
+          <OutlinedButton onClick={handlePrint}>
+            <FaFilePdf size={24} />
+            Print practice page
+          </OutlinedButton>
+        )}
+      </SubHeaderKeyContactsButtons>
     </SubHeaderInteractive>
   );
 };

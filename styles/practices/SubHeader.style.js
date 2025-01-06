@@ -1,8 +1,4 @@
 import styled from 'styled-components';
-import {
-  AboutAuthorFormCardContainer,
-  ContactNowBtn,
-} from 'styles/AboutAuthorFormCard.style';
 import { ContactBox, InfoBox, LinkBox } from 'styles/AttorneyCard.style';
 import { BreadcrumbsListContainer } from 'styles/Breadcrumbs.style';
 import {
@@ -358,56 +354,6 @@ export const SubHeaderInteractive = styled.div`
     }
   }
 
-  ${AboutAuthorFormCardContainer} {
-    margin: 4px 0 0 0 !important;
-    padding: 0;
-    width: auto;
-
-    > button {
-      width: 100%;
-
-      > span {
-        ${media_breakpoint_down('sm')} {
-          font-size: ${rem(14)};
-          line-height: 20px;
-        }
-      }
-    }
-
-    ${media_breakpoint_down('sm')} {
-      width: 100%;
-    }
-  }
-
-  ${ContactNowBtn} {
-    height: auto;
-    padding: 10px 89px;
-    line-height: 24px;
-    background-color: ${globalColor.blue.blue500};
-    position: relative;
-    z-index: 0;
-
-    &:hover {
-      &::after {
-        opacity: 1;
-      }
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      opacity: 0;
-      background-image: linear-gradient(89deg, #377ec4 2.36%, #afdcf5 107.09%);
-      transition: ${globalTransition.default};
-      border-radius: inherit;
-    }
-  }
-
   ${media_breakpoint_exactly_down(1279)} {
     padding: 40px 32px;
   }
@@ -438,6 +384,27 @@ export const SubHeaderKeyContactsCards = styled.div`
 
   ${media_breakpoint_down('sm')} {
     gap: 12px;
+  }
+`;
+
+export const SubHeaderKeyContactsButtons = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  column-gap: 24px;
+  row-gap: 12px;
+
+  button {
+    flex: 1 0 fit-content;
+    max-width: 230px;
+  }
+
+  ${media_breakpoint_down('sm')} {
+    flex-direction: column;
+
+    button {
+      max-width: 100%;
+    }
   }
 `;
 

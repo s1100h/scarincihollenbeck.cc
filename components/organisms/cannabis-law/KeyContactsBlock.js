@@ -1,15 +1,18 @@
 import { useId } from 'react';
 import empty from 'is-empty';
+import { useDispatch } from 'react-redux';
+import { ContactNowBtn } from 'styles/AboutAuthorFormCard.style';
 import {
   KeyContactsBlockContainer,
   KeyContactsWrapper,
 } from '../../../styles/practices-special-style/canabis-law/KeyContactsBlock.style';
 import AttorneyCard from '../../shared/AttorneyCard';
 import { FullHDContainer } from '../../../styles/practices-special-style/commonForSpecial.style';
-import AboutAuthorFormCard from '../post/AboutAuthorFormCard';
+import { handleModalOpener } from '../../../redux/slices/modals.slice';
 
 const KeyContactsBlock = ({ keyContactsData, keyContacts }) => {
   if (empty(keyContactsData)) return null;
+  const dispatch = useDispatch();
   return (
     <KeyContactsBlockContainer>
       <FullHDContainer>
@@ -34,7 +37,17 @@ const KeyContactsBlock = ({ keyContactsData, keyContacts }) => {
               email={author.email}
             />
           ))}
-          <AboutAuthorFormCard modalClassName="cannabis-modal" />
+          <ContactNowBtn
+            className="contact-now-btn"
+            onClick={() => dispatch(
+              handleModalOpener({
+                active: true,
+                className: 'cannabis-modal',
+              }),
+            )}
+          >
+            <span>Contact now</span>
+          </ContactNowBtn>
         </KeyContactsWrapper>
       </FullHDContainer>
     </KeyContactsBlockContainer>

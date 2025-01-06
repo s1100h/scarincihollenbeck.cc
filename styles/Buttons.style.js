@@ -67,6 +67,7 @@ export const StandardBlueButton = styled.button`
   position: relative;
   z-index: 0;
   overflow: hidden;
+  transition: ${globalTransition.default};
 
   @media (hover: hover) {
     :hover {
@@ -99,7 +100,9 @@ export const StandardBlueButton = styled.button`
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-image: linear-gradient(87deg, #164587 -9.15%, #060b2a 100%);
+    background-image: ${({ $isLightHover }) => $isLightHover ? 
+      'linear-gradient(89deg, #377ec4 2.36%, #afdcf5 107.09%)' : 
+      'linear-gradient(87deg, #164587 -9.15%, #060b2a 100%)'};
     opacity: 0;
     transition: opacity 0.3s ease;
   }
@@ -203,5 +206,49 @@ export const WhiteButtonWrapper = styled.button`
 
   @media print {
     display: none;
+  }
+`;
+
+export const OutlinedButton = styled.button`
+  width: 100%;
+  padding: 9px 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: ${globalColor.white};
+  font-weight: 600;
+  border-radius: ${globalBorderRadius.small};
+  border: 1px solid ${globalColor.gray.gray110};
+  background-color: transparent;
+  transition: ${globalTransition.default};
+
+  @media (hover:hover) {
+    &:hover {
+      border-color: ${globalColor.blue.blue400};
+
+      svg {
+        color: ${globalColor.blue.skyBlue};
+      }
+    }
+  }
+
+  &:active {
+    border-color: ${globalColor.blue.blue400};
+    color: ${globalColor.blue.skyBlue};
+
+    svg {
+      color: ${globalColor.blue.skyBlue};
+    }
+  }
+
+  svg {
+    flex-shrink: 0;
+    transition: ${globalTransition.default};
+
+    ${media_breakpoint_down('md')} {
+      width: 20px;
+      height: 20px;
+    }
   }
 `;
