@@ -50,9 +50,9 @@ const SubscriptionSidebar = ({ isFirmLinks = false }) => {
             The Firm
           </SubscriptionSidebarBlockTitle>
           <SubscriptionSidebarBlockLinks>
-            {FIRM_PAGES.map(({ id, label, slug }) => (
-              <li key={id}>
-                <Link href={slug}>{label}</Link>
+            {FIRM_PAGES.map(({ databaseId, title, uri }) => (
+              <li key={databaseId}>
+                <Link href={uri}>{title}</Link>
               </li>
             ))}
           </SubscriptionSidebarBlockLinks>

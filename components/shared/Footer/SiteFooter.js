@@ -107,8 +107,8 @@ export default function Footer() {
               </p>
               <BottomLinks className="d-print-none">
                 {SIDEBAR_POLITIC_LINKS?.slice(0, -1).map((item) => (
-                  <li key={item?.id}>
-                    <Link href={item?.slug}>{item?.label}</Link>
+                  <li key={item?.databaseId}>
+                    <Link href={item?.uri}>{item?.title}</Link>
                   </li>
                 ))}
               </BottomLinks>

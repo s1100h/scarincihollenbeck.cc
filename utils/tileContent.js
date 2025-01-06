@@ -3,19 +3,12 @@ import { GiBookCover } from 'react-icons/gi';
 
 export const tileContentArr = [
   {
-    title: 'For media inquiries',
+    title: 'Get in touch',
     textContent:
-      'Please contact <u>Peter S. Moeller</u>, Chief Growth Officer.',
-    link: '/administration/peter-s-moeller',
+      'If you are looking to get in touch with an attorney in regard to becoming a new client, please call <u>201-896-4100.</u>',
+    link: 'tel:201-896-4100',
+    image: '/images/contact-tiles-4.webp',
     id: 'contact-tile-01',
-    image: '/images/contact-tiles-1.webp',
-  },
-  {
-    title: 'For job opportunities',
-    textContent: 'Please visit our <u>Careers page</u>.',
-    link: '/careers',
-    id: 'contact-tile-02',
-    image: '/images/contact-tiles-2.webp',
   },
   {
     title: 'For clients',
@@ -23,15 +16,22 @@ export const tileContentArr = [
       'If you are a client, please get in touch with your <u>Scarinci Hollenbeck, LLC attorneys</u> contact directly.',
     link: '/attorneys',
     image: '/images/contact-tiles-3.webp',
-    id: 'contact-tile-03',
+    id: 'contact-tile-02',
   },
   {
-    title: 'Get in touch',
+    title: 'For job opportunities',
+    textContent: 'Please visit our <u>Careers page</u>.',
+    link: '/careers',
+    id: 'contact-tile-03',
+    image: '/images/contact-tiles-2.webp',
+  },
+  {
+    title: 'For media inquiries',
     textContent:
-      'If you are looking to get in touch with an attorney in regard to becoming a new client, please call <u>201-896-4100.</u>',
-    link: 'tel:201-896-4100',
-    image: '/images/contact-tiles-4.webp',
+      'Please contact <u>Peter S. Moeller</u>, Chief Growth Officer.',
+    link: '/administration/peter-s-moeller',
     id: 'contact-tile-04',
+    image: '/images/contact-tiles-1.webp',
   },
 ];
 

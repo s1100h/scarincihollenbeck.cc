@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import { WhyChooseUsSection } from './practices/WhyChooseUs.style';
-import { globalColor } from './global_styles/Global.styles';
 import { ArticleContent } from './Article.style';
 
 export const FirmOverviewWrapper = styled(ArticleContent)`
-  background-color: ${globalColor.white};
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -16,6 +14,7 @@ export const FirmOverviewWrapper = styled(ArticleContent)`
 
   ${WhyChooseUsSection} {
     padding: 0;
+    background-color: transparent;
   }
 `;
 

@@ -20,12 +20,12 @@ const SubHeaderMenu = ({ menu }) => {
     <SubHeaderInteractive $bg={globalColor.blue.blue6002}>
       <SubHeaderMenuList>
         {menu.map((item) => (
-          <li key={item?.id}>
+          <li key={item?.databaseId}>
             <SubHeaderMenuLink
-              href={item?.slug}
-              className={currentPath === item?.slug ? 'active' : ''}
+              href={item?.uri}
+              className={currentPath === item?.uri ? 'active' : ''}
             >
-              {item?.label}
+              {item?.title}
             </SubHeaderMenuLink>
           </li>
         ))}

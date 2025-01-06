@@ -178,39 +178,39 @@ export const ScarinciHollenbeckKeyContact = {
 /* List of Firm Pages found in the sidebar and in the footer */
 export const FIRM_PAGES = [
   {
-    id: 'menu-firm-05',
-    label: 'Firm Overview',
-    slug: '/firm-overview',
+    databaseId: 'firm-administrations',
+    title: 'Administration',
+    uri: '/administration',
   },
   {
-    id: 'firm-administrations',
-    label: 'Administration',
-    slug: '/administration',
+    databaseId: 'community-involvement',
+    title: 'Community Involvement',
+    uri: '/community-involvement',
   },
   {
-    id: 'diversity',
-    label: 'Diversity',
-    slug: '/diversity',
+    databaseId: 'diversity',
+    title: 'Diversity',
+    uri: '/diversity',
   },
   {
-    id: 'pro-bono',
-    label: 'Pro Bono',
-    slug: '/pro-bono',
+    databaseId: 'menu-firm-05',
+    title: 'Firm Overview',
+    uri: '/firm-overview',
   },
   {
-    id: 'community-involvement',
-    label: 'Community Involvement',
-    slug: '/community-involvement',
+    databaseId: 'pro-bono',
+    title: 'Pro Bono',
+    uri: '/pro-bono',
   },
   {
-    id: 'firm-in-memorials',
-    label: 'In Memoriam',
-    slug: '/memorials',
+    databaseId: 'firm-in-memorials',
+    title: 'In Memoriam',
+    uri: '/memorials',
   },
   {
-    id: 'work-life-balance',
-    label: 'Work Life Balance',
-    slug: '/work-life-balance',
+    databaseId: 'work-life-balance',
+    title: 'Work Life Balance',
+    uri: '/work-life-balance',
   },
 ];
 
@@ -703,7 +703,7 @@ export const GOV_LAW_URL = 'https://scarincilawyer.com';
 /** the blog id for covid pages  */
 export const COVID_POSTS_ID = 20250;
 
-export const EMAGE_UPLOAD_CLOUDINARY = 'https://res.cloudinary.com/scarinci-hollenbeck/images/v';
+export const IMAGE_UPLOAD_CLOUDINARY = 'https://res.cloudinary.com/scarinci-hollenbeck/images/v';
 export const CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/wp.scarincihollenbeck/';
 
 /** a helper header data when making requests to WP backend */
@@ -766,24 +766,24 @@ export const NAVIGATION_OPENERS = ['Attorneys', 'Services', 'Locations'];
 /** List of basic pages links found in the sidebar, SubheaderDefault menu, footer */
 export const SIDEBAR_POLITIC_LINKS = [
   {
-    id: 'privacy-policy',
-    label: 'Privacy Policy',
-    slug: '/privacy-policy',
+    databaseId: 'privacy-policy',
+    title: 'Privacy Policy',
+    uri: '/privacy-policy',
   },
   {
-    id: 'terms-of-use',
-    label: 'Terms of Use',
-    slug: '/terms-of-use',
+    databaseId: 'terms-of-use',
+    title: 'Terms of Use',
+    uri: '/terms-of-use',
   },
   {
-    id: 'disclaimer',
-    label: 'Disclaimer',
-    slug: '/disclaimer',
+    databaseId: 'disclaimer',
+    title: 'Disclaimer',
+    uri: '/disclaimer',
   },
   {
-    id: 'awards',
-    label: 'Awards Methodology',
-    slug: '/awards',
+    databaseId: 'awards',
+    title: 'Awards Methodology',
+    uri: '/awards',
   },
 ];
 

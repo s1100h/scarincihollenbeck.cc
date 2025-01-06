@@ -31,7 +31,8 @@ import BenefitsIcon from 'components/common/icons/BenefitsIcon';
 import CollaborativeIcon from 'components/common/icons/CollaborativeIcon';
 import {
   CLOUDINARY_BASE_URL,
-  EMAGE_UPLOAD_CLOUDINARY,
+  IMAGE_UPLOAD_CLOUDINARY,
+  FIRM_PAGES,
   PRODUCTION_URL,
   readyIndustriesUrls,
 } from './constants';
@@ -157,7 +158,7 @@ export const formatPageImageToCloudinaryUrl = (page) => {
   return page;
 };
 
-export const getCloudinaryImageUrl = (dataVersion, dataPublicId) => `${EMAGE_UPLOAD_CLOUDINARY}${dataVersion}/${dataPublicId}`;
+export const getCloudinaryImageUrl = (dataVersion, dataPublicId) => `${IMAGE_UPLOAD_CLOUDINARY}${dataVersion}/${dataPublicId}`;
 
 export const sanitizeExternalArticles = (arr) => arr.map(({
   id, link, title, date,
@@ -423,43 +424,7 @@ export const createMenuData = (practices, locations, industries) => [
     title: 'The Firm',
     icon: <FirmIcon />,
     href: '/',
-    list: [
-      {
-        databaseId: 'menu-firm-01',
-        title: 'Administration',
-        uri: '/administration',
-      },
-      {
-        databaseId: 'menu-firm-03',
-        title: 'Community Involvement',
-        uri: '/community-involvement',
-      },
-      {
-        databaseId: 'menu-firm-04',
-        title: 'Diversity',
-        uri: '/diversity',
-      },
-      {
-        databaseId: 'menu-firm-05',
-        title: 'Firm Overview',
-        uri: '/firm-overview',
-      },
-      {
-        databaseId: 'menu-firm-06',
-        title: 'Pro Bono',
-        uri: '/pro-bono',
-      },
-      {
-        databaseId: 'menu-firm-07',
-        title: 'In Memoriam',
-        uri: '/memorials',
-      },
-      {
-        databaseId: 'menu-firm-08',
-        title: 'Work Life Balance',
-        uri: '/work-life-balance',
-      },
-    ],
+    list: FIRM_PAGES,
   },
   {
     databaseId: 'menu-08',
