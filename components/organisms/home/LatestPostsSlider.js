@@ -1,10 +1,11 @@
 import React from 'react';
 import LatestPostsCards from 'components/common/LatestPostsCards';
-import SwiperWrapper from '../common/SwiperWrapper';
-import SwiperSlide from '../common/SwiperSlide';
+// import SwiperWrapper from '../common/SwiperWrapper';
+// import SwiperSlide from '../common/SwiperSlide';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 const LatestPostsSlider = ({ activeTabData, activeTabId }) => (
-  <SwiperWrapper space-between={24} slides-per-view="1">
+  <Swiper space-between={24} slides-per-view="1">
     {activeTabData?.articles?.map((chunk, indexChunk) => (
       // eslint-disable-next-line react/no-array-index-key
       <SwiperSlide key={`${activeTabId}-${indexChunk}`}>
@@ -18,7 +19,7 @@ const LatestPostsSlider = ({ activeTabData, activeTabId }) => (
         />
       </SwiperSlide>
     ))}
-  </SwiperWrapper>
+  </Swiper>
 );
 
 export default LatestPostsSlider;
