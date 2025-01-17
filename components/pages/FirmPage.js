@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { FIRM_PAGES } from 'utils/constants';
 import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
+import SubHeaderMenu from 'layouts/SubHeader/SubHeaderMenu';
 
 const FirmContent = dynamic(() => import('components/organisms/firm/FirmContent'));
 const LatestPostsSection = dynamic(() => import('components/organisms/home/LatestPostsSection'));
@@ -32,7 +33,8 @@ export default function FirmPage({ page }) {
         title={title}
         subtitle={description}
         backgroundImage={image}
-        menu={FIRM_PAGES}
+        RightContentComponent={SubHeaderMenu}
+        rightContentProps={{ menu: FIRM_PAGES }}
       />
 
       <FirmContent sections={sections} />

@@ -7,6 +7,7 @@ import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
 import { ScarinciHollenbeckKeyContact } from 'utils/constants';
 import dynamic from 'next/dynamic';
 import { FaqContainer } from 'styles/Faq.style';
+import SubHeaderKeyContacts from 'layouts/SubHeader/SubHeaderKeyContacts';
 import { setReferenceId } from '../../redux/slices/attorneys.slice';
 import { useGetLocationsQuery } from '../../redux/services/project-api';
 
@@ -43,7 +44,8 @@ const AttorneysPage = ({
       <SubHeaderDefault
         title={site.title}
         subtitle={site.description}
-        keyContacts={[ScarinciHollenbeckKeyContact]}
+        RightContentComponent={SubHeaderKeyContacts}
+        rightContentProps={{ keyContacts: [ScarinciHollenbeckKeyContact] }}
       />
       <MainAttorneysContainer
         $headerHeight={`${headerSize?.height + 8}px`}

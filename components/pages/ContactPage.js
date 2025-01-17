@@ -3,6 +3,7 @@ import React from 'react';
 import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
 import dynamic from 'next/dynamic';
 import ContactBlock from 'components/organisms/contact-us/ContactBlock';
+import SubHeaderLocations from 'layouts/SubHeader/SubHeaderLocations';
 
 const AllOfficeLocations = dynamic(() => import('components/organisms/home/AllOfficeLocations'));
 
@@ -25,8 +26,12 @@ const ContactPage = ({
       title={title}
       subtitle={description}
       backgroundImage={featuredImage}
-      locations={officeLocations}
-      isLocationTabs
+      RightContentComponent={SubHeaderLocations}
+      rightContentProps={{
+        locations: officeLocations,
+        title,
+        isLocationTabs: true,
+      }}
     />
     <ContactBlock />
     <AllOfficeLocations offices={mapLocations} />

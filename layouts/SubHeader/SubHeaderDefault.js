@@ -7,32 +7,19 @@ import {
   SubHeaderHolder,
 } from 'styles/practices/SubHeader.style';
 import { changeTitle } from 'utils/helpers';
-import empty from 'is-empty';
-import dynamic from 'next/dynamic';
-
-const SubHeaderKeyContacts = dynamic(() => import('./SubHeaderKeyContacts'));
-const SubHeaderLocations = dynamic(() => import('./SubHeaderLocations'));
-const SubHeaderIndustriesSlider = dynamic(() => import('./SubHeaderIndustriesSlider'));
-const SubHeaderMenu = dynamic(() => import('./SubHeaderMenu'));
-const SubHeaderSubscription = dynamic(() => import('./SubHeaderSubscription'));
 
 const SubHeaderDefault = ({
   title,
   subtitle,
   backgroundImage,
-  keyContacts,
-  officeInfo,
-  locations,
-  industries,
-  menu,
   isSubscription,
-  isLocationTabs = false,
-  handlePrint,
+  RightContentComponent,
+  rightContentProps = {},
 }) => (
   <SubHeaderHolder
     className={`sub-header ${
       !backgroundImage ? 'sub-header--without-image' : ''
-    } ${menu ? 'sub-header--menu' : ''} ${
+    } ${rightContentProps?.menu ? 'sub-header--menu' : ''} ${
       isSubscription ? 'sub-header--subscription' : ''
     }`}
     data-testid="default-sub-header"
@@ -65,24 +52,8 @@ const SubHeaderDefault = ({
       </div>
     </SubHeaderContent>
 
-    {!empty(keyContacts) && (
-      <SubHeaderKeyContacts
-        keyContacts={keyContacts}
-        handlePrint={handlePrint}
-      />
-    )}
-    {!empty(locations) && (
-      <SubHeaderLocations
-        locations={locations}
-        title={title}
-        officeInfo={officeInfo}
-        isLocationTabs={isLocationTabs}
-      />
-    )}
-    {!empty(industries) && <SubHeaderIndustriesSlider slides={industries} />}
-    {!empty(menu) && <SubHeaderMenu menu={menu} />}
-
-    {isSubscription && <SubHeaderSubscription />}
+    {/* Already exist components: SubHeaderKeyContacts, SubHeaderLocations, SubHeaderIndustriesSlider, SubHeaderMenu, SubHeaderSubscription */}
+    {RightContentComponent && <RightContentComponent {...rightContentProps} />}
   </SubHeaderHolder>
 );
 
