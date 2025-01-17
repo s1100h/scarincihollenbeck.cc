@@ -947,24 +947,6 @@ export const basicPagesQuery = `query BasicPageQuery($slug: String) {
   }
 }`;
 
-/** Happy Holydays pages query  */
-export const holidayPageQuery = `
-query BasicPageQuery {
-  page(id: 155709, idType: DATABASE_ID) {
-    title
-    status
-    seo {
-      metaDesc
-      title
-    }
-    content(format: RENDERED)
-    addFormToPage {
-      enableForm
-      formLabel
-    }
-  }
-}`;
-
 /** querying firm pages content */
 export const firmPagesQuery = `
 query FirmPageQuery($slug: ID!) {
