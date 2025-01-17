@@ -715,19 +715,19 @@ export const SIDEBAR_POLITIC_LINKS = [
 
 export const SOCIAL_LINKS = [
   {
-    id: 'sidebar-linkedin',
+    id: 'linkedin',
     title: 'LinkedIn',
     icon: <FaLinkedin />,
     url: 'https://www.linkedin.com/company/scarinci-hollenbeck-llc/',
   },
   {
-    id: 'sidebar-facebook',
+    id: 'facebook',
     title: 'Facebook',
     icon: <FaFacebookSquare />,
     url: 'https://www.facebook.com/ScarinciHollenbeck',
   },
   {
-    id: 'sidebar-x',
+    id: 'x',
     title: 'X/Twitter',
     icon: <FaSquareXTwitter />,
     url: 'https://twitter.com/S_H_Law',
@@ -810,4 +810,42 @@ export const desiredOrder = [
   'John Palumbo',
   'Peter S. Moeller',
   'Dan Scarpulla',
+];
+
+export const LIBRARY_NAV = [
+  {
+    id: 'filters-nav-01',
+    title: 'All',
+    href: '/library',
+  },
+  {
+    id: 'filters-nav-02',
+    title: 'Client Alert',
+    href: '/library/category/client-alert',
+  },
+  {
+    id: 'filters-nav-03',
+    title: 'Firm News',
+    href: '/library/category/firm-news',
+  },
+  {
+    id: 'filters-nav-04',
+    title: 'Firm Events',
+    href: '/library/category/firm-events',
+  },
+  {
+    id: 'filters-nav-05',
+    title: 'Firm Insights',
+    href: '/library/category/law-firm-insights',
+  },
+  {
+    id: 'filters-nav-06',
+    title: 'Podcasts',
+    href: '/podcasts',
+  },
+  {
+    id: 'filters-nav-07',
+    title: 'Subscribe',
+    href: '/subscribe',
+  },
 ];

@@ -9,10 +9,11 @@ import {
 import { changeTitle } from 'utils/helpers';
 import empty from 'is-empty';
 import dynamic from 'next/dynamic';
+import Socials from 'components/atoms/Socials';
 
 const SubHeaderKeyContacts = dynamic(() => import('./SubHeaderKeyContacts'));
 const SubHeaderLocations = dynamic(() => import('./SubHeaderLocations'));
-const SubHeaderIndustriesSlider = dynamic(() => import('./SubHeaderIndustriesSlider'));
+const SubHeaderCardsSlider = dynamic(() => import('./SubHeaderCardsSlider'));
 const SubHeaderMenu = dynamic(() => import('./SubHeaderMenu'));
 const SubHeaderSubscription = dynamic(() => import('./SubHeaderSubscription'));
 
@@ -23,11 +24,14 @@ const SubHeaderDefault = ({
   keyContacts,
   officeInfo,
   locations,
-  industries,
+  slides,
+  slidesLabel,
+  isContactButtonInCardsSlider,
   menu,
   isSubscription,
   isLocationTabs = false,
   handlePrint,
+  isSocials,
 }) => (
   <SubHeaderHolder
     className={`sub-header ${
@@ -63,6 +67,12 @@ const SubHeaderDefault = ({
           </SubHeaderDescription>
         )}
       </div>
+
+      {isSocials && (
+        <div className="sub-header__socials">
+          <Socials />
+        </div>
+      )}
     </SubHeaderContent>
 
     {!empty(keyContacts) && (
@@ -79,7 +89,13 @@ const SubHeaderDefault = ({
         isLocationTabs={isLocationTabs}
       />
     )}
-    {!empty(industries) && <SubHeaderIndustriesSlider slides={industries} />}
+    {!empty(slides) && (
+      <SubHeaderCardsSlider
+        slides={slides}
+        slidesLabel={slidesLabel}
+        isContact={isContactButtonInCardsSlider}
+      />
+    )}
     {!empty(menu) && <SubHeaderMenu menu={menu} />}
 
     {isSubscription && <SubHeaderSubscription />}

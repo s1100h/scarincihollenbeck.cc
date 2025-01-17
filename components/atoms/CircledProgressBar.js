@@ -5,8 +5,8 @@ import {
   CircledProgressBarWrapper,
 } from 'styles/CircledProgressBar.style';
 import { globalColor } from 'styles/global_styles/Global.styles';
-import PauseIcon from '../../../public/icons/pause-icon.svg';
-import PlayIcon from '../../../public/icons/play-icon.svg';
+import PauseIcon from '../../public/icons/pause-icon.svg';
+import PlayIcon from '../../public/icons/play-icon.svg';
 
 const CircledProgressBar = ({
   radius = 18,

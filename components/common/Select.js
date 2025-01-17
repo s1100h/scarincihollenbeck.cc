@@ -1,10 +1,9 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import React, {
-  forwardRef,
   memo,
   useCallback,
   useEffect,
-  useImperativeHandle,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -17,6 +16,8 @@ import {
   SelectOptions,
   SelectWrapper,
 } from 'styles/CustomSelect.style';
+import empty from 'is-empty';
+import Loader from 'components/atoms/Loader';
 
 const optionsVariants = {
   hidden: {
@@ -44,54 +45,57 @@ const optionVariants = {
   },
 };
 
-const CustomSelect = forwardRef(
+const CustomSelect = memo(
   ({
-    placeHolder, onChange, inputValue, options,
-  }, ref) => {
+    placeHolder,
+    onChange,
+    inputValue,
+    options,
+    includeDefault = false,
+    defaultLabel = 'Not selected',
+  }) => {
     const [selectActive, setSelectActive] = useState(false);
     const selectRef = useRef(null);
     const inputRef = useRef(null);
+
+    const finalOptions = useMemo(
+      () => (includeDefault
+        ? [
+          { databaseId: `${defaultLabel}-id`, title: defaultLabel },
+          ...(options || []),
+        ]
+        : options || []),
+      [includeDefault, defaultLabel, options],
+    );
 
     const handleClickOpener = useCallback(() => {
       setSelectActive(!selectActive);
     }, [setSelectActive, selectActive]);
 
     const handleClickOption = useCallback(
-      (value) => {
+      (value, id) => {
         if (inputRef && inputRef.current) {
           inputRef.current.value = value;
         }
-        onChange(value);
+        onChange(value, id);
         setSelectActive(false);
       },
       [onChange, setSelectActive],
     );
 
-    const handleDocumentClick = useCallback(
-      (e) => {
+    useEffect(() => {
+      const handleDocumentClick = (e) => {
         if (selectRef.current && !selectRef.current.contains(e.target)) {
           setSelectActive(false);
         }
-      },
-      [setSelectActive],
-    );
+      };
 
-    useEffect(() => {
       document.addEventListener('click', handleDocumentClick);
 
       return () => {
         document.removeEventListener('click', handleDocumentClick);
       };
     }, []);
-
-    useImperativeHandle(ref, () => ({
-      clearSelect() {
-        if (inputRef && inputRef.current) {
-          inputRef.current.value = '';
-        }
-        setSelectActive(false);
-      },
-    }));
 
     return (
       <SelectWrapper ref={selectRef}>
@@ -118,16 +122,23 @@ const CustomSelect = forwardRef(
               exit="hidden"
               variants={optionsVariants}
             >
-              {options?.map((item) => (
-                <SelectOption
-                  as={motion.li}
-                  key={item?.databaseId}
-                  variants={optionVariants}
-                  onClick={() => handleClickOption(item?.title)}
-                >
-                  {item?.title}
-                </SelectOption>
-              ))}
+              {!empty(finalOptions) ? (
+                finalOptions?.map((item) => (
+                  <SelectOption
+                    as={motion.li}
+                    key={item?.databaseId || item?.id}
+                    variants={optionVariants}
+                    onClick={() => handleClickOption(
+                      item?.title,
+                      item?.databaseId || item?.id,
+                    )}
+                  >
+                    {item?.title}
+                  </SelectOption>
+                ))
+              ) : (
+                <Loader />
+              )}
             </SelectOptions>
           )}
         </AnimatePresence>
@@ -136,4 +147,4 @@ const CustomSelect = forwardRef(
   },
 );
 
-export default memo(CustomSelect);
+export default CustomSelect;

@@ -22,7 +22,9 @@ const ServicesPage = ({
     <SubHeaderDefault
       title={title}
       subtitle={content?.description}
-      industries={industries}
+      slides={industries}
+      slidesLabel="industry"
+      isContactButtonInCardsSlider
     />
     <ServicesContent
       practices={createOverviewLinks(practices, true)}

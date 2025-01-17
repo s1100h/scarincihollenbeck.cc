@@ -31,8 +31,6 @@ const Filters = ({
 }) => {
   const { pathname } = useRouter();
   const dispatch = useDispatch();
-  const practicesSelectRef = useRef();
-  const locationsSelectRef = useRef();
 
   const handleHideAttorneysNavbar = () => {
     if (
@@ -65,32 +63,12 @@ const Filters = ({
     handleHideAttorneysNavbar();
   };
 
-  const handleClearSelect = (ref) => {
-    if (ref.current) {
-      ref.current.clearSelect();
-    }
-  };
-
-  const clearHandlers = (key) => {
-    const obj = {
-      location: () => handleClearSelect(locationsSelectRef),
-      practices: () => handleClearSelect(practicesSelectRef),
-    };
-
-    if (obj[key]) {
-      obj[key]();
-    }
-  };
-
   const handleClearAll = () => {
-    handleClearSelect(practicesSelectRef);
-    handleClearSelect(locationsSelectRef);
     dispatch(clearAll());
     handleHideAttorneysNavbar();
   };
 
   const handleClearQuery = (key) => {
-    clearHandlers(key);
     dispatch(clearQuery(key));
     handleHideAttorneysNavbar();
   };
@@ -106,7 +84,6 @@ const Filters = ({
           />
 
           <CustomSelect
-            ref={practicesSelectRef}
             options={practices}
             inputValue={select.find((a) => a.key === 'practices')?.selected}
             placeHolder="Filter by Practice"
@@ -114,7 +91,6 @@ const Filters = ({
           />
 
           <CustomSelect
-            ref={locationsSelectRef}
             options={locations}
             inputValue={select.find((a) => a.key === 'location')?.selected}
             placeHolder="Filter by Location"

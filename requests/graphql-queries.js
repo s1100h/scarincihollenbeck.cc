@@ -1342,3 +1342,92 @@ query MemorialPageQuery($slug: String) {
     }
   }
 }`;
+
+export const libraryPageContentQuery = `
+query LibraryPageContentQuery {
+  pageBy(pageId: 169276) {
+    title
+    pagesFields {
+      description
+    }
+    seo {
+      metaDesc
+      title
+    }
+  }
+}`;
+
+export const mainCategoriesQuery = `
+query MainCategoriesQuery {
+  categories(where: {include: [599, 99, 98, 20098]}) {
+    nodes {
+      databaseId
+      name
+      description
+      uri
+      categoryFields {
+        image {
+          sourceUrl
+        }
+      }
+      posts(first: 3) {
+        nodes {
+          databaseId
+          title
+          uri
+          excerpt
+          author {
+            node {
+              name
+              uri
+            }
+          }
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+          date
+        }
+      }
+    }
+  }
+  pageBy(pageId: 169286) {
+    databaseId
+    title
+    pagesFields {
+      description
+    }
+    featuredImage {
+      node {
+        sourceUrl
+      }
+    }
+  }
+}`;
+
+export const postsForRandomComponentQuery = `
+query PostsForRandomComponentQuery {
+  posts(first: 20) {
+    nodes {
+      databaseId
+      title
+      excerpt
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
+      uri
+    }
+  }
+}`;
+
+export const firstCreatedPostQuery = `
+query FirstCreatedPostQuery {
+  posts(last: 1, where: {orderby: {field: DATE, order: DESC}}) {
+    nodes {
+      date
+    }
+  }
+}`;

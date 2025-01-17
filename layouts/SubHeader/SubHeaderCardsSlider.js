@@ -21,7 +21,12 @@ import { UnderlinedLink } from 'styles/common/Typography.style';
 import { useDispatch } from 'react-redux';
 import { handleModalOpener } from '../../redux/slices/modals.slice';
 
-const SubHeaderIndustriesSlider = ({ slides, autoplayInterval = 10000 }) => {
+const SubHeaderCardsSlider = ({
+  slides,
+  autoplayInterval = 10000,
+  slidesLabel,
+  isContact,
+}) => {
   const dispatch = useDispatch();
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const intervalRef = useRef(null);
@@ -109,13 +114,11 @@ const SubHeaderIndustriesSlider = ({ slides, autoplayInterval = 10000 }) => {
   return (
     <SubHeaderSlider {...swipeHandlers}>
       <SubHeaderSlide ref={sliderRef}>
-        {activeSlide?.industryContent?.industryImage?.sourceUrl && (
-          <SubHeaderSlideImage
-            key={activeSlide?.industryContent?.industryImage?.sourceUrl}
-          >
+        {activeSlide?.image && (
+          <SubHeaderSlideImage key={activeSlide?.image}>
             <Image
               alt={`${activeSlide?.title} industry`}
-              src={activeSlide?.industryContent?.industryImage?.sourceUrl}
+              src={activeSlide?.image}
               width={300}
               height={350}
               priority={activeSlideIndex === 0}
@@ -127,7 +130,7 @@ const SubHeaderIndustriesSlider = ({ slides, autoplayInterval = 10000 }) => {
         <SubHeaderSlideContent>
           <SubHeaderSlideNavigationButton
             onClick={onClickPrev}
-            className="prev"
+            className={!isContact ? 'mb-auto' : ''}
           >
             <span className="nav-text">{prevSlide?.title}</span>
             <SubHeaderSlideNavigationIcon>
@@ -136,27 +139,29 @@ const SubHeaderIndustriesSlider = ({ slides, autoplayInterval = 10000 }) => {
           </SubHeaderSlideNavigationButton>
 
           <SubHeaderSlideTitle>{activeSlide?.title}</SubHeaderSlideTitle>
-          <SubHeaderSlideLabel>industry</SubHeaderSlideLabel>
 
-          {!empty(activeSlide?.industryContent?.description) && (
-            <SubHeaderSlideDescription>
-              <JSXWithDynamicLinks
-                HTML={activeSlide?.industryContent?.description}
-              />
-            </SubHeaderSlideDescription>
+          {!empty(slidesLabel) && (
+            <SubHeaderSlideLabel>{slidesLabel}</SubHeaderSlideLabel>
           )}
 
-          <UnderlinedLink
-            as="button"
-            onClick={() => dispatch(handleModalOpener({ active: true }))}
-            $isWhite
-          >
-            Contact now
-          </UnderlinedLink>
+          {!empty(activeSlide?.description) && (
+            <SubHeaderSlideDescription>
+              <JSXWithDynamicLinks HTML={activeSlide?.description} />
+            </SubHeaderSlideDescription>
+          )}
+          {isContact && (
+            <UnderlinedLink
+              as="button"
+              onClick={() => dispatch(handleModalOpener({ active: true }))}
+              $isWhite
+            >
+              Contact now
+            </UnderlinedLink>
+          )}
 
           <SubHeaderSlideNavigationButton
             onClick={onClickNext}
-            className="next"
+            className={!isContact ? 'mt-auto' : ''}
           >
             <span className="nav-text">{nextSlide?.title}</span>
             <SubHeaderSlideNavigationIcon>
@@ -169,4 +174,4 @@ const SubHeaderIndustriesSlider = ({ slides, autoplayInterval = 10000 }) => {
   );
 };
 
-export default SubHeaderIndustriesSlider;
+export default SubHeaderCardsSlider;

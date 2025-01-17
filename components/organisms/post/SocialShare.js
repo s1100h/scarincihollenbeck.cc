@@ -16,7 +16,7 @@ import {
   BsTwitterX,
 } from 'react-icons/bs';
 import { FaFilePdf } from 'react-icons/fa6';
-import { IoCopy } from 'react-icons/io5';
+import CopyUrl from 'components/atoms/CopyUrl';
 import { ShareSocialBox } from '../../../styles/Post/SocialShare.style';
 
 const SocialShare = ({
@@ -30,23 +30,6 @@ const SocialShare = ({
 }) => {
   const router = useRouter();
   const postUrl = `${PRODUCTION_URL}${router.asPath}`;
-
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(postUrl);
-    import('react-toastify').then(({ toast }) => {
-      toast.info('Copied to clipboard', {
-        position: 'bottom-right',
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'colored',
-        className: 'copy-notify',
-      });
-    });
-  };
 
   return (
     <ShareSocialBox
@@ -97,15 +80,7 @@ const SocialShare = ({
             <BsFillPrinterFill />
           </Button>
         ))}
-      {isCopyBtn && (
-        <button
-          aria-label="copy link"
-          onClick={handleCopyLink}
-          className="copy-button"
-        >
-          <IoCopy />
-        </button>
-      )}
+      {isCopyBtn && <CopyUrl />}
     </ShareSocialBox>
   );
 };

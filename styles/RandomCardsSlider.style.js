@@ -10,8 +10,9 @@ import { ContactBox, InfoBox, LinkBox } from './AttorneyCard.style';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import Image from 'next/image';
 import { Title32 } from './common/Typography.style';
+import Link from 'next/link';
 
-export const RandomBioWrapper = styled.section`
+export const RandomSliderWrapper = styled.section`
   padding: 60px 0 160px;
   position: relative;
   z-index: 0;
@@ -41,11 +42,11 @@ export const RandomBioWrapper = styled.section`
   }
 `;
 
-export const RandomBioBg = styled(Image)`
+export const RandomSliderBg = styled(Image)`
   z-index: -1;
 `;
 
-export const RandomBioHolder = styled.div`
+export const RandomSliderHolder = styled.div`
   max-width: 1240px;
   margin: 0 auto;
   padding: 32px 80px;
@@ -68,7 +69,7 @@ export const RandomBioHolder = styled.div`
   }
 `;
 
-export const RandomBioTitle = styled(Title32)`
+export const RandomSliderTitle = styled(Title32)`
   margin-bottom: 12px !important;
 
   ${media_breakpoint_down('md')} {
@@ -76,7 +77,7 @@ export const RandomBioTitle = styled(Title32)`
   }
 `;
 
-export const RandomBioSubtitle = styled.p`
+export const RandomSliderSubtitle = styled.p`
   margin: 0 0 16px 0;
   color: ${globalColor.blue.darkBlue};
   font-size: ${rem(24)};
@@ -91,7 +92,7 @@ export const RandomBioSubtitle = styled.p`
   }
 `;
 
-export const RandomBioCard = styled.div`
+export const RandomSliderCard = styled.div`
   display: flex;
   justify-content: center;
   column-gap: 16px;
@@ -190,16 +191,31 @@ export const RandomBioCard = styled.div`
   }
 `;
 
-export const RandomBioDescription = styled.div`
+export const RandomSliderCardImage = styled.picture`
+  max-width: 440px;
+  width: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  ${media_breakpoint_down('xl')} {
+    max-width: 100%;
+    height: 300px;
+  }
+
+  ${media_breakpoint_down('md')} {
+    height: 100%;
+  }
+`;
+
+export const RandomSliderCardDescription = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-
-  .link-to-bio {
-    margin: auto 0 0 auto;
-    display: flex;
-    text-transform: capitalize;
-  }
+  gap: 8px;
 
   ${media_breakpoint_down('xl')} {
     min-height: 120px;
@@ -211,7 +227,17 @@ export const RandomBioDescription = styled.div`
   }
 `;
 
-export const RandomBioDescriptionText = styled.p`
+export const RandomSliderCardTitle = styled.h3`
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: ${globalColor.blue.darkBlue};
+  font-size: ${rem(18)};
+  font-weight: 500;
+`;
+
+export const RandomSliderCardDescriptionText = styled.p`
   margin: 0;
   color: ${globalColor.blue.darkBlue};
   font-size: ${rem(16)};
@@ -231,7 +257,13 @@ export const RandomBioDescriptionText = styled.p`
   }
 `;
 
-export const RandomBioFooter = styled.div`
+export const RandomSliderCardLink = styled(Link)`
+  margin: auto 0 0 auto;
+  display: flex;
+  text-transform: capitalize;
+`;
+
+export const RandomSliderFooter = styled.div`
   margin-top: 24px;
 
   ${media_breakpoint_down('sm')} {
@@ -239,7 +271,7 @@ export const RandomBioFooter = styled.div`
   }
 `;
 
-export const RandomBioControlPanel = styled.div`
+export const RandomSliderControlPanel = styled.div`
   max-width: 568px;
   padding: 4px 16px;
   margin-left: auto;
@@ -262,7 +294,7 @@ export const RandomBioControlPanel = styled.div`
   }
 `;
 
-export const RandomBioControlProgress = styled.div`
+export const RandomSliderControlProgress = styled.div`
   display: flex;
   align-items: center;
   column-gap: 8px;
@@ -275,7 +307,7 @@ export const RandomBioControlProgress = styled.div`
   }
 `;
 
-export const RandomBioControlButton = styled.button`
+export const RandomSliderControlButton = styled.button`
   height: 100%;
   padding: 4px 4px 2px 4px;
   display: flex;
