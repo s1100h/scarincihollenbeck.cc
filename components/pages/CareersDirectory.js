@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
 import CareersResults from 'components/organisms/careers/CareersResults';
+import SubHeaderSubscription from 'layouts/SubHeader/SubHeaderSubscription';
 
 const CareersInfo = dynamic(() => import('components/organisms/careers/CareersInfo'));
 
@@ -18,6 +19,7 @@ const CareersPage = ({
       title={site.title}
       subtitle={site.description}
       backgroundImage={site.image}
+      RightContentComponent={SubHeaderSubscription}
       isSubscription
     />
 

@@ -2,6 +2,7 @@ import RandomPostCard from 'components/molecules/common/RandomPostCard';
 import LibraryCategory from 'components/organisms/library/LibraryCategory';
 import LibraryFilters from 'components/organisms/library/LibraryFilters';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
+import SubHeaderCardsSlider from 'layouts/SubHeader/SubHeaderCardsSlider';
 import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
 import dynamic from 'next/dynamic';
 import React from 'react';
@@ -28,9 +29,13 @@ const LibraryPage = ({
     <SubHeaderDefault
       title={title}
       subtitle={description}
-      slides={mainCategories}
-      slidesLabel="Library"
       isSocials
+      RightContentComponent={SubHeaderCardsSlider}
+      rightContentProps={{
+        slides: mainCategories,
+        slidesLabel: 'Library',
+        isContact: true,
+      }}
     />
 
     <LibraryFilters

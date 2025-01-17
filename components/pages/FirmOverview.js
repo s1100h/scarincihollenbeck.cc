@@ -11,6 +11,7 @@ import {
 } from 'styles/FirmOverview.style';
 import ContentSection from 'components/molecules/ContentSection';
 import dynamic from 'next/dynamic';
+import SubHeaderMenu from 'layouts/SubHeader/SubHeaderMenu';
 
 const WhyChooseUs = dynamic(() => import('components/organisms/practices/WhyChooseUs'));
 
@@ -34,7 +35,8 @@ const FirmOverviewPage = ({
       title={title}
       subtitle={description}
       backgroundImage={subHeaderImage}
-      menu={FIRM_PAGES}
+      RightContentComponent={SubHeaderMenu}
+      rightContentProps={{ menu: FIRM_PAGES }}
     />
     <FirmOverviewWrapper>
       <ContainerDefault>

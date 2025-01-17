@@ -1,6 +1,7 @@
 import Memorials from 'components/organisms/memorials/Memorials';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
+import SubHeaderMenu from 'layouts/SubHeader/SubHeaderMenu';
 import React from 'react';
 import { FIRM_PAGES } from 'utils/constants';
 
@@ -22,7 +23,8 @@ const MemorialsPage = ({
       backgroundImage={image}
       title={title}
       subtitle={description}
-      menu={FIRM_PAGES}
+      RightContentComponent={SubHeaderMenu}
+      rightContentProps={{ menu: FIRM_PAGES }}
     />
 
     <Memorials memorials={memorials} />

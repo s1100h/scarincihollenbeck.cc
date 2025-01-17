@@ -1,4 +1,5 @@
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
+import Socials from 'components/atoms/Socials';
 import PostBreadCrumbs from 'components/organisms/post/PostBreadcrumbs';
 import Image from 'next/image';
 import {
@@ -7,36 +8,20 @@ import {
   SubHeaderHolder,
 } from 'styles/practices/SubHeader.style';
 import { changeTitle } from 'utils/helpers';
-import empty from 'is-empty';
-import dynamic from 'next/dynamic';
-import Socials from 'components/atoms/Socials';
-
-const SubHeaderKeyContacts = dynamic(() => import('./SubHeaderKeyContacts'));
-const SubHeaderLocations = dynamic(() => import('./SubHeaderLocations'));
-const SubHeaderCardsSlider = dynamic(() => import('./SubHeaderCardsSlider'));
-const SubHeaderMenu = dynamic(() => import('./SubHeaderMenu'));
-const SubHeaderSubscription = dynamic(() => import('./SubHeaderSubscription'));
 
 const SubHeaderDefault = ({
   title,
   subtitle,
   backgroundImage,
-  keyContacts,
-  officeInfo,
-  locations,
-  slides,
-  slidesLabel,
-  isContactButtonInCardsSlider,
-  menu,
   isSubscription,
-  isLocationTabs = false,
-  handlePrint,
+  RightContentComponent,
+  rightContentProps = {},
   isSocials,
 }) => (
   <SubHeaderHolder
     className={`sub-header ${
       !backgroundImage ? 'sub-header--without-image' : ''
-    } ${menu ? 'sub-header--menu' : ''} ${
+    } ${rightContentProps?.menu ? 'sub-header--menu' : ''} ${
       isSubscription ? 'sub-header--subscription' : ''
     }`}
     data-testid="default-sub-header"
@@ -75,30 +60,8 @@ const SubHeaderDefault = ({
       )}
     </SubHeaderContent>
 
-    {!empty(keyContacts) && (
-      <SubHeaderKeyContacts
-        keyContacts={keyContacts}
-        handlePrint={handlePrint}
-      />
-    )}
-    {!empty(locations) && (
-      <SubHeaderLocations
-        locations={locations}
-        title={title}
-        officeInfo={officeInfo}
-        isLocationTabs={isLocationTabs}
-      />
-    )}
-    {!empty(slides) && (
-      <SubHeaderCardsSlider
-        slides={slides}
-        slidesLabel={slidesLabel}
-        isContact={isContactButtonInCardsSlider}
-      />
-    )}
-    {!empty(menu) && <SubHeaderMenu menu={menu} />}
-
-    {isSubscription && <SubHeaderSubscription />}
+    {/* Already exist components: SubHeaderKeyContacts, SubHeaderLocations, SubHeaderCardsSlider, SubHeaderMenu, SubHeaderSubscription */}
+    {RightContentComponent && <RightContentComponent {...rightContentProps} />}
   </SubHeaderHolder>
 );
 
