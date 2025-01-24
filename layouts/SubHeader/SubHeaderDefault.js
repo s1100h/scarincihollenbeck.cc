@@ -5,7 +5,7 @@ import {
   SubHeaderContent,
   SubHeaderDescription,
   SubHeaderHolder,
-} from 'styles/practices/SubHeader.style';
+} from 'styles/subheader/SubHeader.style';
 import { changeTitle } from 'utils/helpers';
 
 const SubHeaderDefault = ({

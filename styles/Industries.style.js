@@ -2,9 +2,49 @@ import styled from 'styled-components';
 import {
   globalColor,
   globalTransition,
+  industrySectionPaddingBlock,
   rem,
 } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
+import { OpenersList, VerticalTabsSection } from './VerticalTabs.style';
+import { ContainerDefault } from './Containers.style';
+
+export const IndustryPageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: ${globalColor.gray.gray300};
+
+  ${VerticalTabsSection} {
+    ${industrySectionPaddingBlock};
+  }
+
+  ${OpenersList} {
+    row-gap: 24px;
+  }
+
+  .separator-big {
+    --separator-line-color: ${globalColor.gray.gray800} !important;
+    margin-block: 0;
+  }
+
+  .margin-scroll {
+    scroll-margin-top: 68px;
+
+    ${media_breakpoint_down('md')} {
+      scroll-margin-top: 52px;
+    }
+  }
+`;
+
+export const IndustryPageContainer = styled(ContainerDefault)`
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+
+  ${media_breakpoint_down('md')} {
+    row-gap: 16px;
+  }
+`;
 
 export const IndustriesWrapper = styled.section`
   padding: 60px 0;

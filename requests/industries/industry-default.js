@@ -1,16 +1,9 @@
 import { attorneysSanitize, checkOnPublish } from 'utils/helpers';
 import { fetchAPI } from 'requests/api';
 import { ScarinciHollenbeckKeyContact } from 'utils/constants';
+import { industryQuery } from 'requests/graphql-queries';
 
-export const getIndustryContent = async (query) => {
-  const data = await fetchAPI(query, {});
-
-  if (!data) {
-    return {
-      industry: undefined,
-    };
-  }
-
+const validateData = (data) => {
   const includeAttorney = data.industry?.industryContent.industryAttorneys
     ? attorneysSanitize(data.industry.industryContent.industryAttorneys)
     : [];
@@ -38,7 +31,7 @@ export const getIndustryContent = async (query) => {
     ? publishedIndustryChief
     : [ScarinciHollenbeckKeyContact];
 
-  const corePractices = data.industry?.industryContent.practices
+  const corePractices = data.industry?.industryContent?.practices
     ? data.industry.industryContent.practices
     : [];
 
@@ -49,4 +42,30 @@ export const getIndustryContent = async (query) => {
     keyContactsList: keyContacts,
     corePractices,
   };
+};
+
+export const getSpecialIndustryContent = async (query) => {
+  const data = await fetchAPI(query, {});
+
+  if (!data) {
+    return {
+      industry: undefined,
+    };
+  }
+
+  return validateData(data);
+};
+
+export const getIndustryContent = async (slug) => {
+  const data = await fetchAPI(industryQuery, {
+    variables: { id: slug },
+  });
+
+  if (!data) {
+    return {
+      industry: undefined,
+    };
+  }
+
+  return validateData(data);
 };

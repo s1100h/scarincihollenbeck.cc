@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { globalColor } from 'styles/global_styles/Global.styles';
+import { SubHeaderInteractive } from 'styles/subheader/SubHeader.style';
 import {
-  SubHeaderInteractive,
   SubHeaderMenuLink,
   SubHeaderMenuList,
-} from 'styles/practices/SubHeader.style';
+} from 'styles/subheader/SubHeaderMenu.style';
 
 const SubHeaderMenu = ({ menu }) => {
   const [currentPath, setCurrentPath] = useState(null);

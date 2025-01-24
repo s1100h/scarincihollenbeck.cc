@@ -4,12 +4,10 @@ import React, {
   useEffect, useMemo, useRef, useState,
 } from 'react';
 import empty from 'is-empty';
-import {
-  SubHeaderInteractive,
-  SubHeaderLocationsHolder,
-} from 'styles/practices/SubHeader.style';
 import { motion } from 'framer-motion';
 import { globalBorderRadius } from 'styles/global_styles/Global.styles';
+import { SubHeaderInteractive } from 'styles/subheader/SubHeader.style';
+import { SubHeaderLocationsHolder } from 'styles/subheader/SubHeaderLocations.style';
 
 const SubHeaderLocations = ({
   locations,

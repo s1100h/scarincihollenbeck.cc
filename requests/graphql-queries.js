@@ -1250,13 +1250,106 @@ query ServicesQuery {
   }
 }`;
 
-export const getIndustryQuery = `
-query IndustryQuery($id: ID! = "/cannabis") {
+export const industryQuery = `
+query IndustryQuery($id: ID!) {
   industry(id: $id, idType: SLUG) {
     title
+    status
+    seo {
+      metaDesc
+      title
+    }
+    featuredImage {
+      node {
+        sourceUrl
+      }
+    }
+    industryContent {
+      description
+      contentSection {
+        description
+        title
+      }
+      faq {
+        description
+        title
+      }
+      whyChooseUs {
+        description
+        title
+      }
+      industryAttorneys {
+        ... on AttorneyProfile {
+          databaseId
+          uri
+          title
+          status
+          attorneyMainInformation {
+            designation
+            email
+            phoneNumber
+            lastName
+            profileImage {
+              sourceUrl
+            }
+          }
+          attorneyPrimaryRelatedPracticesLocationsGroups {
+            officeLocation {
+              ... on OfficeLocation {
+                databaseId
+                uri
+                title
+              }
+            }
+          }
+        }
+      }
+      industryChief {
+        ... on AttorneyProfile {
+          databaseId
+          uri
+          title
+          status
+          attorneyMainInformation {
+            designation
+            email
+            phoneNumber
+            lastName
+            profileImage {
+              sourceUrl
+            }
+          }
+          attorneyPrimaryRelatedPracticesLocationsGroups {
+            officeLocation {
+              ... on OfficeLocation {
+                id
+                databaseId
+                uri
+                title
+              }
+            }
+          }
+        }
+      }
+    }
+    contentTabs {
+      tabs {
+        openerTitle
+        tabContent {
+          columns {
+            description
+            title
+          }
+          description
+          title
+        }
+        image {
+          sourceUrl
+        }
+      }
+    }
   }
-}
-`;
+}`;
 
 export const memorialsPageContentQuery = `
 query MemorialsPageContentQuery {

@@ -44,6 +44,20 @@ export const LawyerCardContent = styled.div`
   }
 `;
 
+export const LawyerCardChair = styled.div`
+  padding: 8px 12px;
+  background-color: ${globalColor.blue.blue700};
+  color: ${globalColor.white};
+  text-transform: uppercase;
+  font-size: ${rem(18)};
+  font-weight: 500;
+
+  ${media_breakpoint_down('lg')} {
+    padding: 2px 12px;
+    font-size: ${rem(16)};
+  }
+`;
+
 export const LawyerCardHeader = styled.div`
   display: flex;
   justify-content: space-between;
@@ -191,6 +205,17 @@ export const LawyerCardWrapper = styled.div`
       margin: auto 0 0 auto;
       gap: 12px;
       order: 3;
+    }
+
+    &:has(${LawyerCardChair}) {
+
+      ${LawyerCardChair} {
+        margin: -16px -8px -4px -12px;
+
+        ${media_breakpoint_down('lg')} {
+          margin: -8px -8px -6px -12px;
+        }
+      }
     }
 
     ${media_breakpoint_down('lg')} {

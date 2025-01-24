@@ -12,6 +12,7 @@ import {
 import ContentSection from 'components/molecules/ContentSection';
 import dynamic from 'next/dynamic';
 import SubHeaderMenu from 'layouts/SubHeader/SubHeaderMenu';
+import { Title20 } from 'styles/common/Typography.style';
 
 const WhyChooseUs = dynamic(() => import('components/organisms/practices/WhyChooseUs'));
 
@@ -47,7 +48,8 @@ const FirmOverviewPage = ({
               content={sections[0].content}
               link={sections[0].link}
               isTwoColumns
-              isSmaller
+              TitleComponent={Title20}
+              contentGap="8px"
             />
           )}
 
@@ -61,7 +63,8 @@ const FirmOverviewPage = ({
                     title={title}
                     content={content}
                     link={link}
-                    isSmaller
+                    TitleComponent={Title20}
+                    contentGap="8px"
                   />
                 ))}
           </KeyPointsWrapper>
