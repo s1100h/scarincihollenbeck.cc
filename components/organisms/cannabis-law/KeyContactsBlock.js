@@ -1,7 +1,7 @@
 import { useId } from 'react';
 import empty from 'is-empty';
 import { useDispatch } from 'react-redux';
-import { ContactNowBtn } from 'styles/AboutAuthorFormCard.style';
+import { ContactNowBtn } from 'styles/Buttons.style';
 import {
   KeyContactsBlockContainer,
   KeyContactsWrapper,

@@ -1,12 +1,13 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { globalBorderRadius, globalColor, globalTransition } from "./global_styles/Global.styles";
-import { Title20 } from "./common/Typography.style";
+import { globalBorderRadius, globalColor, globalTransition } from "../global_styles/Global.styles";
+import { Title20 } from "../common/Typography.style";
+import { media_breakpoint_down } from "../mediaBreakpoints.style";
 
 
 export const LibraryCardImage = styled.picture`
   width: 100%;
-  height: 240px;
+  max-height: 240px;
   border-radius: ${globalBorderRadius.middle};
   overflow: hidden;
 
@@ -16,9 +17,13 @@ export const LibraryCardImage = styled.picture`
     object-fit: cover;
     transition: ${globalTransition.default};
   }
+
+  ${media_breakpoint_down("lg")} {
+    max-height: 100%;
+  }
 `;
 
-export const LibraryCardBox = styled.div`
+export const LibraryCardBox = styled.article`
   display: flex;
   flex-direction: column;
   row-gap: 12px;
@@ -67,24 +72,6 @@ export const LibraryCardTags = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-`;
-
-export const LibraryCardTag = styled.li`
-  display: flex;
-`;
-
-export const LibraryCardTagLink = styled(Link)`
-  padding: 3px 19px;
-  border-radius: 80px;
-  border: 1px solid currentColor;
-  backdrop-filter: blur(2px);
-  color: ${globalColor.blue.blue500};
-  position: relative;
-  z-index: 2;
-
-  &:hover {
-    color: ${globalColor.blue.skyBlue};
-  }
 `;
 
 export const LibraryCardFooter = styled.div`

@@ -26,21 +26,25 @@ const optionsVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.05,
-      delayChildren: 0.1,
+      duration: 0.4,
     },
   },
 };
 
 const optionVariants = {
-  hidden: {
-    y: -50,
+  init: {
+    y: -20,
   },
-  visible: {
+  anim: {
     y: 0,
     transition: {
-      duration: 0.2,
-      ease: 'easeOut',
+      duration: 0.3,
+    },
+  },
+  exit: {
+    y: 20,
+    transition: {
+      duration: 0.3,
     },
   },
 };
@@ -68,12 +72,17 @@ const CustomSelect = memo(
       [includeDefault, defaultLabel, options],
     );
 
-    const handleClickOpener = useCallback(() => {
-      setSelectActive(!selectActive);
-    }, [setSelectActive, selectActive]);
+    const handleClickOpener = useCallback(
+      (e) => {
+        e.preventDefault();
+        setSelectActive(!selectActive);
+      },
+      [setSelectActive, selectActive],
+    );
 
     const handleClickOption = useCallback(
-      (value, id) => {
+      (e, value, id) => {
+        e.preventDefault();
         if (inputRef && inputRef.current) {
           inputRef.current.value = value;
         }
@@ -107,6 +116,7 @@ const CustomSelect = memo(
             placeholder={placeHolder}
             $selectActive={selectActive}
             ref={inputRef}
+            tabIndex="-1"
           />
           <SelectIcon $selectActive={selectActive}>
             <BsChevronDown size={24} />
@@ -124,17 +134,23 @@ const CustomSelect = memo(
             >
               {!empty(finalOptions) ? (
                 finalOptions?.map((item) => (
-                  <SelectOption
-                    as={motion.li}
+                  <motion.li
                     key={item?.databaseId || item?.id}
+                    initial="init"
+                    animate="anim"
+                    exit="exit"
                     variants={optionVariants}
-                    onClick={() => handleClickOption(
-                      item?.title,
-                      item?.databaseId || item?.id,
-                    )}
                   >
-                    {item?.title}
-                  </SelectOption>
+                    <SelectOption
+                      onClick={(e) => handleClickOption(
+                        e,
+                        item?.title,
+                        item?.databaseId || item?.id,
+                      )}
+                    >
+                      {item?.title}
+                    </SelectOption>
+                  </motion.li>
                 ))
               ) : (
                 <Loader />

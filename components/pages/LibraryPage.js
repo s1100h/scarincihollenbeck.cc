@@ -5,7 +5,9 @@ import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SubHeaderCardsSlider from 'layouts/SubHeader/SubHeaderCardsSlider';
 import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
 import dynamic from 'next/dynamic';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSelectedValues } from '../../redux/slices/library.slice';
 
 const RandomCardsSlider = dynamic(() => import('components/organisms/common/RandomCardsSlider'));
 const LibraryCategories = dynamic(() => import('components/organisms/library/LibraryCategories'));
@@ -19,52 +21,65 @@ const LibraryPage = ({
   mainCategories,
   posts,
   filters,
-}) => (
-  <>
-    <BasicSiteHead
-      title={seo?.title}
-      metaDescription={seo?.metaDesc}
-      canonicalUrl={canonicalUrl}
-    />
-    <SubHeaderDefault
-      title={title}
-      subtitle={description}
-      isSocials
-      RightContentComponent={SubHeaderCardsSlider}
-      rightContentProps={{
-        slides: mainCategories,
-        slidesLabel: 'Library',
-        isContact: true,
-      }}
-    />
+}) => {
+  const dispatch = useDispatch();
+  const { selectedValues } = useSelector((state) => state.library);
 
-    <LibraryFilters
-      practices={filters?.practices}
-      offices={filters?.locations}
-      categories={mainCategories?.slice(0, -1)}
-      authors={filters?.authors}
-      industries={filters?.industries}
-      years={filters?.years}
-    />
+  useEffect(() => {
+    const copyFilters = { ...selectedValues };
+    if (copyFilters.categories) {
+      delete copyFilters.categories;
+      dispatch(setSelectedValues(copyFilters));
+    }
+  }, []);
 
-    <LibraryCategory
-      title={mainCategories[0]?.title}
-      link={mainCategories[0]?.uri}
-      posts={mainCategories[0]?.posts}
-    />
+  return (
+    <>
+      <BasicSiteHead
+        title={seo?.title}
+        metaDescription={seo?.metaDesc}
+        canonicalUrl={canonicalUrl}
+      />
+      <SubHeaderDefault
+        title={title}
+        subtitle={description}
+        isSocials
+        RightContentComponent={SubHeaderCardsSlider}
+        rightContentProps={{
+          slides: mainCategories,
+          slidesLabel: 'Library',
+          isContact: false,
+        }}
+      />
 
-    <RandomCardsSlider
-      title="Stay Updated!"
-      subtitle="Insights, Updates, and More — All in One Place."
-      navigationLabel="next article"
-      CardComponent={RandomPostCard}
-      list={posts}
-    />
+      <LibraryFilters
+        practices={filters?.practices}
+        offices={filters?.locations}
+        categories={mainCategories?.slice(0, -1)}
+        authors={filters?.authors}
+        industries={filters?.industries}
+        years={filters?.years}
+      />
 
-    <LibraryCategories categories={mainCategories.slice(1, -1)} />
+      <LibraryCategory
+        title={mainCategories[0]?.title}
+        link={mainCategories[0]?.uri}
+        posts={mainCategories[0]?.posts}
+      />
 
-    <SubscriptionBanner />
-  </>
-);
+      <RandomCardsSlider
+        title="Stay Updated!"
+        subtitle="Insights, Updates, and More — All in One Place."
+        navigationLabel="next article"
+        CardComponent={RandomPostCard}
+        list={posts}
+      />
+
+      <LibraryCategories categories={mainCategories.slice(1, -1)} />
+
+      <SubscriptionBanner />
+    </>
+  );
+};
 
 export default LibraryPage;

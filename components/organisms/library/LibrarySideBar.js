@@ -3,9 +3,9 @@ import { FacebookShareButton, LinkedinShareButton } from 'react-share';
 import { BsFacebook, BsLinkedin } from 'react-icons/bs';
 import PopularList from './PopularList';
 import { CLIENT_ALERTS, SOCIAL_MEDIA_LINKS } from '../../../utils/constants';
-import { SideBarContainer } from '../../../styles/LibraryArticles.style';
+import { SideBarContainer } from '../../../styles/library/LibraryArticles.style';
 import FirmAuthors from './FirmAuthors';
-import { ShareSocialBox } from '../../../styles/Post/SocialShare.style';
+import { ShareSocialBox } from '../../../styles/library/SocialShare.style';
 
 const LibrarySideBar = ({
   isAuthor,

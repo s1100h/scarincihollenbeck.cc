@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { LogoSeparatorWrapper } from "./Separators.style";
+import { LogoSeparatorWrapper } from "../Separators.style";
+import { media_breakpoint_down } from "../mediaBreakpoints.style";
 
 export const LibraryCategoriesWrapper = styled.div`
 
@@ -22,4 +23,12 @@ export const LibraryCards = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(385px, 100%), 1fr));
   gap: 40px;
+
+  ${media_breakpoint_down('xxl')} {
+    gap: 32px;
+  }
+
+  ${media_breakpoint_down('md')} {
+    gap: 24px;
+  }
 `;

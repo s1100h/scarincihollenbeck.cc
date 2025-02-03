@@ -670,15 +670,6 @@ export const ProfileBioListContent = styled.div`
   flex-direction: column;
   row-gap: 8px;
 
-  .bullets-li {
-    padding-left: 0;
-    position: static;
-
-    &::before {
-      content: none;
-    }
-  }
-
   ul {
     margin: 0;
     list-style: disc;

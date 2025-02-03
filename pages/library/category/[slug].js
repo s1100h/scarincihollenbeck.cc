@@ -1,37 +1,25 @@
-import { useRouter } from 'next/router';
-import dynamic from 'next/dynamic';
-import LibraryDirectory from 'components/pages/LibraryDirectory';
 import ApolloWrapper from 'layouts/ApolloWrapper';
-import { PRODUCTION_URL, BASE_API_URL, headers } from 'utils/constants';
-import { formatSrcToCloudinaryUrl } from 'utils/helpers';
-import { fetchAPI } from 'requests/api';
-import { categoryPostQuery } from 'requests/graphql-queries';
-import useNotFoundNotification from 'hooks/useNotFoundNotification';
-
-const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
-
-/** Fetch additional page information such as authors and popular categories from WP REST API */
-const getLibraryCategoryContent = async () => {
-  try {
-    const [popularCategories] = await Promise.all([
-      // fetch(`${BASE_API_URL}/wp-json/author/full-list`, { headers })
-      //   .then((data) => data.json())
-      //   .catch((err) => err),
-      fetch(`${BASE_API_URL}/wp-json/category/popular-categories`, { headers })
-        .then((data) => data.json())
-        .catch((err) => err),
-    ]);
-
-    return [popularCategories];
-  } catch (error) {
-    console.error(error);
-  }
-};
+import { PRODUCTION_URL } from 'utils/constants';
+import {
+  generateYearOptions,
+  sanitizeCategories,
+  sortByKey,
+} from 'utils/helpers';
+import { fetchAPI, fetchRestAPI } from 'requests/api';
+import {
+  categoriesQuery,
+  categoryPageContentQuery,
+  firstCreatedPostQuery,
+} from 'requests/graphql-queries';
+import LibraryCategoryPage from 'components/pages/LibraryCategoryPage';
+import { getPractices } from 'requests/getPractices';
+import { getIndustries } from 'requests/getIndustries';
+import empty from 'is-empty';
 
 /** get the current category's latest post WP GRAPHQL API */
-async function categoryPosts(variables) {
-  const data = await fetchAPI(categoryPostQuery, variables);
-  return data.categories?.edges;
+async function getCategoryContent(variables) {
+  const data = await fetchAPI(categoryPageContentQuery, variables);
+  return data?.category;
 }
 
 const categoriesSlugsQuery = `
@@ -59,65 +47,57 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const [popularCategories] = await getLibraryCategoryContent();
-  const pageContent = await categoryPosts({
+  const pageContent = await getCategoryContent({
     variables: {
-      name: params.slug,
+      slug: params.slug,
     },
   });
 
-  if (pageContent.length <= 0) {
+  const categories = await fetchAPI(categoriesQuery);
+
+  const practices = await getPractices();
+
+  const industries = await getIndustries();
+
+  const { locations } = await fetchRestAPI('locations');
+
+  const { authors } = await fetchRestAPI('authors');
+  const sortedAuthors = sortByKey(authors, 'title');
+
+  const firstPost = await fetchAPI(firstCreatedPostQuery);
+  const dateFirstPost = new Date(firstPost?.posts?.nodes[0]?.date).getFullYear() || 2013;
+
+  const filters = {
+    practices,
+    locations,
+    authors: sortedAuthors,
+    industries,
+    years: generateYearOptions(dateFirstPost),
+  };
+
+  if (empty(pageContent)) {
     return {
       redirect: {
-        destination: '/library/category/client-alert?notFound=true',
+        destination: '/library?notFound=true',
         permanent: true,
       },
     };
   }
-  const content = pageContent[0].node;
-  const news = content.posts?.edges.map(({ node }, index) => ({
-    ID: index,
-    title: node.title,
-    link: node.uri.replace(PRODUCTION_URL, ''),
-    date: node.date,
-    excerpt: node.excerpt,
-    author: node.author.node.name,
-    image: formatSrcToCloudinaryUrl(node.featuredImage?.node?.sourceUrl),
-    category:
-      node.categories.length > 0
-        ? node.categories?.edges.map(({ node }) => ({
-          name: node.name,
-          link: node.link,
-        }))
-        : [],
-  }));
-
-  const categoryChildren = content.children.nodes.length > 0 ? content.children.nodes : [];
-
-  const modPopCategories = popularCategories.map(
-    ({
-      id, slug, name, postCount,
-    }) => ({
-      id,
-      slug,
-      name,
-      count: postCount,
-    }),
-  );
 
   return {
     props: {
-      news,
-      popularCategories: modPopCategories || [],
-      childrenOfCurrentCategory: categoryChildren,
-      description: content.description,
-      name: content.name,
-      pageTitle: params.slug,
+      title: pageContent?.name,
+      description: pageContent?.description,
       seo: {
-        title: content.seo.title,
-        metaDescription: content.seo.metaDesc,
+        ...pageContent?.seo,
+        canonicalUrl: `${PRODUCTION_URL}/library/category/${params.slug}`,
       },
-      categoryId: content.databaseId,
+      categoryId: pageContent?.databaseId,
+      categories: sanitizeCategories([
+        ...categories?.categories?.nodes,
+        categories?.pageBy,
+      ]),
+      filters,
     },
     revalidate: 3600,
   };
@@ -125,47 +105,25 @@ export const getStaticProps = async ({ params }) => {
 
 /** Library category page component -- /library/category/law-firm-insights etc. */
 const LibraryCategory = ({
-  childrenOfCurrentCategory,
+  title,
   description,
-  pageTitle,
-  popularCategories,
-  news,
-  name,
   seo,
   categoryId,
+  categories,
+  filters,
 }) => {
-  const router = useRouter();
-
-  if (router.isFallback) {
-    return (
-      <div className="my-5 py-5">
-        <SiteLoader />
-      </div>
-    );
-  }
-
-  const canonicalUrl = `${PRODUCTION_URL}/library/category/${pageTitle}`;
-
   const libraryProps = {
-    seo: {
-      title: seo.title,
-      metaDescription: seo.metaDescription,
-      canonicalUrl,
-    },
-    news,
-    popularCategories,
-    childrenOfCurrentCategory,
-    currentPageTitle: name,
-    categoryName: name,
+    title,
     description,
+    seo,
     categoryId,
+    categories,
+    filters,
   };
-
-  useNotFoundNotification("Category doesn't exist!");
 
   return (
     <ApolloWrapper>
-      <LibraryDirectory {...libraryProps} />
+      <LibraryCategoryPage {...libraryProps} />
     </ApolloWrapper>
   );
 };

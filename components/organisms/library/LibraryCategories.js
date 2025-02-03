@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { LibraryCategoriesWrapper } from 'styles/LibraryCategory.style';
+import { LibraryCategoriesWrapper } from 'styles/library/LibraryCategory.style';
 import empty from 'is-empty';
 import LogoSeparator from 'components/common/LogoSeparator';
 import LibraryCategory from './LibraryCategory';

@@ -121,9 +121,9 @@ const Filters = ({
 
       {(userInput.length > 0 || select.length > 0) && (
         <Selection
-          select={select}
+          keyword={userInput}
+          selections={select}
           clearQuery={handleClearQuery}
-          userInput={userInput}
           clearAll={handleClearAll}
         />
       )}

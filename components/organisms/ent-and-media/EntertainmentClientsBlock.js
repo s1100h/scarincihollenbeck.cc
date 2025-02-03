@@ -22,6 +22,7 @@ import {
   EntertainmentClientsTitle,
 } from 'styles/practices-special-style/ent-adn-media/EntertainmentClientsBlock.style';
 import { ContainerDefault } from 'styles/Containers.style';
+import empty from 'is-empty';
 import Loader from '../../atoms/Loader';
 import CustomPagination from '../../atoms/CustomPagination';
 
@@ -34,6 +35,10 @@ const EntertainmentClientsBlock = ({
   description,
   clientsPaginationData,
 }) => {
+  if (
+    empty(clientsPaginationData?.clients?.edges)
+    && !clientsPaginationData?.loading
+  ) return null;
   const [openItemId, setOpenItemId] = useState(null);
 
   const handleShowContent = (itemId) => {

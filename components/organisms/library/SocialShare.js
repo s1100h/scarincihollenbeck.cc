@@ -17,11 +17,14 @@ import {
 } from 'react-icons/bs';
 import { FaFilePdf } from 'react-icons/fa6';
 import CopyUrl from 'components/atoms/CopyUrl';
-import { ShareSocialBox } from '../../../styles/Post/SocialShare.style';
+import {
+  ShareSocialBox,
+  SocialHr,
+  SocialLabel,
+} from '../../../styles/library/SocialShare.style';
 
 const SocialShare = ({
   title,
-  isGetInTouch = false,
   isPrintBtn = false,
   isEmailShare = false,
   isCopyBtn = true,
@@ -32,21 +35,9 @@ const SocialShare = ({
   const postUrl = `${PRODUCTION_URL}${router.asPath}`;
 
   return (
-    <ShareSocialBox
-      isPracticeHr={isGetInTouch ? 'true' : ''}
-      className={customClass}
-    >
-      {isGetInTouch ? (
-        <>
-          <hr className="second-hr" />
-          Share
-        </>
-      ) : (
-        <>
-          <h3>Share:</h3>
-          <hr className="second-hr" />
-        </>
-      )}
+    <ShareSocialBox className={customClass}>
+      <SocialHr />
+      <SocialLabel>Share</SocialLabel>
       <FacebookShareButton url={postUrl} quote={title}>
         <BsFacebook className="faceBookBtn" />
       </FacebookShareButton>

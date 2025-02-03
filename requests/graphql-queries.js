@@ -374,29 +374,8 @@ export const latestFirmInsightsArticles = `query latestFirmInsightsArticles {
 }`;
 
 export const postQuery = `
-query FirmPageQuery($id: ID!) {
+query PostContentQuery($id: ID!) {
   post(id: $id, idType: SLUG) {
-    categories {
-      nodes {
-        databaseId
-        name
-        slug
-        contentNodes(first: 4, where: {dateQuery: {before: {month: 2}}}) {
-          nodes {
-            ... on Post {
-              title
-              uri
-              featuredImage {
-                node {
-                  sourceUrl
-                }
-              }
-              databaseId
-            }
-          }
-        }
-      }
-    }
     content
     title
     link
@@ -426,6 +405,11 @@ query FirmPageQuery($id: ID!) {
           attorneyBiography {
             miniBio
           }
+          attorneyAuthorId {
+            authorId {
+              uri
+            }
+          }
         }
       }
     }
@@ -435,6 +419,7 @@ query FirmPageQuery($id: ID!) {
           uri
           title
           databaseId
+          status
           attorneyMainInformation {
             profileImage {
               sourceUrl
@@ -449,26 +434,50 @@ query FirmPageQuery($id: ID!) {
         }
       }
     }
+    tags {
+      nodes {
+        name
+        uri
+        databaseId
+      }
+    }
   }
 }`;
 
-export const getThreePostsQuery = `
-query getThreePostsQuery {
-  posts(first: 3, where: {categoryId: 98}) {
-    nodes {
-      databaseId
-      uri
-      title
-      date
-      featuredImage {
-        node {
-          sourceUrl
+export const postMainCategoryContentQuery = `
+query PostMainCategoryContentQuery($id: ID!) {
+  category(id: $id, idType: SLUG) {
+    databaseId
+    name
+    uri
+    categoryFields {
+      color
+    }
+    posts(first: 6) {
+      nodes {
+        databaseId
+        title
+        uri
+        excerpt
+        author {
+          node {
+            name
+            uri
+          }
         }
-      }
-      author {
-        node {
-          name
+        featuredImage {
+          node {
+            sourceUrl
+          }
         }
+        tags(first: 3, where: {orderby: COUNT}) {
+          nodes {
+            uri
+            name
+            databaseId
+          }
+        }
+        date
       }
     }
   }
@@ -506,7 +515,6 @@ export const getClientsQuery = `query FirmPageQuery(
   }
 }`;
 
-// , order by: {field: DATE, order: DESC}
 export const postsForPaginationByCategoryIdQuery = `
   query postsForPaginationByCategoryId(
     $categoryId: Int, 
@@ -587,59 +595,18 @@ export const postsForPaginationByAuthorIdQuery = `
 `;
 
 // Category Landing Page Query
-export const categoryPostQuery = `query CategoryPosts($name:String) {
-  categories(where: {slug: [$name]}) {
-    edges {
-      node {
-        name
-        seo {
-          metaDesc
-          title
-        }
-        children(first: 20) {
-          nodes {
-            slug
-            name
-            count
-            id
-          }
-        }
-        description
-        posts(first: 1) {
-          edges {
-            node {
-              categories(first: 1) {
-                edges {
-                  node {
-                    name
-                    link
-                  }
-                }
-              }
-              uri
-              excerpt(format: RENDERED)
-              title
-              featuredImage {
-                node {
-                  sourceUrl
-                }
-              }
-              date
-              author {
-                node {
-                  userId
-                  name
-                }
-              }
-            }
-          }
-        }
-        databaseId
-      }
+export const categoryPageContentQuery = `
+query CategoryPosts($slug: ID!) {
+  category(id: $slug, idType: SLUG){
+    name
+    databaseId
+    description
+    seo {
+      metaDesc
+      title
     }
   }
-}
-`;
+}`;
 
 export const contactPageQuery = `
 query ContactPageQuery {
@@ -1387,6 +1354,13 @@ query MainCategoriesQuery {
               sourceUrl
             }
           }
+          tags(first: 3, where: {orderby: COUNT}) {
+            nodes {
+              uri
+              name
+              databaseId
+            }
+          }
           date
         }
       }
@@ -1428,6 +1402,35 @@ query FirstCreatedPostQuery {
   posts(last: 1, where: {orderby: {field: DATE, order: DESC}}) {
     nodes {
       date
+    }
+  }
+}`;
+
+export const categoriesQuery = `
+query CategoriesQuery {
+  categories(where: {include: [599, 99, 98, 20098]}) {
+    nodes {
+      databaseId
+      name
+      description
+      uri
+      categoryFields {
+        image {
+          sourceUrl
+        }
+      }
+    }
+  }
+  pageBy(pageId: 169286) {
+    databaseId
+    title
+    pagesFields {
+      description
+    }
+    featuredImage {
+      node {
+        sourceUrl
+      }
     }
   }
 }`;

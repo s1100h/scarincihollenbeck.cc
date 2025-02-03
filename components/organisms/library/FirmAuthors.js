@@ -5,7 +5,7 @@ import {
   MainVirtualizeContainer,
   VirtualizeListBox,
   VirtualListItem,
-} from '../../../styles/LibraryArticles.style';
+} from '../../../styles/library/LibraryArticles.style';
 import Loader from '../../atoms/Loader';
 
 export default function FirmAuthors({ authors, authorsIsLoading }) {

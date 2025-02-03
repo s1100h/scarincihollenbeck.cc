@@ -12,7 +12,7 @@ export const SubscriptionBannerSection = styled.section`
     padding: 60px 0;
   }
 
-  ${media_breakpoint_down('md')} {
+  ${media_breakpoint_down('lg')} {
     padding: 40px 0;
   }
 `;
@@ -23,11 +23,7 @@ export const SubscriptionBannerHolder = styled.div`
   gap: var(--banner-gap);
 
   ${media_breakpoint_down('lg')} {
-    --banner-gap: 32px;
-  }
-
-  ${media_breakpoint_down('md')} {
-    --banner-gap: 24px;
+    --banner-gap: 16px;
     flex-direction: column;
   }
 `;
@@ -36,6 +32,10 @@ export const SubscriptionBannerTitle = styled(Title32)`
   max-width: 270px;
   color: inherit;
   text-transform: uppercase;
+
+  ${media_breakpoint_down('lg')} {
+    max-width: 100%;
+  }
 `;
 
 export const SubscriptionBannerContent = styled.div`
@@ -50,17 +50,20 @@ export const SubscriptionBannerContent = styled.div`
     max-width: 240px;
   }
 
-  ${media_breakpoint_down('md')} {
-    row-gap: 16px;
+  ${media_breakpoint_down('lg')} {
     border-left: none;
     padding-left: 0;
     border-top: 1px solid ${globalColor.gray.gray500};
     padding-top: var(--banner-gap);
   }
+
+  ${media_breakpoint_down('md')} {
+    row-gap: 16px;
+  }
 `;
 
 export const SubscriptionBannerSubtitle = styled.h3`
-  margin: 0;
+  margin: 0 0 -8px 0;
   color: inherit;
   font-family: var(--font-lato);
   font-size: ${rem(24)};
@@ -68,8 +71,17 @@ export const SubscriptionBannerSubtitle = styled.h3`
   font-weight: 400;
   text-transform: uppercase;
 
+  ${media_breakpoint_down('xxl')} {
+    margin: 0 0 -12px 0;
+  }
+
+  ${media_breakpoint_down('lg')} {
+    margin: 0 0 -16px 0;
+  }
+
   ${media_breakpoint_down('md')} {
-    font-size: ${rem(18)};
+    margin: 0 0 -8px 0;
+    font-size: ${rem(16)};
   }
 `;
 

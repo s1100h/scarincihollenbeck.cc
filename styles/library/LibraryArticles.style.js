@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { globalColor, globalShadow, rem } from './global_styles/Global.styles';
-import { media_breakpoint_down } from './mediaBreakpoints.style';
+import { globalColor, globalShadow, rem } from '../global_styles/Global.styles';
+import { media_breakpoint_down } from '../mediaBreakpoints.style';
 import Link from 'next/link';
 
 export const MainVirtualizeContainer = styled.nav`

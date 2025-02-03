@@ -6,6 +6,7 @@ import {
   globalTransition,
   rem,
 } from './global_styles/Global.styles';
+import { ContentContainer } from './Content.style';
 
 const headingStyles = `
   margin: 0 0 4px 0;
@@ -158,34 +159,14 @@ export const TabTitle = styled.h2`
   ${headingStyles};
 `;
 
-export const TabContent = styled.div`
+export const TabContent = styled(ContentContainer)`
   display: none;
-  color: ${globalColor.gray.gray110};
 
   &.active {
     display: block;
   }
 
-  p,
-  ul {
-    &:last-child {
-      margin: 0;
-    }
-  }
-
-  ul {
-    list-style: disc;
-
-    li {
-      &::marker {
-        font-size: ${rem(14)};
-      }
-
-      margin-left: 24px;
-    }
-  }
-
-  h2 {
+  h2, h3 {
     ${headingStyles};
   }
 
@@ -197,10 +178,6 @@ export const TabContent = styled.div`
     &.active {
       margin: -8px 0 20px;
     }
-  }
-
-  ${media_breakpoint_down('sm')} {
-    font-size: ${rem(14)};
   }
 `;
 

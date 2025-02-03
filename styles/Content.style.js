@@ -15,28 +15,30 @@ export const ContentWrapper = styled.section`
 export const ContentContainer = styled.div`
   --content-text-color: ${globalColor.gray.gray700};
   color: var(--content-text-color);
+  word-break: break-word;
 
   p,
-  ul {
+  ul,
+  ol, 
+  blockquote {
     &:last-child {
+      margin: 0;
+    }
+
+    &:has(+ *:empty) {
       margin: 0;
     }
   }
 
   p {
     margin: 0 0 16px 0;
-  }
 
-  .bullets-li {
-    padding-left: 0;
-    position: static;
-
-    &::before {
-      content: none;
+    &:has(+ ul) {
+      margin-bottom: 4px;
     }
   }
 
-  ul {
+  ul, ol {
     margin: 0 0 16px 0;
     list-style: disc;
 
@@ -54,18 +56,85 @@ export const ContentContainer = styled.div`
     }
   }
 
-  a {
-    color: currentColor;
-    text-decoration: underline;
+  strong, b {
+    font-weight: 600;
+  }
 
-    &:hover,
-    &:focus {
-      text-decoration: none;
+  h2, h3, h4, h5, h6 {
+    margin: 32px 0 4px;
+    color: ${globalColor.blue.darkBlue};
+    font-weight: 600;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &:has(+ *:empty) {
+      margin: 0;
     }
   }
 
-  strong {
-    font-weight: 500;
+  h2 {
+    font-size: ${rem(32)};
+    line-height: 1.38;
+    
+    ${media_breakpoint_down('md')} {
+      font-size: ${rem(20)};
+      line-height: 1.4;
+    }
+  }
+
+  h3 {
+    font-size: ${rem(24)};
+    line-height: 1.5;
+
+    ${media_breakpoint_down('md')} {
+      font-size: ${rem(18)};
+      line-height: 1.56;
+    }
+  }
+
+  h4 {
+    font-size: ${rem(20)};
+    line-height: 1.6;
+
+    ${media_breakpoint_down('md')} {
+      font-size: ${rem(16)};
+      line-height: 1.5;
+    }
+  }
+
+  h5 {
+    font-size: ${rem(18)};
+    line-height: 1.56;
+
+    ${media_breakpoint_down('md')} {
+      font-size: ${rem(14)};
+      line-height: 1.5;
+    }
+  }
+
+  h6 {
+    font-size: ${rem(16)};
+    line-height: 1.5;
+
+    ${media_breakpoint_down('md')} {
+      font-size: ${rem(14)};
+      line-height: 1.5;
+    }
+  }
+
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+
+    table {
+      min-width: 500px;
+    }
   }
 
   &.two-columns {
@@ -88,6 +157,20 @@ export const ContentContainer = styled.div`
 
     ${media_breakpoint_down('xxl')} {
       gap: 32px;
+    }
+  }
+
+  ${media_breakpoint_down('sm')} {
+    .floated-image {
+      width: 100vw;
+      height: 70%;
+    }
+
+    .alignleft,
+    .alignright {
+      float: none;
+      margin: 0;
+      max-width: 100%;
     }
   }
 `;

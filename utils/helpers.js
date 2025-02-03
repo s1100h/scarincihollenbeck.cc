@@ -112,7 +112,9 @@ export function formatDate(date) {
 
 // print screen event
 export function printScreen() {
-  window.print();
+  if (typeof window !== 'undefined') {
+    window.print();
+  }
   return false;
 }
 
@@ -235,8 +237,9 @@ export const convertUnixTimestampToISO = (unixTimestamp) => {
 export const deleteReviewsWithoutComment = (reviews) => reviews.filter((review) => !empty(review.text));
 
 export const changePostLink = (url) => {
-  const parts = url.replace(`${PRODUCTION_URL}/`, '').split('/');
-  if (empty(parts[0])) return url;
+  if (empty(url)) return null;
+  const parts = url?.replace(`${PRODUCTION_URL}/`, '').split('/');
+  if (empty(parts?.[0])) return url;
   const result = `/${parts[0]}/${parts[parts.length - 1]}`;
   return result;
 };
@@ -609,4 +612,29 @@ export const formateAwards = (awards) => {
       }),
     )
     .sort((a, b) => (a.order > b.order ? 1 : -1));
+};
+
+export const sanitizeCategories = (categories) => categories?.map((category) => ({
+  databaseId: category.databaseId,
+  title: category?.name || category.title,
+  description: category?.description || category?.pagesFields?.description,
+  uri: category?.uri ? `/library${category?.uri}` : '/library',
+  image:
+      category?.categoryFields?.image?.sourceUrl
+      || category?.featuredImage?.node?.sourceUrl,
+  posts: category?.posts?.nodes || [],
+}));
+
+export const generateYearOptions = (startYear) => {
+  const currentYear = new Date().getFullYear();
+  const yearOptions = [];
+
+  for (let year = startYear; year <= currentYear; year++) {
+    yearOptions.push({
+      databaseId: year,
+      title: year,
+    });
+  }
+
+  return yearOptions;
 };

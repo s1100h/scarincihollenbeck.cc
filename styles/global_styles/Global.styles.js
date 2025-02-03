@@ -367,14 +367,6 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  .slick-list {
-    text-align: center;
-  }
-
-  .fs-1_2rem {
-    font-size: ${rem(19.2)};
-  }
-
   .redTitle {
     color: ${globalColor.red.darkRed};
   }
@@ -399,18 +391,10 @@ export const GlobalStyle = createGlobalStyle`
 
       // FireFox
       @supports not selector(::-webkit-scrollbar-thumb) {
-        scrollbar-color: ${globalColor.blue.blue400} ${
-  globalColor.blue.blue6002
-};
+        scrollbar-color: ${globalColor.blue.blue400} ${globalColor.blue.blue6002};
         scrollbar-width: thin;
       }
     }
-  }
-
-  /** Button Styling **/
-  .btn-danger {
-    font-weight: bold;
-    background: linear-gradient(360deg, #901918 60%, #dd2624 100%), #333333;
   }
 
   /** Hide captcha in print **/
@@ -422,13 +406,6 @@ export const GlobalStyle = createGlobalStyle`
 
   .kw-border-success {
     margin-left: 0;
-  }
-
-  /** Hide captcha in print **/
-  @media print {
-    .grecaptcha-badge {
-      display: none !important;
-    }
   }
 
   /** Handle center button styles from wordpress **/
@@ -599,22 +576,6 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  .bullets-li {
-    padding-left: 20px;
-    position: relative;
-    
-    ::before {
-      top: 0;
-      left: 0;
-      content: '➤';
-      position: absolute;
-    }
-  }
-
-  .slick-track {
-    display: flex;
-  }
-
   .key-contacts-title {
     color: ${globalColor.white};
     text-transform: uppercase;
@@ -689,6 +650,23 @@ export const GlobalStyle = createGlobalStyle`
 
   .tag-two::before {
     content: ' - ';
+  }
+
+  .text-list {
+    list-style: disc;
+
+    li {
+      margin: 0 0 0 24px;
+
+      &::marker {
+        color: currentColor;
+        font-size: small;
+
+        ${media_breakpoint_down('md')} {
+          font-size: smaller;
+        }
+      }
+    }
   }
 `;
 

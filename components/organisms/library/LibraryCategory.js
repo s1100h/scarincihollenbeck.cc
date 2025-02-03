@@ -5,7 +5,7 @@ import {
   LibraryCards,
   LibraryCategoryHolder,
   LibraryCategorySection,
-} from 'styles/LibraryCategory.style';
+} from 'styles/library/LibraryCategory.style';
 import empty from 'is-empty';
 import LibraryCard from 'components/molecules/library/LibraryCard';
 

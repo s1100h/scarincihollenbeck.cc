@@ -8,33 +8,13 @@ import {
 } from 'requests/graphql-queries';
 import LibraryPage from 'components/pages/LibraryPage';
 import { getPractices } from 'requests/getPractices';
-import { sortByKey } from 'utils/helpers';
+import {
+  generateYearOptions,
+  sanitizeCategories,
+  sortByKey,
+} from 'utils/helpers';
 import { getIndustries } from 'requests/getIndustries';
-
-const generateYearOptions = (startYear) => {
-  const currentYear = new Date().getFullYear();
-  const yearOptions = [];
-
-  for (let year = startYear; year <= currentYear; year++) {
-    yearOptions.push({
-      databaseId: `${year}-id`,
-      title: year,
-    });
-  }
-
-  return yearOptions;
-};
-
-const sanitizeCategories = (categories) => categories?.map((category) => ({
-  databaseId: category.databaseId,
-  title: category?.name || category.title,
-  description: category?.description || category?.pagesFields?.description,
-  uri: category?.uri ? `/library${category?.uri}` : '/library',
-  image:
-      category?.categoryFields?.image?.sourceUrl
-      || category?.featuredImage?.node?.sourceUrl,
-  posts: category?.posts?.nodes || [],
-}));
+import useNotFoundNotification from 'hooks/useNotFoundNotification';
 
 export async function getStaticProps() {
   const {
@@ -76,7 +56,7 @@ export async function getStaticProps() {
       posts: posts?.nodes || [],
       filters,
     },
-    revalidate: 86400,
+    revalidate: 3600,
   };
 }
 
@@ -89,6 +69,8 @@ const Library = ({
   filters,
 }) => {
   const canonicalUrl = `${PRODUCTION_URL}/library`;
+
+  useNotFoundNotification("Category doesn't exist!");
 
   const libraryProps = {
     seo,

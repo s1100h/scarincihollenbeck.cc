@@ -1,8 +1,5 @@
 import Select from 'components/common/Select';
-import { useRouter } from 'next/router';
-import React, { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { UnderlinedLink } from 'styles/common/Typography.style';
+import React, { useMemo } from 'react';
 import { ContainerDefault } from 'styles/Containers.style';
 import {
   LibraryFiltersSection,
@@ -14,43 +11,28 @@ import {
   LibraryFiltersField,
   LibraryFiltersLine,
   LibraryFiltersInput,
-} from 'styles/LibraryFilters';
+  SearchButton,
+} from 'styles/library/LibraryFilters.style';
 import { LIBRARY_NAV } from 'utils/constants';
-import { debounce } from 'utils/helpers';
-import { setSelectedValues } from '../../../redux/slices/library.slice';
+import { IoSearchOutline } from 'react-icons/io5';
+import useLibraryFilters from 'hooks/useLibraryFilters';
+import empty from 'is-empty';
+import Selection from '../attorneys/Selection';
 
-const FILTER_CONFIGS = [
-  {
-    key: 'categories',
-    defaultValue: 'All Categories',
-    placeHolder: 'Filter by Categories',
-  },
-  {
-    key: 'offices',
-    defaultValue: 'All Offices',
-    placeHolder: 'Filter by Offices',
-  },
-  {
-    key: 'authors',
-    defaultValue: 'All Authors',
-    placeHolder: 'Filter by Authors',
-  },
-  {
-    key: 'practices',
-    defaultValue: 'All Practices',
-    placeHolder: 'Filter by Practice',
-  },
-  {
-    key: 'industries',
-    defaultValue: 'All Industries',
-    placeHolder: 'Filter by Industries',
-  },
-  {
-    key: 'years',
-    defaultValue: 'All Years',
-    placeHolder: 'Filter by Years',
-  },
-];
+const createSelects = (items) => {
+  if (empty(items)) return [];
+
+  return items.reduce((acc, [key, value]) => {
+    if (!empty(value)) {
+      acc.push({
+        key,
+        defaultValue: `All ${key}`,
+        placeHolder: key,
+      });
+    }
+    return acc;
+  }, []);
+};
 
 const LibraryFilters = ({
   categories,
@@ -60,36 +42,15 @@ const LibraryFilters = ({
   industries,
   years,
 }) => {
-  const dispatch = useDispatch();
-  const { asPath, push } = useRouter();
-  const { selectedValues } = useSelector((state) => state.library);
-
-  const handleChangeSelect = useCallback(
-    (value, id, key, isDefault) => {
-      const newValue = isDefault ? '' : value;
-      if (selectedValues[key] === newValue) return;
-
-      dispatch(
-        setSelectedValues({
-          ...selectedValues,
-          [key]: newValue,
-        }),
-      );
-    },
-    [dispatch, selectedValues],
-  );
-
-  const handleInputChange = useCallback(
-    debounce((key, value) => {
-      dispatch(
-        setSelectedValues({
-          ...selectedValues,
-          [key]: value,
-        }),
-      );
-    }, 300),
-    [dispatch, selectedValues],
-  );
+  const {
+    selectedValues,
+    asPath,
+    handleChangeSelect,
+    handleInputChange,
+    handleSearch,
+    handleClearAll,
+    handleClearSelection,
+  } = useLibraryFilters();
 
   const optionsMap = {
     categories,
@@ -100,26 +61,16 @@ const LibraryFilters = ({
     years,
   };
 
-  const handleSearch = useCallback(
-    (e) => {
-      e.preventDefault();
-      const queryParams = Object.keys(selectedValues).reduce((acc, key) => {
-        const value = selectedValues[key];
-        if (
-          value
-          && value !== `All ${key.charAt(0).toUpperCase()}${key.slice(1)}`
-        ) {
-          acc[key] = value;
-        }
-        return acc;
-      }, {});
+  const selects = useMemo(
+    () => createSelects(Object.entries(optionsMap)),
+    [optionsMap],
+  );
 
-      push({
-        pathname: '/library/search',
-        query: queryParams,
-      });
-    },
-    [selectedValues, push],
+  const selectionsArray = Object.entries(selectedValues).map(
+    ([key, value]) => ({
+      key,
+      selected: value?.value,
+    }),
   );
 
   return (
@@ -139,32 +90,52 @@ const LibraryFilters = ({
             ))}
           </LibraryFiltersNav>
 
-          <LibraryFiltersLine onSubmit={handleSearch}>
-            <LibraryFiltersFields>
-              <LibraryFiltersField>
-                <LibraryFiltersInput
-                  type="text"
-                  placeholder="Search by keyword"
-                  onChange={(e) => handleInputChange('keyword', e.target.value)}
-                />
-              </LibraryFiltersField>
-              {FILTER_CONFIGS.map(({ key, placeHolder, defaultValue }) => (
-                <LibraryFiltersField key={key}>
-                  <Select
-                    options={optionsMap[key]}
-                    inputValue={selectedValues[key]}
-                    placeHolder={placeHolder}
-                    onChange={(value, id) => handleChangeSelect(value, id, key, value === defaultValue)}
-                    includeDefault
-                    defaultLabel={defaultValue}
+          <LibraryFiltersLine>
+            <form onSubmit={handleSearch}>
+              <LibraryFiltersFields>
+                <LibraryFiltersField>
+                  <LibraryFiltersInput
+                    type="text"
+                    placeholder="Keyword"
+                    value={selectedValues?.keyword?.value || ''}
+                    onChange={handleInputChange}
                   />
                 </LibraryFiltersField>
-              ))}
-            </LibraryFiltersFields>
+                {selects.map(({ key, placeHolder, defaultValue }, index) => (
+                  <LibraryFiltersField key={key}>
+                    <Select
+                      options={optionsMap[key]}
+                      inputValue={selectedValues[key]?.value}
+                      placeHolder={placeHolder}
+                      onChange={(value, id) => handleChangeSelect(
+                        value,
+                        id,
+                        key,
+                        value === defaultValue,
+                      )}
+                      includeDefault
+                      defaultLabel={defaultValue}
+                    />
+                    {index === selects?.length - 1 && (
+                      <SearchButton
+                        aria-label="Search"
+                        type="submit"
+                        disabled={empty(selectedValues)}
+                      >
+                        <IoSearchOutline size={24} />
+                      </SearchButton>
+                    )}
+                  </LibraryFiltersField>
+                ))}
+              </LibraryFiltersFields>
+            </form>
 
-            <UnderlinedLink as="button" type="submit">
-              Search
-            </UnderlinedLink>
+            <Selection
+              selections={selectionsArray}
+              clearAll={handleClearAll}
+              clearQuery={handleClearSelection}
+              keyword={selectedValues?.keyword?.value}
+            />
           </LibraryFiltersLine>
         </LibraryFiltersHolder>
       </ContainerDefault>

@@ -1,6 +1,8 @@
 import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import {
+  ButtonLinkCss,
+  buttonsHoverActive,
   globalBorderRadius,
   globalColor,
   globalTransition,
@@ -249,6 +251,22 @@ export const OutlinedButton = styled.button`
     ${media_breakpoint_down('md')} {
       width: 20px;
       height: 20px;
+    }
+  }
+`;
+
+export const ContactNowBtn = styled.button`
+  ${ButtonLinkCss};
+  width: 100%;
+  height: 55px;
+
+  ${buttonsHoverActive};
+
+  ${media_breakpoint_down('lg')} {
+    width: 80%;
+
+    span {
+      display: flex;
     }
   }
 `;

@@ -10,14 +10,13 @@ import {
   LibraryCardFooter,
   LibraryCardImage,
   LibraryCardLink,
-  LibraryCardTag,
-  LibraryCardTagLink,
   LibraryCardTags,
   LibraryCardText,
-} from 'styles/LibraryCard.style';
+} from 'styles/library/LibraryCard.style';
 import empty from 'is-empty';
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
-import { formatDate } from 'utils/helpers';
+import { changePostLink, formatDate } from 'utils/helpers';
+import { LibraryTag, LibraryTagLink } from 'styles/library/LibraryTags.style';
 
 const LibraryCard = ({
   title,
@@ -50,12 +49,12 @@ const LibraryCard = ({
       )}
       {!empty(tags) && (
         <LibraryCardTags>
-          {tags.map((tag) => (
-            <LibraryCardTag key={tag?.title}>
-              <LibraryCardTagLink href={tag?.uri}>
-                {tag?.title}
-              </LibraryCardTagLink>
-            </LibraryCardTag>
+          {tags.map((tag, index) => (
+            <LibraryTag key={tag?.databaseId}>
+              <LibraryTagLink href={`/library${tag?.uri}`}>
+                {tag?.name}
+              </LibraryTagLink>
+            </LibraryTag>
           ))}
         </LibraryCardTags>
       )}
@@ -83,7 +82,12 @@ const LibraryCard = ({
       </LibraryCardFooter>
     </LibraryCardContent>
 
-    <LibraryCardLink href={uri} passHref title={title}>
+    <LibraryCardLink
+      href={changePostLink(uri)}
+      passHref
+      aria-label={`Read more about ${title}`}
+      title={title}
+    >
       <span className="sr-only">{`Link to post with title - "${title}"`}</span>
     </LibraryCardLink>
   </LibraryCardBox>
