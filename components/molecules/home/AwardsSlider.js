@@ -1,10 +1,9 @@
 import React from 'react';
-// import SwiperWrapper from 'components/organisms/common/SwiperWrapper';
+import SwiperWrapper from 'components/organisms/common/SwiperWrapper';
 import empty from 'is-empty';
 import DisclaimerText from 'components/atoms/DisclaimerText';
 import { AwardsSliderWrapper } from 'styles/Awards.style';
-// import SwiperSlide from 'components/organisms/common/SwiperSlide';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperSlide from 'components/organisms/common/SwiperSlide';
 import AwardCard from './AwardCard';
 
 const breakpoints = {
@@ -30,7 +29,7 @@ const AwardsSlider = ({ items, isLightVariant = false }) => {
 
   return (
     <AwardsSliderWrapper $isLightVariant={isLightVariant}>
-      <Swiper
+      <SwiperWrapper
         breakpoints={breakpoints}
         space-between={32}
         lazy="true"
@@ -47,7 +46,7 @@ const AwardsSlider = ({ items, isLightVariant = false }) => {
             />
           </SwiperSlide>
         ))}
-      </Swiper>
+      </SwiperWrapper>
       <DisclaimerText text="No aspect of the advertisement has been approved by the Supreme Court." />
     </AwardsSliderWrapper>
   );
