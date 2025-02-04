@@ -25,7 +25,7 @@ const CareerForm = () => {
           action={GET_IN_TOUCH_FORM_API}
           className="kwes-form d-print-none w-100"
           // eslint-disable-next-line react/no-unknown-property
-          has-recaptcha-v3="true"
+          has-recaptcha-v3=""
           // eslint-disable-next-line react/no-unknown-property
           recaptcha-site-key={RECAPTCHA_SITE_KEY}
           // eslint-disable-next-line react/no-unknown-property
