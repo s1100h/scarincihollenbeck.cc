@@ -7,7 +7,14 @@ import {
 import empty from 'is-empty';
 
 const MySearchFilters = ({ items, refine, currentRefinement }) => {
-  const SEARCH_FILTERS = ['Practices', 'Careers', 'Posts', 'Attorneys'];
+  const SEARCH_FILTERS = [
+    'Attorneys',
+    'Practices',
+    'Industries',
+    'Office Locations',
+    'Careers',
+    'Posts',
+  ];
 
   const filteredItems = items.filter((item) => SEARCH_FILTERS.includes(item.label));
 
