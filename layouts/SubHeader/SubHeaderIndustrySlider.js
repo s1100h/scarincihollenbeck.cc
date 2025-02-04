@@ -18,11 +18,10 @@ import empty from 'is-empty';
 import SubHeaderIndustryCard from './SubHeaderIndustryCard';
 
 const SubHeaderIndustrySlider = ({
-  slides,
+  slides = [],
   autoplayInterval,
   setActiveTab,
 }) => {
-  if (empty(slides)) return null;
   const {
     activeSlide,
     activeSlideIndex,
@@ -31,6 +30,8 @@ const SubHeaderIndustrySlider = ({
     onClickPrev,
     onClickNext,
   } = useSlider({ slides, autoplayInterval, loop: false });
+
+  if (empty(slides)) return null;
 
   return (
     <SubHeaderIndustrySliderWrapper ref={sliderRef}>

@@ -24,7 +24,7 @@ export const IndustryPageWrapper = styled.div`
 
   .separator-big {
     --separator-line-color: ${globalColor.gray.gray800} !important;
-    margin-block: 0;
+    margin-block: 0 !important;
   }
 
   .margin-scroll {

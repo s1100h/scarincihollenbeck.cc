@@ -19,14 +19,13 @@ import { Title60 } from 'styles/common/Typography.style';
 import VerticalTabsContentColumns from './VerticalTabsContentColumns';
 
 const VerticalTabs = ({
-  contentTabs,
+  contentTabs = [],
   anchorId,
   title,
   headerOffset = 135,
   activeTab: externalActiveTab,
   setActiveTab: externalSetActiveTab,
 }) => {
-  if (empty(contentTabs)) return null;
   const componentId = useId();
   const containerRef = useRef();
   const [internalActiveTab, setInternalActiveTab] = useState(0);
@@ -43,10 +42,12 @@ const VerticalTabs = ({
   };
 
   useEffect(() => {
-    if (activeTab >= contentTabs.length) {
+    if (activeTab >= contentTabs?.length) {
       setActiveTab(0);
     }
   }, [contentTabs, activeTab]);
+
+  if (empty(contentTabs)) return null;
 
   return (
     <VerticalTabsSection

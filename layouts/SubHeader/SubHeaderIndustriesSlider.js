@@ -19,7 +19,10 @@ import { useDispatch } from 'react-redux';
 import useSlider from 'hooks/useSlider';
 import { handleModalOpener } from '../../redux/slices/modals.slice';
 
-const SubHeaderIndustriesSlider = ({ slides, autoplayInterval = 10000 }) => {
+const SubHeaderIndustriesSlider = ({
+  slides = [],
+  autoplayInterval = 10000,
+}) => {
   const dispatch = useDispatch();
   const {
     activeSlide,
@@ -31,6 +34,8 @@ const SubHeaderIndustriesSlider = ({ slides, autoplayInterval = 10000 }) => {
     onClickPrev,
     onClickNext,
   } = useSlider({ slides, autoplayInterval });
+
+  if (empty(slides)) return null;
 
   return (
     <SubHeaderSlider {...swipeHandlers}>

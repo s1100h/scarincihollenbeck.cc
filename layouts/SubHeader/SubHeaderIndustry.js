@@ -34,6 +34,7 @@ const SubHeaderIndustry = ({
     <SubHeaderIndustryBgImage>
       {!empty(backgroundImage) && (
         <Image
+          key={backgroundImage}
           src={backgroundImage}
           alt={`${title} background`}
           fill

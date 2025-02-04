@@ -2,11 +2,11 @@ import React, { useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SubHeaderIndustry from 'layouts/SubHeader/SubHeaderIndustry';
-import FilledSection from 'components/organisms/industries/FilledSection';
 import { Title60 } from 'styles/common/Typography.style';
 import { IndustryPageWrapper } from 'styles/Industries.style';
 import empty from 'is-empty';
 
+const FilledSection = dynamic(() => import('components/organisms/industries/FilledSection'));
 const VerticalTabs = dynamic(() => import('components/organisms/locations/VerticalTabs'));
 const LogoSeparator = dynamic(() => import('components/common/LogoSeparator'));
 const IndustryAttorneys = dynamic(() => import('components/organisms/industries/IndustryAttorneys'));
@@ -122,13 +122,17 @@ const IndustryPage = ({ content, seo, canonicalLink }) => {
           setActiveTab={setActiveTab}
         />
 
-        <LogoSeparator direction="row" isBig isContainer />
+        {!empty(concatenatedAttorneys) && (
+          <>
+            <LogoSeparator direction="row" isBig isContainer />
 
-        <IndustryAttorneys
-          title={anchorLinks?.attorneys?.title}
-          attorneys={concatenatedAttorneys}
-          anchorId={anchorLinks?.attorneys?.id}
-        />
+            <IndustryAttorneys
+              title={anchorLinks?.attorneys?.title}
+              attorneys={concatenatedAttorneys}
+              anchorId={anchorLinks?.attorneys?.id}
+            />
+          </>
+        )}
 
         <IndustryFaq faqList={faq} anchorId={anchorLinks?.faq?.id} />
 
