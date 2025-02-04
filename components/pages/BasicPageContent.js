@@ -5,6 +5,8 @@ import { ContainerDefault } from 'styles/Containers.style';
 import empty from 'is-empty';
 import ContentSection from 'components/molecules/ContentSection';
 import { BasicPageContentHolder } from 'styles/BasicPage.style';
+import SubHeaderMenu from 'layouts/SubHeader/SubHeaderMenu';
+import { Title20 } from 'styles/common/Typography.style';
 
 const BasicPageContent = ({
   sections,
@@ -24,11 +26,12 @@ const BasicPageContent = ({
       title={title}
       subtitle={description}
       backgroundImage={subHeaderImage}
-      menu={
-        canonicalUrl.includes('work-life-balance')
+      RightContentComponent={SubHeaderMenu}
+      rightContentProps={{
+        menu: canonicalUrl.includes('work-life-balance')
           ? FIRM_PAGES
-          : SIDEBAR_POLITIC_LINKS
-      }
+          : SIDEBAR_POLITIC_LINKS,
+      }}
     />
     <ContainerDefault as="section">
       <BasicPageContentHolder as="div">
@@ -39,7 +42,8 @@ const BasicPageContent = ({
               title={title}
               content={content}
               link={link}
-              isSmaller
+              TitleComponent={Title20}
+              contentGap="8px"
             />
           ))}
       </BasicPageContentHolder>

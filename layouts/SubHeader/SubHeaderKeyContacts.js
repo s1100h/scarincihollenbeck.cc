@@ -1,9 +1,8 @@
 import React, { Fragment } from 'react';
 import {
-  SubHeaderInteractive,
   SubHeaderKeyContactsButtons,
   SubHeaderKeyContactsCards,
-} from 'styles/practices/SubHeader.style';
+} from 'styles/subheader/SubHeaderKeyContacts.style';
 import empty from 'is-empty';
 import AttorneyCard from 'components/shared/AttorneyCard';
 import { globalColor } from 'styles/global_styles/Global.styles';
@@ -11,6 +10,7 @@ import { QRCodesBoxForPDF } from 'styles/common/PrintStyles.style';
 import { FaFilePdf } from 'react-icons/fa6';
 import { OutlinedButton, StandardBlueButton } from 'styles/Buttons.style';
 import { useDispatch } from 'react-redux';
+import { SubHeaderInteractive } from 'styles/subheader/SubHeader.style';
 import { handleModalOpener } from '../../redux/slices/modals.slice';
 
 const SubHeaderKeyContacts = ({ keyContacts, isPrint, handlePrint }) => {

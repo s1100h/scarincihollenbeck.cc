@@ -3,6 +3,7 @@ import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
 import { FIRM_PAGES } from 'utils/constants';
 import { ContainerDefault } from 'styles/Containers.style';
 import { AdministrationsHolder } from 'styles/Attornyes.style';
+import SubHeaderMenu from 'layouts/SubHeader/SubHeaderMenu';
 import NonFiltered from '../molecules/attorneys/NonFiltered';
 
 const AdministrationPage = ({
@@ -18,7 +19,8 @@ const AdministrationPage = ({
       title={site.title}
       subtitle={site.description}
       backgroundImage={site.image}
-      menu={FIRM_PAGES}
+      RightContentComponent={SubHeaderMenu}
+      rightContentProps={{ menu: FIRM_PAGES }}
     />
     <AdministrationsHolder>
       <ContainerDefault>

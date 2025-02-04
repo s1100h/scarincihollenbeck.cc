@@ -7,7 +7,7 @@ import {
 } from 'styles/VerticalTabs.style';
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
 
-const VerticalTabsContentColumns = ({ columns }) => {
+const VerticalTabsContentColumns = ({ titleTag, columns }) => {
   if (empty(columns)) return null;
   const columnId = useId();
 
@@ -15,7 +15,7 @@ const VerticalTabsContentColumns = ({ columns }) => {
     <TabContentColumns>
       {columns?.map((column, columnIndex) => (
         <TabContentColumn key={`${columnId}-${columnIndex + 1}`}>
-          {column?.title && <TabTitle>{column?.title}</TabTitle>}
+          {column?.title && <TabTitle as={titleTag}>{column?.title}</TabTitle>}
           {column?.description && (
             <JSXWithDynamicLinks HTML={column?.description} />
           )}

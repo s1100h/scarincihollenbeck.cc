@@ -111,22 +111,6 @@ const delegatePathFunc = (list, router, data) => {
     );
   }
 
-  if (list.includes('practices') && list.includes('government-strategies')) {
-    return (
-      <>
-        <li>
-          <ButtonBreadcrumb href="/services#industries">
-            Industries
-          </ButtonBreadcrumb>
-          <BsChevronRight />
-        </li>
-        <li className="active">
-          <span>{convertPath(list[list.length - 1])}</span>
-        </li>
-      </>
-    );
-  }
-
   if (router.pathname.includes('/industries')) {
     return (
       <>

@@ -12,30 +12,42 @@ import {
   TabContent,
   TabMobileOpener,
   TabTitle,
+  VerticalTabsContainer,
 } from 'styles/VerticalTabs.style';
-import { ContainerDefault } from 'styles/Containers.style';
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
+import { Title60 } from 'styles/common/Typography.style';
 import VerticalTabsContentColumns from './VerticalTabsContentColumns';
 
-const VerticalTabs = ({ contentTabs, anchorId }) => {
-  if (empty(contentTabs)) return null;
+const VerticalTabs = ({
+  contentTabs = [],
+  anchorId,
+  title,
+  headerOffset = 135,
+  activeTab: externalActiveTab,
+  setActiveTab: externalSetActiveTab,
+}) => {
   const componentId = useId();
   const containerRef = useRef();
-  const [activeTab, setActiveTab] = useState(0);
+  const [internalActiveTab, setInternalActiveTab] = useState(0);
+
+  const activeTab = externalActiveTab !== undefined ? externalActiveTab : internalActiveTab;
+  const setActiveTab = externalSetActiveTab || setInternalActiveTab;
 
   const handleOpenerClick = (index) => {
     setActiveTab(index);
 
     if (!containerRef.current) return;
-    const offsetTop = containerRef.current.offsetTop - 135;
+    const offsetTop = containerRef.current.offsetTop - headerOffset;
     window.scrollTo({ top: offsetTop, behavior: 'smooth' });
   };
 
   useEffect(() => {
-    if (activeTab >= contentTabs.length) {
+    if (activeTab >= contentTabs?.length) {
       setActiveTab(0);
     }
   }, [contentTabs, activeTab]);
+
+  if (empty(contentTabs)) return null;
 
   return (
     <VerticalTabsSection
@@ -43,7 +55,8 @@ const VerticalTabs = ({ contentTabs, anchorId }) => {
       id={anchorId}
       className="margin-scroll"
     >
-      <ContainerDefault>
+      <VerticalTabsContainer>
+        {!empty(title) && <Title60>{title}</Title60>}
         <VerticalTabsHolder>
           <OpenersList>
             {contentTabs.map((opener, index) => (
@@ -77,12 +90,19 @@ const VerticalTabs = ({ contentTabs, anchorId }) => {
                           itemIndex + 1
                         }-content-item`}
                       >
-                        {item?.title && <TabTitle>{item?.title}</TabTitle>}
+                        {item?.title && (
+                          <TabTitle as={!empty(title) ? 'h3' : 'h2'}>
+                            {item?.title}
+                          </TabTitle>
+                        )}
                         {item?.description && (
                           <JSXWithDynamicLinks HTML={item?.description} />
                         )}
 
-                        <VerticalTabsContentColumns columns={item?.columns} />
+                        <VerticalTabsContentColumns
+                          titleTag={!empty(title) ? 'h4' : 'h3'}
+                          columns={item?.columns}
+                        />
                       </Fragment>
                     ))}
                 </TabContent>
@@ -90,7 +110,7 @@ const VerticalTabs = ({ contentTabs, anchorId }) => {
             ))}
           </VerticalTabsContent>
         </VerticalTabsHolder>
-      </ContainerDefault>
+      </VerticalTabsContainer>
     </VerticalTabsSection>
   );
 };

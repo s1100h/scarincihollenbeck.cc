@@ -11,7 +11,7 @@ export const ServicesLinksSections = styled.div`
   padding-left: 32px;
   display: flex;
   flex-direction: column;
-  border-left: 1px solid ${globalColor.gray.gray500};
+  border-left: 1px solid #ededed;
 
   ${media_breakpoint_down('xl')} {
     border-left: 0;
