@@ -4,8 +4,11 @@ import {
   globalBorderRadius,
   globalColor,
   globalTransition,
+  industrySectionContainer,
   rem,
 } from './global_styles/Global.styles';
+import { ContainerDefault } from './Containers.style';
+import { ContentContainer } from './Content.style';
 
 const headingStyles = `
   margin: 0 0 4px 0;
@@ -26,6 +29,10 @@ export const VerticalTabsSection = styled.section`
   ${media_breakpoint_down('md')} {
     padding: 24px 0;
   }
+`;
+
+export const VerticalTabsContainer = styled(ContainerDefault)`
+  ${industrySectionContainer};
 `;
 
 export const VerticalTabsHolder = styled.div`
@@ -158,7 +165,7 @@ export const TabTitle = styled.h2`
   ${headingStyles};
 `;
 
-export const TabContent = styled.div`
+export const TabContent = styled(ContentContainer)`
   display: none;
   color: ${globalColor.gray.gray110};
 
@@ -166,26 +173,7 @@ export const TabContent = styled.div`
     display: block;
   }
 
-  p,
-  ul {
-    &:last-child {
-      margin: 0;
-    }
-  }
-
-  ul {
-    list-style: disc;
-
-    li {
-      &::marker {
-        font-size: ${rem(14)};
-      }
-
-      margin-left: 24px;
-    }
-  }
-
-  h2 {
+  h2, h3, h4, h5, h6 {
     ${headingStyles};
   }
 
@@ -198,10 +186,6 @@ export const TabContent = styled.div`
       margin: -8px 0 20px;
     }
   }
-
-  ${media_breakpoint_down('sm')} {
-    font-size: ${rem(14)};
-  }
 `;
 
 export const TabContentColumns = styled.ul`
@@ -212,7 +196,7 @@ export const TabContentColumns = styled.ul`
   column-gap: var(--column-gap);
   row-gap: 24px;
 
-  li {
+  > li {
     margin-left: 0 !important;
   }
 
@@ -231,8 +215,4 @@ export const TabContentColumn = styled.li`
   ${media_breakpoint_down('xl')} {
     width: 100%;
   }
-`;
-
-export const TabContentColumnTitle = styled.h3`
-  ${headingStyles};
 `;

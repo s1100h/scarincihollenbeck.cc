@@ -7,6 +7,7 @@ import PracticeContent from 'components/organisms/practices/PracticeContent';
 import AnchorTop from 'components/atoms/AnchorTop';
 import PracticePrintPage from 'components/organisms/practices/PracticePrintPage';
 import usePrintLogic from 'hooks/usePrintLogic';
+import SubHeaderKeyContacts from 'layouts/SubHeader/SubHeaderKeyContacts';
 
 const PracticeAnchors = dynamic(() => import('components/organisms/practices/PracticeAnchors'));
 const PracticeAttorneys = dynamic(() => import('components/organisms/practices/PracticeAttorneys'));
@@ -110,11 +111,11 @@ const PracticePageNew = ({
         <SubHeaderDefault
           title={practice?.title}
           subtitle={practice?.practicesIncluded.description}
-          keyContacts={keyContactsList}
-          handlePrint={handlePrint}
           backgroundImage={
             practice?.practicesIncluded?.practiceImage?.sourceUrl
           }
+          RightContentComponent={SubHeaderKeyContacts}
+          rightContentProps={{ keyContacts: keyContactsList, handlePrint }}
         />
         <PracticeAnchors anchorData={anchorData} title={practice?.title} />
         <PracticeContent

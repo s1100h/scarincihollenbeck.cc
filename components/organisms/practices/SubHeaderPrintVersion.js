@@ -1,7 +1,7 @@
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
 import SubHeaderKeyContacts from 'layouts/SubHeader/SubHeaderKeyContacts';
 import Link from 'next/link';
-import { SubHeaderDescription } from 'styles/practices/SubHeader.style';
+import { SubHeaderDescription } from 'styles/subheader/SubHeader.style';
 import { useRouter } from 'next/router';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import {

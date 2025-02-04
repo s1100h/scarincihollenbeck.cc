@@ -22,6 +22,30 @@ export const title32Styles = `
   }
 `;
 
+export const Title60 = styled.h2`
+  margin: 0;
+  font-size: ${rem(60)};
+  font-weight: 700;
+  color: ${globalColor.blue.darkBlue};
+
+  strong {
+    font-weight: inherit;
+    color: ${globalColor.blue.blue700};
+  }
+
+  ${media_breakpoint_down('xxl')} {
+    font-size: ${rem(48)};
+  }
+
+  ${media_breakpoint_down('xl')} {
+    font-size: ${rem(32)};
+  }
+
+  ${media_breakpoint_down('md')} {
+    font-size: ${rem(28)};
+  }
+`;
+
 export const Title32 = styled.h2`
   ${title32Styles};
   color: ${({ $isWhite }) => (!$isWhite ? undefined : globalColor.white)};
@@ -74,7 +98,7 @@ export const UnderlinedLink = styled(Link)`
   color: ${({ $isWhite }) => (!$isWhite ? undefined : globalColor.white)};
 `;
 
-export const NotUnderlinedLink = styled(Link)`
+export const FilledLink = styled(Link)`
   padding: 0;
   font-weight: 600;
   color: ${globalColor.blue.blue500};

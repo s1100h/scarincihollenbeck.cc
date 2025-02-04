@@ -6,6 +6,7 @@ import { useMemo } from 'react';
 import empty from 'is-empty';
 import LocationContent from 'components/organisms/locations/LocationContent';
 import { FaqContainer } from 'styles/Faq.style';
+import SubHeaderLocations from 'layouts/SubHeader/SubHeaderLocations';
 import { sortByKey } from '../../utils/helpers';
 import SubHeaderDefault from '../../layouts/SubHeader/SubHeaderDefault';
 import PracticeAnchors from '../organisms/practices/PracticeAnchors';
@@ -101,8 +102,12 @@ const LocationPage = ({
         title={currentOffice.title}
         subtitle={seo.metaDesc}
         backgroundImage={currentOffice.featuredImage}
-        officeInfo={addressInfo}
-        locations={locations}
+        RightContentComponent={SubHeaderLocations}
+        rightContentProps={{
+          locations,
+          officeInfo: addressInfo,
+          title: currentOffice.title,
+        }}
       />
       <PracticeAnchors anchorData={anchorData} title={currentOffice.title} />
       <LocationContent

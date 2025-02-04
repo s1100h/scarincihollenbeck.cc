@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 import HomeBanner from 'components/organisms/home/HomeBanner';
 import HomeSiteHead from 'components/shared/head/HomeSiteHead';
 import { CURRENT_DOMAIN } from 'utils/constants';
-import HappyHolidayLink from 'components/molecules/home/HappyHolidayLink';
+import HappyHoliday from 'components/molecules/home/HappyHoliday';
 import { filterAttorneysByDesignation } from 'utils/helpers';
 import { useMemo } from 'react';
 import HomeContactForm from 'components/organisms/home/HomeContactForm';
@@ -52,7 +52,7 @@ const HomePage = ({
         canonicalUrl={CURRENT_DOMAIN}
       />
       <HomeBanner {...firstSection} />
-      {isHoliday && <HappyHolidayLink />}
+      {isHoliday && <HappyHoliday />}
       {/* <InfoModal /> */}
       <AboutFirmSection {...whoWeAre} />
       <HomeContactForm />
