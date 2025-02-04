@@ -59,9 +59,10 @@ export const GlobalSearch = ({
     : 'NOT post_type_label:Clients AND NOT post_type_label:"Home Page Awards" AND NOT post_type_label:Pages';
 
   const optionalFilters = [
-    'post_type_label:Attorneys<score=5>',
-    'post_type_label:Practices<score=4>',
-    'post_type_label:Industries<score=3>',
+    'post_type_label:Attorneys<score=6>',
+    'post_type_label:Practices<score=5>',
+    'post_type_label:Industries<score=4>',
+    'post_type_label:Office Locations<score=3>',
     'post_type_label:Careers<score=2>',
     'post_type_label:-Posts',
   ];

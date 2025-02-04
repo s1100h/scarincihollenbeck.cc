@@ -56,8 +56,6 @@ export const VerticalTabsHolder = styled.div`
 export const OpenersList = styled.ol`
   margin: 0;
   height: 100%;
-  position: sticky;
-  top: calc(var(--header-height) + 70px);
   width: 500px;
   padding: 24px 40px;
   display: flex;

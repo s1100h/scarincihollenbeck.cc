@@ -57,7 +57,7 @@ export const SubHeaderIndustryBgImage = styled.picture`
     inset: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(0deg, rgba(36, 41, 68, 0.80) 0%, rgba(36, 41, 68, 0.80) 100%), rgba(36, 41, 68, 0.08);
+    background: linear-gradient(0deg, rgba(36, 41, 68, 0.70) 0%, rgba(36, 41, 68, 0.70));
     /* backdrop-filter: blur(2px); */
     z-index: 1;
   }

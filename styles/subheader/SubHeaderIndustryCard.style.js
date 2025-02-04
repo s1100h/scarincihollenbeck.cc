@@ -5,6 +5,7 @@ import { media_breakpoint_down } from "styles/mediaBreakpoints.style";
 
 
 export const Card = styled.div`
+  min-height: 205px;
   display: flex;
   gap: 28px;
   color: ${globalColor.white};
@@ -29,20 +30,17 @@ export const CardContent = styled.div`
 export const CardTitle = styled(Title20)`
   margin: 0 0 4px 0;
   color: ${globalColor.blue.blue1000};
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   ${media_breakpoint_down('md')} {
     width: calc(50% - 4px);
     align-self: center;
     margin: 0 0 12px 0;
     order: -2;
-  }
-
-  ${media_breakpoint_down('sm')} {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 `;
 
@@ -65,6 +63,7 @@ export const CardDescription = styled.div`
 
   ${media_breakpoint_down('md')} {
     min-width: 100%;
+    min-height: 63px;
     font-size: ${rem(14)};
   }
 `;
@@ -106,6 +105,20 @@ export const CardLink = styled(UnderlinedLink)`
   margin-top: 35px;
   color: ${globalColor.white};
   font-size: ${rem(16)};
+
+  &:hover {
+    color: ${globalColor.white};
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      color: ${globalColor.blue.blue400};
+    }
+  }
+
+  &:active {
+    color: ${globalColor.blue.skyBlue};
+  }
 
   ${media_breakpoint_down('xxl')} {
     margin-top: 32px;
