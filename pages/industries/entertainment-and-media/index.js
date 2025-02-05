@@ -1,5 +1,5 @@
 import InitEntertainmentFonts from 'styles/practices-special-style/ent-adn-media/InitEntertainmentFonts';
-import { getIndustryContent } from 'requests/industries/industry-default';
+import { getSpecialIndustryContent } from 'requests/industries/industry-default';
 import { entertainmentAndMediaIndustryQuery } from 'requests/industries/industry-queries';
 import { headMetaData } from 'requests/practices/practice-default';
 import EntertainmentAndMediaPage from '../../../components/practices-special/entertainment-and-media/EntertainmentAndMediaPage';
@@ -15,7 +15,7 @@ export const getStaticProps = async () => {
     industryChief,
     keyContactsList,
     corePractices,
-  } = await getIndustryContent(entertainmentAndMediaIndustryQuery);
+  } = await getSpecialIndustryContent(entertainmentAndMediaIndustryQuery);
 
   if (typeof industry === 'undefined') {
     return {

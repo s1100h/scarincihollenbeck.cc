@@ -6,7 +6,6 @@ import { printScreen } from 'utils/helpers';
 import PostBody from 'components/organisms/post/PostBody';
 import empty from 'is-empty';
 import { ArticleSecondaryContent } from 'styles/Article.style';
-import { ContainerDefault } from 'styles/Containers.style';
 
 const PracticeAttorneys = dynamic(() => import('components/organisms/practices/PracticeAttorneys'));
 const PrintOnlyBody = dynamic(() => import('components/organisms/post/PrintOnlyBody'));
@@ -54,9 +53,7 @@ const ArticlePage = ({
     <ArticleSecondaryContent>
       {!empty(selectedHeroes) && (
         <>
-          <ContainerDefault>
-            <LogoSeparator direction="row" isBig />
-          </ContainerDefault>
+          <LogoSeparator direction="row" isBig isContainer />
 
           <PracticeAttorneys
             attorneys={selectedHeroes}
@@ -68,9 +65,7 @@ const ArticlePage = ({
 
       {!empty(relatedPosts) && (
         <>
-          <ContainerDefault>
-            <LogoSeparator direction="row" isBig />
-          </ContainerDefault>
+          <LogoSeparator direction="row" isBig isContainer />
 
           <RelatedPosts posts={relatedPosts} />
         </>

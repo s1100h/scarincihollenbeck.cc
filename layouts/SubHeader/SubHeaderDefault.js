@@ -2,6 +2,10 @@ import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDyn
 import PostBreadCrumbs from 'components/organisms/post/PostBreadcrumbs';
 import SocialShare from 'components/organisms/library/SocialShare';
 import Image from 'next/image';
+import { changeTitle, formatDate } from 'utils/helpers';
+import empty from 'is-empty';
+import Link from 'next/link';
+import { Fragment } from 'react';
 import {
   SubHeaderAuthor,
   SubHeaderAuthorName,
@@ -12,11 +16,7 @@ import {
   SubHeaderHolder,
   SubHeaderInfo,
   SubHeaderSocials,
-} from 'styles/practices/SubHeader.style';
-import { changeTitle, formatDate } from 'utils/helpers';
-import empty from 'is-empty';
-import Link from 'next/link';
-import { Fragment } from 'react';
+} from 'styles/subheader/SubHeader.style';
 
 const SubHeaderDefault = ({
   title,

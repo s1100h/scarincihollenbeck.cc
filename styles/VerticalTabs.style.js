@@ -4,8 +4,10 @@ import {
   globalBorderRadius,
   globalColor,
   globalTransition,
+  industrySectionContainer,
   rem,
 } from './global_styles/Global.styles';
+import { ContainerDefault } from './Containers.style';
 import { ContentContainer } from './Content.style';
 
 const headingStyles = `
@@ -29,6 +31,10 @@ export const VerticalTabsSection = styled.section`
   }
 `;
 
+export const VerticalTabsContainer = styled(ContainerDefault)`
+  ${industrySectionContainer};
+`;
+
 export const VerticalTabsHolder = styled.div`
   min-height: 725px;
   display: flex;
@@ -50,8 +56,6 @@ export const VerticalTabsHolder = styled.div`
 export const OpenersList = styled.ol`
   margin: 0;
   height: 100%;
-  position: sticky;
-  top: calc(var(--header-height) + 70px);
   width: 500px;
   padding: 24px 40px;
   display: flex;
@@ -189,7 +193,7 @@ export const TabContentColumns = styled.ul`
   column-gap: var(--column-gap);
   row-gap: 24px;
 
-  li {
+  > li {
     margin-left: 0 !important;
   }
 
@@ -208,8 +212,4 @@ export const TabContentColumn = styled.li`
   ${media_breakpoint_down('xl')} {
     width: 100%;
   }
-`;
-
-export const TabContentColumnTitle = styled.h3`
-  ${headingStyles};
 `;

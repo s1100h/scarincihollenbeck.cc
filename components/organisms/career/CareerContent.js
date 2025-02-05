@@ -9,6 +9,7 @@ import {
 import { ContainerDefault } from 'styles/Containers.style';
 import ContentSection from 'components/molecules/ContentSection';
 import empty from 'is-empty';
+import { Title20 } from 'styles/common/Typography.style';
 import SubscriptionSidebar from '../common/SubscriptionSidebar';
 import CareerHeader from './CareerHeader';
 
@@ -26,7 +27,8 @@ const CareerContent = ({ sections, locations, duration }) => (
                 title={title}
                 content={content}
                 link={link}
-                isSmaller
+                TitleComponent={Title20}
+                contentGap="8px"
               />
             ))}
           <CareerForm />

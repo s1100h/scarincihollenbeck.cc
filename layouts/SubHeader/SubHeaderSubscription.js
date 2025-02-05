@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux';
 import { StandardBlueButton } from 'styles/Buttons.style';
 import { globalColor } from 'styles/global_styles/Global.styles';
 import {
-  SubHeaderInteractive,
   SubHeaderSubscriptionContent,
   SubHeaderSubscriptionHolder,
   SubHeaderSubscriptionTitle,
-} from 'styles/practices/SubHeader.style';
+} from 'styles/subheader/SubHeaderSubscription.style';
+import { SubHeaderInteractive } from 'styles/subheader/SubHeader.style';
 import { handleSubscriptionModalOpener } from '../../redux/slices/modals.slice';
 
 const SubHeaderSubscription = () => {

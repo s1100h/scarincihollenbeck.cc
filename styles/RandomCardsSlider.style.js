@@ -5,11 +5,11 @@ import {
   globalTransition,
   rem,
 } from './global_styles/Global.styles';
-import { attorneyCardForPractices } from './practices/SubHeader.style';
 import { ContactBox, InfoBox, LinkBox } from './AttorneyCard.style';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import Image from 'next/image';
 import { Title32 } from './common/Typography.style';
+import { attorneyCardForPractices } from './subheader/SubHeader.style';
 import Link from 'next/link';
 
 export const RandomSliderWrapper = styled.section`

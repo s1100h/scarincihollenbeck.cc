@@ -1,6 +1,6 @@
 import InitCannabisFonts from 'styles/practices-special-style/canabis-law/InitCannabisFonts';
 import { cannabisIndustryQuery } from 'requests/industries/industry-queries';
-import { getIndustryContent } from 'requests/industries/industry-default';
+import { getSpecialIndustryContent } from 'requests/industries/industry-default';
 import { headMetaData } from 'requests/practices/practice-default';
 import CannabisLawPage from '../../../components/practices-special/cannabis-law/CannabisLawPage';
 import { PRODUCTION_URL } from '../../../utils/constants';
@@ -13,7 +13,7 @@ export const getStaticProps = async () => {
     industryChief,
     keyContactsList,
     corePractices,
-  } = await getIndustryContent(cannabisIndustryQuery);
+  } = await getSpecialIndustryContent(cannabisIndustryQuery);
 
   if (typeof industry === 'undefined') {
     return {

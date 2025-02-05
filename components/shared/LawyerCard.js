@@ -3,6 +3,7 @@ import React from 'react';
 import { BsFillEnvelopeFill } from 'react-icons/bs';
 import { MdLocalPhone } from 'react-icons/md';
 import {
+  LawyerCardChair,
   LawyerCardContact,
   LawyerCardContacts,
   LawyerCardContent,
@@ -32,6 +33,7 @@ const LawyerCard = ({
   born,
   death,
   isHorizontal,
+  isChair,
 }) => (
   <LawyerCardWrapper className={isHorizontal ? 'horizontal-card' : ''}>
     <LawyerCardImage>
@@ -46,6 +48,7 @@ const LawyerCard = ({
     </LawyerCardImage>
 
     <LawyerCardContent>
+      {isChair && isHorizontal && <LawyerCardChair>chair</LawyerCardChair>}
       <LawyerCardHeader>
         <LawyerCardDescription>
           {!empty(name) && <LawyerCardName>{name}</LawyerCardName>}
@@ -87,9 +90,10 @@ const LawyerCard = ({
       {!empty(locations) && Array.isArray(locations) && (
         <LawyerCardLocations>
           {locations.map((location, index) => (
-            <LawyerCardLocation key={location.id}>
-              {location.officeMainInformation.addressLocality
-                || location.officeMainInformation}
+            <LawyerCardLocation key={location?.id || location?.databaseId}>
+              {location?.officeMainInformation?.addressLocality
+                || location?.officeMainInformation
+                || location?.title}
               {index < locations.length - 1 && ','}
             </LawyerCardLocation>
           ))}

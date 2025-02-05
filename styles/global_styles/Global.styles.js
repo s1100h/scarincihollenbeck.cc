@@ -10,6 +10,8 @@ export const globalColor = {
   white: 'white',
   black: 'black',
   gray: {
+    gray900: '#959595',
+    gray800: '#CECECF',
     gray700: '#414141',
     gray500: '#929292',
     gray300: '#E4E4E5',
@@ -84,6 +86,10 @@ export const globalColor = {
     blue550: '#31364F',
     blue600: '#377EC4',
     blue6002: '#242944',
+    blue700: '#314AF5',
+    blue800: '#E5F3FC',
+    blue900: '#99A6FF',
+    blue1000: '#B5CDF0',
   },
 
   yellow: {
@@ -841,5 +847,27 @@ export const successMessage = `
     width: 100%;
     font-size: ${rem(16)};
     font-weight: 400;
+  }
+`;
+
+export const industrySectionPaddingBlock = `
+  padding-block: 60px;
+
+  ${media_breakpoint_down('xxl')} {
+    padding-block: 40px;
+  }
+
+  ${media_breakpoint_down('md')} {
+    padding-block: 24px;
+  }
+`;
+
+export const industrySectionContainer = `
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+
+  ${media_breakpoint_down('md')} {
+    row-gap: 16px;
   }
 `;

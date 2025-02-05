@@ -86,7 +86,7 @@ const SubscriptionModal = ({ categoriesFromWP }) => {
               className="kwes-form"
               action="https://kwes.io/api/foreign/forms/zkAM3capOgEtCtFB2fLD"
               // eslint-disable-next-line react/no-unknown-property
-              has-recaptcha-v3="true"
+              has-recaptcha-v3=""
               // eslint-disable-next-line react/no-unknown-property
               recaptcha-site-key={RECAPTCHA_SITE_KEY}
               // eslint-disable-next-line react/no-unknown-property

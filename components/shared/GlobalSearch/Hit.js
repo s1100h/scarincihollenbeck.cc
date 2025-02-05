@@ -15,6 +15,7 @@ import PostsIcon from 'components/common/icons/PostsIcon';
 import AttorneysIcon from 'components/common/icons/AttorneysIcon';
 import CareersIcon from 'components/common/icons/CareersIcon';
 import IndustriesIcon from 'components/common/icons/IndustriesIcon';
+import LocationsIcon from 'components/common/icons/LocationsIcon';
 import { changeTitle } from '../../../utils/helpers';
 import { BASE_API_URL, PRODUCTION_URL } from '../../../utils/constants';
 
@@ -25,6 +26,7 @@ const getItemIcon = (type) => {
     Practices: <PracticesIcon />,
     Careers: <CareersIcon />,
     Industries: <IndustriesIcon />,
+    'Office Locations': <LocationsIcon />,
   };
 
   if (!icons[type]) {
@@ -51,6 +53,7 @@ export default function Hit({ hit, setIsOpenSearch, handleClear }) {
     }
     handleClear();
   };
+
   return (
     <SearchedItem onClick={handleClickItem}>
       <SearchedItemLink

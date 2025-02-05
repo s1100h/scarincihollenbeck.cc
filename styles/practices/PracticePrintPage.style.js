@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 import { globalColor, rem } from 'styles/global_styles/Global.styles';
-import {
-  SubHeaderDescription,
-  SubHeaderInteractive,
-  SubHeaderKeyContactsCards,
-} from './SubHeader.style';
 import { Title32 } from 'styles/common/Typography.style';
 import {
   AttorneyCardBox,
@@ -14,6 +9,8 @@ import {
   UserName,
 } from 'styles/AttorneyCard.style';
 import { WhyChooseUsSection } from './WhyChooseUs.style';
+import { SubHeaderKeyContactsCards } from 'styles/subheader/SubHeaderKeyContacts.style';
+import { SubHeaderDescription, SubHeaderInteractive } from 'styles/subheader/SubHeader.style';
 
 export const PracticePrintPageContainer = styled.div`
   display: flex;

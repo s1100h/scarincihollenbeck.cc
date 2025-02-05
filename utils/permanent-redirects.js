@@ -243,6 +243,11 @@ const PERMANENT_REDIRECTS = [
     permanent: true,
   },
   {
+    source: '/practices/new-york-city-real-estate',
+    destination: '/practices/nyc-real-estate-lawyer',
+    permanent: true,
+  },
+  {
     source: '/practices',
     destination: '/services',
     permanent: true,

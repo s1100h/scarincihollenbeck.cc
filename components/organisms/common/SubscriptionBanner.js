@@ -10,16 +10,25 @@ import {
   SubscriptionBannerSubtitle,
   SubscriptionBannerTitle,
 } from 'styles/SubscriptionBanner.style';
+import dynamic from 'next/dynamic';
 import { handleSubscriptionModalOpener } from '../../../redux/slices/modals.slice';
 
-const SubscriptionBanner = () => {
+const DynamicTitle32 = dynamic(() => import('styles/common/Typography.style').then((mod) => mod.Title32));
+
+const SubscriptionBanner = ({
+  isIndustry = false,
+  TitleComponent = DynamicTitle32,
+}) => {
   const dispatch = useDispatch();
   return (
-    <SubscriptionBannerSection>
+    <SubscriptionBannerSection
+      className={isIndustry ? 'subscription-industry' : ''}
+    >
       <ContainerDefault>
         <SubscriptionBannerHolder>
-          <SubscriptionBannerTitle>
-            Sign up to get the latest from our attorneys!
+          <SubscriptionBannerTitle as={TitleComponent}>
+            <strong>Sign up </strong>
+            to get the latest from our attorneys!
           </SubscriptionBannerTitle>
 
           <SubscriptionBannerContent>

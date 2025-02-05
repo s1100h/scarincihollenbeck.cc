@@ -18,6 +18,7 @@ export const DiamondSeparator = styled.span`
 `;
 
 export const LogoSeparatorWrapper = styled.div`
+  --separator-line-color: ${globalColor.blue.blue400};
   display: flex;
   flex-direction: ${({ $direction }) => $direction || 'column'};
   align-items: center;
@@ -28,7 +29,7 @@ export const LogoSeparatorWrapper = styled.div`
     content: '';
     width: ${({ $direction }) => ($direction === 'row' ? '100%' : '1px')};
     height: ${({ $direction }) => ($direction === 'row' ? '1px' : '100%')};
-    background-color: ${globalColor.blue.blue400};
+    background-color: var(--separator-line-color);
 
     ${media_breakpoint_down('xl')} {
       width: 100%;
@@ -50,12 +51,8 @@ export const LogoSeparatorWrapper = styled.div`
   }
 
   &.separator-big {
-    margin: 40px 0;
-
-    &::before,
-    &::after {
-      background-color: ${globalColor.gray.gray300};
-    }
+    --separator-line-color: ${globalColor.gray.gray300};
+    margin-block: 40px;
 
     > img {
       width: 64px;
@@ -68,7 +65,7 @@ export const LogoSeparatorWrapper = styled.div`
     }
 
     ${media_breakpoint_down('lg')} {
-      margin: 32px 0;
+      margin-block: 32px;
     }
   }
 `;
