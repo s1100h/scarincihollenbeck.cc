@@ -42,6 +42,18 @@ const LibraryFilters = ({
   industries,
   years,
 }) => {
+  const optionsMap = useMemo(
+    () => ({
+      categories,
+      offices,
+      authors,
+      practices,
+      industries,
+      years,
+    }),
+    [categories, offices, authors, practices, industries, years],
+  );
+
   const {
     selectedValues,
     asPath,
@@ -50,16 +62,7 @@ const LibraryFilters = ({
     handleSearch,
     handleClearAll,
     handleClearSelection,
-  } = useLibraryFilters();
-
-  const optionsMap = {
-    categories,
-    offices,
-    authors,
-    practices,
-    industries,
-    years,
-  };
+  } = useLibraryFilters(optionsMap);
 
   const selects = useMemo(
     () => createSelects(Object.entries(optionsMap)),
@@ -107,11 +110,10 @@ const LibraryFilters = ({
                       options={optionsMap[key]}
                       inputValue={selectedValues[key]?.value}
                       placeHolder={placeHolder}
-                      onChange={(value, id) => handleChangeSelect(
-                        value,
-                        id,
+                      onChange={(item) => handleChangeSelect(
+                        item,
                         key,
-                        value === defaultValue,
+                        item?.title === defaultValue,
                       )}
                       includeDefault
                       defaultLabel={defaultValue}

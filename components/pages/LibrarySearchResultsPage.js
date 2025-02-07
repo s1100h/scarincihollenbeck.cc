@@ -3,16 +3,18 @@ import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
 import SubHeaderCardsSlider from 'layouts/SubHeader/SubHeaderCardsSlider';
 import LibraryFilters from 'components/organisms/library/LibraryFilters';
+import LibraryResults from 'components/organisms/library/LibraryResults';
 
 const SubscriptionBanner = dynamic(() => import('components/organisms/common/SubscriptionBanner'));
 
-const LibraryCategoryPage = ({
+const LibrarySearchResultsPage = ({
+  seo,
   title,
   description,
-  seo,
-  categoryId,
   filters,
   subHeaderSlides,
+  filtersParams,
+  posts,
 }) => (
   <>
     <BasicSiteHead
@@ -41,7 +43,10 @@ const LibraryCategoryPage = ({
       categories={filters?.categories}
     />
 
+    <LibraryResults />
+
     <SubscriptionBanner />
   </>
 );
-export default LibraryCategoryPage;
+
+export default LibrarySearchResultsPage;

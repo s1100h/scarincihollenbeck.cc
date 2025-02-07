@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { media_breakpoint_down } from "styles/mediaBreakpoints.style";
 import { PostSidebarAnchors } from "./PostSideBar.style";
 import { globalTransition } from "styles/global_styles/Global.styles";
-import { articleSectionPadding } from "styles/Article.style";
+import { sectionPadding } from "styles/Article.style";
 
 export const PostContentSection = styled.section`
-  ${articleSectionPadding};
+  ${sectionPadding};
   
   @media print {
     display: none;

@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   selectedValues: {},
+  selectedTags: [],
 };
 
 const librarySlice = createSlice({
@@ -11,8 +12,11 @@ const librarySlice = createSlice({
     setSelectedValues: (state, action) => {
       state.selectedValues = action.payload;
     },
+    setSelectedTags: (state, action) => {
+      state.selectedTags = action.payload;
+    },
   },
 });
 
-export const { setSelectedValues } = librarySlice.actions;
+export const { setSelectedValues, setSelectedTags } = librarySlice.actions;
 export default librarySlice.reducer;

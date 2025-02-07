@@ -1193,16 +1193,6 @@ export const getOfficeAndMoreData = `query FirmPageQuery($id: ID!) {
   }
 }`;
 
-export const getSEOforAuthorPosts = `query FirmOverviewQuery($id: ID!) {
-  user(id: $id, idType: DATABASE_ID) {
-    seo {
-      title
-      canonical
-      metaDesc
-    }
-  }
-}`;
-
 export const getServicesQuery = `
 query ServicesQuery {
   page(id: 168619, idType: DATABASE_ID) {
@@ -1506,6 +1496,19 @@ query CategoriesQuery {
       node {
         sourceUrl
       }
+    }
+  }
+}`;
+
+export const authorContentQuery = `
+query AuthorContentQuery($id: ID!) {
+  user(id: $id, idType: SLUG) {
+    name
+    description
+    databaseId
+    seo {
+      title
+      metaDesc
     }
   }
 }`;

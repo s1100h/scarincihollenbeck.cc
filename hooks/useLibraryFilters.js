@@ -1,25 +1,61 @@
 import { useRouter } from 'next/router';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import empty from 'is-empty';
 import { setSelectedValues } from '../redux/slices/library.slice';
 
-const useLibraryFilters = () => {
+const useLibraryFilters = (optionsMap) => {
   const dispatch = useDispatch();
-  const { asPath, push } = useRouter();
+  const { asPath, push, query } = useRouter();
   const { selectedValues } = useSelector((state) => state.library);
 
+  useEffect(() => {
+    const newSelectedValues = {};
+
+    if (!empty(query) && (Object.keys(query).length > 1 || empty(query.slug))) {
+      Object.entries(query).forEach(([key, id]) => {
+        const option = optionsMap[key]?.find(
+          (item) => item?.databaseId?.toString() === id || item?.id?.toString() === id,
+        );
+        if (option && key !== 'keyword') {
+          newSelectedValues[key] = {
+            value: option.title,
+            id: option.id ?? option.databaseId,
+            slug: option.uri ?? option.slug,
+          };
+        }
+
+        if (key === 'keyword') {
+          newSelectedValues[key] = {
+            value: id,
+            id,
+          };
+        }
+      });
+    }
+
+    if (JSON.stringify(newSelectedValues) !== JSON.stringify(selectedValues)) {
+      dispatch(setSelectedValues(newSelectedValues));
+    }
+  }, [query]);
+
   const handleChangeSelect = useCallback(
-    (value, id, key, isDefault) => {
+    (item, key, isDefault) => {
+      const {
+        title, id, databaseId, slug, uri,
+      } = item;
+      const itemId = databaseId || id;
+      const itemUri = uri || slug;
       const newSelectedValues = { ...selectedValues };
 
       if (isDefault) {
         delete newSelectedValues[key];
       } else if (
-        newSelectedValues[key]?.value !== value
-        || newSelectedValues[key]?.id !== id
+        newSelectedValues[key]?.value !== title
+        || newSelectedValues[key]?.id !== itemId
+        || newSelectedValues[key]?.slug !== itemUri
       ) {
-        newSelectedValues[key] = { value, id };
+        newSelectedValues[key] = { value: title, id: itemId, slug: itemUri };
       }
 
       if (JSON.stringify(selectedValues) === JSON.stringify(newSelectedValues)) return;
@@ -52,6 +88,21 @@ const useLibraryFilters = () => {
     (e) => {
       if (empty(selectedValues)) return;
       e.preventDefault();
+
+      if (Object.keys(selectedValues).length === 1) {
+        const selectedCategories = selectedValues?.categories?.slug;
+        const selectedAuthors = selectedValues?.authors?.slug;
+
+        if (!empty(selectedCategories)) {
+          push(selectedCategories);
+          return;
+        }
+
+        if (!empty(selectedAuthors)) {
+          push(`/library${selectedAuthors}`);
+          return;
+        }
+      }
 
       const query = Object.entries(selectedValues).reduce(
         (acc, [key, { id }]) => {

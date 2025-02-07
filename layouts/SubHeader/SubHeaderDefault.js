@@ -61,7 +61,7 @@ const SubHeaderDefault = ({
       )}
 
       <SubHeaderContent className="sub-header__content">
-        <PostBreadCrumbs />
+        <PostBreadCrumbs data={{ title }} />
 
         <SubHeaderInfo key={`${title}-subheader-content`}>
           {!empty(category) && (

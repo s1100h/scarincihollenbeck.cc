@@ -81,12 +81,12 @@ const CustomSelect = memo(
     );
 
     const handleClickOption = useCallback(
-      (e, value, id) => {
+      (e, item) => {
         e.preventDefault();
         if (inputRef && inputRef.current) {
-          inputRef.current.value = value;
+          inputRef.current.value = item?.title;
         }
-        onChange(value, id);
+        onChange(item);
         setSelectActive(false);
       },
       [onChange, setSelectActive],
@@ -141,13 +141,7 @@ const CustomSelect = memo(
                     exit="exit"
                     variants={optionVariants}
                   >
-                    <SelectOption
-                      onClick={(e) => handleClickOption(
-                        e,
-                        item?.title,
-                        item?.databaseId || item?.id,
-                      )}
-                    >
+                    <SelectOption onClick={(e) => handleClickOption(e, item)}>
                       {item?.title}
                     </SelectOption>
                   </motion.li>

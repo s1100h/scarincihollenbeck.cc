@@ -3,7 +3,7 @@ import { media_breakpoint_down } from './mediaBreakpoints.style';
 import { LogoSeparatorWrapper } from './Separators.style';
 import { PracticeAttorneysSection } from './practices/PracticeAttorneys';
 
-export const articleSectionPadding = `
+export const sectionPadding = `
   padding-block: 40px;
 
   ${media_breakpoint_down('md')} {
@@ -68,7 +68,7 @@ export const ArticleSecondaryContent = styled.div`
   }
 
   ${PracticeAttorneysSection} {
-    ${articleSectionPadding};
+    ${sectionPadding};
   }
 
   @media print {

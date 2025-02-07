@@ -1,20 +1,12 @@
-import ApolloWrapper from 'layouts/ApolloWrapper';
 import { PRODUCTION_URL } from 'utils/constants';
-import {
-  generateYearOptions,
-  sanitizeCategories,
-  sortByKey,
-} from 'utils/helpers';
-import { fetchAPI, fetchRestAPI } from 'requests/api';
+import { fetchAPI } from 'requests/api';
 import {
   categoriesQuery,
   categoryPageContentQuery,
-  firstCreatedPostQuery,
 } from 'requests/graphql-queries';
 import LibraryCategoryPage from 'components/pages/LibraryCategoryPage';
-import { getPractices } from 'requests/getPractices';
-import { getIndustries } from 'requests/getIndustries';
 import empty from 'is-empty';
+import { getLibraryFiltersAndSubheaderData } from 'requests/getLibraryFiltersData';
 
 /** get the current category's latest post WP GRAPHQL API */
 async function getCategoryContent(variables) {
@@ -52,28 +44,9 @@ export const getStaticProps = async ({ params }) => {
       slug: params.slug,
     },
   });
-
-  const categories = await fetchAPI(categoriesQuery);
-
-  const practices = await getPractices();
-
-  const industries = await getIndustries();
-
-  const { locations } = await fetchRestAPI('locations');
-
-  const { authors } = await fetchRestAPI('authors');
-  const sortedAuthors = sortByKey(authors, 'title');
-
-  const firstPost = await fetchAPI(firstCreatedPostQuery);
-  const dateFirstPost = new Date(firstPost?.posts?.nodes[0]?.date).getFullYear() || 2013;
-
-  const filters = {
-    practices,
-    locations,
-    authors: sortedAuthors,
-    industries,
-    years: generateYearOptions(dateFirstPost),
-  };
+  const { filters, subHeaderSlides } = await getLibraryFiltersAndSubheaderData(
+    categoriesQuery,
+  );
 
   if (empty(pageContent)) {
     return {
@@ -93,11 +66,8 @@ export const getStaticProps = async ({ params }) => {
         canonicalUrl: `${PRODUCTION_URL}/library/category/${params.slug}`,
       },
       categoryId: pageContent?.databaseId,
-      categories: sanitizeCategories([
-        ...categories?.categories?.nodes,
-        categories?.pageBy,
-      ]),
       filters,
+      subHeaderSlides,
     },
     revalidate: 3600,
   };
@@ -109,23 +79,19 @@ const LibraryCategory = ({
   description,
   seo,
   categoryId,
-  categories,
   filters,
+  subHeaderSlides,
 }) => {
   const libraryProps = {
     title,
     description,
     seo,
     categoryId,
-    categories,
     filters,
+    subHeaderSlides,
   };
 
-  return (
-    <ApolloWrapper>
-      <LibraryCategoryPage {...libraryProps} />
-    </ApolloWrapper>
-  );
+  return <LibraryCategoryPage {...libraryProps} />;
 };
 
 export default LibraryCategory;

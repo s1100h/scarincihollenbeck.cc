@@ -401,6 +401,11 @@ export const createMenuData = (practices, locations, industries) => [
     href: '/',
     list: [
       {
+        databaseId: 'menu-lib-00',
+        title: 'Library overview',
+        uri: '/library',
+      },
+      {
         databaseId: 'menu-lib-01',
         title: 'Client Alerts',
         uri: '/library/category/client-alert',
@@ -554,7 +559,6 @@ export const getIndustryLink = (uri, defaultUri = '/services#industries') => (re
 export const filterTunePractices = (practice) => {
   const titleMap = {
     'Employment Defense Attorney': true,
-    'Government Strategies': true,
   };
 
   return !titleMap[practice.title];

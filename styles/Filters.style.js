@@ -348,6 +348,7 @@ export const FiltersNotFoundButton = styled.button`
   color: ${globalColor.blue.blue400};
   font-weight: 700;
   text-decoration: underline;
+  text-transform: uppercase;
 
   :hover {
     text-decoration: none;

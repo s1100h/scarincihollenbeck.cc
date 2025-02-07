@@ -43,14 +43,14 @@ const PracticeAttorneys = ({
     return Math.floor(availableWidth / (cardWidth + cardGap)) || 0;
   }, [containerWidth, cardWidth, cardGap]);
 
-  const handleSetCardParams = useCallback((width, height) => {
+  const handleSetCardParams = (width, height) => {
     setCardWidth(width);
     setCardHeight(height);
-  }, []);
+  };
 
-  const handleSetCardGap = useCallback((gap) => {
+  const handleSetCardGap = (gap) => {
     setCardGap(gap);
-  }, []);
+  };
 
   const handleCollapse = useCallback(() => {
     setIsCollapsed((prev) => !prev);

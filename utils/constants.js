@@ -565,29 +565,6 @@ export const subscriptionInputs = [
   },
 ];
 
-export const CategoriesButtonsStructure = [
-  {
-    slug: 'client-alert',
-    label: 'Client Alert',
-    databaseId: 20098,
-  },
-  {
-    slug: 'firm-news',
-    label: 'News',
-    databaseId: 98,
-  },
-  {
-    slug: 'firm-events',
-    label: 'Events',
-    databaseId: 99,
-  },
-  {
-    slug: 'law-firm-insights',
-    label: 'Insights',
-    databaseId: 599,
-  },
-];
-
 export const Links404NavArr = [
   {
     id: 1,

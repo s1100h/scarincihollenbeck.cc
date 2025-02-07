@@ -15,12 +15,15 @@ export const PracticeAttorneysSection = styled.section`
   }
 
   .attorneys-practice__header {
+    width: fit-content;
     margin-bottom: 12px;
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-end;
-    column-gap: 16px;
+    gap: 16px;
 
     > button {
+      margin: 0 0 0 auto;
       height: 100%;
       display: flex;
       color: ${globalColor.blue.blue600};

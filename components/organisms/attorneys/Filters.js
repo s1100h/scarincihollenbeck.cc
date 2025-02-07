@@ -87,14 +87,14 @@ const Filters = ({
             options={practices}
             inputValue={select.find((a) => a.key === 'practices')?.selected}
             placeHolder="Filter by Practice"
-            onChange={(value) => handleChangePracticesSelect(value)}
+            onChange={({ title }) => handleChangePracticesSelect(title)}
           />
 
           <CustomSelect
             options={locations}
             inputValue={select.find((a) => a.key === 'location')?.selected}
             placeHolder="Filter by Location"
-            onChange={(value) => handleChangeLocationsSelect(value)}
+            onChange={({ title }) => handleChangeLocationsSelect(title)}
           />
         </FiltersLeftColumn>
 

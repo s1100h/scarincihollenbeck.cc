@@ -1,7 +1,6 @@
 import { render, screen, within } from '@testing-library/react';
 import { act } from 'react-test-renderer';
 import ReduxProvider from '../../../hoks/reduxTestHoc';
-import SubHeader from '../../../layouts/SubHeader/SubHeader';
 import AttorneyFilters from '../../../components/organisms/attorneys/AttorneyFilters';
 import AttorneyCards from '../../../components/atoms/AttorneyCards';
 import AttorneysPage from '../../../components/pages/AttorneysDirectory';
@@ -11,15 +10,6 @@ import {
 } from '../../../__mocks__/attorneysFilter.mock';
 
 const mockDataAttorneys = Object.entries(attorneysFilterMock);
-const renderAttorneyPage = (props) => render(
-  <ReduxProvider>
-    <SubHeader
-      isFilter={false}
-      title={props.title}
-      subtitle={props.description}
-    />
-  </ReduxProvider>,
-);
 
 const renderAttorneyFilters = (props) => render(
   <ReduxProvider>

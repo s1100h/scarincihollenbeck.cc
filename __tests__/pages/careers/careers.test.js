@@ -2,7 +2,6 @@ import { render, screen, within } from '@testing-library/react';
 import PositionCard, {
   checkAllOffices,
 } from 'components/molecules/careers/PositionCard';
-import SubHeader from 'layouts/SubHeader/SubHeader';
 import { useRouter } from 'next/router';
 
 jest.mock('next/router', () => ({
@@ -17,19 +16,6 @@ useRouter.mockReturnValue({
 });
 
 describe('Careers page', () => {
-  it('Subheader component render', async () => {
-    const props = {
-      title: 'Careers & Open Positions',
-      subtitle:
-        'Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck, LLC to recruit, retain, and promote the best attorneys.',
-    };
-
-    render(<SubHeader {...props} />);
-
-    const subHeaderTitle = screen.getByText(props?.title);
-    expect(subHeaderTitle).toBeInTheDocument();
-  });
-
   it('Subheader component render', async () => {
     const props = {
       slug: 'careers/tax-partner',

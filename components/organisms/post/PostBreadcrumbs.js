@@ -45,6 +45,9 @@ const delegatePathFunc = (list, router, data) => {
   }
 
   if (list.length > 1 && list.includes('author')) {
+    const changedTitle = !empty(data?.title)
+      ? data?.title.replace('Writings by ', '')
+      : 'no longer';
     return (
       <>
         <li>
@@ -54,13 +57,7 @@ const delegatePathFunc = (list, router, data) => {
           <BsChevronRight />
         </li>
         <li>
-          <span>
-            {`Author - ${
-              !empty(data?.title.replace(/\sArticles$/, ''))
-                ? data?.title.replace(/\sArticles$/, '')
-                : 'no longer'
-            }`}
-          </span>
+          <span>{`Author - ${changedTitle}`}</span>
         </li>
       </>
     );
